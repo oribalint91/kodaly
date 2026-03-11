@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>szövegszerkesztés önálló munka</title>
+  <style>
+    body {
+      font-size: large;
+      line-height: 1.6;
+      max-width: 800px;
+      padding: 20px;
+      background-color: #f4f7f6;
+      color: #333;
+      text-align: justify;
+      hyphens: auto;
+      margin: 0 auto;
+      margin-bottom: 100px;}
+    h1, h2, h3 {
+      color: #2c3e50
+    }
+    .intro {
+      background: #e8f4f8;
+      padding: 15px;
+      border-left: 5px solid #3498db;
+      margin-bottom: 20px;
+    }
+    .raw-text-box {
+      background: #fff;
+      border: 2px dashed #7f8c8d;
+      padding: 15px;
+      border-radius: 5px;
+      font-family: 'Courier New', Courier, monospace;
+      margin-bottom: 30px;
+    }
+    .gomb {
+      background: #ddd;
+      border: 2px solid #7f8c8d;
+      padding: 5px;
+      border-radius: 5px;
+      font-family: 'Courier New', Courier, monospace;
+      margin-bottom: 30px;
+      hyphens: none;
+    }
+    .sticky-footer .gomb{
+      background: #222;
+    }
+    .task-card {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    details {
+      margin-top: 10px;
+      padding: 10px;
+      background: #fdfdfd;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+      color: #2980b9;
+      padding: 5px 0;
+    }
+    summary:hover {
+      color: #1c6ea4;
+    }
+    .left {
+      max-width: 49%;
+      margin-right: auto;
+    }
+    .right {
+      max-width: 49%;
+      margin-left: auto;
+    }
+    .sides {
+      display: flex;
+      justify-content: space-between;
+    }
+  img {
+    max-width: 100%;
+  }
+  .sticky-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 50%;
+    overflow-y: auto;
+    background-color: #2c3e50;
+    color: white;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    pad: 10px 0;
+  }
+  .footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .sticky-footer details {
+    background: #34495e;
+    border: 1px solid #3498db;
+    margin-top: 0;
+  }
+    .sticky-footer summary {
+      color: #ecf0f1;
+      font-size: 1.1em;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sticky-footer summary::after {
+      content: '▲';
+      font-size: 0.8em;
+    }
+    .sticky-footer details[open] summary::after {
+      content: '▼';
+    }
+    .sticky-footer p, .sticky-footer li {
+      color: #ecf0f1;
+      font-size: 0.95em;
+    }
+    .blink {
+      animation: blinker 1.5s linear infinite;
+    }
+    @keyframes blinker {
+      50% {
+        opacity: 0;
+      }
+    }
+    </style>
+</head>
+<body>
+  <h2>A mesterséges intelligencia világa – hosszabb szöveg önálló formázása</h2>
+  <p class="intro">Ebben a dokumentumban önálló munkához találsz feladatokat. Sorban haladj, mert úgy növekszik a nehézség! Ha érted a feladatokat, akkor az <i>Önálló feladat</i> részben található leírás szerint gyorsan tudsz haladni. Ha valami mégsem tiszta, akkor a <i>Könnyített lépések (segítséggel)</i> részben találsz extra leírást és képeket.</p>
+
+  <h2>Nyers szöveg, amivel dolgozni fogsz</h2>
+
+  <div class="raw-text-box">A mesterséges intelligencia világa
+Mi is az a mesterséges intelligencia?
+A mesterséges intelligencia (röviden MI, angolul AI) az informatika egy olyan ága, amelynek célja olyan gépek és programok létrehozása, amelyek képesek az emberi gondolkodáshoz hasonló feladatokat elvégezni. Ide tartozik a tanulás, a problémamegoldás, a nyelv megértése és a környezet érzékelése. Nem egyetlen technológiáról beszélünk, hanem sokféle módszer összességéről, amelyek forradalmasítják a mindennapjainkat.
+A gépi tanulás alapjai
+Az MI egyik legfontosabb területe a gépi tanulás. Régebben a programozóknak minden egyes lépést pontosan meg kellett határozniuk a számítógép számára. A gépi tanulás során azonban a gép hatalmas mennyiségű adatot kap, és ezekből önállóan ismeri fel a mintázatokat. Ha például ezer képet mutatunk neki macskákról és kutyákról, egy idő után magától is el tudja dönteni egy új képről, hogy melyik állat van rajta.
+Hol találkozunk az MI-vel a mindennapokban?
+Sokan azt hiszik, hogy a mesterséges intelligencia csak a sci-fi filmekben létezik, pedig már most is átszövi az életünket. Amikor a telefonunk arcfelismeréssel old fel, amikor a streaming szolgáltató filmet ajánl nekünk, vagy amikor az útvonaltervező újratervezi az utat a dugó miatt, mind-mind MI-t használunk. A hangalapú asszisztensek és a modern videójátékok okos karakterei szintén ezen a technológián alapulnak.
+Az MI történetének mérföldkövei
+1950 - A Turing&#8209teszt megalkotása, amely a gépi intelligenciát méri - Alan Turing
+1997 - A Deep Blue szuperszámítógép legyőzi a regnáló sakkvilágbajnokot - IBM
+2011 - A Watson nevű gép megnyeri a televíziós kvízműsort az emberi bajnokok ellen - IBM
+2022 - A ChatGPT nyelvi modell megjelenése, amely emberi szintű szöveggenerálásra képes - OpenAI
+Veszélyek és etikai kérdések
+Mint minden nagy találmánynak, az MI-nek is vannak árnyoldalai. A szakemberek folyamatosan vitáznak arról, hogyan lehet biztonságosan használni ezeket a rendszereket. Komoly kérdés a személyes adatok védelme, hiszen az MI rengeteg információt gyűjt rólunk. Emellett felmerül a munkahelyek elvesztésének félelme is, mivel a robotok egyre több olyan feladatot tudnak elvégezni, amit eddig csak emberek tudtak.
+Jövőkép: Mi vár ránk?
+A mesterséges intelligencia fejlődése megállíthatatlan. A jövőben valószínűleg még okosabb orvosi diagnosztikai rendszerek, teljesen önvezető autók és személyre szabott oktatási programok várnak ránk. A legfontosabb feladatunk az lesz, hogy megtanuljunk együttműködni ezekkel az eszközökkel.
+  </div>
+
+  <div class="task-card">
+    <h3>1. feladat: dokumentum létrehozása, szöveg beillesztése</h3>
+    <details>
+      <summary>Önálló feladat</summary>
+      <p>Másold ki a fenti szöveget! Nyisd meg a Wordöt, hozz létre egy új üres dokumentumot, és illeszd be a kimásolt szöveget! A fájlt mentsd el a saját mappádba <i>A mesterséges intelligencia <u>saját neved</u></i> néven!</p>
+    </details>
+    <details>
+      <summary>Könnyített lépések (segítséggel)</summary>
+      <ol>
+        <li><b>A szöveg másolása:</b> az egér segítségével jelöld ki a fenti szöveget a böngészőben! Jobb egérgombbal kattintva kiválaszthatod a <i>Másolás</i> lehetőséget, de az is jó, ha megnyomod a <span class="gomb">ctrl + c</span> billentyűkömbinációt.</li>
+        <img src="kepek\masolas.png" alt="">
+        <li><b>Dokumentum készítése és a szöveg beillesztése: </b>keresd ki a Wordöt, és nyisd meg, majd kattints az <i>Üres dokumentum</i> lehetőségre! itt nyomd meg a <span class="gomb">ctrl + v</span> billentyűkombinációt!</li>
+        <li><b>A dokumentum mentése:</b> kattints a mentés gombra, vagy nyomd meg a <span class="gomb">ctrl + s</span> gombot! A bal oldalon válaszd ki a <i>Tallózás</i> gombot, majd a felugró párbeszédablakban keresd meg a saját meghajtódat az <i>Ez a gép</i> alatt! Írd be a fájlnevet: <i>A mesterséges intelligencia <u>saját neved</u></i>, majd kattints a <i>Mentés</i> gombra, vagy nyomd meg az <span class="gomb">Enter</span>-t</li>
+        <img src="kepek\mentes.png" alt="">
+      </ol>
+    </details>
+  </div>
+
+  <div class="task-card">
+    <h3>2. feladat: alapbeállítások és az automatikus elválasztás</h3>
+    
+    <details>
+    <summary><b>Önálló feladat (haladóknak)</b></summary>
+    <p>Állítsd be a dokumentum margóit: a bal margó legyen 3 cm, a többi (jobb, alsó, felső) pedig 2 cm. Kapcsold be a dokumentumban az automatikus elválasztást!</p>
+    </details>
+    
+    <details>
+    <summary><b>Könnyített lépések (segítséggel)</b></summary>
+    <ol start="4">
+      <li><b>Margók:</b> kattints a fenti menüben az <i>Elrendezés</i> fülre, majd bal oldalon a <i>Margók</i> gombra. Válaszd az <i>Egyéni margók...</i> opciót, és írd be a bal margóhoz, hogy 3, a többihez (alsó, felső, jobb), hogy 2.</li>
+      <img src="kepek/margok.png" alt="">
+      <img src="kepek/margok2.png" alt="">
+      <li><b>Automatikus elválasztás:</b> az <i>Elrendezés</i> fülön keresd meg az <i>Elválasztás</i> menüt, és válaszd ki a párbeszédablakban az <i>Automatikus</i> lehetőséget!</li>
+    </ol>
+    </details>
+  </div>
+<div class="task-card">
+  <h3>3. feladat: stílusok beállítása és alkalmazása</h3>
+  
+  <details>
+    <summary><b>Önálló feladat (haladóknak)</b></summary>
+    <p>Módosítsd a <b>Normál</b> stílust: legyen 12-es méretű Times New Roman, sorkizárt, 1,15-ös sorközzel. <br>
+    Módosítsd a <b>Címsor 1</b> stílust: 18-as méret, félkövér, középre zárt, kék színű, és előtte-utána 12 pt térköz legyen. <br>
+    Módosítsd a <b>Címsor 2</b> stílust: 14-es méret, dőlt, balra zárt, kék színű. <br>
+    <i>Alkalmazd a stílusokat a szövegben lévő főcímekre és alcímekre!</i></p>
+    <ol><b>A címsorok listája a szövegben:</b>
+    <li>Mi is az a mesterséges intelligencia?</li>
+    <li>A gépi tanulás alapjai</li>
+    <li>Hol találkozunk az MI-vel a mindennapokban?</li>
+    <li>Az MI történetének mérföldkövei</li>
+    <li>Veszélyek és etikai kérdések</li>
+    <li>Jövőkép: Mi vár ránk?</li></ol>
+  </details>
+  
+  <details>
+    <summary><b>Könnyített lépések (segítséggel)</b></summary>
+    <ol start="6">
+      <li><b>Normál stílus módosítása:</b> a <i>Kezdőlap</i> fülön, a <i>Stílusok</i> ablakban kattints jobb gombbal a <i>Normál</i> stílusra, és válaszd a <b>Módosítás</b> parancsot.</li>
+      <img src="kepek/stilus_modositas.png" alt="">
+      <li>Állítsd be a Times New Roman betűtípust, a 12-es méretet, és kattints a Sorkizárt ikonra.</li>
+      <img src="kepek/stilus_beallitas.png" alt="">
+      <li>A bal alsó sarokban a <i>Formátum</i> -> <i>Bekezdés</i> menüben állítsd a sorközt 1,15-re. Nyomj OK-t!</li>
+      <img src="kepek/stilus_bekezdes.png" alt="">
+      <img src="kepek/bekezdes_terkoz_sorkoz.png" alt="">
+      <li><b>Címsorok módosítása:</b> Ugyanígy kattints jobb gombbal a <i>Címsor 1</i>-re, majd Módosítás. Válaszd ki a 18-as méretet, a <b>F</b> (félkövér) gombot, a kék színt és a középre igazítást. A térközt itt is a <i>Formátum</i> -> <i>Bekezdés</i> menüben találod (Előtte: 12 pt, Utána: 12 pt). Csináld meg ugyanezt a <i>Címsor 2</i>-vel is a feladatleírás alapján!</li>
+      <li><b>Stílusok alkalmazása:</b> Jelöld ki a dokumentum legelső sorát (A mesterséges intelligencia világa), és kattints a <b>Címsor 1</b> stílusra. Keresd meg a szövegben az alcímeket ("Mi is az az MI?", "A gépi tanulás alapjai", "Hol találkozunk az MI-vel a mindennapokban?", "Az AI történetének mérföldkövei", "Veszélyek és etikai kérdések", "Jövőkép: mi vár ránk?"), jelöld ki őket, és kattints a <b>Címsor 2</b> stílusra. A többi szöveg maradjon Normál.</li>
+    </ol>
+  </details>
+</div>
+<div class="task-card">
+  <h3>4. feladat: képek beszúrása</h3>
+  
+  <details>
+    <summary><b>Önálló feladat (haladóknak)</b></summary>
+    <p>Keress az interneten két képet, amik szerinted illenek, kapcsolódnak az AI témaköréhez! Mind a két kép 6-8 cm széles legyen, legyenek a lap oldalán (lehetnek ugyanazon és az ellentétes oldalon is), és a szöveg körülöttük négyzetesen legyen körbefuttatva. Ha gondolod, adj hozzá valamilyen effektust, pl. finom éleket vagy lekerekített sarkokat!</p>
+  </details>
+  
+  <details>
+    <summary><b>Könnyített lépések (segítséggel)</b></summary>
+    <ol start="11">
+      <li><b>Kép beszúrása:</b> kattints a szövegben oda, ahová a képet szeretnéd. Menj a <i>Beszúrás</i> fülre, válaszd a <i>Képek</i>, majd az <i>Online képek...</i> lehetőséget. Keress és illessz be egy, a mesterséges intelligenciához szerinted illő képet!</li>
+      <li><b>Méret és effektus:</b> kattints a képre, majd a fenti menüsorban a <i>Képformátum</i> fülre. A jobb szélen a <i>Szélességnél</i> írd át a számot 6 és 8 közötti értékre. Ha szeretnéd, ugyanezen a fülön keresd meg a <i>Képeffektusok</i> gombot, menj a <i>Lágy szélek</i> opcióra, és válaszd ki valamelyiket.</li><img src="kepek/kepformatum.png" alt="">
+      <li><b>Hogy ne ugorjon el a szöveg:</b> miután beszúrtad, kattints a képre. Megjelenik mellette egy kis ikon (<img src="kepek/korbefuttatas.png" alt="">, <i>Elrendezési beállítások</i>). Kattints rá, és válaszd a <b>Négyzetes</b> (Square) lehetőséget. Most már szabadon mozgathatod az egérrel a jobb oldalra!</li>
+      <li><b>Második kép beszúrása:</b> keress egy másik helyet a szövegben, és ismételd meg a fenti lépéseket! Ha men találsz olyan képet a Wordön belül, ami tetszik, akkor böngészőben is kereshetsz. Ezt a képet jobb egérgombbal kattintva másolhatod le (<i>Kép másolása</i>), majd a <span class="gomb">ctrl + v</span> billentyűkombinációval illesztheted be.</li>
+    </ol>
+  </details>
+</div>
+<div class="task-card">
+  <h3>5. feladat: táblázat készítése és formázása</h3>
+  <details>
+    <summary>Önálló feladat (haladóknak)</summary>
+    <p>Keresd meg az MI történetének mérföldköveit tartalmazó 4 sort (1950-től 2022-ig). Alakítsd át ezt a szöveget táblázattá a Word beépített funkciójával, úgy, hogy az évszámok, az események és a cégek külön oszlopba kerüljenek! Formázd meg a táblázatot egy tetszőleges beépített stílussal.</p>
+  </details>
+
+  <details>
+    <summary>Könnyített lépések (segítséggel)</summary>
+    <ol start="15">
+      <li><div class="sides">
+        <div class="left"><b>Szöveg táblázattá alakítása: </b>Jelöld ki az évszámokkal kezdődő 4 sort (1950-től a 2022-es sor végéig). Kattints a fenti <i>Beszúrás</i> fülre, majd a <i>Táblázat</i> gombra, és válaszd a <b>Szöveg<u>b</u>ől táblázat...</b> menüpontot.</div>
+        <div class="right"><img src="kepek/szovegbol_tablazat.png" alt=""></div>
+      </div></li>
+      <li><div class="sides"><div class="left"><b>Beállítások:</b> a felugró ablakban a Word valószínűleg felismeri, hogy a kötőjelek mentén kell elválasztani az adatokat (így 3 oszlopod lesz, ezt ellenőrizheted is). Nyomj OK-t!</div><div class="right"><img src="kepek/szovegbol_tablazat_beallitas.png" alt=""></div></div></li>
+      <li><b>Formázás: </b>kattints bárhová a táblázaton belül, majd a fenti <i>Táblázattervező</i> fülön válassz ki egy neked tetsző, színes stílust a listából.</li><img src="kepek/tablazattervezes.png" alt="">
+    </ol>
+  </details>
+</div>
+<div class="task-card">
+    <h3>6. feladat: élőfej és oldalszámozás</h3>
+    <details>
+      <summary>Önálló feladat (haladóknak)</summary>
+      <p>Nyisd meg az <i>Élőfej és élőláb</i> szerkesztését! Az első oldal kivételével a többi oldalon az élőfejbe írd be: <i>A mesterséges intelligencia világa</i>, és igazítsd középre! Az élőlábban minden oldalon jelenjen meg az oldalszám!</p>
+    </details>
+    <details>
+      <summary>Könnyített lépések (segítséggel)</summary>
+      <ol start="18">
+        <li><b>Élőfej és élőláb megnyitása:</b> kattints duplán a lap legfelső vagy legalsó, üres részére. Megnyílik az élőfej és élőláb szerkesztője.</li><img src="kepek/elolab.png" alt="">
+        <li><div class="sides">
+          <div class="left"><b>Cím beírása az első oldal kivételével minden oldalra:</b> keresd meg az <i>Élőfej és élőláb</i> részben a <i>Beállítások</i> alatt az <i>első oldal eltérő</i> pontot, és pipáld ki a mellette levő jelölőnégyzetet!</div>
+            <div class="right"><img src="kepek/elofej_elso_oldal_eltero.png" alt=""></div>
+        </div>
+        A <b>második oldal</b> élőfejébe írd be, hogy <i>A mesterséges intelligencia világa</i>, és igazítsd középre (ezt a <i>Kezdőlap</i>on találod: <img src="kepek/kozepre_igazitas.png" alt="">, vagy használhatod a <span class="gomb">ctrl + e</span> billentyűkombinációt is)!</li>
+        <div class="sides">
+          <div class="left">
+            <li><b>Oldalszám az élőlábba:</b> menj az első oldal aljára, és az <i>Élőfej és élőláb</i> menüben keresd meg a bal oldalon az <i>Oldalszám</i> parancsot! Kattints rá, majd válaszd ki a <i>Jelenlegi pozíció</i>, aztán a <i>Sima szám</i> lehetőséget!</li>
+          </div>
+          <div class="right"><img src="kepek/oldalszam.png" alt=""></div>
+        </div>
+      </ol>
+    </details>
+</div>
+
+<div class="task-card">
+    <h3>7. feladat: tartalomjegyzék készítése</h3>
+    <details>
+      <summary>Önálló feladat (haladóknak)</summary>
+      <p>Szúrj be egy üres oldalt a dokumentum legelejére, ide pedig szúrj be egy automatikus tartalomjegyzéket, amelyben a <i>Címsor 1</i> és <i>Címsor 2</i> stílussal formázott részeket jeleníted meg! Ha szeretnéd, dekoráld valahogyan az oldalt: tehetsz rá egy képet vagy valamilyen grafikát.</p>
+    </details>
+    <details>
+      <summary>Könnyített lépések (segítséggel)</summary>
+      <ol start="21">
+        <li><b>Üres oldal beszúrása a dokumentum elejére:</b> ehhez egy ún. <i>(úgynevezett)</i> oldaltörést kell beszúrnunk. Ehhez a legegyszerűbb a dokumentum legelejére menned, majd a <span class="gomb">ctrl + Enter</span> billentyűkombinációval brszúrnod egy oldaltörést, de az <i>Elrendezés</i> menü <i>Töréspontok</i> pontja alatt, valamint a <i>Beszúrás</i> fül alatt is megtalálod az Oldaltörést: <img src="kepek/oldaltores.png" alt="">. A <i>Beszúrás</i> fülön <i>Üres oldal</i> lehetőséget is találsz, ezzel is oldaltörést szúrsz be.</li>
+        <li><div class="sides">
+          <div class="left"><b>Automatikus tartalomjegyzék:</b> ehhez kivételesen a <i>Hivatkozások</i> fülre kell menni, és itt a <i>Tartalom</i> pontra, majd valamelyik Automatikus tartalomjegyzék lehetőségre kattintani.</div>
+          <div class="right"><img src="kepek/automatikus_tartalomjegyzek.png" alt=""></div>
+        </div></li>
+      </ol>
+    </details>
+</div>
+
+<div class="task-card">
+  <h3>8. feladat: a munka beadása</h3>
+  <details>
+    <summary>Add be a helyes néven elmentett munkát!</summary>
+    <p>Mentsd el a munkádat, nyisd meg a Fájlkezelőt, és másold be a Dolgozatok megosztott meghajtóra! Ha beküldted, kérdezd meg, hogy megkaptam-e! Ha nem tudod, mit kell csinálni, akkor nézd meg az alsó sorban a lebegő leírást!</p>
+  </details>
+</div>
+<div class="sticky-footer">
+  <div class="footer-content">
+    <details>
+      <summary><marquee class="blink" behavior="" direction=""><b>‼️Ne felejtsd el 📬 leadni a munkádat‼️</b></marquee></summary>
+      <div style="padding-top: 10px;">
+        <p>Ha végeztél vagy vége az órának, az alábbiak szerint adhatod be a mukádat.<br>
+        <span style="color:red">Görgess le a részletekhez, ha valami nem tiszta!</span></p>
+        <ol type="I">
+          <div class="sides">
+            <li>Nézd meg a fájlnevet, hogy helyes-e!<img src="kepek/fajlnev.png" alt="">
+          </div>
+          <div class="sides">
+            <div class="left">Ha nem, akkor nyomd meg a billentyűzet legfelső sorában az <span class="gomb">F12</span> gombot! A felugró menüben átírhatod a fájlnevet, és a megfelelő helyre mentheted. A saját mappádat a bal oldalon az <i>Ez a gép</i>re kattintva találod meg. Ha erre duplán kattintasz, akkor ezen belül is létrehozhatsz egy almappát a jelenlegi tanévre. Ha jó helyen vagy, és a fájlnév is stimmel, akkor kattints a <i>Mentés</i> gombra!</div><div class="right"><img src="kepek/mentes_maskent.png" alt=""></div>
+          </div></li>
+          <div class="sides">
+            <div class="left">
+              <li>Ha elmentetted, nyisd meg a Fájlkezelőt (<img src="kepek/fajlkezelo.png" alt="">)! Itt a <i>Kezdőképernyő</i> alatt (ez jelenik meg automatikusan) látnod kell az éppen most elmentett fájlodat. Kattints erre <b>egyszer</b>, hogy kijelöld (nem akarjuk megnyitni, ezért ne duplán; ha mégis duplán kattintottál, akkor térj vissza a pont elejére!), majd nyomd meg a <span class="gomb">ctrl + c</span> billentyűkombinációt!
+            </div><div class="right"><img src="kepek/fajlkezelo_kezdokepernyo.png" alt=""></div></li>
+          </div>
+          <li>A <i>Fájlkezelőben</i> keresd meg a bal oldalon az <i>Ez a gép</i> hivatkozást, majd kattints rá! Keresd meg ebben a <i>Dolgozatok</i> megosztott meghajtót, nyisd meg, és illeszd be ide a lemásolt fájlodat: kattints egyszer az üres részbe a Fájlkezelőben, és nyomd meg a <span class="gomb">ctrl + v</span> gombokat!</li>
+          <li>Ha készen vagy, kérdezd meg, hogy megjött-e a munkád, és jó-e. Előfordul, hogy nem érkezik meg, ilyenkor még egyszer meg kell ismételni a II-III. pontokban írtakat.</li>
+        </ol>
+      </div>
+    </details>
+  </div>
+</div>
+    <script>window.addEventListener('beforeunload', function(e) {
+      e.preventDefault();
+      e.returnValue = '';
+    });</script>
+</body>
+</html>

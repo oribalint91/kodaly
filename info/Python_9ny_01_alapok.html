@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐍 Python programozás alapjai</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h2>A 🐍 Python programozás alapjai</h2>
+  <p class="intro">Ebben a dokumentumban a programozással, azon belül is a Python programozási nyelvvel kezdünk ismerkedni. Ezt sok hasonló követi majd még. <span class="osszefoglalas">A fontos részek összefoglalását így, </span><span class="extra">a törzsanyagon kívüli extra tudnivalókat pedig így</span> látjátok a szövegben.</p>
+
+  <div class="task-card">
+    <h3>1. Alapismeretek</h3>
+    <details>
+      <summary>A programozásról általában</summary>
+      <p>A számítógépek elektronikusak, tehát működésükhöz elektromos áramot használnak. A műveletek és a be-, valamint kimenő adatok is <b>elektromos jelek formájában</b> tárolják és jelenítik meg, a bináris számrendszer használatával. A gyakorlatban ez azt jelenti, hogy az információt 0-k és 1-esek sorozataként tárolja és dolgozza fel. Itt a 0 a kikapcsolt, az 1 pedig a bekapcsolt állapotot jelenti, tehát mindkettő egy-egy logikai állapot. A <b>gépi kód</b> nullák és egyesek sorozata. A számítógép ezeket az utasításokat közvetlenül végre tudja hajtani. Ezek eredményeként jelennek meg dolgok a monitorodon, vagy szólalnak meg hangok a fejhallgatódban.</p>
+      <p>Mivel a gépi kódot az embereknek nagyon nehéz olvasni <i>(ráadásul minden processzorarchitektúra más utasításkészleteket használ, tehát ugyanaz a parancs nem feltétlenül ugyanazt jelenti)</i>, ilyen programozással kevesen foglalkoznak. A gépi kódra ún. (<i>úgynevezett</i>) <b>Assembly-nyelvek</b> épülnek, amelyek még mindig szorosan kapcsolódnak a hardverhez, de már betűket is tartalmaznak, és összességében könnyebben olvashatók, mint a gépi kód.</p>
+      <p>Ezekre épülnek olyan programozási nyelvek, amelyek már <i>magasabb absztrakciós szintűek</i>.
+        <ul>
+          <li>Azok a programozási nyelvek, amelyek közelebb állnak a számítógép működéséhez, <b>alacsony szintű nyelvek</b>.</li>
+          <li>Azok a programozási nyelvek, amelyek magasabb szinten írják le a programok működését, <b>magas szintű nyelvek</b>.</li>
+        </ul>
+      Az <i>alacsony absztrakciós szint</i> azt jelenti, hogy a programozónak kell kezelnie a program sok részletét, például, hogy a már nem használt adatok ne foglalják le a memóriát. A <i>magasabb absztrakciós szinteken</i> ezeket a nyelvek automatikusan kezelik, a programozó koncentrálhat a program logikájára.</p>
+      <div class="sides">
+        <div class="osszefoglalas" class="left"><ul><span style="margin-left: -10%;">A számítógépekben a bináris számok</span>
+          <li>adatokat tárolnak,</li>
+          <li>utasításokat reprezentálnak,</li>
+          <li>műveleteket irányítanak.</li></ul>
+        </div>
+        <div class="right extra">Ugyanaz az utasítás gépi kódban, Assemblyben és Pythonban. Melyik alapján könnyebb kitatlálni, hogy mit csinál?
+          <ul><li><pre>
+10110000 00000101 00000100 00000011</pre></li>
+        <li><pre>MOV AL, 5
+ADD AL, 3</pre></li>
+<li><code class="inline">x = 5 + 3</code></li></ul>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary>A Python kód felépítése és futása</summary>
+      <p>A magas szintű programozási nyelvek hátránya, hogy <b>a gép számára nem értelmezhetők az utasításaik</b>. Pythonhoz, JavaScripthez, Rubyhoz stb. ezért egy <b>fordító szoftverre</b> van szükség.</p>
+      <p class="extra">A fordítás általában kétféleképpen történhet: vagy egyben lefordul a teljes program, és ez után indul el a futtatása, vagy soronként fordul le, azzal együtt, ahogyan fut. Mindkettőnek van előnye és hátránya; mit gondolsz, mi lehet az?</p>
+      <p>A Python kód futtatás előtt teljes egészében lefordul egy gépikód-szerű utasítássorozatra. Ennek ellenére a parancsok szigorú sorrendben követki egymást, <b>balról jobbra, fentről lefelé</b>.</p>
+      <p>A <b>programozás nyelvtanát szintaxisnak</b> nevezzük. Ez mondja meg, hogy hogyan kell írni egy-egy utasítást, hogyan tárolhatunk adatokat, vagy milyen karaktereket használhatunk a programban. Vannak olyan informatikai környezetek, ahol pl. nincs különbség a kis- és nagybetűk használata között, míg máshol van. <span class="extra">Tudsz olyan példát mondani, ahol nem számít, hogy kis- vagy nagybetűvel írtunk-e valami?</span></p>
+      <p>A Python program valójában egy egyszerű <b>szöveges fájl, a forráskód</b>. Ez alapján készíti el a fordító a gépi kódot. A forráskód <b>az angol nyelvben ismert kifejezéseket</b> használ, könnyen olvasható. A Python <b>beépített hibakeresője</b> jól beazonosítja a problémákat, és segít azok kijavításában.</p>
+      <div class="osszefoglalas">A Python fordítót (vagy értelmezőt) használ. A forráskód emberek számára könnyen értelmezhető. A szintaxis a programozási nyelv helyesírási szabályzata. A Python érzékeny a kis- és nagybetűk használatára: nem mindegy, melyiket írod.</div>
+    </details>
+  
+    <details>
+      <summary>A programozási környezet beállítása</summary>
+      <p>Az órán a VSCode alkalmazást használjuk a Python fájlok írására. Ugyanebben ismerkedünk meg majd a honlapszerkesztéssel is, így nem kell más felületet megtanulni.</p>
+      <div class="extra">
+        <p>Ha otthon is szeretnél gyakorolni, vagy csak szórakoznál egy kicsit a programozással, akkor telepítened kell a Pythont. Mivel ez a program nem része alapból a Windowsnak, először le kell tölteni. Ingyen hozzáférhető, van hivatalos weboldala, <b>mindenképp azt használd!</b> Az iskolai gépekre ezt már telepítettük. Ha telepíted, jelöld be az <i>Add Python to Path</i> jelölőt, hogy biztosan tudd majd futtatni a programjaidat!<br>
+        Ha telepítetted a Pythont, érdemes ott is egy olyan szerkesztőt használni, ami segíti a munkádat. A VSCode ilyen: 
+            <div class="sides">
+        <div class="left">
+          <ol>
+            <li>színekkel emeli ki az egyes parancsokat;</li>
+            <li>aláhúzza és megmutatja a hibákat;</li>
+            <li>javaslatokat tesz és kiegészíti a programodat</li>
+          </ol>
+        </div>
+        <div class="right"><img src="kepek/VSCode_hibajelzes.png" alt=""></div>
+            </div>
+            Ha telepítetted a programot, akkor még ide is kell telepíteni a Python bővítményt, mert csak ezzel tudja felismerni a hibákat, és futtatni a kódot. A bővítményt (rengeteg másikkal együtt) a <i>Bővítmények (Extensions, <img src="kepek/VSCode_extensions.png" alt="">)</i> részre kattintva találod meg. Ha telepítetted a Microsoft-féle Python bővítményt, akkor kezdhetsz programozni!<br>
+            Először hozz létre egy új fájlt a <span class="gomb">ctrl + n</span> billentyűkombinációval! A program futtatásához a forráskódot majd el kell menteni (<span class="gomb">ctrl + s</span>). Mentés után már megnézheted, hogy mi történik a programodban. Itt megjegyzem, hogy ha a kódodban majd bonyolultabb dolgokat is tervezel használni, pl. komoly, összetett grafikai modulokat, akkor figyelj, hogy a felhőtárhelyek ezeket nem mindig kezelik jól, ilyenkor lokálisan kell menteni a programot a merevlemezre, és biztonsági másolatot kell készíteni róluk a felhőbe.</p>
+      </div>
+    <p>Az órán is fontos megnézni, hogy a <i>Bővítmények (Extensions, <img src="kepek/VSCode_extensions.png" alt=""></i>) részben a Microsoft-féle Python telepítve és engedélyezve van-e.</p>
+    </details>
+  
+    <details>
+      <summary>Első programunk elkészítése és futtatása</summary>
+      <p>Ha felállítottuk a programozási környezetet, akkor elkezdhetjük a konkrét munkát. Nyisd meg a VSCode alkalmazást, ha még nem fut! Nyiss egy új fájlt a <span class="gomb">ctrl + n</span> billentyűkombinációval! Válaszd ki, hogy milyen nyelvet szeretnél használni (jelenleg Python)! <br>
+        <img src="kepek/VSCode_nyelvek.png" alt=""> Másold ki a lenti kódot, és illeszd be a <span class="gomb">ctrl + v</span> billentyűkömbinációval!</p>
+      <p class="extra">Szerinted mi lesz ennek a kódnak az eredménye?</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+        <pre><code>print("Üdvözöllek a Python kódolás világában!")
+print("Szia,", input("Hogy hívnak?"))
+#Ez egy komment, amit a program nem vesz figyelembe.</code></pre>
+      </div>
+      <p>Ha lemásoltad és beillesztetted a kódot, akkor futtathatod a jobb felső sarokban levő gombbal: <img src="kepek/VSCode_futtatas.png" alt="">. <b>Ha nem látod ezt a gombot</b>, akkor nézd meg, hogy választottál-e programnyelvet. Ezt az aktív fülön látszik: ha elmentettük, akkor a kiterjesztésen is, de ha még nem, akkor is a bal oldali ikonon. A <img src="kepek/VSCode_text.png" alt=""> a sima szöveg, a <img src="kepek/VSCode_Python.png" alt=""> a Python forráskód, a <img src="kepek/VSCode_HTML.png" alt=""> pedig a HTML fájl, de természetesen más ikonok is vannak. <b>Ha a formátumod jó, de nem látod a futtatás ikont</b>, akkor nézd meg, hogy telepítetted-e a Python bővítményt.</p>
+      <div class="sides"><div class="left"><b>Amikor először kattintasz a futtatásra</b>, el kell mentened a fájlt. Válassz neki egy helyet, mondjuk a saját hálózati meghajtódat, és mentsd el! A VSCode megőrzi a módosításokat, de azért nyilván érdemes elmenteni óra végén a munkádat. Ha a megnyitott fájl nem mentett módosítást tartalmaz, ezt egy kis fehér pötty jelzi a fájlnév mellett: <img src="kepek/VSCode_nem_mentett_modositas.png" alt="">.</div><div class="right"><img src="kepek/Windows_mentes_maskent.png" alt=""></div></div>
+      <p>Ha lefuttattad a programot, az eredmény az ablak alján, a <b>terminálban</b> jelenik meg. <img src="kepek/VSCode_terminal.png" alt=""></p>
+      <p class="extra">Értelmezd a kapott eredményt! Egy kis segítség: a terminálban válaszolj a program kérdésére, és nyomj <span class="gomb">Enter</span>-t!</p>
+    </details>
+  </div>
+
+<div class="task-card">
+  <h3>2. Adatok tárolása és megjelenítése, egyszerű operátorok</h3>
+  <details>
+  <summary>Bevezető</summary>
+    <p class="intro">A korábbiakban megtanultuk, hogy hogyan fut le a kód a számítógépen. Megnéztük, hogyan állítsuk be a programot, amelyet használunk. Lemásoltunk egy rövid kódot, megtippeltük, mit fog csinálni, és ellenőriztük. Most az előző óra végén végzett műveleteket nézzük meg részletesebben, háttértudást és gyakorlati tevékenységet is kapcsolunk hozzájuk.</p>
+  </details>
+  <details>
+    <summary>Függvények</summary>
+    <details>
+      <summary>A függvényekről röviden</summary>
+        <p>A programozásban (mert amúgy a matematikában is) a <b>függvények olyan dolgok, amik csinálnak valamit</b>. A függvényeknek van <b>argumentuma</b>. Nézzük ezt a függvényt: <code>y = 3x + 2</code>! Jelölhetem máshogyan is: <code>f(x) = 3x + 2</code>. Oldjuk meg 1-re: <code>f(1) = 3×1 + 2</code>. Ebben a példában <b>1 volt a függvény argumentuma</b>. A függvény definíciójában nem szerepelt az 1, helyette az <code>x</code> tagot láttuk. Ez <b>a függvény paramétere</b>. Egy függvénynek lehet több, vagy akár nulla paramétere is. A paraméterek változtatják a függvény viselkedését.</p>
+        <p class="extra">Matematikában a konstans (állandó) függvényeknek például nincs paramétere. Ha egy vízszintes vonalat szeretnék megjeleníteni, azt leírhatom az <code>f(x) = 3</code> függvénnyel – persze, ha pont 3-nál szeretném a vonalat. Itt az x fölösleges, nem jelenik meg a függvény definíciójában, ezért a programozásban a legtöbb esetben el is hagyhatom. Írhatok annyit, hogy <code>f() = 3</code>.<br>
+        A programozásban ilyen függvények pl. az alkalmazást bezáró függvények. Ezek a függvények mindig csak egyféleképpen működhetnek, nem befolyásolja őket egy argumentum sem.</p>
+        <div class="osszefoglalas">A függvények nevét mindig zárójel követi (Pythonban). A zárójelbe kerülnek a függvény <u>argumentumai</u>. A függvény definíciójában ezeket <u>paramétereknek</u> nevezzük, és a definícióban meg kell adni, hogy hol és milyen formában jelennek meg. Erre példa, ha a paraméter dupláját adja vissza a függvény.</div>
+    </details>
+    <details>
+      <summary>Példa függvények alkalmazására</summary>
+      <h4>print() függvény</h4>
+      <div class="sides">
+        <div class="left">Az egyik függvény, amit eddig használtunk, a <code>print()</code>. Ezzel a terminálra írathatunk ki adatokat. Nem ad hibát, ha nem adunk meg egyetlen argumentumot sem, de ekkor nem is ír ki semmit. <span class="extra">Valamit azért mégis... Mit is?</span> Próbáld ki a függvényt! VSCode-ba add meg a print() függvény argumentumának a következőket, egymás után, és mindig futtasd a programot, hogy lásd az eredményt! <br>
+        <pre><code>"Szia"
+Szia
+3+5
+"3+5"
+True</code></pre>
+      Mit tapasztaltál? Jegyezd meg őket!</div>
+        <div class="right bemutatas"><p>print() függvény</p>
+        <p>
+          <b>eredmény:</b> argumentumok kiírása a terminálra <br>
+          <b>argumentumok minimális száma:</b> 0* <br>
+          <b>argumentumok maximális száma:</b> végtelen <br>
+          <b>visszaadott adattípus:</b> None
+          <b>kulcsszavas argumentumok:</b> end (a végére kerülő karakterek), sep (több argumentum esetén az azok közé kerülő karakterek)
+        </p>
+        </div>
+      </div>
+      <h4>input() függvény</h4>
+      <div class="sides">
+        <div class="left">
+          A másik függvény, amivel találkoztunk már, az <code>input()</code>. Ez, a nevének megfelelően, <b>felhasználói adatbevitelt</b> tesz lehetővé. <br>
+          Az input függvény <b>egy opcionális argumentumot fogad</b>, vagyis maximum egy argumentumot adhatok meg neki, de nem kötelező. Az argumentuma "prompt", ami azt jelenti, hogy <b>az argumentumát a program kiírja a terminálra</b>, hasonlóan a print() függvény argumentumához.</div>
+          
+          <div class="right bemutatas">
+            <p>input() függvény</p>
+            <p>
+              <b>eredmény:</b> felhasználói adatbevitel visszaadása <br>
+              <b>argumentumok minimális száma:</b> 0 <br>
+              <b>argumentumok maximális száma:</b> 1 <br>
+              <b>visszaadott adattípus:</b> string
+            </p>
+          </div>
+        </div>
+        <p>
+          Ha a felhasználótól a nevét szeretnénk megtudni, akkor használhatjuk az <code>input("Hogy hívnak?")</code> kódot.
+          <span class="extra">Ugyanezt az eredményt adja, de fölösleges plusz sorokkal, ha <code>print()</code> paranccsal íratjuk ki a kérdést, majd ez után teszünk egy <code>input()</code> függvényt, argumentum nélkül.</span>
+          Az <code>input()</code> függvény mindig <b>szöveget ad vissza</b>, amit a Python <code>string</code>-ként nevez. Később majd látjuk, hogy miért így hívja. <br>
+          Az input függvény mindig felhasználói bevitelt vár. Arra is használható, ha <b>meg akarjuk állítani a programot</b> egy kicsit. Ilyenkor nem használjuk fel a bevitt adatokat, a promptban pedig szerepelhet ennyi: <code>"Nyomj Entert a továbblépéshez!"</code>.
+        </p>
+      </details>
+      <details>
+        <summary>Gyakorló feladatok</summary>
+        <ol>
+          <li>Készíts programot, amely kiír egy szívecske ikont! Ha nem tudod, hogyan írj emojikat, a <span class="gomb">&#x1fa9f + .</span>billentyűparanccsal érheted el!</li>
+          <li>Készíts programot, amely kiírja a π első 5 jegyének értékét!</li>
+          <li>Készíts programot, amely megkérdezi a felhasználótól, hogy mi a kedvenc színe!</li>
+          <li>Készíts programot, amely köszön, megkérdezi a felhasználó nevét, majd kiírja, hogy "<i>Örülök, hogy megismerhetlek!</i>"</li>
+        </ol>
+      </details>
+      <details class="megoldasok">
+        <summary>Gyakorló feladatok megoldásai</summary>
+        <ol>
+          <li><pre><code>print(❤️)</code></pre></li>
+          <li><pre><code>print(3.1415)</code></pre></li>
+          <li><pre><code>input("Mi a kedvenc színed?")</code></pre></li>
+          <li><pre><code>print("Szia!")
+input("Hogy hívnak?")
+print("Örülök, hogy megismerhetlek!")</code></pre></li>
+        </ol>
+      </details>
+  </details>
+
+  <details>
+    <summary>Operátorok</summary>
+    <details>
+      <summary>Bevezetés</summary>
+      <p>Az operátorok egy vagy több adaton (hivatalosan: <i>operanduson</i>, amely érték vagy változó is lehet – ezekről többet később!) műveleteket hajtanak végre. Az operátorok <b>gyakran új értéket eredményeznek</b>.</p>
+      <p>Az operátorokat több csoportba lehet sorolni. A Pythonban leggyakrabban használt operátorokat a lenti táblázatok foglalják össze. <span class="extra">Más programozási nyelvek más operátorokat is használhatnak. C++-ban pl. a // nem használható operátorként, mert itt ez kommentet jelöl. C++-ban és JavaScriptben létezik a ++ és a -- operátor, amely eggyel növeli vagy csökkenti a változók értékét.</span></p>
+    </details>
+      <details>
+        <summary>1. Aritmetikai operátorok</summary>
+        <table>
+          <tr>
+            <th style="width: 20%;">operátor</th>
+            <th>funkció</th>
+          </tr>
+          <tr>
+            <td>+</td>
+            <td>két érték összeadása vagy konkatenálása (lásd később!)</td>
+          </tr>
+          <tr>
+            <td>-</td>
+            <td>kivonás</td>
+          </tr>
+          <tr>
+            <td>*</td>
+            <td>szorzás</td>
+          </tr>
+          <tr>
+            <td>/</td>
+            <td>osztás (lebegőpontos osztás, vagyis maradék nélküli)</td>
+          </tr>
+          <tr>
+            <td>//</td>
+            <td>maradékos osztás (egészrész)</td>
+          </tr>
+          <tr>
+            <td>%</td>
+            <td>osztás utáni maradék</td>
+          </tr>
+          <tr>
+            <td>**</td>
+            <td>hatványra emelés</td>
+          </tr>
+        </table>
+      </details>
+      <details>
+        <summary>2. Összehasonlító operátorok</summary>
+        <table>
+          <tr>
+            <th style="width: 20%;">operátor</th>
+            <th>funkció</th>
+          </tr>
+          <tr>
+            <td>==</td>
+            <td>egyenlő</td>
+          </tr>
+          <tr>
+            <td>!=</td>
+            <td>nem egyenlő</td>
+          </tr>
+          <tr>
+            <td>&lt</td>
+            <td>kisebb</td>
+          </tr>
+          <tr>
+            <td>&gt</td>
+            <td>nagyobb</td>
+          </tr>
+          <tr>
+            <td>&lt=</td>
+            <td>kisebb vagy egyenlő</td>
+          </tr>
+          <tr>
+            <td>&gt=</td>
+            <td>nagyobb vagy egyenlő</td>
+          </tr>
+        </table>
+      </details>
+      <details>
+        <summary>3. Logikai operátorok</summary>
+        <table>
+          <tr>
+            <th style="width: 20%;">operátor</th>
+            <th>funkció</th>
+          </tr>
+          <tr>
+            <td>and</td>
+            <td>logikai és: akkor ad igazat, ha mindkét oldalán szereplő érték igaz</td>
+          </tr>
+          <tr>
+            <td>or</td>
+            <td>logikai vagy: akkor ad igazat, ha legalább az egyik oldalán szereplő érték igaz</td>
+          </tr>
+          <tr>
+            <td>not</td>
+            <td>tagadás: megfordítja az utána következő állítást; ha az igaz lenne, hamisat ad, és fordítva</td>
+          </tr>
+        </table>
+      </details>
+      <details>
+        <summary>4. Értékadó operátorok</summary>
+        <table>
+          <tr>
+            <th style="width: 20%;">operátor</th>
+            <th>funkció</th>
+          </tr>
+          <tr>
+            <td>=</td>
+            <td>"legyen", érték hozzárendelése</td>
+          </tr>
+        </table>
+        <p>Értékadó operátornak tekinthető még sok kevert operátor. Amiket én kevert operátornak nevezek, <b>egy aritmetikai és az értéket hozzárendelő operátorból</b> állnak. Konkrétan az összes aritmetikai operátorral lehet ilyet csinálni. A += operátor például a bal oldali kifejezés értékéhez hozzáadja a jobb oldalit. A művelet után a bal oldali kifejezés értéke az összeg lesz. A *= ugyanezt szorzással csinálja.</p>
+      </details>
+      <details class="extra">
+        <summary>További operátorok</summary>
+        <p>Rengeteg további operátor létezik, amelyekkel ritkábban találkozunk.</p>
+        <table>
+          <tr>
+            <tr><b>Bitműveleti operátorok</b>: a (binárisan tárolt) adatokat bitszinten manipulálja. Gépközeli programoknál, titkosításnál használják őket.
+            <th style="width: 20%;">operátor</th>
+            <th>funkció</th>
+          </tr>
+            <td>&</td>
+            <td>bitműveleti és; minden egyes bit akkor lesz 1, ha mind a két oldalán szereplő kifejezés adott helyiértéken álló bitje 1</td>
+          </tr>
+          <tr>
+            <td>|</td>
+            <td>bitműveleti vagy: minden egyes bit akkor lesz 1, ha a két oldalán szereplő kifejezés legalább egyikének 1-es van az adott helyiértékén</td>
+          </tr>
+          <tr>
+            <td>^</td>
+            <td>XOR, kizáró vagy: minden bit akkor lesz 1, ha a két oldalán álló kifejezések adott helyiértékén különböző értékek vannak</td>
+          </tr>
+          <tr>
+            <td>~</td>
+            <td>bitenkénti negáció: minden bit megfordul (0 helyett 1 és fordítva)</td>
+          </tr>
+          <tr>
+            <td>&lt&lt</td>
+            <td>balra tolás: minden bit egy helyiértéket mozdul balra, a legkisebb helyiértéken 0 jelenik meg. Milyen matematikai műveletnek felel meg?</td>
+          </tr>
+          <tr>
+            <td>&gt&gt</td>
+            <td>jobbra tolás: minden bit egy helyiértéket mozdul jobbra, a legkisebb helyiértéken tárolt bit elvész. Milyen matematikai műveletnek felel ez meg?</td>
+          </tr>
+        </table>
+        <table>
+          <tr><b>Tagsági operátorok</b>: azt vizsgálják, hogy egy adat vagy adatrész megtalálható-e egy összetett adatban. Nagyon egyszerű, igazából egy ilyen operátor és annak a tagadása létezik.
+            <th style="width: 20%;">operátor</th>
+            <th style="width: 30%;">funkció</th>
+            <th>példa és eredmény</th>
+          </tr>
+          <tr>
+          <td>in</td>
+          <td>benne van</td>
+          <td><pre><code>"alma" in "alma és körte"</code><span class="komment"> # → True</span></pre></td>
+        </tr>
+        <tr>
+          <td>not in</td>
+          <td>nincs benne</td>
+          <td><pre><code>"alma" not in "Alma és körte"</code><span class="komment"> # → True, mert "alma" != "Alma"</span></pre></td>
+        </tr>
+        <tr><b>Azonosító operátorok</b>: azt vizsgálják, hogy két érték konkrétan ugyanaz az objektum-e. Itt is egy operátor és annak a negáltja létezik.
+          <td>is</td>
+          <td>ugyanaz az objektum</td>
+          <td><pre><code>2 is 4/2</code><span class="komment"> # → False, mert 4/2 Pythonban 2.0</span></pre></td>
+        </tr>
+        </table>
+      </details>
+      <details>
+        <summary>Gyakorló feladatok</summary>
+        <ol>
+          <li></li>
+        </ol>
+      </details>
+      <details class="megoldasok">
+        <summary>Gyakorló feladatok megoldásai</summary>
+      </details>
+  </details>
+  <details>
+    <summary>Adattípusok</summary>
+  </details>
+  <details>
+    <summary>Változók</summary>
+  </details>
+
+</div>
+
+<div class="task-card">
+  <h3>3. Egyszerű adattípusokról bővebben</h3>
+  <details>
+  <summary>Bevezető</summary>
+    <p class="intro">Volt már szó a tárolt adatok típusáról. Az eddigi képet terjesztjük ki egy kicsit a következő részben. Megismerkedünk az eddig tárgyalt <b>egyszerű adattípusok</b> mellett <b>összetett adattípusokkal</b> is. Megnézzük, mikor melyiket érdemes használni, és azt is, milyen tulajdonságaik segítik a programozókat.</p>
+  </details>
+  <details>
+    <summary>Szám típusok</summary>
+  </details>
+  <details>
+  <summary>Szöveg típusok</summary>
+    fstring, átalakítás
+  </details>
+</div>
+
+
+<div class="task-card">
+  <h3>4. Összetett adattípusok</h3>
+  <details>
+  <summary>Bevezető</summary>
+    <p></p>
+  </details>
+  <details>
+    <summary>Lista</summary>
+  </details>
+  <details>
+    <summary>Szótár</summary>
+  </details>
+  <div class="extra">
+    <details>
+    <summary>További összetett adattípusok</summary>
+      <p>tuple, set</p>
+    </details>
+  </div>
+</div>
+
+
+<div class="task-card">
+  <h3>5. Ciklusok 1.: for ciklus</h3>
+  <details>
+  <summary>Bevezető</summary>
+
+  </details>
+  <details>
+    <summary></summary>
+  </details>
+</div>
+
+<div class="task-card">
+  <h3>6. Feltételek</h3>
+  <details>
+    <summary>Bevezető</summary>
+  </details>
+</div>
+
+<div class="task-card">
+  <h3>7. Ciklusok 2.: while ciklus</h3>
+  <details>
+    <summary>Bevezető</summary>
+  </details>
+</div>
+
+<div class="task-card">
+  <h3>8. Hibakezelés</h3>
+  <details>
+    <summary>Bevezetés</summary>
+  </details>
+</div>
+  <!--<div class="task-card">
+    <h3>2. feladat: alapbeállítások és az automatikus elválasztás</h3>
+    
+    <details>
+    <summary><b>Önálló feladat (haladóknak)</b></summary>
+    <p>Állítsd be a dokumentum margóit: a bal margó legyen 3 cm, a többi (jobb, alsó, felső) pedig 2 cm. Kapcsold be a dokumentumban az automatikus elválasztást!</p>
+    </details>
+    
+    <details>
+    <summary><b>Könnyített lépések (segítséggel)</b></summary>
+    <ol start="4">
+      <li><b>Margók:</b> kattints a fenti menüben az <i>Elrendezés</i> fülre, majd bal oldalon a <i>Margók</i> gombra. Válaszd az <i>Egyéni margók...</i> opciót, és írd be a bal margóhoz, hogy 3, a többihez (alsó, felső, jobb), hogy 2.</li>
+      <img src="kepek/margok.png" alt="">
+      <img src="kepek/margok2.png" alt="">
+      <li><b>Automatikus elválasztás:</b> az <i>Elrendezés</i> fülön keresd meg az <i>Elválasztás</i> menüt, és válaszd ki a párbeszédablakban az <i>Automatikus</i> lehetőséget!</li>
+    </ol>
+    </details>
+  </div>
+<div class="task-card">
+  <h3>3. feladat: stílusok beállítása és alkalmazása</h3>
+  
+  <details>
+    <summary><b>Önálló feladat (haladóknak)</b></summary>
+    <p>Módosítsd a <b>Normál</b> stílust: legyen 12-es méretű Times New Roman, sorkizárt, 1,15-ös sorközzel. <br>
+    Módosítsd a <b>Címsor 1</b> stílust: 18-as méret, félkövér, középre zárt, kék színű, és előtte-utána 12 pt térköz legyen. <br>
+    Módosítsd a <b>Címsor 2</b> stílust: 14-es méret, dőlt, balra zárt, kék színű. <br>
+    <i>Alkalmazd a stílusokat a szövegben lévő főcímekre és alcímekre!</i></p>
+    <ol><b>A címsorok listája a szövegben:</b>
+    <li>Mi is az a mesterséges intelligencia?</li>
+    <li>A gépi tanulás alapjai</li>
+    <li>Hol találkozunk az MI-vel a mindennapokban?</li>
+    <li>Az MI történetének mérföldkövei</li>
+    <li>Veszélyek és etikai kérdések</li>
+    <li>Jövőkép: Mi vár ránk?</li></ol>
+  </details>
+  
+  <details>
+    <summary><b>Könnyített lépések (segítséggel)</b></summary>
+    <ol start="6">
+      <li><b>Normál stílus módosítása:</b> a <i>Kezdőlap</i> fülön, a <i>Stílusok</i> ablakban kattints jobb gombbal a <i>Normál</i> stílusra, és válaszd a <b>Módosítás</b> parancsot.</li>
+      <img src="kepek/stilus_modositas.png" alt="">
+      <li>Állítsd be a Times New Roman betűtípust, a 12-es méretet, és kattints a Sorkizárt ikonra.</li>
+      <img src="kepek/stilus_beallitas.png" alt="">
+      <li>A bal alsó sarokban a <i>Formátum</i> -> <i>Bekezdés</i> menüben állítsd a sorközt 1,15-re. Nyomj OK-t!</li>
+      <img src="kepek/stilus_bekezdes.png" alt="">
+      <img src="kepek/bekezdes_terkoz_sorkoz.png" alt="">
+      <li><b>Címsorok módosítása:</b> Ugyanígy kattints jobb gombbal a <i>Címsor 1</i>-re, majd Módosítás. Válaszd ki a 18-as méretet, a <b>F</b> (félkövér) gombot, a kék színt és a középre igazítást. A térközt itt is a <i>Formátum</i> -> <i>Bekezdés</i> menüben találod (Előtte: 12 pt, Utána: 12 pt). Csináld meg ugyanezt a <i>Címsor 2</i>-vel is a feladatleírás alapján!</li>
+      <li><b>Stílusok alkalmazása:</b> Jelöld ki a dokumentum legelső sorát (A mesterséges intelligencia világa), és kattints a <b>Címsor 1</b> stílusra. Keresd meg a szövegben az alcímeket ("Mi is az az MI?", "A gépi tanulás alapjai", "Hol találkozunk az MI-vel a mindennapokban?", "Az AI történetének mérföldkövei", "Veszélyek és etikai kérdések", "Jövőkép: mi vár ránk?"), jelöld ki őket, és kattints a <b>Címsor 2</b> stílusra. A többi szöveg maradjon Normál.</li>
+    </ol>
+  </details>
+</div>
+<div class="task-card">
+  <h3>4. feladat: képek beszúrása</h3>
+  
+  <details>
+    <summary><b>Önálló feladat (haladóknak)</b></summary>
+    <p>Keress az interneten két képet, amik szerinted illenek, kapcsolódnak az AI témaköréhez! Mind a két kép 6-8 cm széles legyen, legyenek a lap oldalán (lehetnek ugyanazon és az ellentétes oldalon is), és a szöveg körülöttük négyzetesen legyen körbefuttatva. Ha gondolod, adj hozzá valamilyen effektust, pl. finom éleket vagy lekerekített sarkokat!</p>
+  </details>
+  
+  <details>
+    <summary><b>Könnyített lépések (segítséggel)</b></summary>
+    <ol start="11">
+      <li><b>Kép beszúrása:</b> kattints a szövegben oda, ahová a képet szeretnéd. Menj a <i>Beszúrás</i> fülre, válaszd a <i>Képek</i>, majd az <i>Online képek...</i> lehetőséget. Keress és illessz be egy, a mesterséges intelligenciához szerinted illő képet!</li>
+      <li><b>Méret és effektus:</b> kattints a képre, majd a fenti menüsorban a <i>Képformátum</i> fülre. A jobb szélen a <i>Szélességnél</i> írd át a számot 6 és 8 közötti értékre. Ha szeretnéd, ugyanezen a fülön keresd meg a <i>Képeffektusok</i> gombot, menj a <i>Lágy szélek</i> opcióra, és válaszd ki valamelyiket.</li><img src="kepek/kepformatum.png" alt="">
+      <li><b>Hogy ne ugorjon el a szöveg:</b> miután beszúrtad, kattints a képre. Megjelenik mellette egy kis ikon (<img src="kepek/korbefuttatas.png" alt="">, <i>Elrendezési beállítások</i>). Kattints rá, és válaszd a <b>Négyzetes</b> (Square) lehetőséget. Most már szabadon mozgathatod az egérrel a jobb oldalra!</li>
+      <li><b>Második kép beszúrása:</b> keress egy másik helyet a szövegben, és ismételd meg a fenti lépéseket! Ha men találsz olyan képet a Wordön belül, ami tetszik, akkor böngészőben is kereshetsz. Ezt a képet jobb egérgombbal kattintva másolhatod le (<i>Kép másolása</i>), majd a <span class="gomb">ctrl + v</span> billentyűkombinációval illesztheted be.</li>
+    </ol>
+  </details>
+</div>
+<div class="task-card">
+  <h3>5. feladat: táblázat készítése és formázása</h3>
+  <details>
+    <summary>Önálló feladat (haladóknak)</summary>
+    <p>Keresd meg az MI történetének mérföldköveit tartalmazó 4 sort (1950-től 2022-ig). Alakítsd át ezt a szöveget táblázattá a Word beépített funkciójával, úgy, hogy az évszámok, az események és a cégek külön oszlopba kerüljenek! Formázd meg a táblázatot egy tetszőleges beépített stílussal.</p>
+  </details>
+
+  <details>
+    <summary>Könnyített lépések (segítséggel)</summary>
+    <ol start="15">
+      <li><div class="sides">
+        <div class="left"><b>Szöveg táblázattá alakítása: </b>Jelöld ki az évszámokkal kezdődő 4 sort (1950-től a 2022-es sor végéig). Kattints a fenti <i>Beszúrás</i> fülre, majd a <i>Táblázat</i> gombra, és válaszd a <b>Szöveg<u>b</u>ől táblázat...</b> menüpontot.</div>
+        <div class="right"><img src="kepek/szovegbol_tablazat.png" alt=""></div>
+      </div></li>
+      <li><div class="sides"><div class="left"><b>Beállítások:</b> a felugró ablakban a Word valószínűleg felismeri, hogy a kötőjelek mentén kell elválasztani az adatokat (így 3 oszlopod lesz, ezt ellenőrizheted is). Nyomj OK-t!</div><div class="right"><img src="kepek/szovegbol_tablazat_beallitas.png" alt=""></div></div></li>
+      <li><b>Formázás: </b>kattints bárhová a táblázaton belül, majd a fenti <i>Táblázattervező</i> fülön válassz ki egy neked tetsző, színes stílust a listából.</li><img src="kepek/tablazattervezes.png" alt="">
+    </ol>
+  </details>
+</div>
+<div class="task-card">
+    <h3>6. feladat: élőfej és oldalszámozás</h3>
+    <details>
+      <summary>Önálló feladat (haladóknak)</summary>
+      <p>Nyisd meg az <i>Élőfej és élőláb</i> szerkesztését! Az első oldal kivételével a többi oldalon az élőfejbe írd be: <i>A mesterséges intelligencia világa</i>, és igazítsd középre! Az élőlábban minden oldalon jelenjen meg az oldalszám!</p>
+    </details>
+    <details>
+      <summary>Könnyített lépések (segítséggel)</summary>
+      <ol start="18">
+        <li><b>Élőfej és élőláb megnyitása:</b> kattints duplán a lap legfelső vagy legalsó, üres részére. Megnyílik az élőfej és élőláb szerkesztője.</li><img src="kepek/elolab.png" alt="">
+        <li><div class="sides">
+          <div class="left"><b>Cím beírása az első oldal kivételével minden oldalra:</b> keresd meg az <i>Élőfej és élőláb</i> részben a <i>Beállítások</i> alatt az <i>első oldal eltérő</i> pontot, és pipáld ki a mellette levő jelölőnégyzetet!</div>
+            <div class="right"><img src="kepek/elofej_elso_oldal_eltero.png" alt=""></div>
+        </div>
+        A <b>második oldal</b> élőfejébe írd be, hogy <i>A mesterséges intelligencia világa</i>, és igazítsd középre (ezt a <i>Kezdőlap</i>on találod: <img src="kepek/kozepre_igazitas.png" alt="">, vagy használhatod a <span class="gomb">ctrl + e</span> billentyűkombinációt is)!</li>
+        <div class="sides">
+          <div class="left">
+            <li><b>Oldalszám az élőlábba:</b> menj az első oldal aljára, és az <i>Élőfej és élőláb</i> menüben keresd meg a bal oldalon az <i>Oldalszám</i> parancsot! Kattints rá, majd válaszd ki a <i>Jelenlegi pozíció</i>, aztán a <i>Sima szám</i> lehetőséget!</li>
+          </div>
+          <div class="right"><img src="kepek/oldalszam.png" alt=""></div>
+        </div>
+      </ol>
+    </details>
+</div>
+
+<div class="task-card">
+    <h3>7. feladat: tartalomjegyzék készítése</h3>
+    <details>
+      <summary>Önálló feladat (haladóknak)</summary>
+      <p>Szúrj be egy üres oldalt a dokumentum legelejére, ide pedig szúrj be egy automatikus tartalomjegyzéket, amelyben a <i>Címsor 1</i> és <i>Címsor 2</i> stílussal formázott részeket jeleníted meg! Ha szeretnéd, dekoráld valahogyan az oldalt: tehetsz rá egy képet vagy valamilyen grafikát.</p>
+    </details>
+    <details>
+      <summary>Könnyített lépések (segítséggel)</summary>
+      <ol start="21">
+        <li><b>Üres oldal beszúrása a dokumentum elejére:</b> ehhez egy ún. <i>(úgynevezett)</i> oldaltörést kell beszúrnunk. Ehhez a legegyszerűbb a dokumentum legelejére menned, majd a <span class="gomb">ctrl + Enter</span> billentyűkombinációval brszúrnod egy oldaltörést, de az <i>Elrendezés</i> menü <i>Töréspontok</i> pontja alatt, valamint a <i>Beszúrás</i> fül alatt is megtalálod az Oldaltörést: <img src="kepek/oldaltores.png" alt="">. A <i>Beszúrás</i> fülön <i>Üres oldal</i> lehetőséget is találsz, ezzel is oldaltörést szúrsz be.</li>
+        <li><div class="sides">
+          <div class="left"><b>Automatikus tartalomjegyzék:</b> ehhez kivételesen a <i>Hivatkozások</i> fülre kell menni, és itt a <i>Tartalom</i> pontra, majd valamelyik Automatikus tartalomjegyzék lehetőségre kattintani.</div>
+          <div class="right"><img src="kepek/automatikus_tartalomjegyzek.png" alt=""></div>
+        </div></li>
+      </ol>
+    </details>
+</div>
+
+<div class="task-card">
+  <h3>8. feladat: a munka beadása</h3>
+  <details>
+    <summary>Add be a helyes néven elmentett munkát!</summary>
+    <p>Mentsd el a munkádat, nyisd meg a Fájlkezelőt, és másold be a Dolgozatok megosztott meghajtóra! Ha beküldted, kérdezd meg, hogy megkaptam-e! Ha nem tudod, mit kell csinálni, akkor nézd meg az alsó sorban a lebegő leírást!</p>
+  </details>
+</div>
+<div class="sticky-footer">
+  <div class="footer-content">
+    <details>
+      <summary><marquee class="blink" behavior="" direction=""><b>‼️Ne felejtsd el 📬 leadni a munkádat‼️</b></marquee></summary>
+      <div style="padding-top: 10px;">
+        <p>Ha végeztél vagy vége az órának, az alábbiak szerint adhatod be a mukádat.<br>
+        <span style="color:red">Görgess le a részletekhez, ha valami nem tiszta!</span></p>
+        <ol type="I">
+          <div class="sides">
+            <li>Nézd meg a fájlnevet, hogy helyes-e!<img src="kepek/fajlnev.png" alt="">
+          </div>
+          <div class="sides">
+            <div class="left">Ha nem, akkor nyomd meg a billentyűzet legfelső sorában az <span class="gomb">F12</span> gombot! A felugró menüben átírhatod a fájlnevet, és a megfelelő helyre mentheted. A saját mappádat a bal oldalon az <i>Ez a gép</i>re kattintva találod meg. Ha erre duplán kattintasz, akkor ezen belül is létrehozhatsz egy almappát a jelenlegi tanévre. Ha jó helyen vagy, és a fájlnév is stimmel, akkor kattints a <i>Mentés</i> gombra!</div><div class="right"><img src="kepek/mentes_maskent.png" alt=""></div>
+          </div></li>
+          <div class="sides">
+            <div class="left">
+              <li>Ha elmentetted, nyisd meg a Fájlkezelőt (<img src="kepek/fajlkezelo.png" alt="">)! Itt a <i>Kezdőképernyő</i> alatt (ez jelenik meg automatikusan) látnod kell az éppen most elmentett fájlodat. Kattints erre <b>egyszer</b>, hogy kijelöld (nem akarjuk megnyitni, ezért ne duplán; ha mégis duplán kattintottál, akkor térj vissza a pont elejére!), majd nyomd meg a <span class="gomb">ctrl + c</span> billentyűkombinációt!
+            </div><div class="right"><img src="kepek/fajlkezelo_kezdokepernyo.png" alt=""></div></li>
+          </div>
+          <li>A <i>Fájlkezelőben</i> keresd meg a bal oldalon az <i>Ez a gép</i> hivatkozást, majd kattints rá! Keresd meg ebben a <i>Dolgozatok</i> megosztott meghajtót, nyisd meg, és illeszd be ide a lemásolt fájlodat: kattints egyszer az üres részbe a Fájlkezelőben, és nyomd meg a <span class="gomb">ctrl + v</span> gombokat!</li>
+          <li>Ha készen vagy, kérdezd meg, hogy megjött-e a munkád, és jó-e. Előfordul, hogy nem érkezik meg, ilyenkor még egyszer meg kell ismételni a II-III. pontokban írtakat.</li>
+        </ol>
+      </div>
+    </details>
+  </div>
+</div>-->
+    <script>window.addEventListener('beforeunload', function(e) {
+      e.preventDefault();
+      e.returnValue = '';
+    });</script>
+    <script>
+    // Másolás funkció a kóddobozokhoz
+    function copyCode(button) {
+      // Megkeresi a gomb melletti <pre><code> elemet
+      const codeBlock = button.nextElementSibling;
+      const textToCopy = codeBlock.innerText;
+
+      // Szöveg másolása a vágólapra
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        // Gomb stílusának módosítása a visszajelzéshez
+        const originalText = button.innerText;
+        button.innerText = "Másolva! ✓";
+        button.classList.add("copied");
+
+        // Gomb visszaállítása 2 másodperc után
+        setTimeout(() => {
+          button.innerText = originalText;
+          button.classList.remove("copied");
+        }, 2000);
+      }).catch(err => {
+        console.error('Sikertelen másolás: ', err);
+        button.innerText = "Hiba :(";
+      });
+    }
+  </script>
+</body>
+</html>
