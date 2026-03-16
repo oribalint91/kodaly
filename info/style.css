@@ -144,6 +144,8 @@
       max-width: 49%;
       margin-left: auto;
     }
+    .left-free {margin-right: auto;}
+    .right-free {margin-left: auto;}
     .sides {
       display: flex;
       justify-content: space-between;
@@ -234,3 +236,11 @@
     .megoldasok code li:after {
       font-weight: normal;
     }
+    code .print {color: #d0b556;}
+    code .elso-zarojel {color: #ffc911;}
+    code .masodik-zarojel {color: #b06cd6}
+    code .str {color: #ce8667}
+    code .fn {color: #4ec9a0}
+    code .int {color: #b5cea8}
+    code .bool {color: #659cd6}
+    code .var {color: #9cdcfe}

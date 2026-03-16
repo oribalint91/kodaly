@@ -348,9 +348,157 @@ print("Örülök, hogy megismerhetlek!")</code></pre></li>
   </details>
   <details>
     <summary>Adattípusok</summary>
+    <details>
+      <summary>Néhány adattípus bemutatása</summary>
+      <p>A Python kód különböző adattípusokat ismer. Minden adattípus megadott módon viselkedik. Ugyanaz az operátor például különböző eredményeket adhat eltérő típusok esetén.</p>
+      <table>
+        <tr>
+          <th style=" width: 20%; background-color: #eee;">típus</th>
+          <th style=" width: 20%">angol név</th>
+          <th style=" width: 20%; background-color: #eee;">magyar név</th>
+          <th>jellemzők</th>
+        </tr>
+        <tr>
+          <td style=" background-color: #eee;">int</td>
+          <td>integer</td>
+          <td style=" background-color: #eee;">egész szám</td>
+          <td>egész számokat tárol</td>
+        </tr>
+        <tr>
+          <td style=" background-color: #eee;">float</td>
+          <td style="text-align: left;">floating point number</td>
+          <td style=" background-color: #eee;">lebegőpontos törtszám</td>
+          <td>tizedes törteket tárol, tizedesponttal elválasztva</td>
+        </tr>
+        <tr>
+          <td style=" background-color: #eee;">str</td>
+          <td>string</td>
+          <td style=" background-color: #eee;">karakterlánc</td>
+          <td>szöveget tárol, idézőjelek közé téve</td>
+        </tr>
+        <tr>
+          <td style=" background-color: #eee;">bool</td>
+          <td>Boolean</td>
+          <td style=" background-color: #eee;">logikai adat</td>
+          <td>igaz (True) vagy hamis (False) értéket tárol, mindössze egy biten</td>
+        </tr>
+      </table>
+    </details>
+    <details>
+      <summary>Példák a fenti adattípusokra</summary>
+      <div class="sides">
+        <div class="left-free"><pre><code><span class="print">print</span><span class="elso-zarojel">(<span class="fn">type</span><span class="masodik-zarojel">(<span class="str">"Szia!"</span>)</span>)</span>
+          
+&ltclass 'str'&gt</code></pre>
+          <pre><code><span class="print">print</span><span class="elso-zarojel">(<span class="fn">type</span><span class="masodik-zarojel">(<span class="bool">True</span>)</span>)</span>
+            
+&ltclass= 'bool'&gt</code></pre>
+            <pre><code><span class="print">print</span><span class="elso-zarojel">(<span class="fn">type</span><span class="masodik-zarojel">(<span class="int">5.5</span>)</span>)</span>
+              
+&ltclass= 'float'&gt</code></pre></div>
+<div class="right-free">
+  <p>A fenti adattípusokat a Python mind különböző színnel jelöli a szerkesztőkben. A konkrét színek a beállításoktól függnek, de a lényeg, hogy egyértelműen elkülönülnek egymástól. Oldalt három példa látszik, az oldal készítésekor az én VSCode-omon ezek a színek vannak beállítva. Az adatok típusát a <code>type</code> függvénnyel nézhetjük meg.</p>
+  <p>Ha a bal oldali módon kiíratjuk ezeknek az adatoknak a típusát, akkor a &lt&gt karakterek közti kimenetet kapjuk a terminálon.</p>
+</div>
+      </div>
+    </details>
   </details>
   <details>
     <summary>Változók</summary>
+    <details>
+      <summary>Változók készítése</summary>
+      <div class="sides">
+        <div class="left-free"><p>Pythonban egyszerűen csak <b>leírjuk a változó nevét</b>, majd értéket rendelünk hozzá. Az értékadást az <code>=</code> operátorral végezzük.</p>
+          <p>A változó bármilyen adattípust tartalmazhat, és akár egy másik változó értékét is hozzárendelhetem.</p>
+          <p>Akár még egy függvényt is eltárolhatok egy változóban. Ilyet például akkor lehet érdemes, ha egy függvényt nagyon sokszor használunk a programban, és hosszú a neve.</p>
+        </div>
+        <div class="right-free"><pre><code><span class="var">x</span> = <span class="int">5</span></code></pre>
+          <pre><code><span class="var">y</span> = <span class="str">"Python"</span>
+<span class="var">z</span> = <span class="var">y</span></code></pre>
+<pre><code><span class="var">a</span> = <span class="print">print</span>
+<span class="var">a</span><span class="elso-zarojel">(<span class="int">3</span></span> + <span class="int">5</span><span class="elso-zarojel">)</span>
+<span class="var">a</span><span class="elso-zarojel">(<span class="int">3</span></span> + <span class="int">5</span><span class="elso-zarojel">)</span>
+8
+8</code></pre>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary>Változók használata</summary>
+      <div class="sides">
+        <div class="left-free">
+          <p>Létrehozás után a változókat ugyanúgy használhatjuk, mint ha maguk a nyers adatok lennének a helyükön. Ezért fontos tudni, hogy a Python a háttérben hogyan kezeli az adattípusokat.</p>
+        </div>
+        <div class="right-free">
+          <pre><code><span class="var">nev</span> = <span class="str">"Bálint"</span>
+<span class="print">print</span><span class="elso-zarojel">(<span class="var">nev</span>)</span>
+            
+'Bálint'</code></pre>
+          </div>
+        </div>
+        <p class="extra">Az alacsonyabb szintű programozási nyelvek egyik jellemzője, hogy ott a programozás közben meg kell adnunk, hogy milyen típusú változót készítünk. Pythonban a fordító ezt automatikusan kezeli, ezért nekünk nem kell foglalkozni vele, de tudni kell róla, mert hibához vezethet, ha valamit nem jól csinálunk.</p>
+    </details>
+    <details>
+      <summary>Szabályok a változók elnevezésekor</summary>
+      <div class="sides">
+        <div class="left-free">
+          <p>A legfontosabb, hogy <b>a változót a kódban az előtt kell létrehozni, hogy először használnánk</b>. Szerencsére a szerkesztők valahogyan jelzik, a VSCode például aláhúzással, ha nem jó sorrendben van ez a kettő.</p>
+          <p>A változók nevének <b>betűvel vagy a _ karakterrel kell kezdődnie</b>. Tartalmazhatnak számot is, de az nem állhat a legelején. Helyes tehát a <code>nev2</code> elnevezés, de a <code>2nev</code> nem.</p>
+        </div>
+        <div class="right-free">
+          <pre><code>print(x)
+x = 2
+<span class="komment">hibát ad!</span>
+          </code></pre>
+        </div>
+      </div>
+      <p>A változók neve <b>nem tartalmazhat speciális karaktereket</b>, pl. idézőjelet, pontot, szóközt vagy kötőjelet. Az ékezetes karaktereket is érdemes elkerülni, mert más nyelvű gépeken nem biztos, hogy hibátlanul lefut a program.</p>
+      <p><b>Néhány kulcsszó fenn van tartva</b> Pythonban, ezeket sem használhatjuk. Ilyenek pl. a print, if, True, input és még nagyon sok, amikkel majd találkozunk. Ez logikus: ha valamire már használjuk, akkor egy másik dologra nem lehet még egyszer.</p>
+      <p>A Python különbséget tesz a kis- és nagybetűk között, a <code>név, Név, NÉV, NéV</code> tehát 4 különböző változót jelent. Nyilván nem célszerű így elnevezni a változókat. Érdemes olyan neveket adni, amelyek <b>leírók</b>, tehát segítenek nekem abban, hogy tudjam, mit is tárolok az adott változóban. Ha több szóból álló nevet szeretnénk használni, akkor érdemes a szavak közé _ karaktereket tenni (<span class="gomb">Shift + -</span>): <code>saját név</code> helyett <code>sajat_nev</code>.</p>
+    </details>
+  </details>
+  <details>
+    <summary>Összefoglaló feladatok</summary>
+    <details>
+      <summary>Feladatok</summary>
+      <p>Az első részben egy gyors kis tesztet találtok beágyazva. A név miatt ne aggódjatok, csak azért vagyok rá kíváncsi, hogy lássam, hogy ki hogy áll, és kivel kell még gyakorolni.</p>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScX-FjLJjqGZCIL6qlOnF5XEszl_AMn405lSLxKtPxFYIeEpw/viewform?usp=publish-editor" frameborder="5" style="width: 98%; height: auto;"></iframe>
+      <ol>
+        <li>Készíts egy programot, amely kiírja: <code>Szia világ!</code></li>
+        <li>Írj egy programot, amely kiszámolja és kiírja, hogy mennyi 3 * 8.</li>
+        <li>Írj egy programot, amely kiszámolja és kiírja, hogy mennyi 2026-nak a 12-vel való osztásakor kapott maradék!</li>
+        <li>Írj egy programot, amely kiszámolja és kiírja, hogy mennyi 3/5 osztva 9/7-del!</li>
+        <li>Írj egy programot, amely megkérdezi a felhasználó nevét, majd köszön neki ennek felhasználásával!</li>
+        <li>Írj egy programot, amely megkérdezi, hogy melyik évben született a felhasználó, majd kiszámolja és kiírja, hogy hány éves lesz 2026-ban!</li>
+      </ol>
+    </details>
+    <details class="megoldasok">
+      <summary>Megoldások</summary>
+      <ol>
+        <li>Készíts egy programot, amely kiírja: <code>Szia világ!</code>
+        <pre><code>print("Szia világ!")</code></pre></li>
+        <li>Írj egy programot, amely kiszámolja és kiírja, hogy mennyi 3 * 8.
+          <pre><code>print(3 * 8)</code></pre>
+        </li>
+        <li>Írj egy programot, amely kiszámolja és kiírja, hogy mennyi 2026-nak a 12-vel való osztásakor kapott maradék!
+          <pre><code>print(2026 % 12)</code></pre>
+        </li>
+        <li>Írj egy programot, amely kiszámolja és kiírja, hogy mennyi 3/5 osztva 9/7-del!
+          <pre><code>print((3 / 5) / (9 / 7))</code></pre>
+          Zárójeleket a függvények miatt kötelező használni sok programozási nyelvben, de ettől függetlenül úgy is lehet használni őket, ahogyan matematikailag helyes. Ebben az esetben a műveleti sorrend, illetve a törtvonal miatt kell használni. Persze az is jó, ha a reciprokkal szorzol, gondolkodni mindig szabad 😊.
+        </li>
+        <li>Írj egy programot, amely megkérdezi a felhasználó nevét, majd köszön neki ennek felhasználásával!
+          <pre><code>nev = input("Hogy hívnak?")
+print("Szia,", nev)</code></pre>
+Ez egyszerű input függvény annyi kiegészítéssel, hogy a print kaphat több argumentumot is. Alapértelmezés szerint ezeket egymástól egy szóközzel választja el.
+        </li>
+        <li>Írj egy programot, amely megkérdezi, hogy melyik évben született a felhasználó, majd kiszámolja és kiírja, hogy hány éves lesz 2026-ban!
+          <pre><code>evszam = int(input("Melyik évben születtél?""))
+print("2026-ban", 2026 - evszam, "éves leszel!")</code></pre>
+Itt annyi a plusz, amit nem szabad elfelejteni, hogy az input mindig stringet ad vissza. A stringet át kell alakítani számmá, hogy matematikai műveletet tudjunk végezni a segítségével.
+        </li>
+      </ol>
+    </details>
   </details>
 
 </div>
