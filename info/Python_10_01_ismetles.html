@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python programozás – ismétlés és új ismeretek</title>
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --secondary: #3498db;
+      --bg-color: #f4f7f6;
+      --card-bg: #ffffff;
+      --text: #333333;
+      --code-bg: #282c34;
+      --code-text: #abb2bf;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 900px;
+      padding: 20px;
+      background-color: var(--bg-color);
+      color: var(--text);
+      text-align: justify;
+      hyphens: auto;
+      margin: 0 auto;
+      margin-bottom: 120px;
+    }
+
+    h1, h2, h3 { color: var(--primary); }
+    
+    .intro {
+      background: #e8f4f8;
+      padding: 15px;
+      border-left: 5px solid var(--secondary);
+      margin-bottom: 20px;
+      border-radius: 0 5px 5px 0;
+    }
+
+    .task-card {
+      background: var(--card-bg);
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border-top: 4px solid var(--primary);
+    }
+
+    /* Az új 5-ös struktúra stílusai */
+    .summary-box {
+      background-color: #fdf2e9;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      border-left: 4px solid #e67e22;
+    }
+    .summary-box strong { color: #d35400; }
+
+    details {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    details[open] {
+      background: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+      color: var(--secondary);
+      padding: 5px 0;
+      font-size: 1.1em;
+      list-style-type: '▶ ';
+    }
+    
+    details[open] > summary {
+      list-style-type: '▼ ';
+      border-bottom: 1px solid #eee;
+      margin-bottom: 10px;
+    }
+
+    summary:hover { color: #1c6ea4; }
+
+    .solution-details {
+      border-color: #2ecc71;
+      background-color: #f2fbf5;
+    }
+    .solution-details summary { color: #27ae60; }
+
+    /* Érdekesség/Trükk stílusok */
+    .trick-details {
+      border-color: #9b59b6;
+      background-color: #f9f2fd;
+    }
+    .trick-details summary { color: #8e44ad; list-style-type: '💡 '; }
+    details[open].trick-details > summary { list-style-type: '💡 ▼ '; }
+
+    /* Python kód stílusok */
+    .code-container {
+      position: relative;
+      margin: 15px 0;
+    }
+
+    pre {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.95em;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    code.inline {
+      background: #e9ecef;
+      color: #e83e8c;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: 'Consolas', 'Courier New', monospace;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: #4b5263;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 0.8em;
+      transition: background 0.3s;
+    }
+    .copy-btn:hover { background: #5c6370; }
+    .copy-btn.copied { background: #2ecc71; }
+
+    .output-box {
+      background: #eef2f5;
+      border-left: 3px solid #7f8c8d;
+      padding: 10px;
+      font-family: 'Consolas', monospace;
+      margin-top: 5px;
+      color: #2c3e50;
+    }
+
+    /* Sticky Footer */
+    .sticky-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--primary);
+      color: white;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    .footer-content { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    .sticky-footer details { background: #34495e; border: 1px solid var(--secondary); color: white; margin-bottom: 0;}
+    .sticky-footer summary { color: #ecf0f1; }
+    .sticky-footer details[open] { background: #2c3e50; }
+  </style>
+</head>
+<body>
+
+  <h1>🐍 Python: ismétlés és új varázslatok</h1>
+  <p class="intro">Ebben a dokumentumban átismételjük a Python alapjait és tanulunk pár új trükköt is. Minden témakörnél találsz egy <b>rövid összefoglalót</b>, egy <b>részletes leírást példákkal</b>, <b>levezetett feladatokat</b> és <b>önálló feladatokat</b>. Ha elakadsz, a végén mindig megnézheted a <b>megoldást</b>. A kódokat a jobb felső sarokban lévő gombbal könnyedén kimásolhatod a saját szerkesztődbe! <br>
+    <span style="color: red; font-weight: bolder; font-size: large;">FONTOS!!</span> Ne csak bemásold a kódokat, írd is át őket. A változók ne ugyanazokat tartalmazzák, az ismétlések ne ugyanannyi alkalommal történjenek meg stb.</p>
+
+  <!-- 1. TÉMAKÖR -->
+  <div class="task-card">
+    <h3>1. Változók és adattípusok (egyszerű és összetett)</h3>
+    
+    <div class="summary-box">
+      <strong>Kulcsfogalmak:</strong> A változó olyan, mint egy feliratozott doboz, amiben adatot tárolunk. <br>
+      <strong>Alap típusok:</strong> <code>int</code> (egész szám), <code>float</code> (tört szám), <code>str</code> (szöveg), <code>bool</code> (igaz/hamis).<br>
+      <strong>Összetett típus:</strong> <code>list</code> (lista - több adat egyetlen dobozban).
+    </div>
+
+    <details>
+      <summary>Részletes leírás és példák</summary>
+      <p>A Pythonban nem kell előre megmondani, hogy egy dobozba mit teszünk, ő kitalálja az értékből.</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>nev = "Anna"         # str (string) - szöveg, idézőjelek között
+kor = 16             # int (integer) - egész szám
+magassag = 1.68      # float - lebegőpontos (tört) szám. PONTOT használunk, nem vesszőt!
+tanulo = True        # bool (boolean) - logikai érték (True vagy False, nagybetűvel!)
+
+# Összetett adattípus: Lista (szögletes zárójelek között)
+jegyek = [5, 4, 5, 3, 5] 
+kedvencek = ["pizza", "kóla", "csoki"]</code></pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Levezetett feladat és magyarázat</summary>
+      <p><b>Feladat:</b> Hozz létre egy változót a kedvenc játékod nevével, egyet a megjelenés évével, és egy listát, amiben 3 karakter neve van!</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code># Megoldás lépésről lépésre:
+jatek_neve = "Minecraft"     # Szöveg, tehát idézőjel kell
+megjelenes = 2011            # Szám, nincs idézőjel
+karakterek = ["Steve", "Alex", "Creeper"] # Lista, benne szövegekkel, vesszővel elválasztva
+
+print("Játék:", jatek_neve)
+print("Karakterek:", karakterek)</code></pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Önálló feladatok</summary>
+      <ol>
+        <li>Hozz létre egy <code>allat</code> nevű változót, és adj neki egy szöveges értéket (pl. "Kutya")!</li>
+        <li>Hozz létre egy <code>labak_szama</code> nevű változót a megfelelő számmal!</li>
+        <li>Hozz létre egy logikai változót <code>hazi_allat</code> néven, ami <code>True</code>, ha tartható otthon, különben <code>False</code>!</li>
+        <li>Hozz létre egy listát <code>szinek</code> néven, ami 3 színt tartalmaz, amilyen ez az állat lehet!</li>
+      </ol>
+    </details>
+
+    <details class="solution-details">
+      <summary>Megoldások (kattints ide, ha elkészültél!)</summary>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>allat = "macska"
+labak_szama = 4
+hazi_allat = True
+szinek = ["fekete", "cirmos", "fehér"]</code></pre>
+      </div>
+    </details>
+  </div>
+
+  <!-- 2. TÉMAKÖR: Print és f-string -->
+  <div class="task-card">
+    <h3>2. Kiíratás a képernyőre: print() és f-string</h3>
+    
+    <div class="summary-box">
+      <strong>Kulcsfogalmak:</strong> <br>
+      A <code>print()</code> függvénnyel tudunk szövegeket és változókat megjeleníteni a képernyőn.<br>
+      <strong>f-string (formázott kiíratás):</strong> Egy modern és egyszerű módja annak, hogy változókat illesszünk egy szövegbe. Csak egy <code>f</code> betűt kell tenni az idézőjel elé, a változókat pedig <code>{}</code> (kapcsos zárójelek) közé tesszük.
+    </div>
+
+    <details>
+      <summary>Részletes leírás és példák</summary>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>nev = "Peti"
+kor = 15
+
+# Hagyományos, vesszős megoldás (sokszor bonyolult a szóközök miatt):
+print("A nevem", nev, "és", kor, "éves vagyok.")
+
+# f-string (Sokkal szebb és átláthatóbb!):
+print(f"A nevem {nev} és {kor} éves vagyok.")</code></pre>
+      </div>
+    </details>
+
+    <details class="trick-details">
+      <summary>Haladóknak: Trükkök a print() függvénnyel</summary>
+      <p>Tudtad, hogy a <code>print()</code> alapból tesz egy "láthatatlan" sortörést a végére? Ha ezt nem szeretnéd, felülírhatod az <code>end</code> paraméterrel!</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code># Egymás mellé írás sortörés nélkül (egy szóközzel elválasztva):
+print("Alma", end=" ")
+print("Körte", end=" ")
+# Eredmény: Alma Körte 
+
+# Szöveg többszörözése egyszerűen:
+print("Hahó! " * 3)
+# Eredmény: Hahó! Hahó! Hahó! </code></pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Önálló feladatok</summary>
+      <ol>
+        <li>Hozz létre egy <code>varos</code> nevű változót (pl. "Budapest"), és egy <code>homerseklet</code> nevűt (pl. 24)!</li>
+        <li>Írd ki egyetlen f-string segítségével a következőt: "Jelenleg Budapest területén 24 fok van." (Természetesen a változókat használd a szövegben!)</li>
+        <li><b>Extra feladat:</b> Írasd ki a kedvenc ételed nevét 10-szer egymás mellé, egyetlen print utasítással!</li>
+      </ol>
+    </details>
+
+    <details class="solution-details">
+      <summary>Megoldások</summary>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>varos = "Budapest"
+homerseklet = 24
+
+# 1. és 2. feladat:
+print(f"Jelenleg {varos} területén {homerseklet} fok van.")
+
+# 3. Extra feladat:
+print("Pizza " * 10)</code></pre>
+      </div>
+    </details>
+  </div>
+
+  <!-- 3. TÉMAKÖR -->
+  <div class="task-card">
+    <h3>3. Operátorok, beolvasás (input) és típuskonverzió</h3>
+    
+    <div class="summary-box">
+      <strong>Kulcsfogalmak:</strong> <br>
+      <strong>Operátorok:</strong> <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>//</code> (maradékos osztás, amely az egészrészt adja vissza), <code>%</code> (osztás maradéka), <code>**</code> (hatványozás).<br>
+      <strong>Beolvasás:</strong> Az <code>input()</code> mindig szöveget (str) ad vissza!<br>
+      <strong>Konverzió:</strong> Ahhoz, hogy számolni tudjunk vele, át kell alakítani: <code>int()</code> vagy <code>float()</code>.
+    </div>
+
+    <details>
+      <summary>Részletes leírás és példák</summary>
+      <p>Az <code>input()</code> függvény argumentuma (tehát a zárójelbe írt dolog) megjelenik a terminálban a program futtatásakor. Ha tehát a felhasználó nevét kérdezzük, ide írhatjuk a kérdést, de a típusokra itt is figyelni kell. A bekért adatot a Python szövegként kezeli, még akkor is, ha számot gépel be. Ezt át kell alakítanunk a matematikai műveletekhez.</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code># Beolvasás és AZONNALI számmá alakítás:
+eletkor = int(input("Hány éves vagy? "))
+magassag = float(input("Milyen magas vagy (méterben)? "))
+
+# Matematika
+szuletesi_ev = 2024 - eletkor
+fele_eletkor = eletkor / 2
+
+# Kiíratás f-stringgel
+print(f"Te {szuletesi_ev}-ban/ben születtél.")
+print(f"Az életkorod fele: {fele_eletkor} év.")</code></pre>
+      </div>
+    </details>
+
+    <details class="trick-details">
+      <summary>Haladóknak: Érdekesség - Összevont operátorok</summary>
+      <p>Ha egy változó értékét szeretnéd megnövelni (pl. pontszámításnál), nem kell kétszer leírnod a nevét! Van rá egy rövidítés.</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>pontok = 10
+
+# Hagyományos (és kicsit hosszú) módszer:
+pontok = pontok + 5
+
+# Profi, összevont módszer:
+pontok += 5  # Ez pontosan ugyanazt jelenti!
+# Működik a -=, *=, és /= jelekkel is.</code></pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Levezetett feladat és magyarázat</summary>
+      <p><b>Feladat:</b> Kérd be egy téglalap "A" és "B" oldalát, majd számold ki a területét és kerületét!</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code># 1. Bekérés és átalakítás (lehet tört szám is, ezért float)
+a_oldal = float(input("Kérem az 'A' oldalt: "))
+b_oldal = float(input("Kérem a 'B' oldalt: "))
+
+# 2. Számolás
+terulet = a_oldal * b_oldal
+kerulet = 2 * (a_oldal + b_oldal)
+
+# 3. Kiíratás f-stringgel
+print(f"A téglalap területe: {terulet}")
+print(f"A téglalap kerülete: {kerulet}")</code></pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Önálló feladatok</summary>
+      <ol>
+        <li>Kérj be a felhasználótól egy termék árát (egész számként)!</li>
+        <li>Számold ki, mennyi lenne az ára 20% kedvezménnyel! (Tipp: szorozd meg 0.8-cal)</li>
+        <li>Írd ki az eredményt szépen megfogalmazva egy f-string segítségével!</li>
+        <li><b>Extra feladat:</b> Kérj be egy másik számot is (darabszám), és számold ki a teljes fizetendő összeget (akciós ár * darabszám)!</li>
+      </ol>
+    </details>
+
+    <details class="solution-details">
+      <summary>Megoldások</summary>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>eredeti_ar = int(input("Kérem a termék árát (Ft): "))
+akcios_ar = eredeti_ar * 0.8
+print(f"A termék akciós ára: {akcios_ar} Ft.")
+
+# Extra feladat
+mennyiseg = int(input("Hány darabot szeretnél venni? "))
+vegosszeg = akcios_ar * mennyiseg
+print(f"Fizetendő összesen: {vegosszeg} Ft.")</code></pre>
+      </div>
+    </details>
+  </div>
+
+  <!-- 4. TÉMAKÖR -->
+  <div class="task-card">
+    <h3>4. Feltételes elágazások (if, elif, else)</h3>
+    
+    <div class="summary-box">
+      <strong>Kulcsfogalmak:</strong> A programunk tud döntéseket hozni. <br>
+      <code>if</code>: HA ez igaz...<br>
+      <code>elif</code>: KÜLÖNBEN HA ez igaz... (akármennyi lehet belőle)<br>
+      <code>else</code>: KÜLÖNBEN (minden más esetben).<br>
+      <strong>Figyelem:</strong> A kettőspont (<code>:</code>) és a <b>behúzás</b> (TAB) kötelező!
+    </div>
+
+    <details>
+      <summary>Részletes leírás és példák</summary>
+      <p>Összehasonlító jelek: <code>==</code> (egyenlő), <code>!=</code> (nem egyenlő), <code>></code> (nagyobb), <code><</code> (kisebb), <code>>=</code> (nagyobb vagy egyenlő).</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>pontszam = int(input("Hány pontot írtál a dolgozaton (0-100)? "))
+
+if pontszam >= 90:
+    print("Ötös! Szép munka!")
+elif pontszam >= 75:                 # Ide csak akkor jut el, ha NEM volt meg a 90
+    print("Négyes! Egész jó.")
+elif pontszam >= 60:
+    print("Hármas.")
+elif pontszam >= 50:
+    print("Kettes. Épphogy megvan.")
+else:                                # Ha egyik fenti feltétel sem teljesült
+    print("Egyes. Ezt még gyakorolni kell.")</code></pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Levezetett feladat és magyarázat</summary>
+      <p><b>Feladat:</b> Kérjük be a felhasználó életkorát, és döntsük el, megnézhet-e egy 16-os karikás filmet!</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>kor = int(input("Hány éves vagy? "))
+
+if kor >= 16:
+    print("Jó szórakozást a filmhez!")
+else:
+    # Kiszámoljuk, hány évet kell még várnia
+    hianyzo_evek = 16 - kor
+    print(f"Sajnos még nem nézheted meg. Várj még {hianyzo_evek} évet!")</code></pre>
+      </div>
+    </details>
+
+    <details class="trick-details">
+      <summary>Haladóknak: Összetett feltételek (and, or)</summary>
+      <p>Néha egyszerre több dolgot is vizsgálni akarunk. Ilyenkor használhatjuk az <code>and</code> (és) vagy az <code>or</code> (vagy) szavakat. Az is előfordulhat, hogy egy feltétel ellentétét keressük, erre a <code>not</code> kifejezést lehet használni.</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>jegy = 5
+hianyzas = 2
+
+# Csak akkor kap dicséretet, ha ötös A jegye ÉS keveset hiányzott
+if jegy == 5 and hianyzas < 5:
+    print("Kiváló tanuló!")
+
+# Ha vagy az egyik, vagy a másik igaz
+hetvege = True
+unnepnap = False
+
+# Itt még egy rövidítéssel élünk: a feltételek vizsgálatánál arra vagyunk kíváncsiak, hogy a hetvege és az unnepnap változók értéke igaz-e. Ezt úgy kellene írni, hogy if hetvege == True; mivel a program a feltételt (az == operátor egyik és másik oldalán ugyanaz az érték van-e) megvizsgálva vagy True, vagy False értéket ad vissza, vagyis ezt veszi fel, itt most fölösleges ezt így beleírni. Ha a változó értéke eleve True, akkor megcsinálja, ami a feltételt követi.
+
+if hetvege or unnepnap:
+    print("Ma nem kell suliba menni!")</code></pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Önálló feladatok</summary>
+      <ol>
+        <li>Kérj be egy egész számot a felhasználótól!</li>
+        <li>Döntsd el és írd ki róla, hogy pozitív, negatív, vagy nulla! (Használj if, elif és else ágakat is!)</li>
+        <li><b>Extra feladat:</b> Vizsgáld meg a megadott számról azt is, hogy páros-e! (Tipp: használd a <code>% 2 == 0</code> maradékos osztást egy újabb if-en belül!)</li>
+      </ol>
+    </details>
+
+    <details class="solution-details">
+      <summary>Megoldások</summary>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>szam = int(input("Kérek egy számot: "))
+
+if szam > 0:
+    print("A szám pozitív.")
+elif szam < 0:
+    print("A szám negatív.")
+else:
+    print("A szám pontosan nulla.")
+
+# Extra feladat
+if szam % 2 == 0:
+    print("És ez a szám páros is!")
+else:
+    print("És ez a szám páratlan!")</code></pre>
+      </div>
+    </details>
+  </div>
+
+  <!-- 5. TÉMAKÖR -->
+  <div class="task-card">
+    <h3>5. Ciklusok ismétlése: for és while</h3>
+    
+    <div class="summary-box">
+      <strong>Kulcsfogalmak:</strong><br>
+      <code>for</code> ciklus: akkor használjuk, ha <b>előre tudjuk</b>, hányszor akarunk ismételni valamit, vagy ha egy listán megyünk végig.<br>
+      <code>while</code> ciklus: akkor használjuk, ha addig akarunk ismételni valamit, <b>amíg egy feltétel igaz</b> (pl. amíg rossz jelszót ad meg).
+    </div>
+
+    <details>
+      <summary>Részletes leírás és példák</summary>
+      <p>A <code>range()</code> függvény generálja a számokat a for ciklusnak. `range(5)` -> 0, 1, 2, 3, 4.</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code># FOR CIKLUS - Kiírja a számokat 1-től 5-ig (a felső határt már nem veszi bele!)
+print("For ciklus:")
+for i in range(1, 6):
+    print(i)
+
+print("-" * 20)
+
+# WHILE CIKLUS - jelszó ellenőrzés
+jelszo = ""
+while jelszo != "titok123":
+    jelszo = input("Kérem a jelszót: ")
+    if jelszo != "titok123":
+        print("Hibás jelszó, próbáld újra!")
+
+print("Sikeres belépés!")</code></pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Levezetett feladat és magyarázat</summary>
+      <p><b>Feladat:</b> Egy for ciklussal menjünk végig a 10 és 20 közötti páros számokon!</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code># A range() három értéket kaphat: mettől, meddig(ezt már nem), hármasával/kettesével lépjen
+for szam in range(10, 21, 2):
+    print(f"Páros szám: {szam}")</code></pre>
+      </div>
+    </details>
+
+    <details class="trick-details">
+      <summary>Haladóknak: Lista bejárása egyszerűen</summary>
+      <p>Ha egy listán akarsz végigmenni, nem kell számolgatni az elemeket (range-dzsel)! A Python nagyon okosan, magától egyesével előveszi őket a <code>for ... in</code> használatával.</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>nevek = ["Anna", "Béla", "Cecília"]
+
+# Egyszerű bejárás:
+for nev in nevek:
+    print(f"Szia {nev}!")</code></pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Önálló feladatok</summary>
+      <ol>
+        <li>Írj egy `for` ciklust, ami visszaszámlál 5-től 1-ig, majd kiírja, hogy "BUMM!" (Tipp: a range harmadik paramétere legyen -1).</li>
+        <li>Írj egy `while` ciklust, ami addig kér be a felhasználótól egy számot, amíg az nem lesz pontosan 10!</li>
+        <li><b>Extra feladat:</b> Hozz létre egy listát 3 tantárgy nevével, és a bemutatott lista-bejárós `for` ciklussal írasd ki mindegyikről: "A(z) [tantárgy] nagyon érdekes!"</li>
+      </ol>
+    </details>
+
+    <details class="solution-details">
+      <summary>Megoldások</summary>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code># 1. Feladat
+for i in range(5, 0, -1):
+    print(i)
+print("BUMM!")
+
+# 2. Feladat
+tipp = 0
+while tipp != 10:
+    tipp = int(input("Találd ki a számot (adj meg egy újat): "))
+print("Eltaláltad, a szám a 10 volt!")
+
+# 3. Extra feladat
+tantargyak = ["Matek", "Infó", "Töri"]
+for targy in tantargyak:
+    print(f"A(z) {targy} nagyon érdekes!")</code></pre>
+      </div>
+    </details>
+  </div>
+
+  <!-- 6. TÉMAKÖR -->
+  <div class="task-card">
+    <h3>6. Hibakezelés (try - except) és ciklusok kombinációja</h3>
+    
+    <div class="summary-box">
+      <strong>Kulcsfogalmak:</strong> Ha a felhasználó szám helyett betűt ír be az <code>int(input())</code>-nál, a program összeomlik (Error).<br>
+      A <code>try</code> blokkba tesszük azt a kódot, ami hibát okozhat. A <code>except</code> blokk mondja meg, mi történjen, ha hiba volt (ne omoljon össze).
+    </div>
+
+    <details>
+      <summary>Részletes leírás és példák</summary>
+      <p>A leggyakoribb hiba a <code>ValueError</code> (rossz érték típus) és a <code>ZeroDivisionError</code> (nullával osztás).</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>try:
+    szam = int(input("Kérek egy egész számot: "))
+    eredmeny = 100 / szam
+    print(f"100 / {szam} = {eredmeny}")
+except ValueError:
+    print("Hiba! Ez nem egy egész szám volt. Betűket írtál?")
+except ZeroDivisionError:
+    print("Hiba! Nullával nem lehet osztani!")
+except:
+    print("Valamilyen egyéb hiba történt.")</code></pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Levezetett feladat és magyarázat</summary>
+      <p><b>Feladat:</b> Készítsünk egy "bolondbiztos" bekérést! Addig kérjük a számot, amíg tényleg számot nem ad meg. (while és try-except kombinálása)</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>helyes_adat = False     # Ez egy "zászló" változó. Amíg False, a ciklus fut.
+
+while helyes_adat == False:
+    # Ide írhattam volna azt, hogy "while not helyes_adat", ez ugyanazt az eredményt adja. Miért is...?
+    try:
+        eletkor = int(input("Hány éves vagy? "))
+        # Ha az előző sorban hiba van (pl. beírja, hogy "alma"), 
+        # a program azonnal az except részre ugrik!
+        
+        # Ha viszont nincs hiba, a kód fut tovább:
+        helyes_adat = True
+        print(f"Szuper, rögzítettem, hogy {eletkor} éves vagy.")
+        
+    except ValueError:
+        print("Kérlek, számjegyekkel add meg az életkorod!")</code></pre>
+      </div>
+    </details>
+
+    <details class="trick-details">
+      <summary>Haladóknak: Végtelen ciklus és a "break"</summary>
+      <p>A "zászló" változók (mint fent a <code>helyes_adat</code>) hasznosak, de sok profi programozó a <code>while True:</code> (végtelen ciklus) és a <code>break</code> (ciklus megszakítása) parancsot használja ehelyett, mert rövidebb és elegánsabb!</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code># Ugyanaz a program, mint a levezetett feladat, csak elegánsabban:
+while True:  # Ez a végtelenségig futna...
+    try:
+        eletkor = int(input("Hány éves vagy? "))
+        print(f"Szuper, rögzítettem, hogy {eletkor} éves vagy.")
+        break  # ...de ha ide eljut (tehát nem volt hiba az előző sorban), KILÉP a ciklusból!
+    except ValueError:
+        print("Kérlek, számjegyekkel add meg az életkorod!")</code></pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Önálló feladatok</summary>
+      <ol>
+        <li>Írj egy programot, ami bekér két számot, és kiírja az összegüket!</li>
+        <li>Tedd ezt egy try-except blokkba úgy, hogy ha a felhasználó betűt gépel, írja ki: "Sajnos nem számot adtál meg!"</li>
+        <li><b>Extra feladat:</b> Tedd az egészet egy <code>while</code> ciklusba (akár a <code>break</code> trükköt használva), hogy addig kérje újra a számokat, amíg sikeres nem lesz az összeadás!</li>
+      </ol>
+    </details>
+
+    <details class="solution-details">
+      <summary>Megoldások</summary>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>while True:
+    try:
+        szam1 = int(input("Kérem az első számot: "))
+        szam2 = int(input("Kérem a második számot: "))
+        osszeg = szam1 + szam2
+        print(f"A két szám összege: {osszeg}")
+        break # Ha idáig eljutott hiba nélkül, kilép a ciklusból
+    except ValueError:
+        print("Sajnos betűt adtál meg! Próbáld újra!")</code></pre>
+      </div>
+    </details>
+  </div>
+
+  <!-- 7. TÉMAKÖR 
+  <div class="task-card">
+    <h3>7. Saját függvények készítése (def)</h3>
+    
+    <div class="summary-box">
+      <strong>Kulcsfogalmak:</strong> A függvény egy darabka kód, amit elnevezünk, és később bármikor újra felhasználhatunk (meghívhatunk).<br>
+      <code>def</code> kulcsszóval hozzuk létre.<br>
+      Lehetnek <b>paraméterei</b> (bemenő adatok), és <code>return</code>-nel adhat vissza <b>eredményt</b>.
+    </div>
+
+    <details>
+      <summary>Részletes leírás és példák</summary>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code># 1. Függvény DEFINIÁLÁSA (létrehozása)
+def koszonto(nev):
+    # Ez a kód csak akkor fut le, ha MEGHÍVJUK a függvényt
+    print(f"Szia {nev}, üdvözöllek a programomban!")
+
+def duplazo(szam):
+    eredmeny = szam * 2
+    return eredmeny   # Visszaadja az értéket annak, aki meghívta
+
+# 2. Függvény MEGHÍVÁSA
+koszonto("Peti")
+koszonto("Kati")
+
+# A return miatt az eredményt el tudjuk menteni egy változóba:
+titkos_szam = duplazo(10)
+print(f"A duplázott szám: {titkos_szam}")</code></pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Levezetett feladat és magyarázat</summary>
+      <p><b>Feladat:</b> Készíts egy függvényt <code>paros_e</code> néven, ami kap egy számot, és <code>True</code>-val tér vissza, ha páros, különben <code>False</code>-al!</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>def paros_e(szam):
+    # A % 2 megadja a maradékot 2-vel osztva. Ha ez 0, a szám páros.
+    if szam % 2 == 0:
+        return True
+    else:
+        return False
+
+# Próbáljuk ki!
+vizsgalando = 15
+if paros_e(vizsgalando) == True:
+    print("Ez a szám bizony páros!")
+else:
+    print("Ez a szám páratlan!")</code></pre>
+      </div>
+    </details>
+
+    <details class="trick-details">
+      <summary>Haladóknak: Alapértelmezett értékek (Default paraméterek)</summary>
+      <p>Megadhatsz előre egy értéket a függvényed paraméterének. Ha meghíváskor elfelejtenek megadni neki valamit, akkor ezt fogja használni ahelyett, hogy a program hibát dobna.</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code>def koszon(nev="Ismeretlen"):
+    print(f"Szia, {nev}!")
+
+koszon("Anna") # Kiírja: Szia, Anna!
+koszon()       # Kiírja: Szia, Ismeretlen! (Nem okoz hibát az üresség)</code></pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>Önálló feladatok</summary>
+      <ol>
+        <li>Készíts egy függvényt <code>negyzetre_emelo</code> néven!</li>
+        <li>A függvény várjon egy <code>a</code> paramétert (számot)!</li>
+        <li>A függvény <code>return</code> segítségével adja vissza a szám négyzetét (önmagával megszorzott értékét)!</li>
+        <li>Hívd meg a függvényt az 5-ös számmal, és az eredményt printeld ki a képernyőre!</li>
+        <li><b>Extra feladat:</b> Módosítsd úgy a függvényt, hogy legyen egy <code>b</code> paramétere is, ami "alapértelmezett" értékként 2-t kap. Ha nincs megadva <code>b</code>, négyzetre emeljen, ha meg van adva (pl. 3), akkor a megadott hatványra (köbre) emeljen! (Tipp: használd a <code>a ** b</code> operátort)</li>
+      </ol>
+    </details>
+
+    <details class="solution-details">
+      <summary>Megoldások</summary>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+<pre><code># Alap feladat + Extra kombinálva:
+def negyzetre_emelo(a, b=2):
+    hatvany = a ** b
+    return hatvany
+
+# Meghívás csak egy számmal (alapértelmezett, azaz négyzetre emel)
+eredmeny_negyzet = negyzetre_emelo(5)
+print(f"Az 5 négyzete: {eredmeny_negyzet}")
+
+# Meghívás két számmal (pl. 5 a köbön)
+eredmeny_kob = negyzetre_emelo(5, 3)
+print(f"Az 5 köbe: {eredmeny_kob}")</code></pre>
+      </div>
+    </details>
+  </div>-->
+
+  <!-- STICKY FOOTER -->
+  <div class="sticky-footer">
+    <details>
+      <summary><div class="footer-content"><b>💻 Hogyan dolgozz és ments a gépteremben? (Kattints a lenyitáshoz!)</b></div></summary>
+      <div class="footer-content" style="padding: 15px 20px;">
+        <p>Amikor az önálló feladatokat csinálod, kövesd ezt a munkamenetet:</p>
+        <ol>
+          <li>Nyisd meg a Python szerkesztőt a gépeden (pl. IDLE, VSCode, PyCharm). Ha a VSCode hibát dob, akkor az <i>Extensions</i> (<img src="kepek/VSCode_extensions.png" alt="">) menüre kattintva tudod telepíteni a Pythont: keress rá, majd menj az <i>Install</i> vagy az <i>Enable</i> (ha már telepítve van) lehetőségre. Kis várakozás után ez meg is történik.</li>
+          <li>Kattints a <b>File -> New File</b> (Új fájl) menüpontra! Egy új, üres ablak nyílik meg.</li>
+          <li>A fenti kóddobozokból a jobb felső "Másolás" gombbal tudod a példákat átemelni, a <code class="inline">Ctrl + V</code> megnyomásával beilleszteni.</li>
+          <li><b>MENTÉS:</b> A feladatok megoldását mentsd el! <b>File -> Save As...</b> (Mentés másként). A fájlnevek legyenek beszédesek (pl. <i>vezetekneved_feladat1.py</i>).</li>
+          <li><b>FUTTATÁS:</b> A kódodat az <code class="inline">F5</code> billentyű megnyomásával, vagy a <i>Run -> Run Module</i> paranccsal tudod elindítani.</li>
+          <li>Ha mindennel kész vagy, a <b>.py</b> kiterjesztésű fájljaidat másold fel a hálózati meghajtóra (pl. Dolgozatok mappa), ahogy a tanár kérte!</li>
+        </ol>
+      </div>
+    </details>
+  </div>
+
+  <script>
+    // Másolás funkció a kóddobozokhoz
+    function copyCode(button) {
+      // Megkeresi a gomb melletti <pre><code> elemet
+      const codeBlock = button.nextElementSibling;
+      const textToCopy = codeBlock.innerText;
+
+      // Szöveg másolása a vágólapra
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        // Gomb stílusának módosítása a visszajelzéshez
+        const originalText = button.innerText;
+        button.innerText = "Másolva! ✓";
+        button.classList.add("copied");
+
+        // Gomb visszaállítása 2 másodperc után
+        setTimeout(() => {
+          button.innerText = originalText;
+          button.classList.remove("copied");
+        }, 2000);
+      }).catch(err => {
+        console.error('Sikertelen másolás: ', err);
+        button.innerText = "Hiba :(";
+      });
+    }
+  </script>
+</body>
+</html>

@@ -511,9 +511,87 @@ Itt annyi a plusz, amit nem szabad elfelejteni, hogy az input mindig stringet ad
   </details>
   <details>
     <summary>Szám típusok</summary>
+      <details>
+        <summary>integer</summary>
+        <div class="bemutatas">
+          <p>integer típus</p>
+          <p>
+            <b>jelölés:</b> int<br>
+            <b>név:</b> egész szám <br>
+            <b>sajátságok:</b> <ul><li>matematikai műveletek végezhetők rajta aritmetikai és összehasonlító operátorokkal;</li>
+            <li>szöveggel szorzáskor a szöveg adott számú ismétlését adja;</li>
+            <li><b>a legtöbb</b> egész számokkal végzett művelet eredménye ez, <b>kivétel az osztás</b>. A maradékos osztás (// operátor) viszont ezt adja eredményül.</li>
+            <li>string típussal a szorzáson kívül a legtöbb más operátor hibát eredményez;</li>
+            <pre><code><span class="int">3</span> &lt <span class="str">"szia"</span>
+
+<span class="hibas">3 &lt "szia"
+^^^^^^^^^^
+</span><span class="error"><b>TypeError</b></span>: <span class="error">'&lt' not supported between instances of 'int' and 'str'</span></code></pre>
+            </ul>
+          </p>
+        </div>
+      </details>
+      <details>
+        <summary>floating point</summary>
+        <div class="bemutatas">
+          <p>floating point number típus</p>
+          <p>
+            <b>jelölés:</b> float<br>
+            <b>név:</b> lebegőpontos szám <br>
+            <b>sajátságok:</b> <ul><li>matematikai műveletek végezhetők rajta aritmetikai és összehasonlító operátorokkal;</li>
+              <li>tizedes törteket tárolhatunk ebben az adattípusban <span class="extra">(Azért "lebegőpontos", mert egész számokat is lehet ebben tárolni, ha úgy írjuk, hogy 10.0, ezért nincs fixen ott benne elvileg a pont. Más kérdés, hogy Pythonban pont mindig megjelenik a pont a végén.)</span>;</li>
+            <li>a többi szám típussal vegezhetők vele műveletek;</li>
+            <li>osztás eredménye mindig float;</li>
+            <li>stringgel a legtöbb operátor hibát ad vele;</li>
+            <li>int típussal összehasonlítható, de figyelni kell:</li>
+            <pre><code><span class="print">print</span><span class="elso-zarojel">(<span class="int">3 <span class="normal">==</span> 3.0</span>)</span>
+<span class="print">print</span><span class="elso-zarojel">(<span class="int">3 <span class="is">is</span> 3.0</span>)</span>
+
+True
+False</code></pre>
+            Ahogy látszik, az egyenlőség fennáll, de az azonosság nem.
+            </ul>
+          </p>
+        </div>
+      </details>
+      <details>
+        <summary>boolean</summary>
+        <div class="bemutatas">
+          <p>boolean típus</p>
+          <p>
+            <b>jelölés:</b> bool<br>
+            <b>név:</b> logikai adat <br>
+            <b>sajátságok:</b> <ul><li>egy biten tárol igaz (True) vagy hamis (False) értéket;</li>
+              <li>a False valójában 0, a True pedig 1;</li>
+            <li>a többi szám típussal a fentiek szerint vegezhetők vele műveletek;</li>
+            <pre><code><span class="print">print<span class="elso-zarojel">(<span class="bool">True <span class="normal">+ </span>True</span>)</span></span>
+
+2</code></pre>
+            <li>osztás eredménye mindig float;</li>
+            <li>stringgel a legtöbb operátor hibát ad vele;</li>
+            <li>int típussal összehasonlítható, de figyelni kell:</li>
+            <pre><code><span class="print">print</span><span class="elso-zarojel">(<span class="int">3 <span class="normal">==</span> 3.0</span>)</span>
+<span class="print">print</span><span class="elso-zarojel">(<span class="int">3 <span class="is">is</span> 3.0</span>)</span>
+
+True
+False</code></pre>
+            Ahogy látszik, az egyenlőség fennáll, de az azonosság nem.
+            </ul>
+          </p>
+        </div>
+      </details>
   </details>
   <details>
-  <summary>Szöveg típusok</summary>
+  <summary>Szöveg típus</summary>
+    <details>
+      <summary>A string típusról általában</summary>
+    </details>
+    <details>
+      <summary>Műveletek stringekkel</summary>
+    </details>
+    <details class="extra">
+      <summary>Speciális műveletek: fstring</summary>
+    </details>
     fstring, átalakítás
   </details>
 </div>
@@ -534,7 +612,7 @@ Itt annyi a plusz, amit nem szabad elfelejteni, hogy az input mindig stringet ad
   <div class="extra">
     <details>
     <summary>További összetett adattípusok</summary>
-      <p>tuple, set</p>
+      <p>tuple, set, string mint összetett adattípus</p>
     </details>
   </div>
 </div>
