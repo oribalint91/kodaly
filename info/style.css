@@ -150,6 +150,9 @@
       display: flex;
       justify-content: space-between;
     }
+    .sides div{
+      padding: 2px;
+    }
   img {
     max-width: 100%;
   }
@@ -236,6 +239,24 @@
     .megoldasok code li:after {
       font-weight: normal;
     }
+
+    div.back {
+      position: fixed;
+      margin-top: 0.5%;
+      margin-left: -19rem;
+      padding: 4px;
+      border-radius: 5px;
+      background-color: #4b4e54;
+      transition: linear background-color 1s;
+      color: #ddd;
+    }
+    div.back a {
+      color: #ddd;
+    }
+    div.back:hover {
+      background-color: #611111;
+    }
+
     code .print {color: #d0b556;}
     code .elso-zarojel {color: #ffc911;}
     code .masodik-zarojel {color: #b06cd6}
