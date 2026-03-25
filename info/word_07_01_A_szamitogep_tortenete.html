@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>7. évfolyam szövegszerkesztési feladat (1.)</title>
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
     <h2>7. évfolyam szövegszerkesztési feladat (1.)</h2>
@@ -53,10 +54,10 @@ A diákok számára a számitógép segitséget nyujthat a tanulásban például
             <div class="right-free" style="width: 30%;"><img src="kepek/word_helyesirasi_hibak.png" alt=""></div>
         </div>
         <div class="sides">
-            <div class="left-free" style="width: 85%;"><li><b>Nyelvtani hibák javítása: </b>a nyelvhelyességi hibákat nem mindig (pl. amikor ezt írom, akkor sem) veszi észre ennyi helyesírási hiba mellett a program. Segít, ha a lap alatt, bal oldalon a nyelvhelyesség (<img src="kepek/word_helyesiras.png" alt="">) gombra kattintasz. Ekkor megjelenik a jobb oldalon egy szerkesztősáv, amely hatására átszámol minden hibát a program.</li>
+            <div class="left-free" style="width: 85%;"><li><b>Nyelvtani hibák javítása: </b>a nyelvhelyességi hibákat nem mindig (pl. amikor ezt írom, akkor sem) veszi észre ennyi helyesírási hiba mellett a program. Segít, ha a lap alatt, bal oldalon a <span id="word_helyesiras_szerkeszto_toggle" style="cursor: pointer; text-decoration: underline; color: maroon; font-weight: bolder;">nyelvhelyesség</span> (<img src="kepek/word_helyesiras.png" alt="">) gombra kattintasz. Ekkor megjelenik a jobb oldalon egy szerkesztősáv, amely hatására átszámol minden hibát a program.</li>
                 <li><b>Szöveg tagolása:</b> Szúrj be új sort az <span class="gomb">Enter</span> billentyű megnyomásával a cím ("A számítógép története") után! A többi bekezdést úgy alakítsd ki, hogy a bekezdések első mondatai a következők legyenek: "A számítógép ma már...", "Az internet megjelenése...", "A diákok számára..." és "Összességében..."</li>
             </div>
-            <div class="right-free"><img src="kepek/word_helyesiras_szerkeszto.png" alt=""></div>
+            <div class="right-free" style="display: none;" id="word_helyesiras_szerkeszto"><img src="kepek/word_helyesiras_szerkeszto.png" alt=""></div>
         </div>
     </ol>
 </details>
@@ -70,7 +71,7 @@ A diákok számára a számitógép segitséget nyujthat a tanulásban például
     <details>
         <summary>Részletes leírás (lépésenként)</summary>
         <ol start="7">
-            <li><b>A cím kiemelése: </b>jelöld ki a címet! A <i>Kezdőlap</i> fülön keresd meg a <i>Betűtípus</i> részt (<img src="kepek/office_betutipus.png" alt="">)! Itt állíthatod be a betűtípust, a betűméretet, a <b>Félkövér</b> és a <i>Dőlt</i> beállításokat. A <i>Betűszín</i> (<img src="kepek/office_betuszin.png" alt="">) is itt van, ettől balra. Erre kattintva válassz egy szép, sötét színt! Keresd meg ettől balra a <i>Bekezdés</i> részt: itt találod az <i>Igazítás</i> részt. Válaszd ki a <i>Középre igazítás</i> (<img src="kepek/office_kozepre_igazitas.png" alt="">) lehetőséget!</li>            
+            <li><b>A cím kiemelése: </b>jelöld ki a címet! A <i>Kezdőlap</i> fülön keresd meg a <i>Betűtípus</i> részt (<img src="kepek/office_betutipus.png" alt="">)! Itt állíthatod be a betűtípust, a betűméretet, a <b>Félkövér</b> és a <i>Dőlt</i> beállításokat. Állítsd át a betűtípust egy szimpatikusra, növeld a betűméretet, tedd félkövérré és dőltté! A <i>Betűszín</i> (<img src="kepek/office_betuszin.png" alt="">) is itt van, ettől balra. Erre kattintva válassz egy szép, sötét színt! Keresd meg ettől balra a <i>Bekezdés</i> részt: itt találod az <i>Igazítás</i> részt. Válaszd ki a <i>Középre igazítás</i> (<img src="kepek/office_kozepre_igazitas.png" alt="">) lehetőséget!</li>            
             <li><b>Szavak kiemelése: </b>jelöld ki a következő szavakat, és állítsd őket <b>Félkövérre</b>! <span class="extra">Akár egyszerre is kijelölheted az összeset, ha az egérrel jelölsz ki, és közben nyomva tartod a <span class="gomb">ctrl</span> gombot.</span> számítógép, internet, információ, diákok, tanulás, technológia</li>
         </ol>
     </details>

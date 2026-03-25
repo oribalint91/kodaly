@@ -36,6 +36,11 @@
       font-family: 'Courier New', Courier, monospace;
       margin-bottom: 30px;
     }
+
+    .raw-text-box p {
+      margin: 0;
+    }
+
     .extra {
       border-radius: 5px;
       border: 2.5px dashed #9b59b6;
@@ -152,6 +157,7 @@
     }
     .sides div{
       padding: 2px;
+      transition: display 1s linear;
     }
   img {
     max-width: 100%;
