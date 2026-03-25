@@ -222,7 +222,7 @@
       border: 2.5px dashed #611111;
       margin: auto;
     }
-    .bemutatas {
+    .bemutatas { /*függvény bemutatása kiemelt, keretezett részben*/
       border: 1px dotted #196997;
       background-color: #19699755;
       padding: 5px;
@@ -261,6 +261,65 @@
     }
     div.back:hover {
       background-color: #611111;
+    }
+
+    /* interaktív szavak kiemelése */
+    .ia { /* ia, mint "interaktyv" */
+      font-weight: bold;
+      color: maroon;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .ia:hover {
+      color: red;
+    }
+    .rejtett-kep {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.5s ease-in-out;
+    }
+    .rejtett-kep.lathato {
+      max-height: 800px;
+      opacity: 1;
+      margin-top: 10px;
+    }
+
+    .modal-hatter {
+      display: none;
+      position: fixed;
+      z-index: 1000; /* ettől lesz minden más felett mindig */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .modal-tartalom {
+      position: relative;
+      margin: 5% auto;
+      max-width: 90%;
+      text-align: center;
+    }
+    #modal-benne-levo-kep {
+      max-width: 100%;
+      max-height: 85vh;
+      border: 2px solid white;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+    .modal-bezaras {
+      color: white;
+      position: absolute;
+      top: -30px;
+      right: 0;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .modal-bezaras:hover {
+      color: #ccc;
     }
 
     code .print {color: #d0b556;}
