@@ -1,0 +1,13 @@
+id;cim;mufaj;szerzo;foszereplo_id
+101;Az ember tragédiája;Dráma;Madách Imre;5
+102;My Fair Lady;Musical;Alan Jay Lerner;1
+103;Hamlet;Tragédia;William Shakespeare;9
+104;Sirály;Dráma;Anton Csehov;2
+105;A falu rossza;Népszínmű;Tóth Ede;4
+106;Chicago;Musical;Fred Ebb;10
+107;Rómeó és Júlia;Tragédia;William Shakespeare;12
+108;Macskák;Musical;Andrew Lloyd Webber;13
+109;Antigoné;Tragédia;Szophoklész;6
+110;A vágy villamosa;Dráma;Tennessee Williams;14
+111;Liliom;Külvárosi legenda;Molnár Ferenc;3
+112;Szentivánéji álom;Vígjáték;William Shakespeare;15

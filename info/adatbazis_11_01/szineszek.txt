@@ -1,0 +1,16 @@
+id;nev;szuletesi_datum;neme;tarsulat
+1;Básti Juli;1957.08.10;Nő;Centrál Színház
+2;Udvaros Dorottya;1954.08.04;Nő;Nemzeti Színház
+3;Nagy Ervin;1976.09.25;Férfi;Szabadúszó
+4;Tenki Réka;1986.06.18;Nő;Örkény Színház
+5;Trill Zsolt;1972.04.13;Férfi;Nemzeti Színház
+6;Ónodi Eszter;1973.02.17;Nő;Katona József Színház
+7;Pogány Judit;1944.09.10;Nő;Örkény Színház
+8;Molnár Piroska;1945.10.01;Nő;Thália Színház
+9;Kulka János;1958.11.11;Férfi;Szabadúszó
+10;Schell Judit;1973.04.16;Nő;Thália Színház
+11;Csányi Sándor;1975.12.19;Férfi;Thália Színház
+12;Tompos Kátya;1983.02.10;Nő;Centrál Színház
+13;Gryllus Dorka;1972.12.26;Nő;Szabadúszó
+14;Alföldi Róbert;1967.11.22;Férfi;Szabadúszó
+15;Keresztes Tamás;1978.03.24;Férfi;Katona József Színház

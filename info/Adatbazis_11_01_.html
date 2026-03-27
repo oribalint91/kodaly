@@ -5,10 +5,201 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adatbázis-kezelés: kapcsolatok</title>
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
   <div hidden class="back"><a href="https://oribalint91.github.io/kodaly">Vissza a kezdőlapra</a></div>
     <h2>Adatbázis-kezelés: önálló feladat és gyakorló kérdések</h2>
-    <p class="intro">Ebben a dokumentumban</p>
+    <p class="intro">Ennek a dokumentumnak a segítségével egy új adatbázist készítünk. Az adatbázis <b>három táblát</b> tartalmaz: <i>színészek adatait</i>, <i>darabok adatait</i> és <i>előadások adatait</i>. Lépésenként először <b>importálni</b> fogjuk az adatokat, utána beállítjuk köztük a <b>kapcsolatokat</b>, majd ezek segítségével hajtunk végre <b>lekérdezéseket</b>. A lekérdezéseket elmentjük, ezek is részei lesznek a végén elmentett fájlnak.
+    <br>A felhasznált táblákat ezekre a hivatkozásokra jobb gombbal kattintva (majd a <i>Link mentése másként...</i> opciót választva) töltheted le: <a href="adatbazis_11_01/szineszek.txt">színészek tábla</a>, <a href="adatbazis_11_01/darabok.txt">darabok tábla</a>, <a href="adatbazis_11_01/eloadasok.txt">előadások tábla</a>.</p>
+    <div class="task-card">
+      <h3>1. Adatbázis létrehozása</h3>
+      <details>
+        <summary>Részletes feladatleírás lépésenként</summary>
+        <ol>
+          <li><b>Új adatbázis létrehozása: </b>nyisd meg az Accesst (<img src="kepek/ikon_access.png" alt="" style="max-height: 1em;">)! Megnyitáskor az <span class="ia" data-tipus="modal" data-target="access_kezdokepernyo">Üres adatbázis</span> lehetőséget kell választani (kivéve persze, ha egy már létező adatbázist szeretnél megnyitni máskor). <span class="ia" data-tipus="modal" data-target="access_uj_adatbazis_felirattal">Itt azonnal meg kell adni</span>, hogy hova és milyen néven szeretnéd menteni a fájlt; add meg a fájlnevet (legyen <i>szinhaz.accdb</i>), válassz egy helyet, majd kattints a <i>Létrehozás</i> gombra! <span class="ia" data-target="access_ablak" data-tipus="modal">Ide kattintva látod, hogy mi micsoda az ablakban.</span></li>
+        </ol>
+      </details>
+    </div>
+    <div class="task-card">
+      <h3>2. Adatok importálása</h3>
+      <details>
+        <summary>Részletes feladatleírás lépésenként</summary>
+        <ol start="2">
+          <li><b>Importálás kiválasztása: </b>kattints a <i>Külső adatok</i> fülre, majd válaszd az <i>Új adatforrás</i> menüt! <br><img src="kepek/access_uj_adatforras.png" alt=""></li>
+          <li><b>Adatok kiválasztása: </b>kattints a <i>Tallózás</i> gombra, majd keresd ki az egyik letöltött txt-fájlt! Kattints rá duplán, vagy válaszd a <i>Megnyitás</i> gombot, majd kattints az <i>OK</i> gombra a párbeszédablakban!</li>
+          <li><b>Beállítások ellenőrzése: </b>a következő lépésekben a <span class="ia" data-tipus="modal" data-target="access_szovegimportalo_varazslo">Szövegimportáló varázsló</span> segítségével állítjuk be az importálandó adatokat, hogy minden megfelelően jelenjen meg.
+          <ol type="a">
+            <li>A párbeszédablak bal alsó sarkában kattints a <i>Speciális</i> gombra! <span class="ia" data-tipus="modal" data-target="access_szovegimportalo_specialis">Itt tudjuk beállítani</span>, hogy pl. milyen karakterkódolást használunk. Ezzel akkor kell foglalkozni, ha az ékezetes karakterek nem megfelelően jelennek meg (ahogyan most is). Állítsd át a <i>Kódlap</i> típusát <b>Unicode (UTF-8)</b>-ra, majd nyomd meg az OK-t!</li>
+            <li>Az első ablakban azt adhatjuk meg, hogy <b>mivel tagoljuk az adatokat</b>. Ez lehet egy konkrét karakter, pl. a pontosvessző (mint itt is), de lehet az is, hogy minden adat egyforma hosszúságú. Itt maradhat a jelölő, mehetsz tovább.</li>
+            <li>A második oldalon a mezőket határoló karaktert választhatod ki. Szerencsére felismeri, hogy a pontosvessző az. <b>Fontos viszont, hogy itt kell megadni, ha az első sor a mezők neveit</b> tartalmazza, vagyis, ha az adatsor fejlécet is tartalmaz. Ha ezt nem adjuk meg, akkor hiba fog keletkezni. <span class="ia" data-tipus="modal" data-target="access_elso_sor_mezonevek">Tegyél pipát ennek a jelölőnégyzetébe</span>, majd menj tovább!</li>
+            <li>A következő oldalon az egyes mezők adattípusait adhatod meg. Általában jól tippel a program, de most nem tökéletes. <span class="ia" data-tipus="modal" data-target="access_importalas_tipusok">Kattints a <i>Születési dátum</i> oszlopra</span>, és állítsd a típust <i>Dátum és időpont</i>ra!</li>
+            <li>A következő oldalon kell kiválasztani, hogy mi alapján azonosítsa az adatokat a program. Ez valami olyan kell legyen, ami biztosan csak egyszer fordul elő az adatsorban. Most van ilyenünk, ez az <i>id</i> oszlop, ezért válaszd ki azt a lehetőséget, hogy <i>Magam választom ki</i>, és válaszd az <i>id</i> mezőt!</li>
+            <li>Ezután már csak nevet kell adnod a táblának, de itt is jó a javaslat: Szineszek.</li>
+            <li>Figyelj, hogy az importálás végén mit ír ki a program: sajnos nagyon hasonló, <span class="ia" data-tipus="modal" data-target="access_importalas_sikeres">ha minden rendben ment</span>, és <span class="ia" data-tipus="modal" data-target="access_importalas_sikertelen">ha hiba történt</span>. A legkönnyebb talán azt meglátni, hogy hibás importálás esetén <span class="ia" data-tipus="modal" data-target="access_tablak_hibaval">készít egy plusz táblát</span>, amelyben összegyűjti, hogy mik nem sikerültek. Ha sikertelen az importálás, akkor töröld ki a rosszul importált táblát és a hibajegyzéket, majd ismételd meg a fenti lépéseket!</li>
+          </ol>
+        Ezeket a lépéseket mindhárom táblára ismételd meg! Figyelj, hogy a többiben is jó típusúak legyenek a dátumok! Ha készen vagy, akkor zárd be a <i>Tábla1</i> táblát: mivel ebben nincsenek adatok, a program automatikusan ki is fogja törölni.</li>
+        </ol>
+      </details>
+    </div>
+    <div class="task-card">
+      <h3>3. Kapcsolatok létrehozása</h3>
+      <details>
+        <summary>Részletes feladatleírás lépésenként</summary>
+        <p>Most össze kell kapcsolni a színészeket, a darabokat és a konkrét előadásokat egymással. A táblák sok esetben tartalmaznak hivatkozást egy másik táblára, pl. a darabok a főszereplő színész azonosítóját.</p>
+        <ol start="5">
+          <li>Kattints az <i>Adatbáziseszközök</i> menüre, majd válaszd ki a <i>Kapcsolatok</i> parancsot! <br>
+          <img src="kepek/access_kapcsolatok.png" alt=""></li>
+          <li><b>Táblák hozzáadása: </b>a megnyíló ablakban tudjuk majd beállítani a kapcsolatokat, de előbb hozzá kell adni azokat a táblákat, amelyek között kapcsolatot akarunk kialakítani. A hozzáadható táblákat <span class="ia" data-tipus="modal" data-target="access_kapcsolattervezes">a képernyő jobb szélén</span> találod. <b>Vigyázz!</b> Nem csak táblákat adhatsz hozzá! Ha esetleg nem találod a tábládat, akkor meg kell nézni, hogy a fenti választó nem állt-e át valamiért mondjuk a lekérdezésekre, hiszen azok közt nem találod majd meg a tábláidat. Kattints duplán mindhárom tábla nevére!</li>
+          <li><b>Kapcsolatok szerkesztése: </b>a bent lévő kis táblákat szabadon mozgathatod, ahogy kényelmes. Kattints az összetartozó párok közül az egyikre, mondjuk a <i>Darabok</i> tábla <i>foszereplo_id</i>-jére, és húzd rá a <i>Szineszek</i> tábla <i>id</i> sorára! Ekkor <span class="ia" data-tipus="modal" data-target="access_kapcsolattervezes">megjelenik egy kis párbeszédablak</span>, ahol ellenőrizheted, hogy jól állítottad-e párba őket.</li>
+          <li><b>Az összes kapcsolat létrehozása: </b><span class="ia" data-tipus="modal" data-target="access_kapcsolatok_kesz">kapcsold össze az összetartozókat!</span></li>
+        </ol>
+      </details>
+    </div>
+    <div class="task-card">
+      <h3>4. Szöveges keresés műfaj alapján</h3>
+      <details>
+        <summary>Részletes feladatleírás lépésenként</summary>
+        <p>Készen vagyunk az alapokkal, kezdődhet a lekérdezés! Listázd ki, hogy mely darabok műfaja <i>musical</i>!</p>
+        <ol start="9">
+          <li><b>Lekérdezéstervező megnyitása: </b>válaszd a <i>Létrehozás</i> fülön a <i>Lekérdezéstervező</i> lehetőséget! <br><img src="kepek/access_lekerdezestervezo.png" alt=""></li>
+          <li><b>Táblák kiválasztása: </b>egy lekérdezésnél a legelső mindig az, hogy ki kell választani a táblá(ka)t, amellyel (amelyekkel) dolgozunk. Válaszd ki a <i>Darabok</i> táblát úgy, hogy a jobb oldalon duplán kattintasz rá! Figyelj, hogy itt is át tud váltani a nézet pl. lekérdezésekre!</li>
+          <li><b>Mező kiválasztása: </b>főleg, ha több táblával dolgozol, érdemes a középső részen kiválasztani azt a mezőt (vagyis a táblának azt a részét), amelyre szükséged van. Ha duplán rákattintasz, <span class="ia" data-tipus="modal" data-target="access_lekerdezestervezo_mezo_kivalasztasa">akkor automatikusan bekerül a lenti táblázatba.</span></li>
+          <li><b>A lekérdezés megjelenítése: </b>ha készen vagy a lekérdezéssel (vagy ellenőrizni szeretnéd, hol tartasz), a képernyő bal felső sarkában kell a <span class="ia" data-tipus="modal" data-target="access_lekerdezestervezo_futtatas"><i>Nézet</i> vagy a <i>Futtatás</i> ikonra kattintanod</span>. Ekkor <span class="ia" data-tipus="modal" data-target="access_lekerdezes_hianyos">megjelenik a kész lekérdezés egy táblázatban.</span></li>
+          <li><b>Lekérdezés további beállításai: </b>amint látod, ez a lekérdezés eddig nem túl informatív, hiszen csak azt látjuk, hogy 3 olyan darab van, amely műfaja musical. Lépjünk vissza a <i>Lekérdezéstervező</i> nézetre úgy, hogy megint a bal felső sarokba kattintunk a <i>Nézet</i> gombra (<img src="kepek/access_lekerdezes_nezet.png" alt="" style="max-height: 1em;">)!</li>
+          <li><b>A darabok címének kiírása, műfaj elrejtése: </b>add hozzá a lekérdezéshez a <i>cim</i> mezőt is! Ahhoz, hogy a "musical" szó ne jelenjen meg sokszor a lekérdezésben, vedd ki a pipát a <i>mufaj</i> alatti oszlopban a <i>Megjelenítés</i> sorból!</li>
+          <li><b>Lekérdezés megtekintése és mentése: </b>válts nézetet, majd a <span class="gomb">ctrl + s</span> billentyűkombinációval mentsd el a lekérdezést! A név legyen 01_musical</li>
+        </ol>
+      </details>
+    </div>
+    <div class="task-card">
+      <h3>5. Szűrés dátumra</h3>
+      <details>
+        <summary>Részletes feladatleírás lépésenként</summary>
+        <p>A következő lépésben kilistázzuk azokat az előadásokat, amelyek 2026 januárjában kerültek megrendezésre. A dátum, a helyszín és a jegyár kell, hogy megjelenjen majd a lekérdezésben.</p>
+        <ol start="16">
+          <li>Készíts egy új lekérdezést: <i>Létrehozás</i>, <i>Lekérdezéstervező</i>.</li>
+          <li>Add hozzá a lekérdezéshez az <i>Eloadasok</i> táblát! Válaszd ki ennek a "datum", a "helyszin" és a "jegyar" mezőit!</li>
+          <li><b>Feltétel megadása: </b>a <i>datum</i> oszlopba beírjuk, hogy csak a 2026. januári darabok jelenjenek meg. Ehhez a <i>Feltétel</i> sorba írd be, hogy <i>Between "2026.01.01." And "2026.01.31."</i> <br>
+          Itt megjegyzem, hogy a kis- és nagybetűk itt sem számítanak különbözőnek, ahogy a Microsoft szoftvereiben általában. Itt most az idézőjeleket sem fontos kitenni. Ha csupa kisbetűvel, idézőjelek nélkül írjuk be a feltételt, futtatáskor megváltozik a formázás az ide beillesztettre.</li>
+          <li>Nézd meg a lekérdezést, majd mentsd el <i>02_januar</i> néven!</li>
+        </ol>
+      </details>
+    </div>
+    <div class="task-card">
+      <h3>6. Szűrés dátumra 2.</h3>
+      <details>
+        <summary>Részletes feladatleírás lépésenként</summary>
+        <p>Most azokat az eseményeket listázzuk ki, amelyek 2026. 03. 27. után kerülnek megrendezésre.</p>
+        <ol start="20">
+          <li>Készíts új lekérdezést a Lekérdezéstervezővel, és add hozzá az <i>Eloadasok</i> táblát! Add hozzá ismét a "datum", "helyszin" és "jegyar" mezőket.</li>
+          <li><b>Feltétel megadása: </b>a feltétel most legyen ez: <i>&gt 2026.03.27.</i></li>
+          <li>Mentsd el a lekérdezést <i>03_jovobeli</i> néven!</li>
+        </ol>
+      </details>
+    </div>
+    <div class="task-card">
+      <h3>7. Összetett szűrés</h3>
+      <details>
+        <summary>Részletes feladatleírás lépésenként</summary>
+        <p>Most azokat az előadásokat listázzuk ki, amelyek a nagyszínpadon vannak és olcsók. Vegyük bele most a darab címét is!</p>
+        <ol start="23">
+          <li><b>Táblák hozzáadása: </b>add hozzá most az <i>Eloadasok</i> és a <i>Darabok</i> táblát is! A kettő közt meg kell jelennie a korábban beállított kapcsolatnak.</li>
+        </ol>
+      </details>
+    </div>
+    <div class="task-card">
+      <h3>8. Három táblás lekérdezés</h3>
+      <details>
+        <summary>Részletes feladatleírás lépésenként</summary>
+        <ol>
+          <li></li>
+        </ol>
+      </details>
+    </div>
+    <div class="task-card">
+      <h3>9. Számított mező</h3>
+      <details>
+        <summary>Részletes feladatleírás lépésenként</summary>
+        <ol>
+          <li></li>
+        </ol>
+      </details>
+    </div>
+    <div class="task-card">
+      <h3>10. Dátumfüggvény</h3>
+      <details>
+        <summary>Részletes feladatleírás lépésenként</summary>
+        <ol>
+          <li></li>
+        </ol>
+      </details>
+    </div>
+    <div class="task-card">
+      <h3>11. Groupby & Count: hányszor játszották a darabokat?</h3>
+      <details>
+        <summary>Részletes feladatleírás lépésenként</summary>
+        <ol>
+          <li></li>
+        </ol>
+      </details>
+    </div>
+    <div class="task-card">
+      <h3>12. Groupby & Sum: mennyi a helyszínek teljes bevétele?</h3>
+      <details>
+        <summary>Részletes feladatleírás lépésenként</summary>
+        <ol>
+          <li></li>
+        </ol>
+      </details>
+    </div>
+    <div class="task-card">
+      <h3>13. Átlagolás: mennyibe kerül a jegy egy-egy műfajú előadásra?</h3>
+      <details>
+        <summary>Részletes feladatleírás lépésenként</summary>
+        <ol>
+          <li></li>
+        </ol>
+      </details>
+    </div>
+    <div class="task-card">
+      <h3>14. Kereszttáblás lekérdezés</h3>
+      <details>
+        <summary>Részletes feladatleírás lépésenként</summary>
+        <ol>
+          <li></li>
+        </ol>
+      </details>
+    </div>
+    
+    <!--    itt jönnek azok a képek, amelyek a modalban megjelenhetnek    -->
+    <img src="kepek/access_kezdokepernyo.png" id="access_kezdokepernyo" style="display: none;" alt="">
+    <img src="kepek/access_uj_adatbazis_felirattal.png" id="access_uj_adatbazis_felirattal" style="display: none;" alt="">
+    <img src="kepek/access_ablak.png" id="access_ablak" style="display: none;" alt="">
+    <img src="kepek/access_szovegimportalo_varazslo.png" id="access_szovegimportalo_varazslo" style="display: none;" alt="">
+    <img src="kepek/access_szovegimportalo_specialis.png" id="access_szovegimportalo_specialis" style="display: none;" alt="">
+    <img src="kepek/access_elso_sor_mezonevek.png" id="access_elso_sor_mezonevek" style="display: none;" alt="">
+    <img src="kepek/access_importalas_tipusok.png" id="access_importalas_tipusok" style="display: none;" alt="">
+    <img src="kepek/access_importalas_sikeres.png" id="access_importalas_sikeres" style="display: none;" alt="">
+    <img src="kepek/access_importalas_sikertelen.png" id="access_importalas_sikertelen" style="display: none;" alt="">
+    <img src="kepek/access_tablak_hibaval.png" id="access_tablak_hibaval" style="display: none;" alt="">
+    <img src="kepek/access_kapcsolattervezes.png" id="access_kapcsolattervezes" style="display: none;" alt="">
+    <img src="kepek/access_kapcsolattervezes.png" id="access_kapcsolattervezes" style="display: none;" alt="">
+    <img src="kepek/access_kapcsolatok_kesz.png" id="access_kapcsolatok_kesz" style="display: none;" alt="">
+    <img src="kepek/access_lekerdezestervezo_mezo_kivalasztasa.png" id="access_lekerdezestervezo_mezo_kivalasztasa" style="display: none;" alt="">
+    <img src="kepek/access_lekerdezestervezo_futtatas.png" id="access_lekerdezestervezo_futtatas" style="display: none;" alt="">
+    <img src="kepek/access_lekerdezes_hianyos.png" id="access_lekerdezes_hianyos" style="display: none;" alt="">
+    <img src="kepek/access_tablak_hibaval.png" id="access_tablak_hibaval" style="display: none;" alt="">
+    <img src="kepek/access_tablak_hibaval.png" id="access_tablak_hibaval" style="display: none;" alt="">
+
+
+    <!--  itt jön a modal -->
+  <div id="kep-modal" class="modal-hatter">
+    <div class="modal-tartalom">
+        <span class="modal-bezaras">&times;</span>
+        <img id="modal-benne-levo-kep" src="" alt="">
+    </div>
+  </div>
+
 </body>
 </html>
