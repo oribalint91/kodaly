@@ -50,7 +50,7 @@
         <ol start="5">
           <li>Kattints az <i>Adatbáziseszközök</i> menüre, majd válaszd ki a <i>Kapcsolatok</i> parancsot! <br>
           <img src="kepek/access_kapcsolatok.png" alt=""></li>
-          <li><b>Táblák hozzáadása: </b>a megnyíló ablakban tudjuk majd beállítani a kapcsolatokat, de előbb hozzá kell adni azokat a táblákat, amelyek között kapcsolatot akarunk kialakítani. A hozzáadható táblákat <span class="ia" data-tipus="modal" data-target="access_kapcsolattervezes">a képernyő jobb szélén</span> találod. <b>Vigyázz!</b> Nem csak táblákat adhatsz hozzá! Ha esetleg nem találod a tábládat, akkor meg kell nézni, hogy a fenti választó nem állt-e át valamiért mondjuk a lekérdezésekre, hiszen azok közt nem találod majd meg a tábláidat. Kattints duplán mindhárom tábla nevére!</li>
+          <li><b>Táblák hozzáadása: </b>a megnyíló ablakban tudjuk majd beállítani a kapcsolatokat, de előbb hozzá kell adni azokat a táblákat, amelyek között kapcsolatot akarunk kialakítani. A hozzáadható táblákat <span class="ia" data-tipus="modal" data-target="access_kapcsolattervezes">a képernyő jobb szélén</span> találod. <b>Vigyázz!</b> Nem csak táblákat adhatsz hozzá! Ha esetleg nem találod a tábládat, akkor meg kell nézni, hogy a fenti választó nem állt-e át valamiért mondjuk a lekérdezésekre, hiszen azok közt nem találod majd meg a tábláidat. Ha egyáltalán nem látod ezt a sávot, akkor a <i>Kapcsolattervezés</i> fül <i>Táblák beszúrása</i> pontjára kell kattintani. Kattints duplán mindhárom tábla nevére!</li>
           <li><b>Kapcsolatok szerkesztése: </b>a bent lévő kis táblákat szabadon mozgathatod, ahogy kényelmes. Kattints az összetartozó párok közül az egyikre, mondjuk a <i>Darabok</i> tábla <i>foszereplo_id</i>-jére, és húzd rá a <i>Szineszek</i> tábla <i>id</i> sorára! Ekkor <span class="ia" data-tipus="modal" data-target="access_kapcsolattervezes">megjelenik egy kis párbeszédablak</span>, ahol ellenőrizheted, hogy jól állítottad-e párba őket.</li>
           <li><b>Az összes kapcsolat létrehozása: </b><span class="ia" data-tipus="modal" data-target="access_kapcsolatok_kesz">kapcsold össze az összetartozókat!</span></li>
         </ol>
@@ -80,8 +80,8 @@
         <ol start="16">
           <li>Készíts egy új lekérdezést: <i>Létrehozás</i>, <i>Lekérdezéstervező</i>.</li>
           <li>Add hozzá a lekérdezéshez az <i>Eloadasok</i> táblát! Válaszd ki ennek a "datum", a "helyszin" és a "jegyar" mezőit!</li>
-          <li><b>Feltétel megadása: </b>a <i>datum</i> oszlopba beírjuk, hogy csak a 2026. januári darabok jelenjenek meg. Ehhez a <i>Feltétel</i> sorba írd be, hogy <i>Between "2026.01.01." And "2026.01.31."</i> <br>
-          Itt megjegyzem, hogy a kis- és nagybetűk itt sem számítanak különbözőnek, ahogy a Microsoft szoftvereiben általában. Itt most az idézőjeleket sem fontos kitenni. Ha csupa kisbetűvel, idézőjelek nélkül írjuk be a feltételt, futtatáskor megváltozik a formázás az ide beillesztettre.</li>
+          <li><b>Feltétel megadása: </b>a <i>datum</i> oszlopba beírjuk, hogy csak a 2026. januári darabok jelenjenek meg. Ehhez a <i>Feltétel</i> sorba írd be, hogy <i>Between #2026. 01. 01.# And #2026. 01. 31.#</i> <br>
+          Itt megjegyzem, hogy a kis- és nagybetűk itt sem számítanak különbözőnek, ahogy a Microsoft szoftvereiben általában. A kis- és nagybetűk itt sem számítanak, de a dátumokat hashtagek közé kell tennünk, különben nem működik. (Megjegyzem, hogy hashtagek nélkül akkor működne, ha rosszul importáltuk volna, és a dátum szövegként lenne tárolva.) Vedd észre, hogy <b>a pontok után szóközöket is tettem</b>!</li>
           <li>Nézd meg a lekérdezést, majd mentsd el <i>02_januar</i> néven!</li>
         </ol>
       </details>
@@ -104,7 +104,12 @@
         <summary>Részletes feladatleírás lépésenként</summary>
         <p>Most azokat az előadásokat listázzuk ki, amelyek a nagyszínpadon vannak és olcsók. Vegyük bele most a darab címét is!</p>
         <ol start="23">
-          <li><b>Táblák hozzáadása: </b>add hozzá most az <i>Eloadasok</i> és a <i>Darabok</i> táblát is! A kettő közt meg kell jelennie a korábban beállított kapcsolatnak.</li>
+          <li><b>Táblák hozzáadása: </b>add hozzá most az <i>Eloadasok</i> és a <i>Darabok</i> táblát is! A kettő közt meg kell jelennie a korábban beállított kapcsolatnak. <br>
+          <img src="kepek/access_lekerdezestervezo_kapcsolatok.png" alt=""></li>
+          <li><b>Mezők kiválasztása: </b>most már végig kell gondolni, hogy melyik mezőket adjuk hozzá a lekérdezésünkhöz. Szükség lesz a <i>Darabok</i> táblából a cim mezőre, mert ezt ki szeretnénk íratni. Kell az <i>Eloadasok</i> táblából a helyszin és a jegyar, mert ezekre kell szűrni. Válaszd ki ezeket a mezőket!</li>
+          <li><b>Feltételek megadása és megjelenítés: </b>a helyszín mezőben a feltétel egyszerű, ahogy a szöveges feltételek sokszor. Csak írd be, hogy nagyszínpad! A kis- és nagybetű nem számít, az idézőjeleket pedig a program automatikusan kiteszi. Vedd ki a pipát a Megjelenítés mellől, hogy ez az adat ne legyen itt látható!<br>
+          A másik feltétel az ár: válasszuk ki ide azokat az előadásokat, amelyekre 6500 Ft alatti áron lehet jegyet venni! Ehhez írd be a jegyárhoz feltételnek ezt: &lt 6500</li>
+          <li>Mentsd el a lekérdezést <i>04_olcso</i> néven!</li>
         </ol>
       </details>
     </div>
@@ -112,17 +117,26 @@
       <h3>8. Három táblás lekérdezés</h3>
       <details>
         <summary>Részletes feladatleírás lépésenként</summary>
-        <ol>
-          <li></li>
+        <p>A mostani lekérdezésben kiíratjuk a színész nevét, a darab címét, és az előadások dátumát egy táblában. Később egy kis módosítással csak a darab legutolsó előadásának dátumát fogjuk kiíratni.</p>
+        <ol start="27">
+          <li>Tedd be mindhárom táblát egy új lekérdezésbe! Válaszd ki a megfelelő mezőket!</li>
+          <p>most a lekérdezésben megjelenik mindegyik darab címe, a színészek neve, és az összes előadás időpontja. Állítsuk be, hogy miden darabnak csak a legutolsó előadása legyen látható!</p>
+          <li><b>Összesítő lekérdezés: </b>a Lekérdezéstervező jobb felső részében <span class="ia" data-tipus="modal" data-target="access_lekerdezestervezo_osszesites">kattints az <i>Összesítés</i> gombra</span>! A Lekérdezéstervező táblázatában ekkor megjelenik egy új sor.</li>
+          <li>A dátumokat tartalmazó oszlop alatt az Összesítés sorban állítsd át a GroupBy lehetőséget <b>Max</b>-ra!</li>
+          <li>Nézd meg a lekérdezést, és mentsd el <i>05_utolso</i> néven!</li>
         </ol>
       </details>
     </div>
     <div class="task-card">
-      <h3>9. Számított mező</h3>
+      <h3>9. Groupby & Count: hányszor játszották a darabokat?</h3>
       <details>
         <summary>Részletes feladatleírás lépésenként</summary>
-        <ol>
-          <li></li>
+        <p>Most darabonként kiíratjuk, hogy hány előadás volt belőlük összesen a vizsgált időszakban.</p>
+        <ol start="31">
+          <li>Új lekérdezésbe tedd be az Eloadasok és a Darabok táblákat! A darabok címére mindenképp szükség lesz. Ahhoz, hogy az egyes darabok előfordulási darabszámát meghatározzuk, szükség van egy olyan tulajdonságra, ami minden előadás esetén egyedi. Ilyen az előadás azonosítója, az <i>id</i>. Add hozzá ezt is a lekérdezéshez!</li>
+          <li>Ahhoz, hogy darabszámokat határozzunk meg, ismét összesítő lekérdezést kell indítanunk. Kattints megint a jobb felső részen az <i>Összesítés</i> gombra!</li>
+          <li><b>előfordulások összeszámolása: </b>az azonosítókat nem szeretnénk egyenként kiíratni, csak meg szeretnénk számolni, hogy hányszor fordulnak elő. Az Összesítés sorban az id alatt válaszd ki a legördülő listából a <b>Count</b> lehetőséget!</li>
+          <li>Mentsd el a lekérdezést <i>06_ismetles</i> néven!</li>
         </ol>
       </details>
     </div>
@@ -130,17 +144,25 @@
       <h3>10. Dátumfüggvény</h3>
       <details>
         <summary>Részletes feladatleírás lépésenként</summary>
-        <ol>
-          <li></li>
+        <p>Most összegyűjtjük azokat a darabokat, amelyeket a hónapok első napjaiban szoktak játszani. Ehhez már egy függvényt is kell használnunk.</p>
+        <ol start="35">
+          <li>Add hozzá az Eloadasok és a Darabok táblákat a lekérdezéshez! Add hozzá a darab címét a lekérdezéstervező táblázatához!</li>
+          <li><b>A kifejezésszerkesztő megnyitása: </b>kattints a Lekérdezéstervező táblázatában egy üres oszlop legfelső cellájába, mondjuk a cím mellettibe! A <i>Lekérdezéstervezés</i> fülön a <span class="ia" data-tipus="modal" data-target="access_kifejezesszerkeszto_megnyitasa">varázspálca ikonnal jelölt <i>Szerkesztő</i></span> lehetőséget választva megnyílik az a párbeszédablak, amelyben függvényeket használhatunk fel.</li>
+          <li><b>Függvény kiválasztása: </b>a <span class="ia" data-tipus="modal" data-target="access_kifejezesszerkeszto"><i>Kifejezésszerkesztő</i> párbeszédablakban (ábra bal oldala)</span> válaszd ki (mindegyiket dupla kattintással) a <b>Függvények</b>, majd a <b>Beépített függvények</b> opciót! A második részben válaszd a <b>Dátum/idő</b> kategóriát, majd a harmadikban a <b>Day</b> függvényt! Ha megvagy, kattints a párbeszédablak tetején a függvényben látható <i>&laquodátum&raquo</i> szócskára, hogy ki legyen jelölve!</li>
+          <li><b>Mező hozzáadása: </b> a <span class="ia" data-tipus="modal" data-target="access_kifejezesszerkeszto">párbeszédablakban (ábra jobb oldala)</span> most a függvényben felhasználjuk a táblában található dátumot. Válaszd ki a <i>Kifejezéselemek</i> közül a szinhaz.accdb adatbázist, majd a Táblákat, azon belül pedig az Eloadasok táblát! A második részben a datum mezőt válaszd ki dupla kattintással! Egyébként itt kapunk hibát, ha nem jól importáltuk a dátumot. Ha így jártunk, akkor újra kell importálni azt a táblát, ebben a függvényben pedig a helyes formátumú dátumokra kell hivatkozni.</li>
+          <li>Mentsd el a lekérdezést <i>07_ho_eleje</i> néven!</li>
         </ol>
       </details>
     </div>
     <div class="task-card">
-      <h3>11. Groupby & Count: hányszor játszották a darabokat?</h3>
+      <h3>11. Számított mező</h3>
       <details>
         <summary>Részletes feladatleírás lépésenként</summary>
-        <ol>
-          <li></li>
+        <p>Most egy új mezőt adunk az előadásokat tartalmazó táblához: kiszámítjuk, hogy a jegyárak mennyi ÁFA-t tartalmaznak.</p>
+        <ol start="40">
+          <li>Nyisd meg az Eloadasok táblát a bal oldalon!</li>
+          <li><b>Új mező hozzáadása: </b>a mezőneveket ("fejléceket") tartalmazó sorban kattints a jobb szélen a <i>Hozzáadás</i> lehetőségre! Válaszd ki a <span class="ia" data-tipus="modal" data-target="access_mezo_hozzaadasa_szamitott">Számított mező opciót, majd a szám</span> lehetőséget!</li>
+          <li><b>Számított mező: </b>a párbeszédablakban már meg van nyitva a tábla, amelyben dolgozunk. Válaszd ki dupla kattintással a <i>jegyar</i> lehetőséget, majd a csillag operátor segítségével <span class="ia" data-tipus="modal" data-target="access_mezo_hozzaadasa_szamitott_kifejezesszerkeszto">szorozd meg 0,27-tel</span>! Nyomj OK-t, és az adataid láthatóvá válnak. A mezőt nevezd el <i>AFA</i>-nak, majd mentsd a táblát!</li>
         </ol>
       </details>
     </div>
@@ -148,17 +170,30 @@
       <h3>12. Groupby & Sum: mennyi a helyszínek teljes bevétele?</h3>
       <details>
         <summary>Részletes feladatleírás lépésenként</summary>
-        <ol>
-          <li></li>
+        <p>Ahhoz, hogy ezt ki tudjuk számolni, szükség lesz arra, hogy az egyes helyszíneknek mekkora a befogadóképessége. Ehhez készítünk egy új táblát, ahová bevisszük az adatokat. Azzal számolunk, hogy a kihasználtság 90%, vagyis lényegében minden előadás teltházas, de kiosztunk néhány tisztelet- és szakmai jegyet vagy promóciós jegyeket.</p>
+        <ol start="43">
+          <li><b>Új tábla készítése: </b>kattints a <i>Létrehozás</i> fülön a <i>Tábla</i> lehetőségre! Megnyílik egy új, egyelőre üres tábla. <br><img src="kepek/access_uj_tabla_ures.png" alt=""></li>
+          <li><b>Adatok bevitele: </b>vigyük be kézzel az adatokat! Figyelj arra, hogy pontosan (a kis- és nagybetűktől eltekintve, ott lehet különbség) ugyanúgy írd a helyszíneket, mint az előadások táblájában van! Alul látod az én megoldásomat, te írhatsz más számokat is, ha azt szeretnéd. Nevezd át a mezőket úgy, hogy duplán rákattintasz. A nevek lehetnek helyszin_nev és ferohely.<br>
+          <img src="kepek/access_uj_tabla_mezonevek.png" alt=""></li>
+          <li><b>Kapcsolatok beállítása: </b>fontos, hogy a kapcsolatokat is beállítsuk – ezért kell arra figyelni, hogy helyesen írjuk a helyszíneket. Ha még nem zártad be a <i>Kapcsolatok</i> lapot, akkor kattints rá; ha igen, akkor keresd meg az <i>Adatbáziseszközök</i> fülön! Itt a jobb oldalról add hozzá az új táblát is a Kapcsolatokhoz! Húzd össze az Előadások tábla helyszín mezőjét és a Férőhelyek tábla helyszín név mezőjét!</li>
+          <li><b>Lekérdezés összeállítása: </b>készíts egy új lekérdezést! Add hozzá az előadások és a férőhelyek táblát is! Figyelj, hogy megjelenik-e a kapcsolat! A táblázathoz add hozzá a helyszín nevét, bármelyik táblából (mivel ez a kapcsolat alapja, ugyanannak kell lennie mindkettőnek). Kapcsold be az <i>Összesítést!</i></li>
+          <li><b>Függvény készítése: </b>kattints a második oszlopba, majd a varázspálcára (<i>Szerkesztő</i>)! Írd be ezt a képletet: Sum([Eloadasok]![jegyar]*[Ferohelyek]![ferohely]*0,9) <br>
+          Ezzel a képlettel minden sorra kiszámolod a jegyárnak és a férőhelyek 90%-ának a szorzatát, majd összeadod őket. Mivel az első oszlop összesítésben tartalmazza a helyszín nevét, eszerint csoportosítva kapod vissza az eredményeket.</li>
+          <li>Mentsd a lekérdezést <i>08_bevetelek</i> néven!</li>
         </ol>
+        <p>Ez a feladat volt a legnehezebb. Még kettő van hátra, amelyekkel sokkal kevesebb a munka.</p>
       </details>
     </div>
     <div class="task-card">
       <h3>13. Átlagolás: mennyibe kerül a jegy egy-egy műfajú előadásra?</h3>
       <details>
         <summary>Részletes feladatleírás lépésenként</summary>
-        <ol>
-          <li></li>
+        <ol start="49">
+          <li>Készíts egy új lekérdezést, és add hozzá a darabok és az előadások táblákat! A darabok táblából a műfaj, az előadásokból pedig a jegyár fog kelleni.</li>
+          <li><b>Átlag számítása: </b>kapcsold be az összesítést! A jegyárak alatt válaszd ki az összesítés sorban az átlagot (<i>Avg</i>)!</li>
+          <p>Így már nagyjából megvan a lekérdezés, de a formátum még nem szép. Egyrészt nem pénznemként jelenik meg, másrészt az egyik átlag (legalábbis, ha azokat a számokat használtad, amiket én is) nagyon hosszú törtszám. Formázzuk meg az értékeket!</p>
+          <li>Kattints a jobb felső részen (az összesítéstől jobbra) a <i>Tulajdonságlap</i> gombra! A táblék hozzáadása mellett megjelennek a lekérdezés eredményének tulajdonságai. Ha az értékeket nem látod, csak a tulajdonságneveket, akkor húzd szélesebbre! A <i>Formátum</i> mellett válaszd ki (a nyilacskára kattintva) a forintot, a <i>Tizedesjegyek</i>nél pedig a 0-t!</li>
+          <li>Mentsd el a lekérdezést <i>09_atlag</i> néven!</li>
         </ol>
       </details>
     </div>
@@ -166,8 +201,15 @@
       <h3>14. Kereszttáblás lekérdezés</h3>
       <details>
         <summary>Részletes feladatleírás lépésenként</summary>
-        <ol>
-          <li></li>
+        <p>Készítünk egy kereszttáblás lekérdezést. Ez cellák metszéspontjában tartalmazza a megfelelő információkat, jelen esetben, hogy melyik évtizedben született színészek melyik műfajokban aktívak az egyszerű kis adatbázisunk szerint.</p>
+        <ol start="53">
+          <li><b>Kereszttáblás lekérdezés készítése: </b>készíts egy új lekérdezést! A tervezőben kattints a <i>Kereszttáblás</i> lehetőségre! Ekkor két új sor jelenik meg a táblázatban: az <b>Összesítés</b> és a <b>Kereszttábla</b>. Add hozzá a színészek és a darabok tábláit a lekérdezéshez!<br>
+          <img src="kepek/access_lekerdezestervezo_kereszttablas.png" alt=""></li>
+          <li><b>Évtized meghatározása: </b>mivel a színészek pontos születései dátumát tartalmazza az adatbázis, ebből ki kell nyerni egy képlettel, hogy ez melyik évtizedet jelenti. Kattints az első oszlopba, majd a <i>Mező</i> sorba (első sor) írd be a következő képletet (kis- és nagybetűk nem számítanak; szögletes zárójeleket az <span class="gomb">Alt Gr + f</span>, illetve az <span class="gomb">Alt Gr + g</span> gombokkal írhatsz): <pre>int (year ([szineszek]![szuletesi_datum]) / 10) * 10 & "-es évek"</pre>
+          <p class="extra">A <code>Year()</code> függvény kiveszi a <code>Szineszek</code> táblából a <code>szuletesi_datum</code> mező értékeinek év részét. Ezt 10-zel osztjuk, tehát olyanokat kapunk, hogy 195,7. Az <code>int()</code> függvény egész számmá alakít úgy, hogy a tizedeseket levágja, tehát az előbbiből 195 lesz. Ezt 10-zel szorozva megkapjuk az évtizedet, majd ehhez illesztjük a szöveges részt, hogy "-es évek" az & operátorral. Nem tökéletes, mert 1960-es évet van benne, de most megfelel.</p></li>
+          <li><b>Többi mező hozzáadása: </b>add hozzá a darabok táblából a múfajt és a címet! A cím alatt az Összesítés legyen GrouBy helyett <b>Count</b>, ezzel fogjuk megszámolni, hogy hány előadásban játszik az adott kategóriából egy adott évtizedben született színész.</li>
+          <li><b>Kereszttábla beállítása: </b>a függvény előtt azóta megjelent a <i>Kif1:</i> rész: ilyen fantasztikus nevet kapott a függvényünk. Itt a Kereszttábla sorban válaszd ki a <b>Sorfejléc</b> lehetőséget; a műfajnál ugyanitt legyen <b>Oszlopfejléc</b>; a darab id-nél pedig (ahol ugye Count van fölötte) legyen <b>Érték</b>!</li>
+          <li><b>Lekérdezés és adatbázis mentése: </b>nézd meg a lekérdezést, majd mentsd el <i>10_kereszt</i> néven! Zárd be az adatbázist! Ha szükséges, akkor mentsd el a módosításokat a többi lekérdezésben is, de elvileg itt nem kellene semminek sem lennie. A kész adatbázist töltsd fel a Google Classroom megfelelő feladatához!</li>
         </ol>
       </details>
     </div>
@@ -189,8 +231,13 @@
     <img src="kepek/access_lekerdezestervezo_mezo_kivalasztasa.png" id="access_lekerdezestervezo_mezo_kivalasztasa" style="display: none;" alt="">
     <img src="kepek/access_lekerdezestervezo_futtatas.png" id="access_lekerdezestervezo_futtatas" style="display: none;" alt="">
     <img src="kepek/access_lekerdezes_hianyos.png" id="access_lekerdezes_hianyos" style="display: none;" alt="">
-    <img src="kepek/access_tablak_hibaval.png" id="access_tablak_hibaval" style="display: none;" alt="">
-    <img src="kepek/access_tablak_hibaval.png" id="access_tablak_hibaval" style="display: none;" alt="">
+    <img src="kepek/access_lekerdezestervezo_osszesites.png" id="access_lekerdezestervezo_osszesites" style="display: none;" alt="">
+    <img src="kepek/access_kifejezesszerkeszto_megnyitasa.png" id="access_kifejezesszerkeszto_megnyitasa" style="display: none;" alt="">
+    <img src="kepek/access_kifejezesszerkeszto.png" id="access_kifejezesszerkeszto" style="display: none;" alt="">
+    <img src="kepek/access_mezo_hozzaadasa_szamitott.png" id="access_mezo_hozzaadasa_szamitott" style="display: none;" alt="">
+    <img src="kepek/access_mezo_hozzaadasa_szamitott_kifejezesszerkeszto.png" id="access_mezo_hozzaadasa_szamitott_kifejezesszerkeszto" style="display: none;" alt="">
+    <img src="kepek/access_kifejezesszerkeszto_megnyitasa.png" id="access_kifejezesszerkeszto_megnyitasa" style="display: none;" alt="">
+    <img src="kepek/access_kifejezesszerkeszto_megnyitasa.png" id="access_kifejezesszerkeszto_megnyitasa" style="display: none;" alt="">
 
 
     <!--  itt jön a modal -->
