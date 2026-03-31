@@ -562,38 +562,223 @@ False</code></pre>
           <p>
             <b>jelölés:</b> bool<br>
             <b>név:</b> logikai adat <br>
-            <b>sajátságok:</b> <ul><li>egy biten tárol igaz (True) vagy hamis (False) értéket;</li>
+            <b>sajátságok:</b> <ul>
+              <li>egy biten tárol igaz (True) vagy hamis (False) értéket;</li>
               <li>a False valójában 0, a True pedig 1;</li>
             <li>a többi szám típussal a fentiek szerint vegezhetők vele műveletek;</li>
             <pre><code><span class="print">print<span class="elso-zarojel">(<span class="bool">True <span class="normal">+ </span>True</span>)</span></span>
+<span class="print">print</span><span class="elso-zarojel">(<span class="bool">False</span><span class="normal">*</span><span class="str">"Szia"</span>)</span>
 
-2</code></pre>
-            <li>osztás eredménye mindig float;</li>
-            <li>stringgel a legtöbb operátor hibát ad vele;</li>
-            <li>int típussal összehasonlítható, de figyelni kell:</li>
-            <pre><code><span class="print">print</span><span class="elso-zarojel">(<span class="int">3 <span class="normal">==</span> 3.0</span>)</span>
-<span class="print">print</span><span class="elso-zarojel">(<span class="int">3 <span class="is">is</span> 3.0</span>)</span>
-
-True
-False</code></pre>
-            Ahogy látszik, az egyenlőség fennáll, de az azonosság nem.
+2
+<span class="komment"> # Itt egy üres sor jelenik meg. Miért is?</span></code></pre>
+            <li>bool típusú adat használata célszerű elágazásoknál.</li>
             </ul>
           </p>
         </div>
       </details>
   </details>
-  <details>
+<details>
   <summary>Szöveg típus</summary>
     <details>
       <summary>A string típusról általában</summary>
+      <div class="bemutatas">
+        <p>string típus</p>
+        <p>
+          <b>jelölés:</b> str<br>
+          <b>név:</b> karakterlánc (szöveg)<br>
+          <b>sajátságok:</b> <ul>
+            <li>bármilyen karaktert (betűk, számok, írásjelek, szóközök, emojik) tárolhat;</li>
+            <li>mindig <b>idézőjelek</b> (<code>" "</code>, <span class="gomb">Shift + 2</span>) vagy <b>aposztrófok</b> (<code>' '</code>, <span class="gomb">Shift + 1</span>) közé kell tenni;</li>
+            <li>ha egy számot idézőjelbe teszel, a Python onnantól szövegként kezeli (pl. <code>"123"</code> nem egyenlő a <code>123</code>-mal, és nem tudsz vele matematikai értelemben számolni!);</li>
+            <li>ha többsoros szöveget szeretnél írni, azt három idézőjel (<code>""" """</code>) közé kell tenned.</li>
+          </ul>
+        </p>
+      </div>
     </details>
     <details>
       <summary>Műveletek stringekkel</summary>
+      <p>Bár a szövegekkel nem tudunk úgy számolni, mint a számokkal, néhány operátor itt is működik, csak éppen mást jelent:</p>
+      <ul>
+        <li><b>Összefűzés <i>(konkatenáció)</i>:</b> A <code>+</code> jellel két stringet ragaszthatunk egymás mellé, szóköz nélkül.
+          <pre><code><span class="str">"alma"</span> + <span class="str">"fa"</span> <span class="komment"># Eredmény: "almafa"</span></code></pre>
+        </li>
+        <li><b>Többszörözés:</b> A <code>*</code> jellel és egy egész számmal (<code>int</code>) megtöbbszörözhetünk egy szöveget.
+          <pre><code><span class="str">"Szia! "</span> * <span class="int">3</span> <span class="komment"># Eredmény: "Szia! Szia! Szia! "</span></code></pre>
+        </li>
+        <li><b>Hossz lekérdezése:</b> A <code>len()</code> függvény (az angol <i>length</i> szóból) megmondja, hány karakterből áll a szöveg (figyelem: a szóközöket és az írásjeleket is beleszámolja!).
+          <pre><code><span class="print">print</span><span class="elso-zarojel">(<span class="fn">len</span><span class="masodik-zarojel">(<span class="str">"Python 3"</span>)</span>)</span> <span class="komment"># Eredmény: 8</span></code></pre>
+        </li>
+      </ul>
     </details>
     <details class="extra">
-      <summary>Speciális műveletek: fstring</summary>
+      <summary>Speciális műveletek: típuskonverzió és f-string</summary>
+      <h4>Típusok átalakítása (konverzió)</h4>
+      <p>Gyakori probléma, hogy egy számot szeretnénk egy szöveghez fűzni a <code>+</code> jellel. Ahogy feljebb is írtuk, az <code>int</code> és az <code>str</code> típusok összeadása <b>hibát eredményez</b>. Ilyenkor a számot <b>szöveggé kell alakítani</b> az <code>str()</code> függvénnyel:</p>
+      <pre><code><span class="komment"># Helytelen: print("A korom: " + 15) -> TypeError!</span>
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"A korom: "</span> + <span class="fn">str</span><span class="masodik-zarojel">(<span class="int">15</span>)</span>)</span></code></pre>
+      <p>Ugyanez igaz fordítva is: emlékszel, hogy az <code>input()</code> függvény mindig stringet ad vissza? Ha számolni szeretnénk a bekérdezett adattal, át kell alakítanunk egész számmá az <code>int()</code>, vagy törtszámmá a <code>float()</code> függvénnyel.</p>
+
+      <hr style="margin: 15px 0;">
+
+      <h4>A formázott string (f-string)</h4>
+      <p>A szövegek és változók összefűzése <code>+</code> jelekkel, macskakörmök nyitogatásával és <code>str()</code> átalakításokkal hamar átláthatatlanná válhat. A Python erre egy nagyon elegáns megoldást kínál: az <b>f-stringet</b>.</p>
+      <p>Ha a szöveg nyitó idézőjele elé egy <code>f</code> betűt teszel, onnantól a szövegen belül <b>kapcsos zárójelek</b> <code>{}</code> közé közvetlenül beírhatod a változók nevét (vagy akár egy matek műveletet). A Python a háttérben automatikusan behelyettesíti az értékeket, és gondoskodik a típusok szöveggé alakításáról is!</p>
+      
+      <div class="sides">
+        <div class="left-free">
+          <pre><code><span class="var">nev</span> = <span class="str">"Bálint"</span>
+<span class="var">kor</span> = <span class="int">15</span>
+
+<span class="komment"># Régi, hagyományos módszer:</span>
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"Szia, "</span> + <span class="var">nev</span> + <span class="str">" vagyok és "</span> + <span class="fn">str</span><span class="masodik-zarojel">(<span class="var">kor</span>)</span> + <span class="str">" éves."</span>)</span>
+
+<span class="komment"># Az f-string módszer:</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Szia, {<span class="var">nev</span>} vagyok és {<span class="var">kor</span>} éves."</span>)</span></code></pre>
+        </div>
+        <div class="right-free">
+          <p>Láthatod, hogy az f-string használatával a kód sokkal olvashatóbb, olyan, mintha csak egy lyukas mondatot töltenél ki. Ráadásul megúsztuk a plusz jelek, a felesleges szóközök és a típuskonverziós függvények használatát.</p>
+        </div>
+      </div>
+      <div class="osszefoglalas">Tipp: A jövőben érdemes mindig az f-stringeket használni, ha változókat szeretnél szövegbe illeszteni!</div>
     </details>
-    fstring, átalakítás
+  </details>
+  <details>
+    <summary>Gyakorló feladatok: Tedd próbára magad!</summary>
+    <p>A programozás olyan, mint egy új idegen nyelv elsajátítása: az elején furcsa, de minél többet használod a szavakat (utasításokat), annál természetesebbé válik. Nyiss egy új fájlt a VS Code-ban, és haladjunk lépésről lépésre! Ha elakadsz, olvasd el a tippet, vagy lesd meg a megoldást!</p>
+
+    <div class="task-card">
+      <h4>1. Feladat: A digitális névjegy (Alap változók)</h4>
+      <p>Kezdjük valami nagyon egyszerűvel! Hozz létre három változót a kódban (nem kell <code>input()</code>, csak írd be az értékeket fixen):
+        <ul>
+          <li>Egyet a nevednek (szöveg - <code>str</code>)</li>
+          <li>Egyet az életkorodnak (egész szám - <code>int</code>)</li>
+          <li>És egyet, ami tárolja, hogy szereted-e az irodalmat (logikai érték - <code>bool</code>, tehát <code>True</code> vagy <code>False</code>)</li>
+        </ul>
+        Ezután egy f-string segítségével írass ki magadról egy bemutatkozó mondatot!
+      </p>
+      
+      <details class="megoldasok">
+        <summary><i>Mutasd a megoldást!</i></summary>
+        <pre><code><span class="var">nev</span> = <span class="str">"Anna"</span>
+<span class="var">kor</span> = <span class="int">15</span>
+<span class="var">szereti_az_irodalmat</span> = <span class="int">True</span>
+
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Sziasztok, a nevem {<span class="var">nev</span>}, {<span class="var">kor</span>} éves vagyok. Szeretem az irodalmat: {<span class="var">szereti_az_irodalmat</span>}."</span>)</span></code></pre>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <h4>2. Feladat: A típus-nyomozó (A <code>type()</code> függvény)</h4>
+      <p>A Pythonban létezik egy "nyomozó" függvény, a <code>type()</code>. Ha egy változót vagy adatot beteszel a zárójelébe, megmondja, milyen típusú (pl. <code>str</code>, <code>int</code>, <code>float</code>). <br>
+      Készíts egy <code>magassag</code> nevű változót, adj neki egy tört értéket (pl. 1.75 – <b>figyelj rá, hogy a Python pontot használ tizedesvessző helyett!</b>), majd írasd ki a típusát a képernyőre!</p>
+      
+      <div class="extra">
+        <b>Tipp:</b> A <code>type()</code> önmagában csak kinyomozza az eredményt, de nem írja ki. Ahhoz, hogy lásd is, bele kell tenned egy <code>print()</code> függvénybe! Például: <code>print(type(valtozo))</code>.
+      </div>
+      
+      <details class="megoldasok">
+        <summary><i>Mutasd a megoldást!</i></summary>
+        <pre><code><span class="var">magassag</span> = <span class="int">1.75</span>  <span class="komment"># Ez egy float (törtszám) típus</span>
+
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"A változó értéke:"</span>, <span class="var">magassag</span>)</span>
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"A változó típusa:"</span>, <span class="fn">type</span><span class="masodik-zarojel">(<span class="var">magassag</span>)</span>)</span></code></pre>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <h4>3. Feladat: A költő panasza (Szövegek szorzása)</h4>
+      <p>A számítógépek nagyon jók a monoton, ismétlődő feladatokban. Kérj be a felhasználótól egy szót (pl. "Jaj!"), majd írasd ki ezt a szót egymás után 10-szer a képernyőre, egyetlen sorban!</p>
+      
+      <div class="extra">
+        <b>Tipp:</b> Emlékszel? A szövegeket (stringeket) meg lehet szorozni egy egész számmal a <code>*</code> jel segítségével. Érdemes a szó végére egy szóközt tenni az <code>input()</code> után, hogy ne folyjanak egybe a szavak.
+      </div>
+      
+      <details class="megoldasok">
+        <summary><i>Mutasd a megoldást!</i></summary>
+        <pre><code><span class="var">panasz</span> = <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Mit mondana a költő? "</span>)</span>
+
+<span class="komment"># Hozzáadunk egy szóközt, és megszorozzuk tízzel</span>
+<span class="var">vers_sora</span> = <span class="elso-zarojel">(<span class="var">panasz</span> + <span class="str">" "</span>)</span> * <span class="int">10</span>
+
+<span class="print">print</span><span class="elso-zarojel">(<span class="var">vers_sora</span>)</span></code></pre>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <h4>4. Feladat: Olvasási napló (Bekérés és matek)</h4>
+      <p>Most már számoljunk is! Kérdezd meg a felhasználótól (<code>input()</code>), hogy átlagosan hány oldalt olvas el egy nap. Számold ki, és írd ki a képernyőre, hogy ha minden nap ennyit olvas, hány oldallal végez egy év (365 nap) alatt!</p>
+      
+      <div class="extra">
+        <b>Tipp:</b> Az <code>input()</code> mindig <b>szöveget</b> (<code>str</code>) ad vissza. Ha matekozni (szorozni) akarsz vele, előbb át kell alakítanod egész számmá az <code>int()</code> függvénnyel!
+      </div>
+      
+      <details class="megoldasok">
+        <summary><i>Mutasd a megoldást!</i></summary>
+        <pre><code><span class="var">napi_oldalak_szoveg</span> = <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Hány oldalt olvasol naponta? "</span>)</span>
+
+<span class="komment"># Átalakítjuk számmá</span>
+<span class="var">napi_oldalak_szam</span> = <span class="fn">int</span><span class="elso-zarojel">(<span class="var">napi_oldalak_szoveg</span>)</span>
+
+<span class="komment"># Számolás</span>
+<span class="var">eves_mennyiseg</span> = <span class="var">napi_oldalak_szam</span> * <span class="int">365</span>
+
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Egy év alatt {<span class="var">eves_mennyiseg</span>} oldalt olvasnál el. Szép teljesítmény!"</span>)</span></code></pre>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <h4>5. Feladat: Kávéházi számla (Törtszámok összeadása)</h4>
+      <p>Képzeld el, hogy egy párizsi kávéházban ülsz. Kérd be külön egy kávé árát, majd egy croissant árát euróban (mivel ezek valószínűleg nem kerek számok, pl. 2.50, ezért itt törtszámokra lesz szükség). Add össze a kettőt, és írd ki a fizetendő végösszeget!</p>
+      
+      <div class="extra">
+        <b>Tipp:</b> Itt is alakítanod kell az <code>input()</code> eredményét, de most nem <code>int()</code>-té, hanem <b><code>float()</code></b>-tá, hiszen tizedespont is lehet a megadott árban!
+      </div>
+      
+      <details class="megoldasok">
+        <summary><i>Mutasd a megoldást!</i></summary>
+        <pre><code><span class="var">kave_ara</span> = <span class="fn">float</span><span class="elso-zarojel">(<span class="fn">input</span><span class="masodik-zarojel">(<span class="str">"Mennyibe kerül a kávé (pl. 2.5)? "</span>)</span>)</span>
+<span class="var">croissant_ara</span> = <span class="fn">float</span><span class="elso-zarojel">(<span class="fn">input</span><span class="masodik-zarojel">(<span class="str">"Mennyibe kerül a croissant (pl. 1.8)? "</span>)</span>)</span>
+
+<span class="var">vegosszeg</span> = <span class="var">kave_ara</span> + <span class="var">croissant_ara</span>
+
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A teljes számla összege: {<span class="var">vegosszeg</span>} Euró."</span>)</span></code></pre>
+      </details>
+    </div>
+
+    <div class="task-card">
+      <h4>6. Feladat: A trükkös összeadás</h4>
+      <p>Írj egy programot, ami bekér két számot. Először írja ki a két számot úgy, mintha szövegek lennének (egymás mellé fűzve), majd írja ki a valós matematikai összegüket is!</p>
+      
+      <div class="extra">
+        <b>Tipp:</b> Két külön változóban tárold a bekért adatokat. A szöveges összefűzéshez simán csak használd a <code>+</code> jelet az eredeti változókon. A matematikai összeadáshoz viszont előbb át kell alakítanod őket az <code>int()</code> segítségével.
+      </div>
+      
+      <details class="megoldasok">
+        <summary><i>Mutasd a megoldást!</i></summary>
+        <pre><code><span class="var">szam1_szoveg</span> = <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Kérem az első számot: "</span>)</span>
+<span class="var">szam2_szoveg</span> = <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Kérem a második számot: "</span>)</span>
+
+<span class="komment"># Szöveges összefűzés (mivel az input alapból string)</span>
+<span class="var">osszefuzve</span> = <span class="var">szam1_szoveg</span> + <span class="var">szam2_szoveg</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Szövegként egymás mellé téve: {<span class="var">osszefuzve</span>}"</span>)</span>
+
+<span class="komment"># Matematikai összeadás (számmá alakítva)</span>
+<span class="var">osszeg</span> = <span class="fn">int</span><span class="elso-zarojel">(<span class="var">szam1_szoveg</span>)</span> + <span class="fn">int</span><span class="elso-zarojel">(<span class="var">szam2_szoveg</span>)</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Matematikailag összeadva: {<span class="var">osszeg</span>}"</span>)</span></code></pre>
+      </details>
+    </div>
+
+    <div class="osszefoglalas">
+      Ha ezeket a feladatokat meg tudtad oldani, vagy megértetted a megoldásokat, akkor gratulálok! Sikeresen elsajátítottad az adattípusok és a változók használatát.
+    </div>
   </details>
 </div>
 
