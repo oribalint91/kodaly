@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐍 Python alapok: Elágazások</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+  <div class="back"><a href="index.html">Vissza a kezdőlapra</a></div>
+  <h2>🐍 Python alapok II.: Döntéshozatal a kódban</h2>
+  
+  <p class="intro">Eddig a programjaink olyanok voltak, mint egy egyenes csúszda: elindultak a tetején, és sorban végrehajtották az utasításokat, egészen az aljáig. De mi van akkor, ha azt szeretnénk, hogy a gép <b>döntsön</b>? Ebben a részben megtanítjuk a programunkat arra, hogy a megadott adatok alapján különböző utakat válasszon! <br>
+  Újdonság, hogy az <span class="ia" data-tipus="modal" data-target="bemutato">így formázott részekre</span> kattinthatsz, így valamilyen magyarázat vagy ábra válik láthatóvá.</p>
+
+  <div class="task-card">
+    <h3>1. Feltételes utasítások (Elágazások)</h3>
+    
+    <details>
+      <summary>Az egyszerű <code>if</code> (A bónusz láda)</summary>
+      <p>Képzeld el, hogy egy videojátékkal játszol. Sétálsz az erdőben, és az út szélén találsz egy elrejtett bónusz ládát. Ha van nálad kulcs (ez a <b>feltétel</b>), akkor kinyitod a ládát, és megkapod a kincset (ez a <b>cselekvés</b>). Ha nincs kulcsod, akkor egyszerűen csak sétálsz tovább. A játék nem ér véget, csak kimarad egy extra esemény.</p>
+      
+      <p>A Pythonban ezt az <code>if</code> (angolul: <i>ha</i>) szócska segítségével írjuk le. Csak akkor hajtódik végre az utasítás, ha a feltétel <b>igaz</b> (<code>True</code>).</p>
+      <div class="sides">
+          <div class="left">
+              <p class="extra">A feltétel egy <span class="ia" data-tipus="toggle" data-target="kerdes">eldöntendő kérdés</span>: ez olyan, amire (értelmesen) igent vagy nemet lehet válaszolni. Ha ezt nem kérdésként, hanem <span class="ia" data-tipus="toggle" data-target="allitas">állításként fogalmazzuk meg</span>, akkor az állítás vagy <b>igaz</b>, vagy <b>hamis</b>.</p>
+          </div>
+          <div class="right-container">
+            <div class="rejtett-kep" id="kerdes"><i>Szereted a csokit?</i> → <b>igen</b><br>
+                    <i>43 kisebb, mint 20?</i> → <b>nem</b> <br>
+                <i>A "tej" kararktersor benne van a "tejszelet" karaktersorban?</i> → <b>igen</b></div>
+            <div class="rejtett-kep" id="allitas"><i>Szeretem a csokit.</i> → <b><span class="bool">igaz</span></b> <br>
+                    <i>43 kisebb, mint 20.</i> → <b><span class="bool">hamis</span></b> <br>
+                <i>A "tej" karaktersor benne van a "tejszelet" karaktersorban.</i> → <b><span class="bool">igaz</span></b></div>
+          </div>
+      </div>
+
+      <pre><code><span class="var">arany_mennyisege</span> = <span class="int">150</span>
+
+<span class="komment"># Megvizsgáljuk, van-e elég pénzünk egy kardra</span>
+<span class="fn">if</span> <span class="var">arany_mennyisege</span> >= <span class="int">100</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Sikeresen megvásároltad a Varázskardot!"</span>)</span>
+    <span class="var">arany_mennyisege</span> = <span class="var">arany_mennyisege</span> - <span class="int">100</span>
+
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Kaland folytatódik, maradék aranyad: {<span class="var">arany_mennyisege</span>}"</span>)</span></code></pre>
+      
+      <div class="extra">
+        <b>Két nagyon fontos Python szabály:</b>
+        <ol>
+          <li>A feltétel (pl. <code>arany >= 100</code>) után <b>mindig kettőspontot (:) kell tenni!</b> Ez jelzi a gépnek, hogy "figyelj, most jön az, amit csinálnod kell".</li>
+          <li>A kettőspont utáni sorokat <b>beljebb kell húzni</b> (a <span class="gomb">Tab</span> billentyűvel). A Python ebből a behúzásból tudja, hogy mely parancsok tartoznak a ládanyitáshoz, és melyek azok, amik már a normál séta részei. (A VS Code szerencsére ezt legtöbbször automatikusan megcsinálja helyetted).</li>
+        </ol>
+      </div>
+    </details>
+
+    <details>
+      <summary>Az <code>if-else</code> (A válaszút)</summary>
+      <p>Most képzelj el egy másik játékbeli helyzetet: a történet elején ki kell választanod a karakterosztályodat. Vagy Harcos leszel, vagy Varázsló. Nincs harmadik opció, de <b>valamelyiket kötelező választani</b>. Az út itt "V" alakban kettéágazik.</p>
+      
+      <p>Erre való az <code>if-else</code> (<i>ha - különben</i>) szerkezet. Ha a feltétel igaz, az egyik úton megyünk, ha hamis, akkor automatikusan a másik úton.</p>
+
+      <pre><code><span class="var">jelszo</span> = <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Mondd a jelszót, hogy beléphess a titkos ajtón: "</span>)</span>
+
+<span class="fn">if</span> <span class="var">jelszo</span> == <span class="str">"Mellon"</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Az ajtó kinyílik. Üdvözöllek, barátom!"</span>)</span>
+<span class="fn">else</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Helytelen jelszó! Az ajtó zárva marad."</span>)</span></code></pre>
+
+      <p class="extra"><b>Figyelem!</b> Észrevetted, hogy a jelszó ellenőrzésénél <b>két egyenlőségjelet (<code>==</code>)</b> használtunk? Emlékezz: az egy egyenlőségjel (<code>=</code>) az <i>értékadás</i> (amikor beteszünk valamit a változó-dobozba). A dupla egyenlőségjel (<code>==</code>) a <i>kérdés</i>: "Vajon egyenlő a kettő?".</p>
+    </details>
+
+    <details>
+      <summary>A többirányú elágazás: <code>elif</code></summary>
+      <p>Mi van akkor, ha egy játéknak nem kettő, hanem több kimenetele lehet? Például egy párbeszéd során háromféleképpen is válaszolhatsz egy karakternek (Barátságos, Semleges, Ellenséges).</p>
+      
+      <p>Ilyenkor az <code>if</code> és az <code>else</code> közé beékelhetünk egy vagy több <b><code>elif</code></b> (az <i>else if</i>, azaz "különben ha" rövidítése) ágat.</p>
+
+      <pre><code><span class="var">haz_neve</span> = <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Melyik roxforti házba vágysz? "</span>)</span>
+
+<span class="fn">if</span> <span class="var">haz_neve</span> == <span class="str">"Griffendél"</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Bátorság és lovagiasság a jelszavad!"</span>)</span>
+<span class="fn">elif</span> <span class="var">haz_neve</span> == <span class="str">"Hollóhát"</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Az éles elme a legnagyobb kincsed!"</span>)</span>
+<span class="fn">elif</span> <span class="var">haz_neve</span> == <span class="str">"Mardekár"</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"A becsvágy és a ravaszság vezet utadon!"</span>)</span>
+<span class="fn">else</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Üdvözöllek a Hugrabugban, a hűségesek között!"</span>)</span></code></pre>
+      <p>A gép szépen sorban megvizsgálja a feltételeket fentről lefelé. Amint talál egy olyat, ami <b>igaz</b>, végrehajtja a hozzá tartozó utasítást, a többit pedig <b>átugorja</b>. Ha egyik sem igaz, jön az <code>else</code> ág (ami nem kötelező, de jó, ha van, mint egy "minden más esetben" védőháló).</p>
+    </details>
+
+    <div class="osszefoglalas">
+      <ul><h3>Összegzés</h3>
+        <li><b>if:</b> Megvizsgál egy feltételt. Ha igaz, cselekszik.</li>
+        <li><b>elif:</b> Újabb feltétel, ha az előző nem volt igaz.</li>
+        <li><b>else:</b> Ez történik minden más esetben (nincs utána feltétel!).</li>
+        <li>Ne felejtsd a <b>kettőspontot (:)</b> a sor végén, és a <b>behúzást</b> az utasítások előtt!</li>
+        <li>Az összehasonlításhoz dupla egyenlőségjelet <b>(==)</b> használunk!</li>
+      </ul>
+    </div>
+  </div>
+  <div class="task-card">
+    <h3>2. Gyakorló feladatok: hozd meg a döntést!</h3>
+    <p>A következő feladatokban kipróbálhatod, hogyan tud a programod döntéseket hozni. Hozz létre egy új Python fájlt, és haladj sorban! Ne feledd: a <b>kettőspont (:)</b> és a <b>behúzás (Tab)</b> a legjobb barátaid!</p>
+
+    <div class="task-card">
+      <details>
+          <summary>
+              1. feladat: a titkos jelszó (csak <code>if</code>)
+          </summary>
+          <p>Képzeld el, hogy egy titkos társaság klubházának ajtaja előtt állsz. Írj egy programot, ami megkérdezi a felhasználótól a jelszót! Ha a beírt jelszó pontosan az, hogy <b>"Kardhal"</b>, akkor a program írja ki: <i>"Ajtó kinyitva! Üdvözlünk a klubban!"</i>. (Ha mást ír be, a program ne csináljon semmit, csak érjen véget).</p>
+          
+          <div class="extra">
+            <b>Tipp:</b> Használd az <code>input()</code> függvényt a bekéréshez, és ne felejtsd el a dupla egyenlőségjelet (<code>==</code>) a feltételvizsgálatnál!
+          </div>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">jelszo</span> = <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Mi a titkos jelszó? "</span>)</span>
+          
+          <span class="komment"># Csak akkor történik valami, ha a feltétel igaz</span>
+          <span class="fn">if</span> <span class="var">jelszo</span> == <span class="str">"Kardhal"</span>:
+              <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Ajtó kinyitva! Üdvözlünk a klubban!"</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <details>
+          <summary>2. feladat: A Sötét Erdő őre (<code>if-else</code>)</summary>
+          <p>Egy kalandjátékban a karaktered egy őrhöz ér. Az őr csak azokat engedi be a Sötét Erdőbe, akik már elég tapasztaltak, azaz a szintjük eléri a 10-et. Kérd be a játékos szintjét (ne felejtsd el számmá alakítani!). <br>
+          Ha a szintje <b>10 vagy annál nagyobb</b> (<code>&gt;=</code>), írd ki: <i>"Lépj be, bátor kalandor!"</i>. <br>
+          Különben (minden más esetben) írd ki: <i>"Túl gyenge vagy még, térj vissza később!"</i></p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">szint_szoveg</span> = <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Hányas szintű vagy? "</span>)</span>
+          <span class="var">szint</span> = <span class="fn">int</span><span class="elso-zarojel">(<span class="var">szint_szoveg</span>)</span> <span class="komment"># Számmá kell alakítani a matekhoz!</span>
+          
+          <span class="fn">if</span> <span class="var">szint</span> >= <span class="int">10</span>:
+              <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Lépj be, bátor kalandor!"</span>)</span>
+          <span class="fn">else</span>:
+              <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Túl gyenge vagy még, térj vissza később!"</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <details>
+          <summary>3. feladat: varázsital keverés (<code>if-elif-else</code>)</summary>
+          <p>A bájitaltan órán a diákoknak egyetlen hozzávalót kell a kondérba dobniuk. Kérd be a hozzávaló nevét! <br>
+          - Ha a beírt szó <b>"sárkányvér"</b>, a program írja ki: <i>"A kondér vörösen kezd izzani (Erő ital)."</i> <br>
+          - Ha a szó <b>"holdkő"</b>, írja ki: <i>"A folyadék ezüstösen felragyog (Láthatatlanság ital)."</i> <br>
+          - Bármilyen <b>más szó</b> esetén írja ki: <i>"BUMM! A kondér felrobbant, elrontottad!"</i></p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">hozzavalo</span> = <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Mit dobsz a kondérba? "</span>)</span>
+          
+          <span class="fn">if</span> <span class="var">hozzavalo</span> == <span class="str">"sárkányvér"</span>:
+              <span class="print">print</span><span class="elso-zarojel">(<span class="str">"A kondér vörösen kezd izzani (Erő ital)."</span>)</span>
+          <span class="fn">elif</span> <span class="var">hozzavalo</span> == <span class="str">"holdkő"</span>:
+              <span class="print">print</span><span class="elso-zarojel">(<span class="str">"A folyadék ezüstösen felragyog (Láthatatlanság ital)."</span>)</span>
+          <span class="fn">else</span>:
+              <span class="print">print</span><span class="elso-zarojel">(<span class="str">"BUMM! A kondér felrobbant, elrontottad!"</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <details>
+          <summary>4. feladat: a fogadó étlapja (Változó frissítése feltétellel)</summary>
+          <p>Képzeld el, hogy a karaktered betér egy fogadóba, és van a zsebében 50 aranya. Ezt tárold el egy változóban (pl. <code>arany = 50</code>). <br>
+          A fogadós megkérdezi, mit kérsz: <b>"Víz"</b> (10 arany) vagy <b>"Bor"</b> (30 arany)? Kérd be a választ! <br>
+          Ha "Víz"-et választ, vonj le az aranyából 10-et. Ha "Bor"-t, vonj le 30-at. Különben (ha mást ír) ne vonj le semmit, csak írd ki, hogy <i>"Ilyenünk nincs."</i>. <br>
+          A program legvégén – az elágazás után – írd ki egy f-stringgel, hogy mennyi aranya maradt a játékosnak!</p>
+          
+          <div class="extra">
+            <b>Tipp:</b> Ahhoz, hogy csökkentsd az arany értékét, a változót fel kellülírnod önmagával. Például: <code>arany = arany - 10</code>.
+          </div>
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">arany</span> = <span class="int">50</span>
+          <span class="var">ital</span> = <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Mit iszol, Víz vagy Bor? "</span>)</span>
+          
+          <span class="fn">if</span> <span class="var">ital</span> == <span class="str">"Víz"</span>:
+              <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Tessék, egy pohár friss víz."</span>)</span>
+              <span class="var">arany</span> = <span class="var">arany</span> - <span class="int">10</span>
+          <span class="fn">elif</span> <span class="var">ital</span> == <span class="str">"Bor"</span>:
+              <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Tessék, a ház legjobb bora."</span>)</span>
+              <span class="var">arany</span> = <span class="var">arany</span> - <span class="int">30</span>
+          <span class="fn">else</span>:
+              <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Ilyenünk nincs."</span>)</span>
+          
+          <span class="komment"># Ez a sor már nincs behúzva, így mindenképpen lefut az elágazás végén!</span>
+          <span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Maradék vagyonod: {<span class="var">arany</span>} arany."</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <details>
+          <summary>5. feladat: a szfinx találós kérdése (szigorú szövegvizsgálat)</summary>
+          <p>A Szfinx elzárja az utat, és feltesz egy kérdést: <i>"Reggel négy lábon jár, délben két lábon, este három lábon. Mi az?"</i><br>
+          Kérd be a választ! Ha a játékos beírja, hogy <b>"ember"</b>, engedd át (írj ki egy gratulációt). Bármi más válasz esetén a Szfinx nem engedi át.<br><br>
+          <b>Nehezítés (Bónusz):</b> A Python nagyon szigorú. Ha a játékos nagybetűvel írja, hogy "Ember", a sima <code>== "ember"</code> vizsgálat hamisat fog adni! Keress rá az interneten (vagy kérdezd a tanárt), hogyan lehet a bekért szöveget automatikusan kisbetűssé alakítani a vizsgálat előtt, vagy használj két feltételt!</p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="print">print</span><span class="elso-zarojel">(<span class="str">"Szfinx: Reggel négy lábon jár, délben két lábon, este három lábon. Mi az?"</span>)</span>
+          <span class="var">valasz</span> = <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"A te válaszod: "</span>)</span>
+          
+          <span class="komment"># Egyszerű megoldás:</span>
+          <span class="fn">if</span> <span class="var">valasz</span> == <span class="str">"ember"</span> <span class="fn">or</span> <span class="var">valasz</span> == <span class="str">"Ember"</span>:
+              <span class="print">print</span><span class="elso-zarojel">(<span class="str">"A Szfinx bólint. Szabad az út!"</span>)</span>
+          <span class="fn">else</span>:
+              <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Helytelen! Az utad itt véget ér."</span>)</span>
+          
+          <span class="komment"># Profi, bónusz megoldás a .lower() használatával:</span>
+          <span class="komment"># if valasz.lower() == "ember": </span>
+          <span class="komment">#     print("A Szfinx bólint. Szabad az út!")</span>
+          <span class="komment"># else:</span>
+          <span class="komment">#     print("Helytelen! Az utad itt véget ér.")</span></code></pre>
+          </details>
+      </details>
+    </div>
+  </div>
+
+  <img src="https://blanbla.com/wp-content/uploads/2023/05/nobody-expects.jpeg" id="bemutato" style="display: none;" alt="Bevetted!">
+    <!--  itt jön a modal -->
+  <div id="kep-modal" class="modal-hatter">
+    <div class="modal-tartalom">
+        <span class="modal-bezaras">&times;</span>
+        <img id="modal-benne-levo-kep" src="" alt="">
+    </div>
+  </div>
+  
+</body>
+</html>

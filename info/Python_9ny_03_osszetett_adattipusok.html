@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐍 Python alapok: Összetett adattípusok</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="script.js"></script>
+
+</head>
+<body>
+  <div class="back"><a href="index.html">Vissza a kezdőlapra</a></div>
+  <h2>A 🐍 Python alapok: Több adat egy helyen (Adatszerkezetek)</h2>
+  
+  <p class="intro">Eddig egy változóba (dobozba) mindig csak egyetlen adatot tettünk: egy nevet, egy számot, vagy egy logikai értéket. De mi van akkor, ha egy egész osztály névsorát, egy bevásárlólistát, vagy egy telefonkönyvet szeretnénk tárolni a programunkban? Nem hozhatunk létre 30 külön változót! Erre valók az <b>összetett adattípusok</b> (vagy adatszerkezetek).</p>
+
+  <div class="task-card">
+    <h3>1. Az alapok: Lista és Szótár</h3>
+    
+    <details open>
+      <summary>A Lista (List) - A mindenes tároló</summary>
+      <p>A lista pontosan olyan, mint egy bevásárlólista vagy egy vonat a szerelvényekkel. Az adatokat egymás után, sorban tárolja. A listákat a <b>szögletes zárójel <code>[]</code></b> (AltGr + F és G) jelöli, az elemeket pedig vesszővel választjuk el.</p>
+      
+      <pre><code><span class="komment"># Létrehozunk egy listát 4 elemmel</span>
+<span class="var">hizolagok</span> = [<span class="str">"Párizs"</span>, <span class="str">"London"</span>, <span class="str">"Róma"</span>, <span class="str">"Berlin"</span>]</code></pre>
+
+      <h4>Hogyan vesszük elő az adatokat? (Az indexelés)</h4>
+      <p>A listában minden elemnek sorszáma van, amit <b>indexnek</b> hívunk. De vigyázat, itt jön a programozás egyik legfurcsább szabálya:</p>
+      <div class="osszefoglalas">
+        <b>A számítógép nullától (0) kezd el számolni!</b> Tehát a lista legelső eleme a 0. indexet kapja, a második az 1-est, és így tovább.
+      </div>
+
+      <pre><code><span class="print">print</span><span class="elso-zarojel">(<span class="var">hizolagok</span>[<span class="int">0</span>])</span>  <span class="komment"># Eredmény: Párizs (a legelső elem)</span>
+<span class="print">print</span><span class="elso-zarojel">(<span class="var">hizolagok</span>[<span class="int">2</span>])</span>  <span class="komment"># Eredmény: Róma (a harmadik elem!)</span></code></pre>
+
+      <h4>Műveletek a listával</h4>
+      <p>A lista <i>módosítható</i> (angolul mutable). Bármikor tehetünk bele új elemet, vagy kivehetünk belőle.</p>
+      <ul>
+        <li><b>Hozzáadás a végéhez:</b> A <code>.append()</code> metódussal.
+          <pre><code><span class="var">hizolagok</span>.<span class="fn">append</span><span class="elso-zarojel">(<span class="str">"Madrid"</span>)</span></code></pre>
+        </li>
+        <li><b>Törlés név alapján:</b> A <code>.remove()</code> metódussal.
+          <pre><code><span class="var">hizolagok</span>.<span class="fn">remove</span><span class="elso-zarojel">(<span class="str">"London"</span>)</span></code></pre>
+        </li>
+        <li><b>Hossz lekérdezése:</b> Ugyanúgy a <code>len()</code> függvénnyel, mint a szövegeknél! (Megmondja, hány elem van benne).</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>A Szótár (Dictionary) - A címkézett polcrendszer</summary>
+      <p>A lista szuper, de mi van, ha nem a sorrend a fontos, hanem az, hogy mihez mi tartozik? Képzelj el egy telefonkönyvet: ott nem az érdekel, hogy ki a 42. ember a listán, hanem hogy "Mi Péter telefonszáma?". Erre való a <b>szótár (dict)</b>.</p>
+      
+      <p>A szótárakat <b>kapcsos zárójelekkel <code>{}</code></b> (AltGr + B és N) hozzuk létre. Minden elem egy <b>kulcsból</b> (pl. a név) és egy <b>értékből</b> (pl. a telefonszám) áll. A kettőt kettőspont <code>:</code> választja el.</p>
+
+      <pre><code><span class="var">telefonkonyv</span> = {
+    <span class="str">"Péter"</span>: <span class="str">"06-20-123-4567"</span>,
+    <span class="str">"Anna"</span>: <span class="str">"06-30-987-6543"</span>,
+    <span class="str">"Béla"</span>: <span class="str">"06-70-555-4444"</span>
+}</code></pre>
+
+      <h4>Adatok lekérése és módosítása</h4>
+      <p>Itt nem sorszámokat (indexeket) használunk, hanem a <b>kulcsot</b> írjuk a szögletes zárójelbe!</p>
+      
+      <pre><code><span class="komment"># Keresés a szótárban:</span>
+<span class="print">print</span><span class="elso-zarojel">(<span class="var">telefonkonyv</span>[<span class="str">"Anna"</span>])</span>  <span class="komment"># Eredmény: 06-30-987-6543</span>
+
+<span class="komment"># Új ember hozzáadása, vagy meglévő számának módosítása:</span>
+<span class="var">telefonkonyv</span>[<span class="str">"Zita"</span>] = <span class="str">"06-20-111-2222"</span></code></pre>
+      <div class="extra">
+        <b>Fontos szabály:</b> Egy szótárban egy "kulcs" (pl. "Anna") csak egyszer szerepelhet! Két Annának nem lehet ugyanaz a címkéje, mert a gép nem tudná, melyiket keresed. (Ilyenkor pl. "Kovács Anna" és "Nagy Anna" kulcsokat kell használni).
+      </div>
+    </details>
+  </div>
+
+  <div class="task-card extra">
+    <h3>2. Emelt szint / Haladóknak: Tuple és Set</h3>
+    
+    <details>
+      <summary>A Tuple (KTuple) - A kőbe vésett lista</summary>
+      <p>A Tuple (ejtsd: tapöl vagy tüpl) majdnem teljesen olyan, mint egy lista. A különbség mindössze kettő dolog: <b>kerek zárójellel <code>()</code></b> hozzuk létre, és <b>soha többé nem lehet megváltoztatni</b> (angolul: immutable).</p>
+      
+      <pre><code><span class="komment"># Példa: A hét napjai sosem változnak</span>
+<span class="var">napok</span> = (<span class="str">"Hétfő"</span>, <span class="str">"Kedd"</span>, <span class="str">"Szerda"</span>, <span class="str">"Csütörtök"</span>, <span class="str">"Péntek"</span>)</code></pre>
+      
+      <p>Lekérni ugyanúgy sorszámmal (index-szel) lehet, de ha megpróbálnál egy <code>.append()</code>-et használni rá, a Python dühös hibaüzenetet adna. Olyan ez, mint egy kinyomtatott blokk a boltban: elolvashatod, de már nem írhatsz rá újat.</p>
+    </details>
+
+    <details>
+      <summary>A Set (Halmaz) - A VIP vendéglista</summary>
+      <p>A halmaz a matematika órákról lehet ismerős. <b>Kapcsos zárójelet <code>{}</code></b> használ (mint a szótár, de itt nincsenek kulcs:érték párok, csak sima adatok). Két nagyon különleges tulajdonsága van:</p>
+      <ol>
+        <li><b>Nincs benne sorrend:</b> Nem tudod lekérni a "0. elemet", mert a gép folyamatosan összekeveri őket a háttérben.</li>
+        <li><b>Nem lehet benne ismétlődés:</b> Minden elem csak egyszer szerepelhet! Ha egy VIP listára kétszer írod fel ugyanazt a nevet, a gép az egyiket automatikusan kidobja.</li>
+      </ol>
+      
+      <pre><code><span class="var">szinek</span> = {<span class="str">"piros"</span>, <span class="str">"kék"</span>, <span class="str">"zöld"</span>, <span class="str">"piros"</span>, <span class="str">"kék"</span>}
+<span class="print">print</span><span class="elso-zarojel">(<span class="var">szinek</span>)</span> <span class="komment"># Eredmény valami ilyesmi lesz: {'kék', 'zöld', 'piros'}</span></code></pre>
+      <p>Tökéletes arra, ha meg akarod számolni, hány <i>különböző</i> szó van egy versben, vagy ki akarod szűrni a duplikációkat egy listából!</p>
+    </details>
+  </div>
+
+  <div class="task-card">
+    <h3>3. Összefoglaló: Melyiket mikor használjam?</h3>
+    <p>Ne aggódj, ha elsőre soknak tűnik! Az esetek 90%-ában a <b>Listát</b> és a <b>Szótárat</b> fogod használni. Itt egy puskázó táblázat, ami segít dönteni:</p>
+    
+    <table class="tabla-osszefoglalo">
+      <tr>
+        <th>Típus neve</th>
+        <th>Zárójel</th>
+        <th>Sorszámozott? (Van index?)</th>
+        <th>Módosítható a tartalma?</th>
+        <th>Mikor használd? (Példa)</th>
+      </tr>
+      <tr>
+        <td><b>Lista</b> (List)</td>
+        <td><code>[ ]</code></td>
+        <td>Igen (0-tól kezdve)</td>
+        <td>Igen</td>
+        <td>Adatok egyszerű felsorolása, sorrend megtartása. <i>(pl. játékosok nevei a meccsen, teendők listája)</i></td>
+      </tr>
+      <tr>
+        <td><b>Szótár</b> (Dictionary)</td>
+        <td><code>{ : }</code></td>
+        <td>Nem (Kulcsokat használunk)</td>
+        <td>Igen</td>
+        <td>Adatpárok összekapcsolása, gyors keresés név/címke alapján. <i>(pl. felhasználónév és jelszó, termék és az ára)</i></td>
+      </tr>
+      <tr>
+        <td><b>Tuple</b> (KTuple) <span style="font-size: 0.8em; color: gray;">*Haladó</span></td>
+        <td><code>( )</code></td>
+        <td>Igen (0-tól kezdve)</td>
+        <td><b>Nem!</b> (Állandó)</td>
+        <td>Olyan adatok, amik sosem változhatnak a program futása alatt. <i>(pl. a hét napjai, a képernyő felbontása)</i></td>
+      </tr>
+      <tr>
+        <td><b>Set</b> (Halmaz) <span style="font-size: 0.8em; color: gray;">*Haladó</span></td>
+        <td><code>{ }</code></td>
+        <td>Nem (Teljesen véletlenszerű)</td>
+        <td>Igen (de nincs duplikáció!)</td>
+        <td>Ismétlődések kiszűrése, matematikai halmazműveletek (metszet, unió). <i>(pl. ki vett már részt a sorsoláson)</i></td>
+      </tr>
+    </table>
+  </div>
+
+    <!--  itt jön a modal -->
+  <div id="kep-modal" class="modal-hatter">
+    <div class="modal-tartalom">
+        <span class="modal-bezaras">&times;</span>
+        <img id="modal-benne-levo-kep" src="" alt="">
+    </div>
+  </div>
+  
+</body>
+</html>

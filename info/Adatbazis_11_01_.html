@@ -8,7 +8,7 @@
     <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-  <div hidden class="back"><a href="https://oribalint91.github.io/kodaly">Vissza a kezdőlapra</a></div>
+  <div class="back"><a href="https://oribalint91.github.io/kodaly">Vissza a kezdőlapra</a></div>
     <h2>Adatbázis-kezelés: önálló feladat és gyakorló kérdések</h2>
     <p class="intro">Ennek a dokumentumnak a segítségével egy új adatbázist készítünk. Az adatbázis <b>három táblát</b> tartalmaz: <i>színészek adatait</i>, <i>darabok adatait</i> és <i>előadások adatait</i>. Lépésenként először <b>importálni</b> fogjuk az adatokat, utána beállítjuk köztük a <b>kapcsolatokat</b>, majd ezek segítségével hajtunk végre <b>lekérdezéseket</b>. A lekérdezéseket elmentjük, ezek is részei lesznek a végén elmentett fájlnak.
     <br>A felhasznált táblákat ezekre a hivatkozásokra jobb gombbal kattintva (majd a <i>Link mentése másként...</i> opciót választva) töltheted le: <a href="adatbazis_11_01/szineszek.txt">színészek tábla</a>, <a href="adatbazis_11_01/darabok.txt">darabok tábla</a>, <a href="adatbazis_11_01/eloadasok.txt">előadások tábla</a>.<br>A dokumentumban találtok <span class="extra">ilyen kinézettel</span> olyan leírásokat, amelyeket nem kell mindenkinek tudni. Az <span class="ia">ilyen kinézetű részek</span> pedig kattinthatók: valami magyarázó kép jelenik meg a hatásukra.</p>
@@ -51,7 +51,7 @@
           <li>Kattints az <i>Adatbáziseszközök</i> menüre, majd válaszd ki a <i>Kapcsolatok</i> parancsot! <br>
           <img src="kepek/access_kapcsolatok.png" alt=""></li>
           <li><b>Táblák hozzáadása: </b>a megnyíló ablakban tudjuk majd beállítani a kapcsolatokat, de előbb hozzá kell adni azokat a táblákat, amelyek között kapcsolatot akarunk kialakítani. A hozzáadható táblákat <span class="ia" data-tipus="modal" data-target="access_kapcsolattervezes">a képernyő jobb szélén</span> találod. <b>Vigyázz!</b> Nem csak táblákat adhatsz hozzá! Ha esetleg nem találod a tábládat, akkor meg kell nézni, hogy a fenti választó nem állt-e át valamiért mondjuk a lekérdezésekre, hiszen azok közt nem találod majd meg a tábláidat. Ha egyáltalán nem látod ezt a sávot, akkor a <i>Kapcsolattervezés</i> fül <i>Táblák beszúrása</i> pontjára kell kattintani. Kattints duplán mindhárom tábla nevére!</li>
-          <li><b>Kapcsolatok szerkesztése: </b>a bent lévő kis táblákat szabadon mozgathatod, ahogy kényelmes. Kattints az összetartozó párok közül az egyikre, mondjuk a <i>Darabok</i> tábla <i>foszereplo_id</i>-jére, és húzd rá a <i>Szineszek</i> tábla <i>id</i> sorára! Ekkor <span class="ia" data-tipus="modal" data-target="access_kapcsolattervezes">megjelenik egy kis párbeszédablak</span>, ahol ellenőrizheted, hogy jól állítottad-e párba őket.</li>
+          <li><b>Kapcsolatok szerkesztése: </b>a bent lévő kis táblákat szabadon mozgathatod, ahogy kényelmes. Kattints az összetartozó párok közül az egyikre, mondjuk a <i>Darabok</i> tábla <i>foszereplo_id</i>-jére, és húzd rá a <i>Szineszek</i> tábla <i>id</i> sorára! Ekkor <span class="ia" data-tipus="modal" data-target="access_kapcsolatok_szerkesztese">megjelenik egy kis párbeszédablak</span>, ahol ellenőrizheted, hogy jól állítottad-e párba őket.</li>
           <li><b>Az összes kapcsolat létrehozása: </b><span class="ia" data-tipus="modal" data-target="access_kapcsolatok_kesz">kapcsold össze az összetartozókat!</span></li>
         </ol>
       </details>
@@ -226,7 +226,7 @@
     <img src="kepek/access_importalas_sikertelen.png" id="access_importalas_sikertelen" style="display: none;" alt="">
     <img src="kepek/access_tablak_hibaval.png" id="access_tablak_hibaval" style="display: none;" alt="">
     <img src="kepek/access_kapcsolattervezes.png" id="access_kapcsolattervezes" style="display: none;" alt="">
-    <img src="kepek/access_kapcsolattervezes.png" id="access_kapcsolattervezes" style="display: none;" alt="">
+    <img src="kepek/access_kapcsolatok_szerkesztese.png" id="access_kapcsolatok_szerkesztese" style="display: none;" alt="">
     <img src="kepek/access_kapcsolatok_kesz.png" id="access_kapcsolatok_kesz" style="display: none;" alt="">
     <img src="kepek/access_lekerdezestervezo_mezo_kivalasztasa.png" id="access_lekerdezestervezo_mezo_kivalasztasa" style="display: none;" alt="">
     <img src="kepek/access_lekerdezestervezo_futtatas.png" id="access_lekerdezestervezo_futtatas" style="display: none;" alt="">

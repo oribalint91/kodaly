@@ -155,10 +155,10 @@
       display: flex;
       justify-content: space-between;
     }
-    .sides div{
+    /* .sides div{
       padding: 2px;
       transition: display 1s linear;
-    }
+    } */
   img {
     max-width: 100%;
   }
@@ -263,6 +263,10 @@
       background-color: #611111;
     }
 
+    .tabla-osszefoglalo { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    .tabla-osszefoglalo th, .tabla-osszefoglalo td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    .tabla-osszefoglalo th { background-color: #f2f2f2; font-weight: bold; }
+
     /* interaktív szavak kiemelése */
     .ia { /* ia, mint "interaktyv" */
       font-weight: bold;
@@ -274,34 +278,106 @@
     .ia:hover {
       color: red;
     }
-    .rejtett-kep {
+    /*.rejtett-kep {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      
       max-height: 0;
       opacity: 0;
       overflow: hidden;
       transition: all 0.5s ease-in-out;
     }
     .rejtett-kep.lathato {
+      position: relative;
       max-height: 800px;
       opacity: 1;
       margin-top: 10px;
     }
 
-    .modal-hatter {
+    .right-container {
+      position: relative;
+      min-height: 10px;
+    } //animáció nélküli verzió */
+
+  .right-container {
+  position: relative;
+  flex: 1;
+  min-height: 120px; /* Ekkora helyet foglal el fixen a jobb oldalon */
+  margin-left: 20px;
+}
+
+.rejtett-kep {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  
+  /* Ez a lényeg az animációhoz: */
+  opacity: 0;
+  visibility: hidden; 
+  transform: translateY(5px); /* Egy picit "beúszik" lentről */
+  
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+}
+
+.rejtett-kep.lathato {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+    details[open] summary ~ * {
+      animation: sweep 0.5s ease-in-out;
+    }
+
+    @keyframes sweep {
+      0%    {opacity: 0; transform: translateY(-10px)}
+      100%  {opacity: 1; transform: translateY(0)}
+    }
+
+    /* .modal-hatter {
       display: none;
       position: fixed;
-      z-index: 1000; /* ettől lesz minden más felett mindig */
+      z-index: 1000; // ettől lesz minden más felett mindig
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.8);
+    } // ez a régi */
+    .modal-hatter {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
     }
+    .modal-hatter.lathato {
+      visibility: visible;
+      opacity: 1;
+    }
+
     .modal-tartalom {
       position: relative;
       margin: 5% auto;
       max-width: 90%;
       text-align: center;
+      
+      transform: scale(0.7); /* ez új */
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* ez új */
     }
+    .modal-hatter.lathato.modal-tartalom {
+      transform: scale(1); /* ez új */
+    }
+
     #modal-benne-levo-kep {
       max-width: 100%;
       max-height: 85vh;
