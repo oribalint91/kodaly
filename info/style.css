@@ -193,7 +193,7 @@ code .normal {color: #abb2bf;}
 body.dark-mode .top-nav {border-bottom: 1px solid #2c3e50;}
 .nav-list {list-style-type: none; margin: 0; padding: 0; display: flex;}
 .nav-item {position: relative;}
-.nav-link {display: block; color: white !important; text-decoration: none !important; padding: 15px 20px; font-weight: bold; transition: background-color 0.3s;}
+.nav-link {display: block; color: var(--text) !important; text-decoration: none !important; padding: 15px 20px; font-weight: bold; transition: background-color 0.3s;}
 .nav-link:hover {background-color: rgba(255, 255, 255, 0.1);}
 .dropdown-content {display: none; position: absolute; background-color: var(--card-bg); min-width: 250px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border-radius: 0 0 5px 5px; z-index: 1001; border: 1px solid var(--border-light);}
 body.dark-mode .dropdown-content {border-color: #2c3e50;}
