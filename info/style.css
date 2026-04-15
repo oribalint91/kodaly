@@ -16,6 +16,7 @@
   --table-header-bg: #f2f2f2;
   --back-bg: #4b4e54;
   --inline-code-bg: #e9ecef;
+  --nav-background: #f4f7f6;
   
   /* Szöveg- és keretszínek */
   --summary-color: #2980b9;
@@ -28,6 +29,8 @@
   --megoldasok-color: #fdaa26;
   --inline-code-color: #e83e8c;
   --back-hover: #611111;
+  --a: #0223b8;
+  --a-hover: #025993;
 
   /* Kódblokk színei */
   --code-bg: #282c34;
@@ -53,6 +56,7 @@ body.dark-mode {
   --table-header-bg: #2c3e50;
   --back-bg: #2c3e50;
   --inline-code-bg: #2c3e50;
+  --nav-background: #111a28;
 
   /* Szöveg- és keretszínek (világosítva a kontraszt miatt) */
   --summary-color: #5dade2;
@@ -65,6 +69,8 @@ body.dark-mode {
   --megoldasok-color: #f8c471;
   --inline-code-color: #ff79c6;
   --back-hover: #c0392b;
+  --a: #5dade2;
+  --a-hover: #aed6f1;
 }
 
 /* --- ALAP STÍLUSOK --- */
@@ -91,6 +97,8 @@ h1, h2, h3 { color: var(--heading-color); }
 .extra summary { color: var(--extra-summary-color); list-style-type: '💡 '; }
 details[open].extra > summary { list-style-type: '💡 ▼ '; }
 h2:first-of-type {padding-top: 50px;}
+a {color: var(--a); transition: color 0.3s ease;}
+a:hover {color: var(--a-hover); text-decoration: underline;}
 
 .task-card { background: var(--card-bg); padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); border: 1px solid var(--border-light); transition: background-color 0.4s; }
 details { background: var(--card-bg); margin-top: 10px; padding: 10px; border: 1px solid var(--border-light); border-radius: 5px; transition: background-color 0.4s; }
@@ -179,3 +187,19 @@ code .normal {color: #abb2bf;}
 /* Dark mode gomb stílusa */
 #theme-toggle { position: fixed; bottom: 20px; right: 20px; background-color: var(--heading-color); color: var(--bg-color); border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 24px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.3); z-index: 9999; transition: all 0.3s ease; }
 #theme-toggle:hover { transform: scale(1.1); }
+
+/* felső menüsor (navbar) beállításai */
+.top-nav {position: sticky; top: 0; background-color: var(--nav-background);box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1000; display: flex; padding: 0 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-bottom: 20px;}
+body.dark-mode .top-nav {border-bottom: 1px solid #2c3e50;}
+.nav-list {list-style-type: none; margin: 0; padding: 0; display: flex;}
+.nav-item {position: relative;}
+.nav-link {display: block; color: white !important; text-decoration: none !important; padding: 15px 20px; font-weight: bold; transition: background-color 0.3s;}
+.nav-link:hover {background-color: rgba(255, 255, 255, 0.1);}
+.dropdown-content {display: none; position: absolute; background-color: var(--card-bg); min-width: 250px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border-radius: 0 0 5px 5px; z-index: 1001; border: 1px solid var(--border-light);}
+body.dark-mode .dropdown-content {border-color: #2c3e50;}
+.dropdown-content a {color: var(--text) !important; padding: 12px 16px; text-decoration: none !important; display: block; font-size: 0.9em; border-bottom: 1px solid var(--bg-color); transition: background-color 0.2s;}
+.dropdown-content a:last-child {border-bottom: none;}
+.dropdown-content a:hover {background-color: var(--bg-color); color: var(--summary-hover) !important;}
+.dropdown-content a.active {background-color: var(--intro-bg); font-weight: bold; border-left: 4px solid var(--summary-hover);}
+.nav-item.dropdown:hover .dropdown-content {display: block; animation: fadeInDown 0.3s ease;}
+@keyframes fadeInDown {from {opacity: 0; transform: translateY(-10px);} to {opacity: 1; transform: translateY(0);}}

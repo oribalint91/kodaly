@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
+
+    generateNavbar();
     
     const modal = document.getElementById("kep-modal");
     const modalKep = document.getElementById("modal-benne-levo-kep");
@@ -30,37 +32,45 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
     //modal bezárása
-    bezaroGomb.addEventListener("click", function(event){
-        modal.classList.remove("lathato");
-        setTimeout(() => modalKep.classList.remove("nagyitott"), 300);
-    });
-    
-    window.addEventListener("click", function(e) {
-        if (e.target === modal) {
-            modal.classList.remove("lathato");
-            // Itt window helyett simán a setTimeout-ot érdemes hívni
-            setTimeout(() => modalKep.classList.remove("nagyitott"), 300);
-        }
-    });
-    
-    window.addEventListener("keydown", function(e) {
-        if (e.key === "Escape") {
+    if (modal && modalKep && bezaroGomb) {
+        bezaroGomb.addEventListener("click", function(event){
             modal.classList.remove("lathato");
             setTimeout(() => modalKep.classList.remove("nagyitott"), 300);
-        }
-    });
+        });
+        
+        window.addEventListener("click", function(e) {
+            if (e.target === modal) {
+                modal.classList.remove("lathato");
+                // Itt window helyett simán a setTimeout-ot érdemes hívni
+                setTimeout(() => modalKep.classList.remove("nagyitott"), 300);
+            }
+        });
+        
+        window.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") {
+                modal.classList.remove("lathato");
+                setTimeout(() => modalKep.classList.remove("nagyitott"), 300);
+            }
+        });
 
-    modalKep.addEventListener("click", function(e) {
-        e.stopPropagation();
-        this.classList.toggle("nagyitott");
-    }); // Pontosvessző pótolva
-
+        modalKep.addEventListener("click", function(e) {
+            e.stopPropagation();
+            this.classList.toggle("nagyitott");
+        });
+    }
     // --- DARK MODE VÁLTÁS ---
     
-    const toggleBtn = document.getElementById('theme-toggle');
+    let toggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
 
     // Megpróbáljuk betölteni az elmentett beállítást (ha engedi a böngésző)
+    if (!toggleBtn) {
+        toggleBtn = document.createElement('button');
+        toggleBtn.id = 'theme-toggle';
+        toggleBtn.title = 'Sötét/Világos mód';
+        toggleBtn.innerHTML = '🌙';
+        body.appendChild(toggleBtn);
+    }
     try {
         if (localStorage.getItem('theme') === 'dark') {
             body.classList.add('dark-mode');
@@ -84,7 +94,6 @@ document.addEventListener("DOMContentLoaded", function(){
             // Nem gond, ha hiba van, a gomb így is működni fog!
         }
     });
-    
 });
 
 // Másolás funkció a kóddobozokhoz
@@ -105,4 +114,74 @@ function copyCode(button) {
     console.error('Sikertelen másolás: ', err);
     button.innerText = "Hiba :(";
     });
+}
+
+// navbar generálás kódja
+function generateNavbar() {
+    const pathname = window.location.pathname;
+
+    const isIndex = pathname.endsWith("index.html") || pathname.endsWith("/");
+
+    const pathToIndex = isIndex ? "index.html" : "../index.html";
+    const pathToInfo = isIndex ? "info/" : "";
+
+    const lessons = [
+        {
+            title: "💻 Digitális kultúra",
+            items: [
+            { title: "1. Alapismeretek", file: "Python_9ny_01_alapok.html" },
+            { title: "2. Elágazások (if-else)", file: "Python_9ny_02_alapok_II.html" },
+            { title: "3. Összetett adattípusok", file: "Python_9ny_03_osszetett_adattipusok.html" },
+            { title: "4. A for ciklus", file: "Python_9ny_04_for_ciklus.html" }//,
+            // { title: "5. A while ciklus", file: "Python_9ny_05_while_ciklus.html" },
+            // { title: "6. Kivételkezelés (try-except)", file: "Python_9ny_06_kivetelkezeles.html" }
+            ]
+        },
+        {
+            title: "🧪 Kémia",
+            items: [
+
+            ]
+        },
+        {
+            title: "🌹 Biológia",
+            items: [
+
+            ]
+        }
+    ];
+
+    let navItemsHTML = "";
+    lessons.forEach(subject => {
+        if (subject.items.length > 0) {
+            let dropdownLinks = "";
+            subject.items.forEach(l => {
+                    const fullPath = pathToInfo + l.file;
+                    const isActive = pathname.includes(l.file) ? "active" : "";
+                    dropdownLinks += `<a href="${fullPath}" class="${isActive}">${l.title}</a>`
+                });
+                navItemsHTML += `
+                <li class="nav-item dropdown">
+                    <a href="#" class = "nav-link">${subject.title} ▼</a>
+                    <div class="dropdown-content">
+                        ${dropdownLinks}
+                    </div>
+                </li>`;
+            }
+        });
+        
+    const navHTML = `
+    <nav class="top-nav">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="${pathToIndex}" class="nav-link">🏠 Kezdőlap</a>
+            </li>
+            ${navItemsHTML}
+        </ul>
+    </nav>`;
+
+    document.body.insertAdjacentHTML('afterbegin', navHTML);
+
+    const oldBackBtn = document.querySelector('.back');
+    if (oldBackBtn) oldBackBtn.remove();
 }
