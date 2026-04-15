@@ -1,8 +1,4 @@
 :root {
-  /* --- ÚJ ALAPSZÍNEK A TÉMÁKHOZ ÉS A MENÜHÖZ --- */
-  --primary: #2c3e50;
-  --secondary: #3498db;
-
   /* Alapszínek */
   --bg-color: #f4f7f6;
   --text: #333333;
@@ -20,10 +16,7 @@
   --table-header-bg: #f2f2f2;
   --back-bg: #4b4e54;
   --inline-code-bg: #e9ecef;
-  
-  /* Menü (Navbar) színei - A témához (primary) kötjük */
-  --nav-background: var(--primary);
-  --nav-text: #ffffff;
+  --nav-background: #f4f7f6;
   
   /* Szöveg- és keretszínek */
   --summary-color: #2980b9;
@@ -46,9 +39,6 @@
 
 /* --- DARK MODE VÁLTOZÓK --- */
 body.dark-mode {
-  --primary: #111a28;
-  --secondary: #5dade2;
-
   /* Alapszínek */
   --bg-color: #1a1a2e;      
   --text: #e0e0e0;          
@@ -66,9 +56,7 @@ body.dark-mode {
   --table-header-bg: #2c3e50;
   --back-bg: #2c3e50;
   --inline-code-bg: #2c3e50;
-  
-  --nav-background: var(--primary);
-  --nav-text: #e0e0e0;
+  --nav-background: #111a28;
 
   /* Szöveg- és keretszínek (világosítva a kontraszt miatt) */
   --summary-color: #5dade2;
@@ -83,41 +71,6 @@ body.dark-mode {
   --back-hover: #c0392b;
   --a: #5dade2;
   --a-hover: #aed6f1;
-}
-
-/* --- TANTÁRGYI TÉMÁK (SZÍNKÓDOK) --- */
-/* Biológia Téma (Zöldes) */
-body.theme-bio {
-  --primary: #27ae60;
-  --secondary: #2ecc71;
-  --intro-bg: #eafaf1;
-  --summary-color: #1e8449;
-  --summary-hover: #145a32;
-  --heading-color: #196f3d;
-}
-body.dark-mode.theme-bio {
-  --primary: #0f301d;
-  --intro-bg: #145a32;
-  --summary-color: #58d68d;
-  --summary-hover: #2ecc71;
-  --heading-color: #abebc6;
-}
-
-/* Kémia Téma (Lilás/Magenta) */
-body.theme-kem {
-  --primary: #8e44ad;
-  --secondary: #9b59b6;
-  --intro-bg: #f5eef8;
-  --summary-color: #6c3483;
-  --summary-hover: #512e5f;
-  --heading-color: #5b2c6f;
-}
-body.dark-mode.theme-kem {
-  --primary: #2c1a36;
-  --intro-bg: #4a235a;
-  --summary-color: #bb8fce;
-  --summary-hover: #a569bd;
-  --heading-color: #d7bde2;
 }
 
 /* --- ALAP STÍLUSOK --- */
@@ -137,10 +90,10 @@ body {
 }
 
 h1, h2, h3 { color: var(--heading-color); }
-.intro { background: var(--intro-bg); padding: 15px; border-left: 5px solid var(--secondary); margin-bottom: 20px; transition: background-color 0.4s; }
+.intro { background: var(--intro-bg); padding: 15px; border-left: 5px solid #3498db; margin-bottom: 20px; transition: background-color 0.4s; }
 .raw-text-box { background: var(--raw-box-bg); border: 2px dashed var(--border-dark); padding: 15px; border-radius: 5px; font-family: 'Courier New', Courier, monospace; margin-bottom: 30px; transition: background-color 0.4s; }
 .raw-text-box p { margin: 0; }
-.extra { background-color: var(--extra-bg); border-radius: 5px; border: 2.5px dashed var(--extra-summary-color); font-style: italic; font-size: medium; transition: background-color 0.4s; }
+.extra { background-color: var(--extra-bg); border-radius: 5px; border: 2.5px dashed #9b59b6; font-style: italic; font-size: medium; transition: background-color 0.4s; }
 .extra summary { color: var(--extra-summary-color); list-style-type: '💡 '; }
 details[open].extra > summary { list-style-type: '💡 ▼ '; }
 h2:first-of-type {padding-top: 50px;}
@@ -235,74 +188,18 @@ code .normal {color: #abb2bf;}
 #theme-toggle { position: fixed; bottom: 20px; right: 20px; background-color: var(--heading-color); color: var(--bg-color); border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 24px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.3); z-index: 9999; transition: all 0.3s ease; }
 #theme-toggle:hover { transform: scale(1.1); }
 
-/* --- FELSŐ MENÜSOR (NAVBAR) BEÁLLÍTÁSAI --- */
-.top-nav {
-  position: sticky; 
-  top: 0; 
-  background-color: var(--nav-background);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2); 
-  z-index: 1000; 
-  display: flex; 
-  padding: 0 20px; 
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-  margin-bottom: 20px;
-}
-body.dark-mode .top-nav { border-bottom: 1px solid #2c3e50; }
-
-.nav-list { list-style-type: none; margin: 0; padding: 0; display: flex; }
-.nav-item { position: relative; }
-
-/* A menü fő linkjeinek színe (Világos szöveg a sötét sávon) */
-.nav-link { 
-  display: block; 
-  color: var(--nav-text) !important; 
-  text-decoration: none !important; 
-  padding: 15px 20px; 
-  font-weight: bold; 
-  transition: background-color 0.3s;
-}
-.nav-link:hover { background-color: rgba(255, 255, 255, 0.1); }
-
-/* Legördülő menü (Dropdown) */
-.dropdown-content {
-  display: none; 
-  position: absolute; 
-  background-color: var(--card-bg); 
-  min-width: 280px; 
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2); 
-  border-radius: 0 0 5px 5px; 
-  z-index: 1001; 
-  border: 1px solid var(--border-light);
-}
-body.dark-mode .dropdown-content { border-color: #2c3e50; }
-
-.dropdown-content a {
-  color: var(--text) !important; 
-  padding: 10px 16px; 
-  text-decoration: none !important; 
-  display: block; 
-  font-size: 0.9em; 
-  border-bottom: 1px solid var(--border-light); 
-  transition: background-color 0.2s;
-}
-.dropdown-content a:last-child { border-bottom: none; }
-.dropdown-content a:hover { background-color: var(--intro-bg); }
-
-/* Aktív menüpont és Kategória fejlécek */
-.dropdown-content a.active { 
-  background-color: var(--intro-bg); 
-  font-weight: bold; 
-  border-left: 4px solid var(--secondary); 
-}
-.menu-category {
-  background-color: var(--bg-color);
-  padding: 8px 16px;
-  font-size: 0.85em;
-  font-weight: bold;
-  color: var(--border-dark);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.nav-item.dropdown:hover .dropdown-content { display: block; animation: fadeInDown 0.3s ease; }
-@keyframes fadeInDown { from {opacity: 0; transform: translateY(-10px);} to {opacity: 1; transform: translateY(0);} }
+/* felső menüsor (navbar) beállításai */
+.top-nav {position: sticky; top: 0; background-color: var(--nav-background);box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1000; display: flex; padding: 0 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-bottom: 20px;}
+body.dark-mode .top-nav {border-bottom: 1px solid #2c3e50;}
+.nav-list {list-style-type: none; margin: 0; padding: 0; display: flex;}
+.nav-item {position: relative;}
+.nav-link {display: block; color: var(--text) !important; text-decoration: none !important; padding: 15px 20px; font-weight: bold; transition: background-color 0.3s;}
+.nav-link:hover {background-color: rgba(255, 255, 255, 0.1);}
+.dropdown-content {display: none; position: absolute; background-color: var(--card-bg); min-width: 250px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border-radius: 0 0 5px 5px; z-index: 1001; border: 1px solid var(--border-light);}
+body.dark-mode .dropdown-content {border-color: #2c3e50;}
+.dropdown-content a {color: var(--text) !important; padding: 12px 16px; text-decoration: none !important; display: block; font-size: 0.9em; border-bottom: 1px solid var(--bg-color); transition: background-color 0.2s;}
+.dropdown-content a:last-child {border-bottom: none;}
+.dropdown-content a:hover {background-color: var(--bg-color); color: var(--summary-hover) !important;}
+.dropdown-content a.active {background-color: var(--intro-bg); font-weight: bold; border-left: 4px solid var(--summary-hover);}
+.nav-item.dropdown:hover .dropdown-content {display: block; animation: fadeInDown 0.3s ease;}
+@keyframes fadeInDown {from {opacity: 0; transform: translateY(-10px);} to {opacity: 1; transform: translateY(0);}}
