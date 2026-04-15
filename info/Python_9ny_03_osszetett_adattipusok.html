@@ -9,20 +9,23 @@
 
 </head>
 <body>
-  <div class="back"><a href="index.html">Vissza a kezdőlapra</a></div>
-  <h2>A 🐍 Python alapok: Több adat egy helyen (Adatszerkezetek)</h2>
+  <div class="back"><a href="../index.html">Vissza a kezdőlapra</a></div>
+  <h2>🐍 Python alapok: több adat egy helyen (Adatszerkezetek)</h2>
   
-  <p class="intro">Eddig egy változóba (dobozba) mindig csak egyetlen adatot tettünk: egy nevet, egy számot, vagy egy logikai értéket. De mi van akkor, ha egy egész osztály névsorát, egy bevásárlólistát, vagy egy telefonkönyvet szeretnénk tárolni a programunkban? Nem hozhatunk létre 30 külön változót! Erre valók az <b>összetett adattípusok</b> (vagy adatszerkezetek).</p>
+  <p class="intro">Eddig egy változóba (dobozba) mindig csak egyetlen adatot tettünk: egy nevet, egy számot, vagy egy logikai értéket. De mi van akkor, ha egy egész osztály névsorát, egy bevásárlólistát, vagy egy telefonkönyvet szeretnénk tárolni a programunkban? Nem hozhatunk létre 30 külön változót! (Illetve nem érdemes; gondolj bele: ha van egy osztálynévsorod, akkor nem praktikus, ha ezt úgy tárolod, hogy <code>nev1 = "Anna", nev2 = "Béla"</code> stb.) Erre valók az <b>összetett adattípusok</b> (vagy adatszerkezetek).</p>
 
   <div class="task-card">
     <h3>1. Az alapok: Lista és Szótár</h3>
     
-    <details open>
+    <details>
       <summary>A Lista (List) - A mindenes tároló</summary>
-      <p>A lista pontosan olyan, mint egy bevásárlólista vagy egy vonat a szerelvényekkel. Az adatokat egymás után, sorban tárolja. A listákat a <b>szögletes zárójel <code>[]</code></b> (AltGr + F és G) jelöli, az elemeket pedig vesszővel választjuk el.</p>
+      <p>A lista pontosan olyan, mint egy bevásárlólista vagy egy vonat a szerelvényekkel. Az adatokat egymás után, sorban tárolja. A listákat a <b>szögletes zárójel (<code>[]</code></b>; <span class="gomb">AltGr + F</span> és <span class="gomb">G</span>) jelöli, az elemeket pedig <b>vesszővel</b> választjuk el.</p>
       
-      <pre><code><span class="komment"># Létrehozunk egy listát 4 elemmel</span>
-<span class="var">hizolagok</span> = [<span class="str">"Párizs"</span>, <span class="str">"London"</span>, <span class="str">"Róma"</span>, <span class="str">"Berlin"</span>]</code></pre>
+      <div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+        <pre><code><span class="komment"># Létrehozunk egy listát 4 elemmel</span>
+        <span class="var">hizolagok</span> = [<span class="str">"Párizs"</span>, <span class="str">"London"</span>, <span class="str">"Róma"</span>, <span class="str">"Berlin"</span>]</code></pre>
+      </div>
 
       <h4>Hogyan vesszük elő az adatokat? (Az indexelés)</h4>
       <p>A listában minden elemnek sorszáma van, amit <b>indexnek</b> hívunk. De vigyázat, itt jön a programozás egyik legfurcsább szabálya:</p>
@@ -42,15 +45,17 @@
         <li><b>Törlés név alapján:</b> A <code>.remove()</code> metódussal.
           <pre><code><span class="var">hizolagok</span>.<span class="fn">remove</span><span class="elso-zarojel">(<span class="str">"London"</span>)</span></code></pre>
         </li>
-        <li><b>Hossz lekérdezése:</b> Ugyanúgy a <code>len()</code> függvénnyel, mint a szövegeknél! (Megmondja, hány elem van benne).</li>
+        <li><b>Hossz lekérdezése:</b> Ugyanúgy a <code>len()</code> függvénnyel, mint a szövegeknél! (Megmondja, hány elem van benne).
+        <pre><code><span class="print">print</span><span class="elso-zarojel">(<span class="print">len</span><span class="masodik-zarojel">(<span class="var">hizolagok</span>)</span>)</span></code></pre></li>
       </ul>
+      <p class="extra">Mi volt a furcsa a fenti kódban? Lehetne valahogyan javítani rajta? <span class="ia" data-target="elnevezes" data-tipus="toggle">Kattints ide, ha megnéznéd a javaslatomat!</span> <div class="lenyilo-tartalom" id="elnevezes">Bár a <code>hizolagok</code> elnevezés szabályos, nem praktikus. A változóinknak mindig érdemes olyan nevet adni, ami utal arra, hogy mi van bennük. A függvényeket pedig úgy érdemes elnevezni, hogy ez utaljon arra, amit csinálnak. A <code>hizolagok</code> helyett érdemes lenne a <code>fovarosok</code> elnevezést használni. Ha akarod, módosítsd így a kódot!</div></p>
     </details>
 
     <details>
       <summary>A Szótár (Dictionary) - A címkézett polcrendszer</summary>
       <p>A lista szuper, de mi van, ha nem a sorrend a fontos, hanem az, hogy mihez mi tartozik? Képzelj el egy telefonkönyvet: ott nem az érdekel, hogy ki a 42. ember a listán, hanem hogy "Mi Péter telefonszáma?". Erre való a <b>szótár (dict)</b>.</p>
       
-      <p>A szótárakat <b>kapcsos zárójelekkel <code>{}</code></b> (AltGr + B és N) hozzuk létre. Minden elem egy <b>kulcsból</b> (pl. a név) és egy <b>értékből</b> (pl. a telefonszám) áll. A kettőt kettőspont <code>:</code> választja el.</p>
+      <p>A szótárakat <b>kapcsos zárójelekkel <code>{}</code></b> (<span class="gomb">AltGr + B</span> és <span class="gomb">N</span>) hozzuk létre. Minden elem egy <b>kulcsból</b> (pl. a név) és egy <b>értékből</b> (pl. a telefonszám) áll. A kettőt kettőspont <code>:</code> választja el.</p>
 
       <pre><code><span class="var">telefonkonyv</span> = {
     <span class="str">"Péter"</span>: <span class="str">"06-20-123-4567"</span>,
@@ -142,13 +147,152 @@
     </table>
   </div>
 
+  <div class="task-card">
+    <h3>4. Gyakorló feladatok: Pakoljunk a dobozokba!</h3>
+    <p>Most, hogy megismerted a listákat és a szótárakat, próbáld ki őket a gyakorlatban! Nyiss egy új fájlt a VS Code-ban. A feladatokat külön-külön, vagy akár egy fájlon belül is megoldhatod.</p>
+
+    <div class="task-card">
+      <details>
+          <summary>
+              1. feladat: A könyvespolc (Lista létrehozása és indexelés)
+          </summary>
+          <p>Készíts egy <code>konyvek</code> nevű listát, és tegyél bele három könyvcímet (szövegként)! Ezután írasd ki f-stringek segítségével az első és a legutolsó könyv címét!</p>
+          
+          <div class="extra">
+            <b>Tipp:</b> Emlékszel? A számítógép nullától kezd el számolni! Az első elem indexe a <code>0</code>, a harmadiké pedig a <code>2</code>.
+          </div>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">konyvek</span> = [<span class="str">"Harry Potter"</span>, <span class="str">"A Gyűrűk Ura"</span>, <span class="str">"Büszkeség és balítélet"</span>]
+          
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A legelső könyv a polcon: {<span class="var">konyvek</span>[<span class="int">0</span>]}"</span>)</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A harmadik könyv a polcon: {<span class="var">konyvek</span>[<span class="int">2</span>]}"</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <details>
+          <summary>2. feladat: A kalandor hátizsákja (Lista módosítása)</summary>
+          <p>Készíts egy listát <code>hatizsak</code> néven, amiben két tárgy van: <code>"Kötél"</code> és <code>"Fáklya"</code>. <br>
+          A kalandor talál egy új tárgyat, ezért add hozzá (append) a listához a <code>"Kard"</code>-ot! Utána viszont elhagyja a fáklyát, így azt távolítsd el (remove) a listából!<br>
+          A program végén írasd ki a hátizsák jelenlegi tartalmát, és a <code>len()</code> függvény segítségével azt is, hogy összesen hány tárgy van benne!</p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">hatizsak</span> = [<span class="str">"Kötél"</span>, <span class="str">"Fáklya"</span>]
+          
+<span class="komment"># Hozzáadás</span>
+<span class="var">hatizsak</span>.<span class="fn">append</span><span class="elso-zarojel">(<span class="str">"Kard"</span>)</span>
+
+<span class="komment"># Törlés</span>
+<span class="var">hatizsak</span>.<span class="fn">remove</span><span class="elso-zarojel">(<span class="str">"Fáklya"</span>)</span>
+          
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A hátizsák tartalma: {<span class="var">hatizsak</span>}"</span>)</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Tárgyak száma: {<span class="fn">len</span><span class="masodik-zarojel">(<span class="var">hatizsak</span>)</span>}"</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <details>
+          <summary>3. feladat: A karakterlap (Szótár használata)</summary>
+          <p>Hozd létre a saját RPG karakteredet egy szótárban! A szótár neve legyen <code>karakter</code>. Tartalmazza a következő kulcsokat: <code>"név"</code> (szöveg), <code>"kaszt"</code> (szöveg, pl. Varázsló), és <code>"szint"</code> (egy egész szám). <br>
+          Írasd ki a karakter adatait egy szép mondatban, lekérve az értékeket a szótárból!</p>
+          
+          <div class="extra">
+            <b>Fontos Python trükk az f-stringekhez:</b> Ha a kinti f-stringet dupla idézőjellel (<code>" ", <span class="gomb">Shift + 2</span></code>) indítod, akkor belül, a szótár kulcsának lekérésénél <b>kötelező szimpla aposztrófot (<code>' ', <span class="gomb">Shift + 1</span></code>) használnod!</b> (Pl: <code>{karakter['név']}</code>). Ha mindkettő dupla lenne, a gép azt hinné, hogy vége a szövegnek!
+          </div>
+
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">karakter</span> = {
+    <span class="str">"név"</span>: <span class="str">"Gandalf"</span>,
+    <span class="str">"kaszt"</span>: <span class="str">"Varázsló"</span>,
+    <span class="str">"szint"</span>: <span class="int">99</span>
+}
+          
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A hős neve {<span class="var">karakter</span>[<span class="str">'név'</span>]}, aki egy {<span class="var">karakter</span>[<span class="str">'kaszt'</span>]}."</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <details>
+          <summary>4. feladat: A tolvaj zsákmánya (Szótár bővítése adatkéréssel)</summary>
+          <p>Készíts egy <code>zsakmany</code> nevű szótárat, ami eleve tartalmazza a következőket: <code>"arany": 150</code>, <code>"ezüst": 30</code>. <br>
+          A tolvaj új kincset lop! Kérd be az <code>input()</code> segítségével, hogy <b>mi</b> az az új tárgy (pl. "gyémánt"), és kérd be azt is, hogy <b>mennyit</b> szerzett belőle (ezt alakítsd <code>int</code>-té!). <br>
+          Ezután add hozzá ezt az új párost a szótárhoz, és írasd ki a teljes, frissített zsákmányt!</p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">zsakmany</span> = {<span class="str">"arany"</span>: <span class="int">150</span>, <span class="str">"ezüst"</span>: <span class="int">30</span>}
+          
+<span class="var">uj_targy</span> = <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Milyen kincset szereztél még? "</span>)</span>
+<span class="var">mennyiseg_szoveg</span> = <span class="fn">input</span><span class="elso-zarojel">(f<span class="str">"Mennyi {<span class="var">uj_targy</span>}-t loptál? "</span>)</span>
+<span class="var">mennyiseg</span> = <span class="fn">int</span><span class="elso-zarojel">(<span class="var">mennyiseg_szoveg</span>)</span>
+          
+<span class="komment"># Az új kulcs-érték pár hozzáadása a szótárhoz:</span>
+<span class="var">zsakmany</span>[<span class="var">uj_targy</span>] = <span class="var">mennyiseg</span>
+          
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A teljes vagyonod: {<span class="var">zsakmany</span>}"</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <details>
+        <summary>5. feladat: Az utolsó kívánság</summary>
+        <p>Kifogtad az aranyhalat, ami azt mondja neked, hogy teljesíti egy kívánságodat, mégpedig azt, amit utoljára mondasz el neki. Készíts egy listát, ahol szövegként tárolsz kívánságokat, amennyit szeretnél! Írasd ki, hogy mi az a kívánság, amelyet az aranyhal teljesít!</p>
+        <div class="extra"><span class="ia" data-target="utolso" data-tipus="toggle">Tipp!</span><div class="lenyilo-tartalom" id="utolso">Egy lista utolsó elemét akkor is el tudod érni, ha nem tudod, hogy hány eleme van, vagy hogy ez hányas indexszel rendelkezik. Az egyik mód erre a <code>len()</code> függvény használata: a <code>lista[len(lista) - 1]</code> is az utolsó elemet adja vissza, de érdemes a rövidebb -1 indexet használni. A <code>lista[-1]</code> mindig az utolsó elemet adja vissza, a <code>lista[-2]</code> az utolsó előttit stb.</div></div>
+        <details class="megoldasok">
+          <summary><i>Mutasd a megoldást!</i></summary>
+          <pre><code><span class="var">kivansagok</span> <span class="is">=</span> [<span class="str">"örök élet"</span>, <span class="str">"rengeteg pénz"</span>, <span class="str">"nyugodt élet"</span>, <span class="str">"akciós kenyér"</span>, <span class="str">"örök boldogság"</span>]
+
+<span class="print">print</span><span class="elso-zarojel">(<span class="var">kivansagok</span>[<span class="int">-1</span>])</span></code></pre>
+        </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card extra">
+      <details>
+          <summary>6. feladat (Haladó bónusz): A VIP klub (Halmazok varázslata)</summary>
+          <p>Képzeld el, hogy a portás egy papírfecnire írja a belépő klubtagok neveit. Készíts egy <code>vendegek</code> nevű listát ezzel a tartalommal: <code>["Anna", "Péter", "Anna", "Béla", "Péter", "Zita"]</code>. (Láthatod, hogy Anna és Péter többször is kimentek és bejöttek). <br>
+          Szeretnénk megtudni a <b>valódi, egyedi vendégek</b> számát. Alakítsd át a listát halmazzá (Set) a <code>set()</code> függvény segítségével, mentsd el egy új változóba, majd írasd ki az új, ismétlődések nélküli vendéglistát! Figyelj a kis- és nagybetűkre!</p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">vendegek</span> = [<span class="str">"Anna"</span>, <span class="str">"Péter"</span>, <span class="str">"Anna"</span>, <span class="str">"Béla"</span>, <span class="str">"Péter"</span>, <span class="str">"Zita"</span>]
+          
+<span class="komment"># Lista átalakítása halmazzá (Set)</span>
+<span class="var">egyedi_vendegek</span> = <span class="fn">set</span><span class="elso-zarojel">(<span class="var">vendegek</span>)</span>
+          
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Akik ténylegesen eljöttek: {<span class="var">egyedi_vendegek</span>}"</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+  </div>
+
     <!--  itt jön a modal -->
   <div id="kep-modal" class="modal-hatter">
+    <span class="modal-bezaras">&times;</span>
     <div class="modal-tartalom">
-        <span class="modal-bezaras">&times;</span>
         <img id="modal-benne-levo-kep" src="" alt="">
     </div>
   </div>
-  
+
+  <button id="theme-toggle" title="Sötét/Világos mód">🌙</button>
+
 </body>
 </html>

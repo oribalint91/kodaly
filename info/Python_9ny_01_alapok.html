@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🐍 Python programozás alapjai</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-  <div class="back"><a href="https://oribalint91.github.io/kodaly">Vissza a kezdőlapra</a></div>
+  <div class="back"><a href="../index.html">Vissza a kezdőlapra</a></div>
   <h2>A 🐍 Python programozás alapjai</h2>
   <p class="intro">Ebben a dokumentumban a programozással, azon belül is a Python programozási nyelvvel kezdünk ismerkedni. Ezt sok hasonló követi majd még. <span class="osszefoglalas">A fontos részek összefoglalását így, </span><span class="extra">a törzsanyagon kívüli extra tudnivalókat pedig így</span> látjátok a szövegben.</p>
 
@@ -590,7 +591,8 @@ False</code></pre>
             <li>bármilyen karaktert (betűk, számok, írásjelek, szóközök, emojik) tárolhat;</li>
             <li>mindig <b>idézőjelek</b> (<code>" "</code>, <span class="gomb">Shift + 2</span>) vagy <b>aposztrófok</b> (<code>' '</code>, <span class="gomb">Shift + 1</span>) közé kell tenni;</li>
             <li>ha egy számot idézőjelbe teszel, a Python onnantól szövegként kezeli (pl. <code>"123"</code> nem egyenlő a <code>123</code>-mal, és nem tudsz vele matematikai értelemben számolni!);</li>
-            <li>ha többsoros szöveget szeretnél írni, azt három idézőjel (<code>""" """</code>) közé kell tenned.</li>
+            <li>ha többsoros szöveget szeretnél írni, azt három idézőjel (<code>""" """</code>) közé kell tenned;</li>
+            <li class="extra">érdekesség, hogy ha a kódban tetszőleges helyen teszel három idézőjelet, akkor a program azt figyelmen kívül hagyja, ha nem tud vele mit kezdeni. Ha egy print() függvényben van ilyened, akkor kiírja az idézőjelek közti szöveget. Ha viszont a kódodban egy véletlen helyen van ilyen, akkor az kommentként viselkedik, a fordító átugorja. Érdemes ezt pl. akkor is használni, ha egymás után oldod meg a gyakorló feladatokat, és nem szeretnéd kitörölni, amiket csináltál (hogy lásd később), de zavar a sok kiírt szöveg a terminálon.</li>
           </ul>
         </p>
       </div>
@@ -776,6 +778,27 @@ False</code></pre>
       </details>
     </div>
 
+    <div class="task-card">
+      <h4>7. feladat: matek házi</h4>
+      <p>Oldd meg a Python segítségével a következő feladatot! <br>
+      Egy egyenlő szárú háromszög alapja <i>a = 6 cm</i> hosszú, magassága pedig <i>m<sub>a</sub> = 4 cm</i>. Számítsd ki a <i>b</i> oldal hosszát és a háromszög területét is! Az oldal hosszához készíts egy változót is, de a területet közvetlenül az fstringben számold ki!</p>
+      <div class="extra">
+        <b>Tipp:</b> az egyenlő szárú háromszög alapjához tartozó magasság egyben szögfelező és oldalfelező merőleges is. Ez azt jelenti, hogy az alap közepétől a szemközti csúcsig húzódik. A b oldal hosszát ezért a Pitagorasz-tétellel egyszerűen kiszámíthatjuk. Gyökvonáshoz Pythonban egyelőre a legegyszerűbb, ha az &#189;. hatványra emelünk a ** operátorral.<br>
+        <b>Tipp 2:</b> a háromszög területe kiszámolható az adott oldal és a hozzá tartozó magasság szorzatának felével.
+      </div>
+
+      <details class="megoldasok">
+        <summary><i>Mutasd a megoldást!</i></summary>
+        <p>A <i>b</i> oldal hossza a Pitagorasz-tétel alapján kiszámítható. b<sup>2</sup> = a<sup>2</sup> + m<sub>a</sub><sup>2</sup>, ebből b = &radic;(a<sup>2</sup> + m<sub>a</sub><sup>2</sup>).</p>
+        <pre><code><span class="var">a</span> = <span class="int">6</span>
+<span class="var">ma</span> = <span class="int">5</span>
+
+<span class="var">b</span> = <span class="elso-zarojel">(<span class="masodik-zarojel">(<span class="var">a</span> / <span class="int">2</span>)</span> ** <span class="int">2</span> + <span class="var">ma</span> ** <span class="int">2</span>)</span> ** <span class="int">0.5</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A háromszög szárai {<span class="var">b</span> =} cm hosszúak, területe pedig {<span class="var">a</span> * <span class="var">ma</span> / <span class="int">2</span>} cm2."</span>)</span></code></pre>
+<p>Figyeld meg, hogy az fstringbe most "b ="-t írtunk: így a változó neve is megjelenik, nem csak az értéke, ami egy matek feladat szöveges válaszában pont jó. Az egyszerűbb műveleteket, mint például a terület kiszámítását, megcsinálhatjuk a kódban is, ha többször már nem lesz szükség az adatra. Általában ilyenkor is érdemes változót használni, mert az javítja a kód olvashatóságát, de jó tudni, hogy ilyen lehetőség is van.</p>
+      </details>
+    </div>
+
     <div class="osszefoglalas">
       Ha ezeket a feladatokat meg tudtad oldani, vagy megértetted a megoldásokat, akkor gratulálok! Sikeresen elsajátítottad az adattípusok és a változók használatát.
     </div>
@@ -867,37 +890,18 @@ False</code></pre>
       e.returnValue = '';
     });</script>
     <script>
-    // Másolás funkció a kóddobozokhoz
-    function copyCode(button) {
-      // Megkeresi a gomb melletti <pre><code> elemet
-      const codeBlock = button.nextElementSibling;
-      const textToCopy = codeBlock.innerText;
-
-      // Szöveg másolása a vágólapra
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        // Gomb stílusának módosítása a visszajelzéshez
-        const originalText = button.innerText;
-        button.innerText = "Másolva! ✓";
-        button.classList.add("copied");
-
-        // Gomb visszaállítása 2 másodperc után
-        setTimeout(() => {
-          button.innerText = originalText;
-          button.classList.remove("copied");
-        }, 2000);
-      }).catch(err => {
-        console.error('Sikertelen másolás: ', err);
-        button.innerText = "Hiba :(";
-      });
-    }
+    
   </script>
 
     <!--  itt jön a modal -->
   <div id="kep-modal" class="modal-hatter">
+    <span class="modal-bezaras">&times;</span>
     <div class="modal-tartalom">
-        <span class="modal-bezaras">&times;</span>
         <img id="modal-benne-levo-kep" src="" alt="">
     </div>
   </div>
+
+  <button id="theme-toggle" title="Sötét/Világos mód">🌙</button>
+
 </body>
 </html>

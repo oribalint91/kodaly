@@ -8,7 +8,7 @@
   <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-  <div class="back"><a href="index.html">Vissza a kezdőlapra</a></div>
+  <div class="back"><a href="../index.html">Vissza a kezdőlapra</a></div>
   <h2>🐍 Python alapok II.: Döntéshozatal a kódban</h2>
   
   <p class="intro">Eddig a programjaink olyanok voltak, mint egy egyenes csúszda: elindultak a tetején, és sorban végrehajtották az utasításokat, egészen az aljáig. De mi van akkor, ha azt szeretnénk, hogy a gép <b>döntsön</b>? Ebben a részben megtanítjuk a programunkat arra, hogy a megadott adatok alapján különböző utakat válasszon! <br>
@@ -29,28 +29,32 @@
           <div class="right-container">
             <div class="rejtett-kep" id="kerdes"><i>Szereted a csokit?</i> → <b>igen</b><br>
                     <i>43 kisebb, mint 20?</i> → <b>nem</b> <br>
-                <i>A "tej" kararktersor benne van a "tejszelet" karaktersorban?</i> → <b>igen</b></div>
+                <i>A "tej" karaktersor benne van a "tejszelet" karaktersorban?</i> → <b>igen</b></div>
             <div class="rejtett-kep" id="allitas"><i>Szeretem a csokit.</i> → <b><span class="bool">igaz</span></b> <br>
                     <i>43 kisebb, mint 20.</i> → <b><span class="bool">hamis</span></b> <br>
                 <i>A "tej" karaktersor benne van a "tejszelet" karaktersorban.</i> → <b><span class="bool">igaz</span></b></div>
           </div>
       </div>
-
-      <pre><code><span class="var">arany_mennyisege</span> = <span class="int">150</span>
-
+<div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+  
+        <pre><code><span class="var">arany_mennyisege</span> = <span class="int">150</span>
+  
 <span class="komment"># Megvizsgáljuk, van-e elég pénzünk egy kardra</span>
 <span class="fn">if</span> <span class="var">arany_mennyisege</span> >= <span class="int">100</span>:
     <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Sikeresen megvásároltad a Varázskardot!"</span>)</span>
     <span class="var">arany_mennyisege</span> = <span class="var">arany_mennyisege</span> - <span class="int">100</span>
-
+  
 <span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Kaland folytatódik, maradék aranyad: {<span class="var">arany_mennyisege</span>}"</span>)</span></code></pre>
+</div>
       
       <div class="extra">
         <b>Két nagyon fontos Python szabály:</b>
         <ol>
           <li>A feltétel (pl. <code>arany >= 100</code>) után <b>mindig kettőspontot (:) kell tenni!</b> Ez jelzi a gépnek, hogy "figyelj, most jön az, amit csinálnod kell".</li>
-          <li>A kettőspont utáni sorokat <b>beljebb kell húzni</b> (a <span class="gomb">Tab</span> billentyűvel). A Python ebből a behúzásból tudja, hogy mely parancsok tartoznak a ládanyitáshoz, és melyek azok, amik már a normál séta részei. (A VS Code szerencsére ezt legtöbbször automatikusan megcsinálja helyetted).</li>
+          <li>A kettőspont utáni sorokat <b>beljebb kell húzni</b> (a <span class="gomb">Tab</span> billentyűvel). A Python ebből a behúzásból tudja, hogy mely parancsok tartoznak a ládanyitáshoz, és melyek azok, amik már a normál séta részei. A VS Code szerencsére ezt legtöbbször automatikusan megcsinálja helyetted. Ha viszont már megint a fő programághoz tartozó sort írsz, akkor fontos, hogy kitöröld ezt a behúzást. <span class="ia" data-tipus="toggle" data-target="behuzasok">Így lesz egy lépcsős elrendezése a programodnak.</span></li>
         </ol>
+        <div class="lenyilo-tartalom" id="behuzasok"><img src="kepek/vscode_python_if_szinezes.png" alt=""><p>A színezésen is látszik, hogy mi mikor fut le. A pirossal jelölt sorok (és a jelöletlenek a tetején és az alján is) <i>mindenképpen</i> lefutnak. A program ezt a feltételt mindenképpen ellenőrzi. A sárgával jelölt részek csak akkor futnak le, ha a piros feltétel igaz. A zöld csak akkor, ha a piros és a sárga is igaz, a kék pedig akkor, ha a zöld is. <b>A 9. sorban</b> levő mondat viszont mindenképpen megjelenik. Ehhez fontos, hogy <b>ezt ismét kint kezdjük</b>, vagyis töröljük előle a tabulátorokat. Ha beljebb maradt volna, akkor <b>a piros, a sárga vagy a zöld feltétel alá tartozna</b>, vagyis <b>csak akkor futott volna le, ha ezek igazak</b>. Ha a kékhez képest is beljebb kezdjük, akkor a program hibát dob. Azért, mert a print() függvény nem tartalmaz állítást, amelynek az igaz vagy hamis voltát el lehetne dönteni. Így viszont nincs értelme ez alá rendelni bármilyen másik parancsot.</p></div>
       </div>
     </details>
 
@@ -60,14 +64,18 @@
       
       <p>Erre való az <code>if-else</code> (<i>ha - különben</i>) szerkezet. Ha a feltétel igaz, az egyik úton megyünk, ha hamis, akkor automatikusan a másik úton.</p>
 
+      <div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+        
       <pre><code><span class="var">jelszo</span> = <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Mondd a jelszót, hogy beléphess a titkos ajtón: "</span>)</span>
 
 <span class="fn">if</span> <span class="var">jelszo</span> == <span class="str">"Mellon"</span>:
     <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Az ajtó kinyílik. Üdvözöllek, barátom!"</span>)</span>
 <span class="fn">else</span>:
     <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Helytelen jelszó! Az ajtó zárva marad."</span>)</span></code></pre>
+      </div>
 
-      <p class="extra"><b>Figyelem!</b> Észrevetted, hogy a jelszó ellenőrzésénél <b>két egyenlőségjelet (<code>==</code>)</b> használtunk? Emlékezz: az egy egyenlőségjel (<code>=</code>) az <i>értékadás</i> (amikor beteszünk valamit a változó-dobozba). A dupla egyenlőségjel (<code>==</code>) a <i>kérdés</i>: "Vajon egyenlő a kettő?".</p>
+      <p class="extra"><b>Figyelem!</b> Észrevetted, hogy a jelszó ellenőrzésénél <b>két egyenlőségjelet (<code>==</code>)</b> használtunk? Emlékezz: az egy egyenlőségjel (<code>=</code>) az <i>értékadás</i> (amikor beteszünk valamit a változó-dobozba, a <b>legyen</b> operátor). A dupla egyenlőségjel (<code>==</code>) a <i>kérdés</i>: "Vajon egyenlő a kettő?".</p>
     </details>
 
     <details>
@@ -75,6 +83,9 @@
       <p>Mi van akkor, ha egy játéknak nem kettő, hanem több kimenetele lehet? Például egy párbeszéd során háromféleképpen is válaszolhatsz egy karakternek (Barátságos, Semleges, Ellenséges).</p>
       
       <p>Ilyenkor az <code>if</code> és az <code>else</code> közé beékelhetünk egy vagy több <b><code>elif</code></b> (az <i>else if</i>, azaz "különben ha" rövidítése) ágat.</p>
+
+      <div class="code-container">
+          <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
 
       <pre><code><span class="var">haz_neve</span> = <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Melyik roxforti házba vágysz? "</span>)</span>
 
@@ -86,22 +97,29 @@
     <span class="print">print</span><span class="elso-zarojel">(<span class="str">"A becsvágy és a ravaszság vezet utadon!"</span>)</span>
 <span class="fn">else</span>:
     <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Üdvözöllek a Hugrabugban, a hűségesek között!"</span>)</span></code></pre>
+      </div>
+
       <p>A gép szépen sorban megvizsgálja a feltételeket fentről lefelé. Amint talál egy olyat, ami <b>igaz</b>, végrehajtja a hozzá tartozó utasítást, a többit pedig <b>átugorja</b>. Ha egyik sem igaz, jön az <code>else</code> ág (ami nem kötelező, de jó, ha van, mint egy "minden más esetben" védőháló).</p>
     </details>
 
     <div class="osszefoglalas">
-      <ul><h3>Összegzés</h3>
-        <li><b>if:</b> Megvizsgál egy feltételt. Ha igaz, cselekszik.</li>
-        <li><b>elif:</b> Újabb feltétel, ha az előző nem volt igaz.</li>
-        <li><b>else:</b> Ez történik minden más esetben (nincs utána feltétel!).</li>
-        <li>Ne felejtsd a <b>kettőspontot (:)</b> a sor végén, és a <b>behúzást</b> az utasítások előtt!</li>
-        <li>Az összehasonlításhoz dupla egyenlőségjelet <b>(==)</b> használunk!</li>
-      </ul>
+      <details>
+        <summary>Összegzés</summary>
+        <ul>
+          <li><b>if:</b> megvizsgál egy feltételt. Ha igaz, cselekszik.</li>
+          <li><b>elif:</b> újabb feltétel, ha az előző nem volt igaz.</li>
+          <li><b>else:</b> ez történik minden más esetben (nincs utána feltétel!).</li>
+          <li>Ne felejtsd a <b>kettőspontot (:)</b> a sor végén, és a <b>behúzást</b> (<span class="gomb">Tab</span>) az utasítások előtt!</li>
+          <li>Az összehasonlításhoz dupla egyenlőségjelet <b>(==)</b> használunk!</li>
+        </ul>
+      </details>
     </div>
   </div>
   <div class="task-card">
     <h3>2. Gyakorló feladatok: hozd meg a döntést!</h3>
-    <p>A következő feladatokban kipróbálhatod, hogyan tud a programod döntéseket hozni. Hozz létre egy új Python fájlt, és haladj sorban! Ne feledd: a <b>kettőspont (:)</b> és a <b>behúzás (Tab)</b> a legjobb barátaid!</p>
+    <p>A következő feladatokban kipróbálhatod, hogyan tud a programod döntéseket hozni. Hozz létre egy új Python fájlt <span class="ia" data-tipus="toggle" data-target="kommenteles">vagy kommenteld ki az eddig írtakat</span>, és haladj sorban! Ne feledd: a <b>kettőspont (:)</b> és a <b>behúzás (Tab)</b> a legjobb barátaid!</p>
+    <div class="lenyilo-tartalom" id="kommenteles"><p><b>Rövid kommentelésre</b> használhatod a <b>kettőskeresztet</b> (hashtag; <span class="gomb">Alt Gr + x</span>). Minden, ami a sorban ez után van (kivéve, ha a hashtag idézőjelben volt), kommentnek számít, a fordító átugorja. <b>Hosszabb megjegyzéseket</b> írhatsz több soron keresztül, ha <b>az elejére és a végére is három-három aposztrófot</b> teszel. Ezt érdemes használni akkor is, ha egy részt a kódban épp nem szeretnél használni, de elképzelhetőnek tartod, hogy még lesz rá szükséged. Akár azért, mert szeretnéd beadni majd.</p>
+    <img src="kepek/vscode_python_kommentek.png" alt=""></div>
 
     <div class="task-card">
       <details>
@@ -129,7 +147,7 @@
 
     <div class="task-card">
       <details>
-          <summary>2. feladat: A Sötét Erdő őre (<code>if-else</code>)</summary>
+          <summary>2. feladat: a Sötét Erdő őre (<code>if-else</code>)</summary>
           <p>Egy kalandjátékban a karaktered egy őrhöz ér. Az őr csak azokat engedi be a Sötét Erdőbe, akik már elég tapasztaltak, azaz a szintjük eléri a 10-et. Kérd be a játékos szintjét (ne felejtsd el számmá alakítani!). <br>
           Ha a szintje <b>10 vagy annál nagyobb</b> (<code>&gt;=</code>), írd ki: <i>"Lépj be, bátor kalandor!"</i>. <br>
           Különben (minden más esetben) írd ki: <i>"Túl gyenge vagy még, térj vissza később!"</i></p>
@@ -175,14 +193,16 @@
 
     <div class="task-card">
       <details>
-          <summary>4. feladat: a fogadó étlapja (Változó frissítése feltétellel)</summary>
+          <summary>4. feladat: a fogadó étlapja (változó frissítése feltétellel)</summary>
           <p>Képzeld el, hogy a karaktered betér egy fogadóba, és van a zsebében 50 aranya. Ezt tárold el egy változóban (pl. <code>arany = 50</code>). <br>
           A fogadós megkérdezi, mit kérsz: <b>"Víz"</b> (10 arany) vagy <b>"Bor"</b> (30 arany)? Kérd be a választ! <br>
           Ha "Víz"-et választ, vonj le az aranyából 10-et. Ha "Bor"-t, vonj le 30-at. Különben (ha mást ír) ne vonj le semmit, csak írd ki, hogy <i>"Ilyenünk nincs."</i>. <br>
           A program legvégén – az elágazás után – írd ki egy f-stringgel, hogy mennyi aranya maradt a játékosnak!</p>
           
           <div class="extra">
-            <b>Tipp:</b> Ahhoz, hogy csökkentsd az arany értékét, a változót fel kellülírnod önmagával. Például: <code>arany = arany - 10</code>.
+            <b>Tipp:</b> Ahhoz, hogy csökkentsd az arany értékét, a változót felül kell írnod önmagával. Például: <code>arany = arany - 10</code>.
+            <p>Emlékszel, hogyan lehet ugyanezt röviden, a változó nevét csak egyszer leírva is megcsinálni? Ha nem, <span class="ia" data-tipus="toggle" data-target="osszetett-operatorok">kattints ide!</span> <div class="lenyilo-tartalom" id="osszetett-operatorok">Ehhez használtunk olyan összetett operátorokat, mint a "+=" vagy a "*=". Most a "-=" kell.</div>
+            </p>
           </div>
           <details class="megoldasok">
             <summary><i>Mutasd a megoldást!</i></summary>
@@ -211,7 +231,7 @@
           <summary>5. feladat: a szfinx találós kérdése (szigorú szövegvizsgálat)</summary>
           <p>A Szfinx elzárja az utat, és feltesz egy kérdést: <i>"Reggel négy lábon jár, délben két lábon, este három lábon. Mi az?"</i><br>
           Kérd be a választ! Ha a játékos beírja, hogy <b>"ember"</b>, engedd át (írj ki egy gratulációt). Bármi más válasz esetén a Szfinx nem engedi át.<br><br>
-          <b>Nehezítés (Bónusz):</b> A Python nagyon szigorú. Ha a játékos nagybetűvel írja, hogy "Ember", a sima <code>== "ember"</code> vizsgálat hamisat fog adni! Keress rá az interneten (vagy kérdezd a tanárt), hogyan lehet a bekért szöveget automatikusan kisbetűssé alakítani a vizsgálat előtt, vagy használj két feltételt!</p>
+          <b>Nehezítés (Bónusz):</b> A Python nagyon szigorú. Ha a játékos nagybetűvel írja, hogy "Ember", a sima <code>== "ember"</code> vizsgálat hamisat fog adni! Keress rá az interneten (vagy kérdezd a tanárt), hogyan lehet a bekért szöveget automatikusan kisbetűssé alakítani a vizsgálat előtt, vagy használj két feltételt! Használhatod az <i>or</i> operátort is arra, hogy két vagy több lehetőséget vizsgálj meg egyszerre.</p>
           
           <details class="megoldasok">
             <summary><i>Mutasd a megoldást!</i></summary>
@@ -229,6 +249,8 @@
           <span class="komment">#     print("A Szfinx bólint. Szabad az út!")</span>
           <span class="komment"># else:</span>
           <span class="komment">#     print("Helytelen! Az utad itt véget ér.")</span></code></pre>
+          <details class="extra"><summary>Profi megoldás magyarázata</summary>
+          <p>A Python objektumokon, mint amik pl. a szövegek is, alkalmazhatunk <b>metódusokat</b>. Ezek valójában függvények, vagyis csinálnak valamit. A speciális tulajdonságuk csak annyi, hogy egy-egy objektumhoz kötve léteznek, és csak ezek használatával lehet őket meghívni. Mivel függvények, <b>zárójelet teszünk mögéjük</b>, de mivel az objektumhoz tartoznak, <b>az objektum neve után, ponttal elválasztva</b> hívjuk meg őket.</p></details>
           </details>
       </details>
     </div>
@@ -236,12 +258,14 @@
 
   <img src="https://blanbla.com/wp-content/uploads/2023/05/nobody-expects.jpeg" id="bemutato" style="display: none;" alt="Bevetted!">
     <!--  itt jön a modal -->
-  <div id="kep-modal" class="modal-hatter">
-    <div class="modal-tartalom">
-        <span class="modal-bezaras">&times;</span>
-        <img id="modal-benne-levo-kep" src="" alt="">
+    <div id="kep-modal" class="modal-hatter">
+      <div class="modal-bezaras">&times;</div>
+      <div class="modal-tartalom">
+      <img id="modal-benne-levo-kep" src="" alt="">
     </div>
   </div>
+
+  <button id="theme-toggle" title="Sötét/Világos mód">🌙</button>
   
 </body>
 </html>

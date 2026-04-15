@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐍 Python alapok: ismétlés for ciklussal</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+  <div class="back"><a href="../index.html">Vissza a kezdőlapra</a></div>
+    
+    
+    <div class="task-card">
+        <h3>Ciklusok 1.: A <code>for</code> ciklus (az ismétlés mestere)</h3>
+        
+        <p class="intro">A számítógépek egyik legnagyobb előnye, hogy sosem unják meg a monoton feladatokat. Ha százszor kell leírniuk valamit, zokszó nélkül megteszik. A programozásban viszont fontos alapelv, hogy nem írjuk le ugyanazt többször. Erre valók a <b>ciklusok</b>. A Pythonban az egyik leggyakrabban használt ciklus a <code>for</code> (magyarul: <i>"számára"</i> vagy <i>"minden ...-ra"</i>; természetesen itt a második értelmét vesszük). Leginkább arra használjuk, hogy <b>végigmenjünk egy lista (vagy más összetett adattípus) elemein</b>.</p>
+        
+        
+        <details>
+          <summary>Végiglépkedés egy listán (Iteráció)</summary>
+          <p>Emlékszel a kalandor hátizsákjára az előző feladatból? Képzeld el, hogy a kalandor ki akarja pakolni a földre a tárgyait, és mindegyiket meg akarja nevezni. Ciklusok nélkül így nézne ki a program:</p>
+          
+            <div class="code-container">
+              <pre><code><span class="var">hatizsak</span> <span class="is">=</span> [<span class="str">"Kötél"</span>, <span class="str">"Fáklya"</span>, <span class="str">"Kard"</span>]
+              
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"A kezemben van: "</span> <span class="is">+</span> <span class="var">hatizsak</span>[<span class="int">0</span>])</span>
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"A kezemben van: "</span> <span class="is">+</span> <span class="var">hatizsak</span>[<span class="int">1</span>])</span>
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"A kezemben van: "</span> <span class="is">+</span> <span class="var">hatizsak</span>[<span class="int">2</span>])</span></code></pre>
+            </div>
+                
+                <p>Ez három elemnél még csak-csak elmegy, de mi van, ha 1000 tárgy van a táskában? Itt jön a mágia! A <code>for</code> ciklussal ezt mindössze <b>két sorban</b> meg tudjuk oldani:</p>
+                <div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+                  <pre><code><span class="var">hatizsak</span> <span class="is">=</span> [<span class="str">"Kötél"</span>, <span class="str">"Fáklya"</span>, <span class="str">"Kard"</span>]
+                      
+<span class="is">for</span> <span class="var">targy</span> <span class="is">in</span> <span class="var">hatizsak</span>:
+    <span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A kezemben van: {<span class="var">targy</span>}"</span>)</span></code></pre>
+                </div>
+                
+                <div class="extra">
+                  <b>Mit is csináltunk itt pontosan? Fordítsuk le magyarra!</b>
+    <p>A <code><span style="color: #c586c0;">for</span> targy <span style="color: #c586c0;">in</span> hatizsak:</code> sor jelentése: <i>"A hátizsákban lévő <b>minden egyes</b> elemre (amit ideiglenesen nevezzünk el 'targy'-nak) csináld meg a következő, behúzott sorokat!"</i></p>
+    <p>A Python automatikusan kiveszi az első elemet ("Kötél"), beteszi a <code>targy</code> változóba, futtatja a printet. Aztán kiveszi a másodikat, futtatja a printet. Mindezt addig csinálja, amíg a lista végére nem ér. Mi döntöttük el, hogy <code>targy</code>-nak hívjuk az ideiglenes változót, lehetett volna <code>x</code> vagy <code>cucc</code> is! Ezt az ideiglenes változót <b>ciklusváltozónak</b> hívjuk, mert csak a cikluson belül létezik. Fogunk még találkozni vele!</p>
+</div>
+<p>Gondolj erre úgy, mintha futószalagon jönnének az adatok, és a ciklus belsejében lévő kód (a behúzott rész) az a munkás, aki mindegyikkel egyesével csinál valamit.</p>
+</details>
+
+<details>
+  <summary>Ugyanaz ismétlése többször</summary>
+  <p>Bár ritkán van ennek gyakorlati haszna, érdemes azért először ezzel a működéssel megismerkedni, ha a listákkal már tudunk dolgozni. Képzeld el, hogy háromszor szeretnél kiírni egy figyelmeztetést! Ha emlékszel, egy fontos alapelv volt a programozás bevezetésekor, hogy <b>nem írjuk le ugyazazt többször</b>. Főleg, ha a figyelmeztetés mondjuk grafikus elemeket is tartalmaz, és önmagában, egyszer leírva is hosszú. Ilyenkor használhatjuk a <code>for</code> ciklust egy beépített függvénnyel, a <code>range()</code> függvénnyel együtt.</p>
+  <div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+    <pre><code><span class="is">for <span class="var">i</span> in</span> <span class="fn">range</span><span class="elso-zarojel">(<span class="int">3</span>)</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"‼️😊Ez egy fontos figyelmeztetés 😮🌹"</span>)</span></code></pre>
+  </div>
+  <p>A ciklusváltozó itt az <i>i</i> nevet kapta. Ezt gyakran használjuk, mert rövid, és mert először matematikusok készítettek programokat, akik egy hasonló függvénynél gyakran az i betűt használják ugyanerre. A <code>range()</code> függvénybe írt argumentum hatására a ciklus pont annyiszor fut le, amennyit ide beírunk.</p>
+</details>
+
+<details>
+    <summary>Számlálás a <code>range()</code> függvénnyel</summary>
+    <p>Néha nincs listánk, amin végig akarunk menni, egyszerűen csak azt akarjuk mondani a gépnek: <i>"Csináld meg ezt ötször!"</i>. Ilyenkor hívjuk segítségül a <code>range()</code> (tartomány) függvényt.</p>
+    <div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+      <pre><code><span class="is">for</span> <span class="var">szam</span> <span class="is">in</span> <span class="fn">range</span><span class="elso-zarojel">(<span class="int">5</span>)</span>:
+    <span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Most tartunk a {<span class="var">szam</span>}. lépésnél."</span>)</span></code></pre>
+    </div>
+    
+      <p>Futtatás után valami érdekeset fogsz észrevenni a terminálban: a számozás nem 1-től, és nem is 5-ig tart!</p>
+      
+      <div class="osszefoglalas">
+          A <code>range(5)</code> az alábbi számokat generálja: <b>0, 1, 2, 3, 4</b>. Emlékszel a listák indexelésére? A Python imád a nullától számolni. Tehát 5 darab számot kapunk, de 0-val kezdve!
+        </div>
+        
+        <p>Ha azt szeretnéd, hogy mondjuk 1-től 10-ig menjen, megadhatod a kezdő- és a végpontot is: <code>range(1, 11)</code>. Figyeld meg, hogy a végpontot (11) már <b>nem</b> veszi bele! </p>
+        <p class="extra">Megadhatsz egy harmadik paramétert is. Ez a léptéket adja meg, vagyis ha pl. kettőt írsz ide, akkor a program kettesével lépked végig a számokon.</p>
+    </details>
+    
+    <details>
+        <summary>Végiglépkedés a szövegeken (String iteráció)</summary>
+        <p>Tudtad, hogy a Python számára egy szöveg (string) lényegében egy karakterekből álló lista? Emiatt a <code>for</code> ciklussal egy mondatot is betűkre lehet bontani!</p>
+        
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+    
+          <pre><code><span class="var">titok</span> <span class="is">=</span> <span class="str">"Python"</span>
+    
+<span class="is">for</span> <span class="var">betu</span> <span class="is">in</span> <span class="var">titok</span>:
+    <span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A következő betű: {<span class="var">betu</span>}"</span>)</span></code></pre>
+  </div>
+        </details>
+    </div>
+
+    <div class="task-card">
+    <h3>Gyakorló feladatok: Ciklusok pörgetése</h3>
+    <p>A for ciklus az egyik leghasznosabb eszköz a kezedben! Nyiss egy új fájlt, és próbáld ki a következő feladatokat. Figyelj a <b>kettőspontra</b> a ciklus sorának végén, és a <b>behúzásra (Tab)</b> a ciklus belsejében!</p>
+
+    <div class="task-card">
+      <details>
+          <summary>1. feladat: Roxforti büntetés (A <code>range()</code> használata)</summary>
+          <p>Harry Potter megint bajba került, és büntetésből le kell írnia 10-szer a táblára: <i>"Nem mondok többé hazugságokat!"</i>.<br>
+          Ahelyett, hogy 10-szer használnád a <code>print()</code> függvényt, írj egy <code>for</code> ciklust a <code>range()</code> segítségével, ami elvégzi ezt a monoton munkát!</p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="komment"># A range(10) biztosítja, hogy a ciklus pontosan 10-szer fusson le.</span>
+<span class="komment"># Az ideiglenes változót elneveztük "szam"-nak.</span>
+<span class="is">for</span> <span class="var">szam</span> <span class="is">in</span> <span class="fn">range</span><span class="elso-zarojel">(<span class="int">10</span>)</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Nem mondok többé hazugságokat!"</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <details>
+          <summary>2. feladat: A robot inasa (Végiglépkedés listán)</summary>
+          <p>Készíts egy listát <code>teendok</code> néven a következő elemekkel: <code>"Mosogatás"</code>, <code>"Porszívózás"</code>, <code>"Ablakmosás"</code>. <br>
+          Írj egy <code>for</code> ciklust, ami végigmegy ezen a listán, és minden elemnél kiírja: <i>"A robot megkezdte a következő feladatot: [ide jöjjön az aktuális teendő]"</i>!</p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">teendok</span> <span class="is">=</span> [<span class="str">"Mosogatás"</span>, <span class="str">"Porszívózás"</span>, <span class="str">"Ablakmosás"</span>]
+          
+<span class="is">for</span> <span class="var">feladat</span> <span class="is">in</span> <span class="var">teendok</span>:
+    <span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A robot megkezdte a következő feladatot: {<span class="var">feladat</span>}"</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <details>
+          <summary>3. feladat: Titkos üzenet varázsló (Szöveg bontása)</summary>
+          <p>Kérj be a felhasználótól (<code>input()</code>) egy titkos szót. Ezután egy <code>for</code> ciklus segítségével menj végig a szó betűin, és írasd ki őket egyesével, de minden betű után tegyél három pontot! (Például, ha a szó "ALMA", a program írja ki: <i>A... L... M... A...</i> egymás alatti sorokban).</p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">titkos_szo</span> <span class="is">=</span> <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Mi a titkos üzenet? "</span>)</span>
+          
+<span class="komment"># A Python a szöveget (stringet) betűk sorozataként kezeli</span>
+<span class="is">for</span> <span class="var">betu</span> <span class="is">in</span> <span class="var">titkos_szo</span>:
+    <span class="print">print</span><span class="elso-zarojel">(f<span class="str">"{<span class="var">betu</span>}..."</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card extra">
+      <details>
+          <summary>4. feladat (Haladó): Trükkös visszaszámlálás</summary>
+          <p>A <code>for</code> ciklus a <code>range()</code> függvénnyel kiválóan alkalmas arra, hogy különböző számlálókat készítsünk. Nyilván egy 0-tól valameddig számláló program nagyon egyszerű. Most készíts egy olyan számlálót, ami <b>100-tól 0-ig számol vissza, kettesével</b>!</p>
+          
+
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="is">for <span class="var">i</span> in</span> <span class="fn">range</span><span class="elso-zarojel">(<span class="int">100<span class="normal">, </span>-1<span class="normal">, </span>-2</span>)</span>:
+    <span class="fn">print</span><span class="elso-zarojel">(<span class="var">i</span>)</span></code></pre>
+    <p>A kezdő szám meg fog jelenni a kimenetben, de a befejező, vagyis a második argumentum nem. Ezért kell a második helyre mínusz egyet írni, hogy a 0 is megjelenjen még. A harmadik helyen a lépés pedig 2, de mivel csökken, ide is negatív szám kerül.</p>
+          </details>
+      </details>
+    </div>
+
+        <hr style="margin: 20px 0;">
+
+    <div class="task-card extra">
+      <details>
+          <summary>5. feladat (Haladó): A kincsesláda számlálója (Ciklus + Feltétel)</summary>
+          <p>Itt az ideje ötvözni a ciklust (<code>for</code>) a korábban tanult elágazásokkal (<code>if</code>)! <br>
+          Van egy kincsesládád (lista), amiben ezek a tárgyak vannak: <code>["Kő", "Arany", "Kő", "Ezüst", "Arany", "Vas", "Arany"]</code>.<br>
+          Szeretnénk megszámolni, hány "Arany" van a ládában. Hozz létre egy <code>arany_darab</code> nevű változót, és adj neki <code>0</code> értéket (ez lesz a számlálónk). <br>
+          Menj végig a lista elemein egy <code>for</code> ciklussal! Ha az aktuális elem pontosan az, hogy <code>"Arany"</code>, akkor növeld meg a számlálódat 1-gyel. A ciklus lefutása <b>után</b> (behúzás megszüntetve) írasd ki, hány aranyat találtál!</p>
+          
+          <div class="extra">
+            <b>Tipp:</b> Egy változó értékét így növelheted meg egyel: <code>valtozo = valtozo + 1</code> vagy rövidebben: <code>valtozo += 1</code>.
+          </div>
+
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">kincseslada</span> <span class="is">=</span> [<span class="str">"Kő"</span>, <span class="str">"Arany"</span>, <span class="str">"Kő"</span>, <span class="str">"Ezüst"</span>, <span class="str">"Arany"</span>, <span class="str">"Vas"</span>, <span class="str">"Arany"</span>]
+<span class="var">arany_darab</span> <span class="is">=</span> <span class="int">0</span>  <span class="komment"># Számláló indulása</span>
+          
+<span class="is">for</span> <span class="var">targy</span> <span class="is">in</span> <span class="var">kincseslada</span>:
+    <span class="fn">if</span> <span class="var">targy</span> <span class="is">==</span> <span class="str">"Arany"</span>:
+        <span class="komment"># Csak akkor növeljük, ha Aranyat találtunk</span>
+        <span class="var">arany_darab</span> <span class="is">=</span> <span class="var">arany_darab</span> <span class="is">+</span> <span class="int">1</span>
+          
+<span class="komment"># Visszaléptünk a normál szintre (nincs behúzás), így ez csak a ciklus után fut le:</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Összesen {<span class="var">arany_darab</span>} darab aranyat találtunk."</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+  </div>
+    
+    <button id="theme-toggle" title="Sötét/Világos mód">🌙</button>
+    
+</body>
+</html>
