@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐍 Python: 10. évfolyamos Ismétlés</title>
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
+</head>
+<body>
+    
+  <h2>🐍 10. évfolyam: Python Gyorsítósáv (Haladó Ismétlés)</h2>
+    
+  <p class="intro">Üdv újra a kódsorok között! A 10. évfolyamban már nem csak "játszunk" a Pythonnal, hanem igazi szoftverfejlesztőként gondolkodunk. Mielőtt új, izgalmas területekre (például szövegtitkosításra vagy fájlok kezelésére) eveznénk, frissítsük fel a legfontosabb haladó eszközeinket: a szótárakat, a függvényeket és a hibakezelést egy mini-RPG játék alapjain keresztül!</p>
+
+  <div class="task-card">
+    <h3>1. Összetett adatok: Szótárak (Dictionary)</h3>
+    <p>Míg a listákban <code>[]</code> csak egymás után pakoljuk az adatokat, a szótárakban <code>{}</code> <b>Kulcs-Érték</b> párokat használunk. Ez tökéletes egy játékos adatlapjának tárolására!</p>
+    
+    <pre><code><span class="var">hos</span> <span class="is">=</span> {
+    <span class="str">"név"</span>: <span class="str">"Gondalf"</span>,
+    <span class="str">"életerő"</span>: <span class="int">100</span>,
+    <span class="str">"arany"</span>: <span class="int">50</span>
+}
+
+<span class="komment"># Adat lekérése a kulcs alapján:</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A hős neve: {<span class="var">hos</span>[<span class="str">'név'</span>]}"</span>)</span>
+
+<span class="komment"># Érték módosítása (pl. sebződik):</span>
+<span class="var">hos</span>[<span class="str">"életerő"</span>] <span class="is">=</span> <span class="var">hos</span>[<span class="str">"életerő"</span>] <span class="is">-</span> <span class="int">15</span></code></pre>
+  </div>
+
+  <div class="task-card">
+    <h3>2. Saját parancsok: Függvények (<code>def</code>) és a <code>return</code></h3>
+    <p>Ha egy kódrészletet többször is használni akarunk (pl. egy támadás kiszámítása), függvénybe csomagoljuk. Emlékszel a turmixgép szabályra? A <code>return</code> adja vissza az eredményt a főprogramnak!</p>
+    
+    <pre><code><span class="is">import</span> <span class="var">random</span>
+
+<span class="komment"># Függvény létrehozása két paraméterrel</span>
+<span class="is">def</span> <span class="fn">tamadas</span><span class="elso-zarojel">(<span class="var">alap_sebzes</span>, <span class="var">fegyver_bonusz</span>)</span>:
+    <span class="komment"># Kiszámoljuk a sebzést egy kis véletlennel megfűszerezve</span>
+    <span class="var">vegleges_sebzes</span> <span class="is">=</span> <span class="elso-zarojel">(<span class="var">alap_sebzes</span> <span class="is">+</span> <span class="var">fegyver_bonusz</span>)</span> <span class="is">*</span> <span class="var">random</span>.<span class="fn">randint</span><span class="masodik-zarojel">(<span class="int">1</span>, <span class="int">2</span>)</span>
+    <span class="is">return</span> <span class="var">vegleges_sebzes</span>
+
+<span class="komment"># Függvény használata: az eredményt egy változóba mentjük</span>
+<span class="var">bevitt_talalat</span> <span class="is">=</span> <span class="fn">tamadas</span><span class="elso-zarojel">(<span class="int">10</span>, <span class="int">5</span>)</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A szörny {<span class="var">bevitt_talalat</span>} sebzést kapott!"</span>)</span></code></pre>
+  </div>
+
+  <div class="task-card">
+    <h3>3. A törhetetlen kód: <code>while</code> ciklus + <code>try-except</code></h3>
+    <p>A felhasználók (játékosok) kiszámíthatatlanok. Ha számot kérsz, tuti betűt írnak be. Ezt a párost használjuk arra, hogy a program ne omoljon össze, hanem újra és újra megkérdezze a játékost, amíg jó adatot nem ad meg.</p>
+    
+    <pre><code><span class="var">sikeres_valasztas</span> <span class="is">=</span> <span class="bool">False</span>
+
+<span class="is">while</span> <span class="var">sikeres_valasztas</span> <span class="is">==</span> <span class="bool">False</span>:
+    <span class="is">try</span>:
+        <span class="komment"># Ha itt betűt ír be, az int() hibát dob, és az except ágra ugrik!</span>
+        <span class="var">akcio</span> <span class="is">=</span> <span class="fn">int</span><span class="elso-zarojel">(<span class=\"fn\">input</span><span class=\"masodik-zarojel\">(<span class=\"str\">"Mit teszel? (1: Támadás, 2: Menekülés) "</span>)</span>)</span>
+        
+        <span class="komment"># Ha eljut idáig (nem volt hiba), kiléphet a ciklusból</span>
+        <span class="var">sikeres_valasztas</span> <span class="is">=</span> <span class="bool">True</span> 
+        
+    <span class="is">except</span>:
+        <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Hiba! Kérlek csak az 1-es vagy 2-es számot üsd le!"</span>)</span>
+
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A választott akciód: {<span class="var">akcio</span>}"</span>)</span></code></pre>
+  </div>
+
+  <div class="task-card">
+    <h3>🛠️ Mestermunka: Rakd össze a harcot!</h3>
+    <details class="extra">
+        <summary>Kihívás: A Szörny és a Hős</summary>
+        <p>A fenti 3 blokk kódjait használva építs egy mini harci szimulátort!</p>
+        <ol>
+            <li>Kezdj a <b>Szótárral</b>: Legyen egy hősöd és egy szörnyed (mindkettőnek legyen neve és életereje).</li>
+            <li>Írj egy <b>while ciklust</b>, ami addig fut, amíg valamelyikük életereje 0 alá nem csökken! (pl. <code>while hos["életerő"] > 0 and szorny["életerő"] > 0:</code>)</li>
+            <li>A ciklus belsejében kérdezd meg a játékost <b>try-except</b> védelemmel, hogy akar-e támadni.</li>
+            <li>Ha támad, használd a <b>Függvényedet</b> a sebzés kiszámítására, vond le a szörny életéből, és írd ki, mennyi élete maradt! (Utána a szörny is üssön vissza!)</li>
+        </ol>
+        <p><i>Képes vagy összekötni ezeket a modulokat egyetlen, működő rendszerré? Ha igen, igazi Python programozóvá váltál!</i></p>
+    </details>
+  </div>
+
+</body>
+</html>

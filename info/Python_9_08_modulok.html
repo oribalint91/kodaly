@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐍 Python középhaladó: modulok használata</title>
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
+</head>
+<body>
+    <h2>🐍 Python alapok: A "Szerszámosláda" (Modulok)</h2>
+    
+  <div class="task-card">
+    <h3>13. Modulok: Beépített okosságok a Pythonban</h3>
+    
+    <p class="intro">Képzeld el, hogy elindulsz túrázni. Nem viszed magaddal az egész garázst, a fűnyírót és a fúrót, csak egy hátizsákot az alapvető dolgokkal (ez a Python alapfelszereltsége, pl. a <code>print</code> és az <code>input</code>). De ha mondjuk hidat akarsz építeni az erdőben, akkor szükséged lesz extra szerszámokra. A Pythonban ezeket az extra szerszámosládákat <b>moduloknak</b> (vagy könyvtáraknak) hívjuk. Ahhoz, hogy kinyissunk egy ilyen ládát, az <code>import</code> (behozatal) parancsot kell használnunk a kódunk legtetején!</p>
+
+    <details open>
+      <summary>A kiszámíthatatlanság mestere: A <code>random</code> modul</summary>
+      <p>A játékok elképzelhetetlenek lennének véletlenszerűség nélkül. A <code>random</code> modul pontosan ezt adja meg nekünk! Nézzük a két leghasznosabb függvényét:</p>
+      
+      <p><b>1. Véletlen szám generálása: <code>randint(a, b)</code></b><br>
+      Sorsol egy egész számot a megadott kezdő- és végpont között (a végpontot is beleértve!).</p>
+
+      <pre><code><span class="is">import</span> <span class="var">random</span>  <span class="komment"># Ezt mindig a fájl legtetejére írjuk!</span>
+
+<span class="var">gep_szama</span> <span class="is">=</span> <span class="var">random</span>.<span class="fn">randint</span><span class="elso-zarojel">(<span class="int">1</span>, <span class="int">10</span>)</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A gép dobása: {<span class="var">gep_szama</span>}"</span>)</span></code></pre>
+
+      <p><b>2. Véletlen elem kiválasztása egy listából: <code>choice(lista)</code></b><br>
+      Képzeld el, hogy van egy listád az osztálytársaidról, és a gépnek kell kihúznia a felelőt. Ezt a <code>choice</code> egyetlen sorban megoldja!</p>
+
+      <pre><code><span class="is">import</span> <span class="var">random</span>
+
+<span class="var">fegyverek</span> <span class="is">=</span> [<span class="str">"Kard"</span>, <span class="str">"Íj"</span>, <span class="str">"Varázspálca"</span>, <span class="str">"Gumicsirke"</span>]
+<span class="var">kapott_fegyver</span> <span class="is">=</span> <span class="var">random</span>.<span class="fn">choice</span><span class="elso-zarojel">(<span class="var">fegyverek</span>)</span>
+
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A kincsesládában ezt találtad: {<span class="var">kapott_fegyver</span>}!"</span>)</span></code></pre>
+
+      <div class="osszefoglalas">
+        <b>Figyeld meg a szintaxist!</b> Amikor egy modulból használunk egy függvényt, mindig le kell írnunk a modul nevét, utána egy <b>pontot</b>, majd a függvény nevét. (Pl.: <code>random.randint()</code>). Ezzel mondjuk meg a gépnek, hogy <i>"Hé, a randint parancsot a random ládában keresd!"</i>
+      </div>
+    </details>
+
+    <details>
+      <summary>A matekzseni: A <code>math</code> modul</summary>
+      <p>A Python alapból tud összeadni, kivonni, szorozni és osztani. De mi van, ha mondjuk gyököt akarsz vonni (Pitagorasz-tétel!), vagy szükséged van a Pi (π) pontos értékére a kör területéhez? Irány a <code>math</code> modul!</p>
+
+      <pre><code><span class="is">import</span> <span class="var">math</span>
+
+<span class="komment"># Gyökvonás a sqrt (square root) függvénnyel:</span>
+<span class="var">gyok</span> <span class="is">=</span> <span class="var">math</span>.<span class="fn">sqrt</span><span class="elso-zarojel">(<span class="int">25</span>)</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"25 négyzetgyöke: {<span class="var">gyok</span>}"</span>)</span>
+
+<span class="komment"># A Pi (π) használata (figyeld meg, itt nincs zárójel a végén, mert ez egy szám, nem függvény!):</span>
+<span class="var">kor_sugara</span> <span class="is">=</span> <span class="int">4</span>
+<span class="var">terulet</span> <span class="is">=</span> <span class="var">kor_sugara</span> <span class="is">**</span> <span class="int">2</span> <span class="is">*</span> <span class="var">math</span>.<span class="var">pi</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A {<span class="var">kor_sugara</span>} sugarú kör területe: {<span class="var">terulet</span>}"</span>)</span></code></pre>
+    </details>
+  </div>
+
+  <div class="task-card">
+    <h3>14. Gyakorló feladatok: Játsszunk a véletlennel!</h3>
+    <p>Ne felejtsd el az <code>import random</code> vagy <code>import math</code> sorokat betenni a kódod legtetejére!</p>
+
+    <div class="task-card">
+      <details>
+          <summary>1. feladat: Dupla kockadobás</summary>
+          <p>Írj egy programot, ami szimulálja két hagyományos (hatoldalú) dobókocka eldobását! Sorsolj ki két számot 1 és 6 között, mentsd el őket változókba, írd ki mindkettőt, majd írd ki az összegüket is!</p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="is">import</span> <span class="var">random</span>
+
+<span class="var">kocka1</span> <span class="is">=</span> <span class="var">random</span>.<span class="fn">randint</span><span class="elso-zarojel">(<span class="int">1</span>, <span class="int">6</span>)</span>
+<span class="var">kocka2</span> <span class="is">=</span> <span class="var">random</span>.<span class="fn">randint</span><span class="elso-zarojel">(<span class="int">1</span>, <span class="int">6</span>)</span>
+
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Az első kocka: {<span class="var">kocka1</span>}, a második kocka: {<span class="var">kocka2</span>}"</span>)</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Összesen: {<span class="var">kocka1</span> <span class="is">+</span> <span class="var">kocka2</span>} mezőt léphetsz."</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <details>
+          <summary>2. feladat: Kő, Papír, Olló</summary>
+          <p>Készíts egy listát a három lehetséges lépéssel: <code>["Kő", "Papír", "Olló"]</code>. A program kérje be a te választásodat egy <code>input()</code> segítségével. <br>
+          Ezután a gép a <code>random.choice()</code> segítségével válasszon egyet magának a listából, és írja ki! <br>
+          <i>(Szorgalmi bónusz: a korábban tanult <code>if-elif-else</code> elágazásokkal döntsd is el, ki nyert!)</i></p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="is">import</span> <span class="var">random</span>
+
+<span class="var">lehetosegek</span> <span class="is">=</span> [<span class="str">"Kő"</span>, <span class="str">"Papír"</span>, <span class="str">"Olló"</span>]
+
+<span class="var">jatekos</span> <span class="is">=</span> <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Mit mutatsz? (Kő/Papír/Olló): "</span>)</span>
+<span class="var">gep</span> <span class="is">=</span> <span class="var">random</span>.<span class="fn">choice</span><span class="elso-zarojel">(<span class="var">lehetosegek</span>)</span>
+
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A te választásod: {<span class="var">jatekos</span>}"</span>)</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A gép választása: {<span class="var">gep</span>}"</span>)</span>
+
+<span class="komment"># Bónusz: Ki nyert? (Részlet)</span>
+<span class="fn">if</span> <span class="var">jatekos</span> <span class="is">==</span> <span class="var">gep</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Döntetlen!"</span>)</span>
+<span class="fn">elif</span> <span class="var">jatekos</span> <span class="is">==</span> <span class="str">"Kő"</span> <span class="fn">and</span> <span class="var">gep</span> <span class="is">==</span> <span class="str">"Olló"</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Te nyertél!"</span>)</span>
+<span class="komment"># ... (ide jöhetne a többi feltétel) ...</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card extra">
+      <details>
+          <summary>3. feladat: A "Törhetetlen" Számkitaláló befejezése</summary>
+          <p>Emlékszel a végtelen ciklusos, try-except-es számkitaláló játékunkra? Egészítsd ki azzal a tudással, amit most szereztél! Ahelyett, hogy a gép fixen a 7-esre gondolna, használd a <code>random.randint(1, 100)</code> függvényt, hogy 1 és 100 között <b>tényleg</b> véletlenszerű számot találjon ki minden indításkor!</p>
+          <div class="extra">
+            <b>Tipp:</b> Elég csak a program legelső két sorát módosítanod. Importáld a modult, és a <code>gondolt_szam</code> változónak a fix 7-es helyett add értékül a randint függvény eredményét!
+          </div>
+      </details>
+    </div>
+  </div>
+</body>
+</html>

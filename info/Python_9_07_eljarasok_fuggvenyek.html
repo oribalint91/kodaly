@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐍 Python középhaladó: eljárások és függvények</title>
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
+</head>
+<body>
+    
+  <h2>🐍 Python alapok: Függvények (Saját parancsok)</h2>
+    
+  <div class="task-card">
+    <h3>11. Függvények: Tanítsunk új szavakat a gépnek!</h3>
+    
+    <p class="intro">Eddig a Python beépített parancsait használtuk (mint a <code>print()</code>, <code>input()</code>, <code>len()</code>). De mi van akkor, ha van egy bonyolult feladatunk – például egy karakter sebzésének kiszámítása –, amit a programunkban hússzor is el kell végeznünk? A programozók utálnak gépelni, ezért kitalálták a <b>függvényeket (Functions)</b>. A függvény egy általunk írt, elnevezett kódblokk, amit utána egyetlen szóval bármikor újra meghívhatunk!</p>
+
+    <details open>
+      <summary>Az alapok: Hogyan írjunk saját parancsot?</summary>
+      <p>Egy függvény létrehozásához a <code>def</code> (define = definiálás) kulcsszót használjuk. Ezt követi a függvényünk neve, két zárójel, majd a jól ismert kettőspont.</p>
+      
+      <pre><code><span class="komment"># 1. LÉPÉS: Létrehozzuk (definiáljuk) a függvényt</span>
+<span class="is">def</span> <span class="fn">koszonto</span><span class="elso-zarojel">()</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"-------------------------"</span>)</span>
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"  Üdvözöllek a játékban! "</span>)</span>
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"-------------------------"</span>)</span>
+
+<span class="komment"># 2. LÉPÉS: Meghívjuk (használjuk) a függvényt!</span>
+<span class="komment"># Ezt akárhányszor megtehetjük, anélkül, hogy újra leírnánk a fenti 3 sort.</span>
+<span class="fn">koszonto</span><span class="elso-zarojel">()</span>
+<span class="fn">koszonto</span><span class="elso-zarojel">()</span></code></pre>
+
+      <div class="osszefoglalas">
+        <b>Fontos szabály:</b> A gép csak "megtanulja" a függvényt a <code>def</code> sornál, de <b>nem futtatja le</b>! Csak akkor hajtja végre a benne lévő kódot, ha utána név szerint meghívod: <code>koszonto()</code>.
+      </div>
+    </details>
+
+    <details>
+      <summary>Paraméterek: A recept hozzávalói</summary>
+      <p>A függvényeink sokkal okosabbak lesznek, ha adatokat is tudunk nekik átadni. Ezeket az adatokat <b>paramétereknek</b> hívjuk, és a zárójelek közé írjuk őket.</p>
+
+      <pre><code><span class="komment"># A 'nev' egy paraméter: egy üres doboz, ami várja az adatot</span>
+<span class="is">def</span> <span class="fn">szemelyes_koszonto</span><span class="elso-zarojel">(<span class="var">nev</span>)</span>:
+    <span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Szia {<span class="var">nev</span>}, jó, hogy újra itt vagy!"</span>)</span>
+
+<span class="komment"># Amikor meghívjuk, kötelező megadni neki az adatot!</span>
+<span class="fn">szemelyes_koszonto</span><span class="elso-zarojel">(<span class="str">"Bálint"</span>)</span>
+<span class="fn">szemelyes_koszonto</span><span class="elso-zarojel">(<span class="str">"Anna"</span>)</span></code></pre>
+      
+      <p>Akár több paramétert is megadhatsz, vesszővel elválasztva: <code>def harc(tamado, vedekezo):</code></p>
+    </details>
+
+    <details>
+      <summary>A Mágikus <code>return</code>: Amikor a gép visszaad valamit</summary>
+      <p>Ez a programozás egyik legfontosabb megértendő része! Képzelj el egy turmixgépet (ez a függvény). Beleteszed az epret és a tejet (ezek a paraméterek). A gép összedarálja őket.</p>
+      
+      <ul>
+        <li>Ha a függvényedben <code>print()</code> van: A turmixgép megcsinálja a turmixot, <i>de ő maga meg is issza</i>. Te csak nézheted a képernyőn, hogy finom volt.</li>
+        <li>Ha a függvényedben <code>return</code> (visszatérés) van: A turmixgép <b>kiönti neked egy pohárba</b> az eredményt, amit te elmenthetsz egy változóba, és később odaadhatod a barátodnak!</li>
+      </ul>
+
+      <pre><code><span class="is">def</span> <span class="fn">terulet_szamito</span><span class="elso-zarojel">(<span class="var">a_oldal</span>, <span class="var">b_oldal</span>)</span>:
+    <span class="var">eredmeny</span> <span class="is">=</span> <span class="var">a_oldal</span> <span class="is">*</span> <span class="var">b_oldal</span>
+    <span class="is">return</span> <span class="var">eredmeny</span>  <span class="komment"># Visszaadjuk az értéket a főprogramnak!</span>
+
+<span class="komment"># Mivel a függvény RETURN-t használ, az eredményét be tudjuk tenni egy változóba!</span>
+<span class="var">szoba_terulete</span> <span class="is">=</span> <span class="fn">terulet_szamito</span><span class="elso-zarojel">(<span class="int">4</span>, <span class="int">5</span>)</span>
+<span class="var">konyha_terulete</span> <span class="is">=</span> <span class="fn">terulet_szamito</span><span class="elso-zarojel">(<span class="int">2</span>, <span class="int">3</span>)</span>
+
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A teljes lakás területe: {<span class="var">szoba_terulete</span> <span class="is">+</span> <span class="var">konyha_terulete</span>} négyzetméter."</span>)</span></code></pre>
+
+      <div class="extra">
+        <b>Aranyszabály:</b> A <code>return</code> szó azonnal <b>befejezi</b> a függvény futását! Ha a <code>return</code> után írsz még kódot a függvényen belül, azt a számítógép soha nem fogja végrehajtani, mert a <code>return</code>-nél már kiugrott a függvényből.
+      </div>
+    </details>
+  </div>
+
+  <div class="task-card">
+    <h3>12. Gyakorló feladatok: A Kódmester receptjei</h3>
+    <p>Nyiss egy új fájlt a VS Code-ban, és próbáld megírni a saját parancsaidat!</p>
+
+    <div class="task-card">
+      <details>
+          <summary>1. feladat: A Kikiáltó (Paraméterek gyakorlása)</summary>
+          <p>Írj egy függvényt <code>figyelmeztetes</code> néven, ami <b>egy paramétert</b> vár: egy szöveget (pl. <code>uzenet</code> néven). <br>
+          A függvény egyszerűen írja ki a képernyőre a kapott szöveget, de tegyen elé három felkiáltójelet! <br>
+          A program végén (a függvényen kívül) hívd is meg a függvényt valamilyen szöveggel, pl: <i>"Vigyázat, a sárkány felébredt!"</i></p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="is">def</span> <span class="fn">figyelmeztetes</span><span class="elso-zarojel">(<span class="var">uzenet</span>)</span>:
+    <span class="print">print</span><span class="elso-zarojel">(f<span class="str">"!!! {<span class="var">uzenet</span>}"</span>)</span>
+
+<span class="komment"># Főprogram:</span>
+<span class="fn">figyelmeztetes</span><span class="elso-zarojel">(<span class="str">"Vigyázat, a sárkány felébredt!"</span>)</span>
+<span class="fn">figyelmeztetes</span><span class="elso-zarojel">(<span class="str">"Az életerőd alacsony."</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <details>
+          <summary>2. feladat: Az Átváltó-gép (A <code>return</code> használata)</summary>
+          <p>Írj egy <code>euro_valto</code> nevű függvényt, ami <b>egy paramétert</b> vár: a Forint összegét. A függvény ossza el ezt az összeget 400-zal (így megkapjuk az Euró értékét), majd a <code>return</code> segítségével <b>adja vissza</b> az eredményt!<br>
+          A főprogramban hozz létre egy változót (pl. <code>zsebpenz_euroban</code>), ami egyenlő a meghívott függvény eredményével (adj át neki pl. 8000 forintot). Végül egy printtel írd ki a változó tartalmát!</p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="is">def</span> <span class="fn">euro_valto</span><span class="elso-zarojel">(<span class="var">forint</span>)</span>:
+    <span class="var">euro</span> <span class="is">=</span> <span class="var">forint</span> <span class="is">/</span> <span class="int">400</span>
+    <span class="is">return</span> <span class="var">euro</span>
+
+<span class="komment"># Főprogram:</span>
+<span class="var">zsebpenz_euroban</span> <span class="is">=</span> <span class="fn">euro_valto</span><span class="elso-zarojel">(<span class="int">8000</span>)</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A zsebpénzem {<span class="var">zsebpenz_euroban</span>} Eurót ér."</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card extra">
+      <details>
+          <summary>3. feladat (Haladó): A VIP Kidobó (Függvény + Elágazás)</summary>
+          <p>Írj egy <code>beengedhet_e</code> nevű függvényt, ami <b>két paramétert</b> vár: egy nevet (szöveg) és egy életkort (szám).<br>
+          A függvényen belül írj egy <code>if-else</code> elágazást: Ha a kor 18 vagy annál nagyobb, a függvény térjen vissza (<code>return</code>) egy <code>True</code> (Igaz) logikai értékkel. Ha kisebb, térjen vissza <code>False</code> (Hamis) értékkel! <br>
+          (Próbáld ki a főprogramban: tedd a függvényhívást egy <code>if</code> feltételbe, és írj ki neki üdvözlést vagy elutasítást!)</p>
+
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="is">def</span> <span class="fn">beengedhet_e</span><span class="elso-zarojel">(<span class="var">nev</span>, <span class="var">kor</span>)</span>:
+    <span class="fn">if</span> <span class="var">kor</span> <span class="is">&gt;=</span> <span class="int">18</span>:
+        <span class="is">return</span> <span class="bool">True</span>
+    <span class="fn">else</span>:
+        <span class="is">return</span> <span class="bool">False</span>
+
+<span class="komment"># Főprogram:</span>
+<span class="komment"># Mivel a függvény True-t vagy False-t ad vissza, tökéletes az if mellé!</span>
+<span class="fn">if</span> <span class="fn">beengedhet_e</span><span class="elso-zarojel">(<span class="str">"Péter"</span>, <span class="int">16</span>)</span> <span class="is">==</span> <span class="bool">True</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Parancsoljon, fáradjon be!"</span>)</span>
+<span class="fn">else</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Sajnálom, még nem vagy elég idős."</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+  </div>
+
+</body>
+</html>

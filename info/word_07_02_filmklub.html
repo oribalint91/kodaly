@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szövegszerkesztés: tabulátorok használata</title>
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
+</head>
+<body>
+    <svg style="width:0; height:0; position:absolute;" aria-hidden="true">
+        <defs>
+            <marker id="nyil" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+                <path d="M0,0 L0,6 L9,3 z" fill="#ff0000" />
+            </marker>
+        </defs>
+    </svg>
+    <h2>Szöveg rendezése tabulátorok használatával</h2>
+    <p class="intro">Ebben a dokumentumban egy új dolgot tanulunk meg. A szövegeket nagyon hatékonyan tudjuk <b>tabulátorok</b> segítségével rendezni. Ezek a karakterek hasonlítanak a szóközre abban, hogy ugyanúgy helyet hagynak ki az egyes részek közt. Van viszont fontos különbség is, amit az óra végére – reményeim szerint – te is érteni fogsz.</p>
+    <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Szöveg másolása</button>
+        <div class="raw-text-box bekezdessel">Filmklub szavazólap
+Az iskolai filmklub következő alkalmán a lenti filmek közül szeretnénk kiválasztani a megnézendő alkotást. Az információkat a szöveg alatt találod, 1-10-ig pedig a lap legalján tudod pontozni az alkotásokat aszerint, hogy melyiket mennyire szívesen néznéd meg.
+
+Film címe&#9;Rendező&#9;Megjelenés (év)&#9;Hossz (perc)
+Harry Potter és a bölcsek köve&#9;Chris Columbus&#9;2001&#9;152
+Bosszúállók&#9;Anthony Russo, Joe Russo&#9;2019&#9;181
+Jégvarázs&#9;Chris Buck, Jennifer Lee&#9;2013&#9;102
+Pókember: Nincs hazaút&#9;Jon Watts&#9;2021&#9;148
+Minyonok&#9;Kyle Balda&#9;2015&#9;91
+
+Harry Potter
+Bosszúállók
+Jégvarázs
+Pókember
+Minyonok
+
+Köszönjük a részvételt!
+szervezők</div>
+    </div>
+    <div class="task-card">
+        <h3>1. Dokumentum készítése, szöveg bemásolása, mentés</h3>
+        <details>
+            <summary>Önálló feladat (haladóknak)</summary>
+            <p>Nyisd meg a Wordöt, másold le a fenti szöveget, és illeszd be egy üres dokumentumba! Mentsd a fájlt a saját meghajtódra <i>Filmklub <u>saját neved</u>.docx</i> néven!</p>
+        </details>
+        <details>
+            <summary>Részletes leírás (lépésenként)</summary>
+            <ol>
+                <li><b>A szöveg másolása:</b> a szövegdoboz jobb felső részén levő <i>Szöveg másolása</i> gombra kattintva másold le a teljes szöveget!</li>
+                <li><b>Új dokumentum létrehozása:</b> nyisd meg a Wordöt (<img src="kepek/ikon_word.png" alt="" style="max-width: 1.2rem;">), nyiss meg egy új üres dokumentumot!</li>
+                <li><b>A kimásolt szöveg beillesztése:</b> illeszd be a kimásolt szöveget a vágólapról a <span class="gomb">ctrl + v</span> billentyűkombinációval!</li>
+                <li><b>Mentés:</b> mentsd el a dokumentumot: nyomd meg a <span class="gomb">ctrl + s</span> billentyűkombinációt, kattints a <span class="ia" data-tipus="modal" data-target="tallozas">Tallózás</span> gombra! A <span class="ia" data-tipus="modal" data-target="mentes_maskent">felugró párbeszédablakban</span> keresd meg a saját meghajtódat, a fájlnévhez pedig írd be, hogy <i>Filmklub <u>saját neved</u></i>!
+                <span style="font-weight: bold; color: #ff0000;">Ha otthon csinálod a feladatot, akkor természetesen ne keresd a saját meghajtódat, ahogy az iskolában! 😊</span></li>
+                <img src="kepek/office_mentes.png" id="tallozas" style="display: none;" alt="">
+                <img src="kepek/office_mentes_maskent.png" id="mentes_maskent" style="display: none;" alt="">
+            </ol>
+        </details>
+    </div>
+
+    <div class="task-card">
+        <h3>2. Cím és törzsszöveg formázása</h3>
+        <details>
+            <summary>Önálló feladat (haladóknak)</summary>
+            <p>A teljes dokumentumban alkalmazz <b>Garamond betűtípust</b>, <b>14-es betűméretet</b>, minden bekezdés legyen <b>sorkizárt</b>, és kapcsold be a teljes dokumentumban az <b>automatikus elválasztást!</b> A címet <b>igazítsd középre</b>, és ez legyen <b>20 pontos</b> betűmérettel, továbbá valamilyen más színnel!</p>
+        </details>
+        <details>
+            <summary>Részletes leírás (lépésenként)</summary>
+            <ol start="5">
+                <li><b>Egységes formázások beállítása: </b>jelöld ki a teljes szöveget! Ezt megteheted pl. a <span class="gomb">ctrl + a</span> billentyűkombinációval. Alkalmazd a következő beállításokat: <ul>
+                    <li>Garamond betűtípus,</li>
+                    <li>14 pontos betűméret,</li>
+                    <li>sorkizárt igazítás.</li>
+                </ul></li>
+                <li><b>Automatikus elválasztás beállítása: </b>kapcsold be az automatikus elválasztást! Ezt az <i>Elrendezés</i> fülön találod, az Elválasztás résznél: <img src="kepek/word_elvalasztas.png" alt=""></li>
+                <li><b>A cím formázása: </b>jelöld ki csak az első sort, amely a címet tartalmazza, és állítsd itt be, hogy a bekezdés <b>középre legyen igazítva</b>, valamint válassz egy <b>másik betűszínt</b> ehhez a részhez!</li>
+            </ol>
+        </details>
+    </div>
+
+    <div class="task-card">
+        <h3>3. Táblázat létrehozása a filmek adataiból</h3>
+        <details>
+            <summary>Önálló feladat (haladóknak)</summary>
+            <p>A <i>Film címe</i> résztől a <i>Minyonok</i>at tartalmazó sorig jelölj ki mindent, és a <i>Beszúrás</i> fülön található <i>Táblázat</i> rész <i>Szövegből táblázat</i> parancsa segítségével alakítsd táblázattá! Formázd a táblázatot egy tetszőleges, előre beállított stílussal!</p>
+        </details>
+        <details>
+            <summary>Részletes leírás (lépésenként)</summary>
+            <ol start="8">
+                <li>Jelöld ki a <i>Film címe</i> sortól a <i>Minyonok</i> soráig a filmek adatait (és a fejlécet is)! A <i>Beszúrás</i> fülön kattints a <i>Táblázat</i> menüre, majd a <span class="ia" data-tipus="modal" data-target="szovegbol_tablazat">Szövegből táblázat...</span> lehetőségre!</li>
+                <img src="kepek/word_szovegbol_tablazat.png" style="display: none;" id="szovegbol_tablazat" alt="">
+                <li>A beállításoknál most nem kell változtatnod semmit, de <b>ellenőrizd, hogy a tabulátor van-e kiválasztva!</b> Ha igen, a program automatikusan kiszámolja, hogy hány sort és hány oszlopot kell létrehoznia a kijelölésből. Kattints az okéra, és készen van a táblázatod!</li>
+                <li><b>A táblázat formázása: </b>az újonnan megjelenő <i>Táblázattervezés</i> fülön találsz <span class="ia" data-tipus="modal" data-target="tablazattervezes">előre elkészített stílusokat</span>. Ezek közül válassz egy szimpatikusat, és formázd ilyenre a táblázatot! Itt a lefelé mutató nyilakkal tudod megjeleníteni a nem látszódó stílusokat.</li>
+                <img src="kepek/word_tablazattervezes.png" id="tablazattervezes" style="display: none;" alt="">
+            </ol>
+        </details>
+    </div>
+
+    <div class="task-card">
+        <h3>4. Pontozás formázása (és pontszámok)</h3>
+        <details>
+            <summary>Önálló feladat (haladóknak)</summary>
+            <p>Minden filmre adsz valahány pontot. Ehhez azokban a sorokban, ahol csak a (rövidített) filmcamek vannak, előbb <b>minden cím után írj be egy tabulátort</b>, majd pedig <b>jelöld ki ezt a szakaszt</b>, és <b>állítsd be, hogy 10 cm-nél legyen</b> egy balra igazított, ponttal kitöltött tabulátor! A tabulátor után írd be az általad gondolt pontszámokat mindegyik filmhez!</p>
+        </details>
+        <details>
+            <summary>Részletes leírás (lépésenként)</summary>
+            <ol start="11">
+                <li><b>Tabulátorok beírása: </b>minden filmcím után írj egy tabulátort! Ezt a bal oldalon, a <span class="gomb">0</span> és a <span class="gomb">Caps Lock</span> közti gombbal tudod megtenni. Ezen a gombon lehet <i>Tab</i> felirat, de van, hogy két, egymással ellentétes irányba mutató, egy-egy vonalig tartó nyíl van rajta.</li>
+                <p class="extra">A dokumentumban van egy előre beállított, láthatatan rács, ennek a következő pontjához ugrik mindig a tabulátor gomb. Ugyanez nem csak a dokumentumokban működik, hanem pl. a párbeszédablakokban vagy az interneten is. Itt is, ha megnyomod, a következő olyan részre ugrik a kijelölés, ahol lehet valamit csinálni, pl. beírni valamit vagy kattintani valamire. <span class="extra">Amikor bejelentkezel a gépre, a felhasználónév beírása után próbáld ki, hogy nem kattintasz a jelszó beírására szolgáló területre, hanem megnyomod a Tab gombot!</span></p>
+                <li><b>A szöveg kijelölése: </b>fontos, hogy a tabulátorok most következő beállításai mindig csak ott érvényesek, ahol megadjuk őket. Ha tehát több sorban is szeretném alkalmazni ugyanazt a beállítást, akkor fontos, hogy <b>kijelöljem</b> ezeket a sorokat. Jelöld most ki azokat a sorokat, ahova az előző lépésben tabulátorokat írtál!</li>
+                <li><b>Tabulátorok párbeszédablak megnyitása: </b>a <i>Kezdőlap</i> fülön keresd meg a <i>Bekezdés</i> szót! Ezzel egy vonalban, tőle jobbra van egy ilyen <img src="kepek/office_beallitasok.png" style="max-width: 1.2rem;" alt=""> ikon, amellyel egy párbeszédablakot nyithatsz meg. Kattints erre! <span class="ia" data-tipus="modal" data-target="bekezdes_tabulatorok">A párbeszédablak alján</span> találsz egy <i>Tabulátorok...</i> gombot. Kattints erre!</li>
+                <img src="kepek/word_bekezdes_tabulatorok.png" id="bekezdes_tabulatorok" style="display: none;" alt="">
+                <li><b>Tabulátorok beállítása:</b> a <span class="ia" data-tipus="modal" data-target="tabulatorok">megjelenő párbeszédablakban</span> adhatsz hozzá, törölhetsz és módosíthatsz tabulátorokat. Nagyon fontos, hogy <b>minden hozzáadás vagy módosítás csak akkor érvényes, ha a <i>Felvétel</i> gombra </b>kattintasz.
+                <ul>
+                    <li>Adj hozzá egy tabulátort 10 cm-hez: ehhez írd be a fenti részbe, hogy 10; a mértékegységet kivételessen elhagyhatod, de nem okoz hibát, ha "10 cm"-t írsz.</li>
+                    <li>A <i>Kitöltés</i> résznél válaszd ki a <u>2</u> ....... opciót!</li>
+                    <li>Kattints a <i><u>F</u>elvétel</i> gombra! A beírt pozíció alatt meg kell jelennie, hogy "10 cm".</li>
+                    <li>Kattints az <i>OK</i> gombra, ezzel bezárod a párbeszédablakot.</li>
+                </ul>
+                </li>
+                <li>Írd be a pontszámokat minden filmhez, ahogy gondolod!</li>
+                <div id="tabulatorok" class="kep-svg-wrapper rejtett-kep">
+                    <img src="kepek/word_tabulatorok.png" alt="">
+                    <svg viewBox="0 0 397 452" class="svg-reteg">
+
+                        <rect style="fill:none;stroke:#ff0000;stroke-width:6.4" width="178.5" height="27.8" x="7.9" y="67.0" />
+                        <rect style="fill:none;stroke:#ff0000;stroke-width:6.4" width="67.6" height="28.9" x="143.8" y="308.7" />
+                        <rect style="fill:none;stroke:#ff0000;stroke-width:6.4" width="112.0" height="27.8" x="149.5" y="414.4" />
+                        
+                        <text style="font-size:18.6px; fill:#ff0000; font-family:sans-serif; font-weight:bold;" x="264.7" y="137.0">1.</text>
+                        <text style="font-size:18.6px; fill:#ff0000; font-family:sans-serif; font-weight:bold;" x="257.5" y="206.3">2.</text>
+                        <text style="font-size:18.6px; fill:#ff0000; font-family:sans-serif; font-weight:bold;" x="264.7" y="340.9">3.</text>
+                        <text style="font-size:18.6px; fill:#ff0000; font-family:sans-serif; font-weight:bold;" x="345.1" y="370.6">4.</text>
+                        
+                        <path style="fill:none;stroke:#ff0000;stroke-width:3.77;" d="m 264.7,130.2 c -78.8,0 -80.0,-10.0 -87.0,-15.9" marker-end="url(#nyil)" />
+                        <path style="fill:none;stroke:#ff0000;stroke-width:3.77;" d="M 251.3,199.4 C 198.5,206.3 198.5,206.3 192.7,288.8" marker-end="url(#nyil)" />
+                        <path style="fill:none;stroke:#ff0000;stroke-width:3.77;" d="M 259.0,334.1 C 160.3,377.5 160.3,377.5 140.6,376.9" marker-end="url(#nyil)" />
+                        <path style="fill:none;stroke:#ff0000;stroke-width:3.77;" d="m 338.2,363.9 c -29.5,64.4 -29.5,64.4 -57.1,59.6" marker-end="url(#nyil)" />
+
+                    </svg>
+                </div>
+            </ol>
+        </details>
+    </div>
+
+    <div class="task-card">
+        <h3>5. Aláírás sor formázása</h3>
+        <details>
+            <summary>Önálló feladat (haladóknak)</summary>
+            <p>A "szervezők" résznél szokás aláírni az ilyen meghívókat. Ez úgy néz ki igazán elegánsan, ha <b>jobbra igazítjuk</b> úgy, hogy <b>fölé egy pontozott vonalat teszünk</b> az aláírásnak. Igazán akkor jó, ha az aláírás alatti szöveg (itt most a "szervezők" szó) <b>pontosan a pontozott vonal közepe alatt</b> van. Állítsd be, hogy a "szervezők" szó <b>12 cm-hez legyen középre igazítva</b>, a fölötte levő sorban (itt nyugodtan nyithatsz egy üres sort a köszönet után) pedig állíts be <b>9–15 cm közé pontozott vonalas</b> kitöltést. Használd a tabulátorok beállításait!</p>
+        </details>
+        <details>
+            <summary>Részletes leírás (lépésenként)</summary>
+            <ol start="16">
+                <li><b>A feladat átgondolása, elmélet: </b>itt kivételesen már <b>gondolkodni</b> is kell! Mivel azt szeretném, hogy <b>a lap jobb szélén legyen a "szervezők" írás</b>, és <b>fölötte legyen egy pontozott vonal az aláírásnak</b>, ehhez számolni kell. A "szervezők" szövegnek pontosan a pontozás közepe alatt kell lennie. Ilyenkor segít a <span class="ia" data-target="vonalzo" data-tipus="modal">vonalzó</span>. Ha ezt nem látod, akkor kattints a <span class="ia" data-target="nezet" data-tipus="modal">Nézet</span> fülre, és itt keresd meg a <i>Megjelenítés</i> kategóriában a <i>Vonalzó</i> melletti kis jelölőnégyzetet! Tegyél pipát bele, és máris látni fogod a vonalzót. <br>
+                A jobb oldalon, de ne nagyon a szélén, mondjuk 9 és 15 cm között lehetne a pontozott vonal az aláíráshoz. Ha ide kerül, akkor ennek a közepéhez kell tenni a szöveget. Ennek a kettőnek a közepe pont a számtani közép: (9 + 15) / 2 cm = 24 / 2 cm = 12 cm. A szöveg közepe tehát 12 cm-hez kerül.</li>
+                <div class="kep-svg-wrapper rejtett-kep" id="vonalzo">
+                    <img src="kepek/word_teljes_ablak.png" alt="">
+                    <svg viewBox="0 0 1910 1074" class="svg-reteg">
+
+                            <rect style="fill:none;stroke:#ff0000;stroke-width:3.77953;stroke-opacity:0.961739" id="rect1" width="1019.9623" height="39.177357" x="445.81131" y="213.44905" />
+                            <ellipse style="fill:none;stroke:#ff0000;stroke-width:3.77953;stroke-opacity:0.961739" id="path1" cx="920.3302" cy="74.977356" rx="35.462261" ry="16.886793" />
+                        
+                        </svg>
+
+                </div>
+                <div class="kep-svg-wrapper rejtett-kep" id="nezet">
+                    <img src="kepek/word_nezet.png" alt="">
+                    <svg viewBox="0 0 1898 156" class="svg-reteg">
+                        <path d="
+                        M 0,0 L 1898,0 L 1898,156 L0,156 Z
+                        M 761.7,38.1 h 91.2 v 26.5 h -91.2 Z
+                        M 789.3,0 h 72.1 v 36.3 h -72.1 Z
+                        M 785,128 h 100 v 26.5 h -100 Z"
+                        fill="rgba(0,0,0,0.75)" fill-rule="evenodd" />
+                        <rect x="761.7" y="38.1" width="91.2" height="26.5" class="svg-kiemeles" />
+                    </svg>
+
+                </div>
+                <li><b>A pontozott vonal elkészítése: </b>a köszönetnyilvánítás alatt érdemes egy üres sort nyitni, ahová az aláírás számára a pontozás kerül. <br>
+                    <span class="extra">Mivel most csak egy sorban lesz érvényes ez a tabulátorbeállítás, nem kell kijelölni, de az nagyon fontos, hogy a kurzor ebben a sorban villogjon.</span><br>
+                Kattints megint a <i>Kezdőlap</i> fülön a <i>Bekezdés</i> kategória jobb oldalán levő kis nyílra, hogy megnyisd a párbeszédablakot! Nyisd meg a Tabulátorok párbeszédablakot is! Ebbe a sorba <b>két tabulátor kell: oda, ahonnan, és oda, ameddig tart a pontozott vonal</b>. Írd be a 9 és a 15 cm-eset is, és mind a kettőnél <b>nyomd meg a <i>Felvétel</i> gombot</b> is! <span class="ia" data-target="tab_beallitasok" data-tipus="toggle">Ha nem tudod, milyen beállítások kellenek pontosan, akkor kattints ide!</span> Okézd le a párbeszédablakot! <span class="ia" data-target="tab_megoldas" data-tipus="toggle">Ha nem tudod, mi hiányzik ahhoz, hogy lásd is a pontozott vonalat, kattints ide!</span></li>
+                <div class="lenyilo-tartalom extra" id="tab_beallitasok"><b>Az első tabulátor beállításai:</b> Pozíció: 9 cm; Igazítás: <i>mindegy!</i>; Kitöltés: 1 Nincs; <b>Felvétel</b><br>
+                <b>A második tabuláror beállításai:</b> Pozíció: 15 cm; Igazítás: <i>mindegy!</i>; Kitöltés: 2 .......; <b>Felvétel</b> <br>
+                <b>OK</b></div>
+                <div class="lenyilo-tartalom extra" id="tab_megoldas">Emlékszel? A tabulátorral a dolkumentum láthatatlan rácsában ugrunk a következő ponthoz. Most annyi történt, hogy <b>módosítottuk a rácsot</b>, hozzáadtunk néhány plusz pontot, amelyekhez különleges tulajdonságot is rendeltünk (legalábbis a másodikhoz). Ahhoz, hogy ez meg is jelenjen, <b>be kell szúnri a tabulátor karaktert</b>. Az elsővel az első ponthoz ugrunk, 9 cm-re. A másodikkal válik láthatóvá az egész, amikor 9-től 15 cm-ig úgy jutunk el, hogy ki is töltjük a helyet.</div>
+                <li><b>A "szervezők" szó elhelyezése:</b> vidd a kurzort a "szervezők" szó sorába (vagy jelöld ki ezt a sort)! <span class="extra">Fontos, hogy az eggyel feljebb levőt <b>NE</b> jelöld ki!</span> Nyisd meg a Tabulátorok... <span class="ia" data-target="bekezdes_tabulatorok" data-tipus="modal">párbeszédablakot</span>! Írd be <span class="ia" data-target="szerzok_tab" data-tipus="toggle">a szükséges adatokat</span>, vedd fel a tabulátort, majd zárd be a párbeszédablakot az OK gombbal! Sikerült a jobb oldalra vinni a szöveget? <span class="ia" data-target="tab_megoldas" data-tipus="toggle">Ha nem, kattints!</span></li>
+                <div class="lenyilo-tartalom extra" id="szerzok_tab">Pozíció: 12 cm; Igazítás: <b>Középre</b>; Kitöltés: 1 Nincs</div>
+                <li><b>Készen vagy! Ne felejtsd el menteni a munkádat!</b></li>
+            </ol>
+        </details>
+    </div>
+
+    <div id="kep-modal" class="modal-hatter">
+    <span class="modal-bezaras">&times;</span>
+    <div class="modal-tartalom">
+        <img id="modal-benne-levo-kep" src="" alt="">
+    </div>
+</div>
+</body>
+</html>

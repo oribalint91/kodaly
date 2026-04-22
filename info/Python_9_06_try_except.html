@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐍 Python középhaladó: hibakezelés try-except blokkal</title>
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
+</head>
+<body>
+    <div class="task-card">
+    <h3>9. Kivételkezelés: Amikor a program elhasal (<code>try - except</code>)</h3>
+    
+    <p class="intro">Emlékszel a számkitalálós játékunkra? Képzeld el, hogy a felhasználó a "Mi a tipped?" kérdésre véletlenül azt írja be, hogy <i>"kiskutya"</i>. A program megpróbálja végrehajtani az <code>int("kiskutya")</code> parancsot, de mivel egy szóból nem lehet matekos számot csinálni, a program azonnal összeomlik egy ijesztő, piros hibaüzenettel (<code>ValueError</code>). <b>A felhasználók hibáznak. Nekünk, programozóknak kell felkészülnünk erre!</b></p>
+
+    <details open>
+      <summary>A védőháló: <code>try</code> és <code>except</code></summary>
+      <p>A Pythonban létezik egy védőháló, amit a veszélyes sorok köré feszíthetünk ki. Ez a <b><code>try</code></b> (próbáld meg) és az <b><code>except</code></b> (kivétel / hiba esetén) szerkezet.</p>
+      
+      <p>A gép megpróbálja lefuttatni a <code>try</code> alatti behúzott kódot. Ha minden rendben megy, az <code>except</code> ágat egyszerűen átugorja. De <b>ha hiba történik</b> (bármilyen hiba), a program <b>nem omlik össze</b>, hanem azonnal átugrik az <code>except</code> ágra, és végrehajtja az ott lévő "mentő" utasítást.</p>
+
+      <pre><code><span class="is">try</span>:
+    <span class="var">szam_szoveg</span> <span class="is">=</span> <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Kérek egy számot: "</span>)</span>
+    <span class="var">szam</span> <span class="is">=</span> <span class="fn">int</span><span class="elso-zarojel">(<span class="var">szam_szoveg</span>)</span> <span class="komment"># Itt a veszély! Mi van, ha betűt ír?</span>
+    <span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A számod duplája: {<span class="var">szam</span> <span class="is">*</span> <span class="int">2</span>}"</span>)</span>
+<span class="is">except</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Hiba! Ez nem egy szám volt, így nem tudom megduplázni!"</span>)</span></code></pre>
+    </details>
+
+    <details>
+      <summary>A Golyóálló Ciklus (<code>while</code> + <code>try</code>)</summary>
+      <p>A leggyakoribb és legprofibb megoldás, ha a <code>try-except</code> blokkot betesszük egy <code>while</code> ciklusba. Ezzel elmondjuk a gépnek: <i>"Addig kérdezd újra és újra a felhasználót, amíg végre hajlandó egy normális számot beírni!"</i></p>
+
+      <pre><code><span class="var">sikeres</span> <span class="is">=</span> <span class="bool">False</span>
+
+<span class="is">while</span> <span class="var">sikeres</span> <span class="is">==</span> <span class="bool">False</span>:
+    <span class="is">try</span>:
+        <span class="var">kor</span> <span class="is">=</span> <span class="fn">int</span><span class="elso-zarojel">(<span class="fn">input</span><span class="masodik-zarojel">(<span class="str">"Hány éves vagy? "</span>)</span>)</span>
+        
+        <span class="komment"># Ha a fenti sorban hiba van (pl. betűt ír), a gép azonnal az except-re ugrik!</span>
+        <span class="komment"># Ha NINCS hiba, akkor eljut a következő sorig:</span>
+        <span class="var">sikeres</span> <span class="is">=</span> <span class="bool">True</span>  <span class="komment"># Átállítjuk, így a ciklus véget fog érni!</span>
+        
+    <span class="is">except</span>:
+        <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Kérlek, számokkal (pl. 15) add meg az életkorod!"</span>)</span>
+
+<span class="komment"># Ez már a ciklus után van</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Szuper, elmentettem: {<span class="var">kor</span>} éves vagy."</span>)</span></code></pre>
+      <div class="extra">
+        <b>Tipp haladóknak (Specifikus hibák):</b>
+        <p>A sima <code>except:</code> minden létező hibát elkap. De lehetsz sokkal pontosabb is! Ha odaírod a hiba nevét, a gép tudni fogja, mi a baj. Például: <code>except ValueError:</code> (ha rossz a típus, pl. betű a szám helyett), vagy <code>except ZeroDivisionError:</code> (ha nullával próbáltál osztani matematikai műveletnél).</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="task-card">
+    <h3>10. Gyakorló feladatok: Törhetetlen programok</h3>
+    <p>Készítsünk olyan kódokat, amiket a legügyetlenebb felhasználó sem tud "kék halálba" küldeni!</p>
+
+    <div class="task-card">
+      <details>
+          <summary>1. feladat: A golyóálló osztógép</summary>
+          <p>Írj egy programot, ami bekér két számot (osztandó és osztó), számmá (<code>float()</code> vagy <code>int()</code>) alakítja őket, majd kiírja az eredményt! <br>
+          Tedd az egészet egy <code>try - except</code> blokkba! Így ha a felhasználó betűket ír be, VAGY ha a második számnak nullát ad meg (nullával nem tudunk osztani, a Python is utálja!), a program nem omlik össze, hanem kiírja: <i>"Hiba történt! Vagy betűt írtál, vagy nullával próbáltál osztani."</i></p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="is">try</span>:
+    <span class="var">szam1</span> <span class="is">=</span> <span class="fn">float</span><span class="elso-zarojel">(<span class="fn">input</span><span class="masodik-zarojel">(<span class="str">"Kérem az első számot: "</span>)</span>)</span>
+    <span class="var">szam2</span> <span class="is">=</span> <span class="fn">float</span><span class="elso-zarojel">(<span class="fn">input</span><span class="masodik-zarojel">(<span class="str">"Kérem a második számot (ne nullát): "</span>)</span>)</span>
+    
+    <span class="var">eredmeny</span> <span class="is">=</span> <span class="var">szam1</span> <span class="is">/</span> <span class="var">szam2</span>
+    <span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Az eredmény: {<span class="var">eredmeny</span>}"</span>)</span>
+<span class="is">except</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Hiba történt! Vagy betűt írtál, vagy nullával próbáltál osztani."</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <details>
+          <summary>2. feladat: A tökéletesített számkitaláló (Szorgalmi)</summary>
+          <p>Emlékszel az előző fejezet Számkitaláló játékára? (Ahol egy <code>while</code> ciklussal addig kérdeztük a tippet, amíg el nem találta). <br>
+          Másold be a régi kódodat, és fejleszd tovább! Tedd az <code>int()</code> átalakítást egy <code>try - except</code> blokkba a <code>while</code> cikluson <b>belül</b>. Ha a játékos betűt ír be, a gép ne fagyjon le, hanem írja ki: <i>"Kérlek, számot írj!"</i>, és menjen tovább a játék!</p>
+
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">gondolt_szam</span> <span class="is">=</span> <span class="int">7</span>
+<span class="var">tipp</span> <span class="is">=</span> <span class="int">0</span>
+          
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"Gondoltam egy számra 1 és 10 között. Találd ki!"</span>)</span>
+          
+<span class="is">while</span> <span class="var">tipp</span> <span class="is">!=</span> <span class="var">gondolt_szam</span>:
+    <span class="is">try</span>:
+        <span class="var">tipp</span> <span class="is">=</span> <span class="fn">int</span><span class="elso-zarojel">(<span class="fn">input</span><span class="masodik-zarojel">(<span class="str">"Mi a tipped? "</span>)</span>)</span>
+        
+        <span class="fn">if</span> <span class="var">tipp</span> <span class="is">&lt;</span> <span class="var">gondolt_szam</span>:
+            <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Nagyobb számra gondoltam!"</span>)</span>
+        <span class="fn">elif</span> <span class="var">tipp</span> <span class="is">&gt;</span> <span class="var">gondolt_szam</span>:
+            <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Kisebb számra gondoltam!"</span>)</span>
+            
+    <span class="is">except</span>:
+        <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Hé, ez nem egy szám! Kérlek, számot írj!"</span>)</span>
+          
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"Gratulálok, eltaláltad!"</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+  </div>
+</body>
+</html>

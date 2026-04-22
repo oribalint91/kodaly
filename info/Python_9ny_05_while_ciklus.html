@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐍 Python alapok: ismétlés for ciklussal</title>
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
+</head>
+<body>
+    <div class="task-card">
+    <h3>7. Ciklusok 2.: A <code>while</code> ciklus (A makacs ismétlő)</h3>
+    
+    <p class="intro">A <code>for</code> ciklus zseniális, ha pontosan tudjuk, hányszor akarunk ismételni valamit (pl. egy 10 elemű listán megyünk végig). De mi van akkor, ha nem tudjuk előre a lépések számát? Például egy jelszókérő programnál: honnan tudná a gép, hogy a felhasználó elsőre, vagy csak ötödikre találja ki a jelszót? Ilyenkor használjuk a <b><code>while</code></b> (magyarul: <i>amíg</i>) ciklust.</p>
+
+    <details open>
+      <summary>Hogyan működik a <code>while</code>?</summary>
+      <p>Gondolj a <code>while</code> ciklusra úgy, mint egy makacs kisgyerekre egy hosszú autóúton, aki percenként megkérdezi: <i>"Ott vagyunk már?"</i>. Ezt a kérdést addig ismétli, <b>amíg</b> a válasz az, hogy "Nem".</p>
+      
+      <p>A <code>while</code> ciklus egy <b>feltételt</b> vizsgál (pontosan úgy, mint az <code>if</code>). Ha a feltétel igaz, végrehajtja a behúzott parancsokat, majd visszaugrik az elejére, és <b>újra megvizsgálja</b> a feltételt. Ezt addig csinálja, amíg a feltétel hamissá (<code>False</code>) nem válik.</p>
+
+      <pre><code><span class="var">jelszo</span> <span class="is">=</span> <span class="str">""</span>
+
+<span class="komment"># Addig ismételjük a bekérést, AMÍG a jelszó NEM EGYENLŐ a titokkal</span>
+<span class="is">while</span> <span class="var">jelszo</span> <span class="is">!=</span> <span class="str">"Titok123"</span>:
+    <span class="var">jelszo</span> <span class="is">=</span> <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Kérem a jelszót a belépéshez: "</span>)</span>
+
+<span class="komment"># Ez már a ciklus után van, tehát csak a helyes jelszó beírása után fut le!</span>
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"Sikeres belépés! Üdvözöllek a rendszerben."</span>)</span></code></pre>
+    </details>
+
+    <details>
+      <summary>A visszaszámlálás és a Végtelen Ciklus veszélye!</summary>
+      <p>A <code>while</code> ciklust használhatjuk számlálásra is. Nézzünk meg egy rakéta kilövést:</p>
+
+      <pre><code><span class="var">visszaszamlalo</span> <span class="is">=</span> <span class="int">5</span>
+
+<span class="is">while</span> <span class="var">visszaszamlalo</span> <span class="is">&gt;</span> <span class="int">0</span>:
+    <span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Indulás: {<span class="var">visszaszamlalo</span>}..."</span>)</span>
+    <span class="var">visszaszamlalo</span> <span class="is">=</span> <span class="var">visszaszamlalo</span> <span class="is">-</span> <span class="int">1</span>  <span class="komment"># Nagyon fontos sor!</span>
+
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"KILÖVÉS! 🚀"</span>)</span></code></pre>
+
+      <div class="extra">
+        <b>🚨 Veszélyzóna: A végtelen ciklus</b>
+        <p>Mi történne, ha az előző kódból kifelejtenénk a <code>visszaszamlalo = visszaszamlalo - 1</code> sort? A gép megnézné: <i>az 5 nagyobb, mint 0? Igen.</i> Kiírná, hogy 5. Visszaugrana az elejére. <i>Az 5 nagyobb, mint 0? Igen.</i> Kiírná, hogy 5. És ezt csinálná a végtelenségig, másodpercenként ezerszer, amíg a számítógép le nem fagy, vagy be nem zárod a programot!</p>
+      </div>
+      <div class="osszefoglalas">
+        Aranyszabály: A <code>while</code> ciklus belsejében <b>mindig lennie kell valaminek, ami megváltoztatja a feltételt</b> (pl. csökkentünk egy számot, vagy bekérünk egy új adatot az <code>input()</code>-tal), különben a program beragad! Ha egy programod látszólag "lefagyott" és nem csinál semmit, esélyes, hogy írtál egy végtelen ciklust. (A VS Code termináljában a <span class="gomb">Ctrl + C</span> gombokkal tudod erőszakkal leállítani a futó végtelen ciklust).
+      </div>
+    </details>
+  </div>
+
+  <div class="task-card">
+    <h3>8. Gyakorló feladatok: Amíg a világ világ</h3>
+    <p>A <code>while</code> ciklus remekül használható játékokhoz és interaktív programokhoz. Hozz létre egy új fájlt, és próbáld ki ezeket!</p>
+
+    <div class="task-card">
+      <details>
+          <summary>1. feladat: Az idegesítő papagáj</summary>
+          <p>Készíts egy programot, ami mindent visszamond, amit beírsz neki. Hozz létre egy <code>szo</code> nevű változót, az értéke kezdésnek legyen egy üres szöveg (<code>""</code>). <br>
+          Írj egy <code>while</code> ciklust, ami addig fut, amíg a beírt szó <b>nem egyenlő</b> azzal, hogy <code>"elég"</code>. A cikluson belül kérd be az új szót, és írasd is rögtön ki!</p>
+          
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">szo</span> <span class="is">=</span> <span class="str">""</span>
+          
+<span class="komment"># Addig fut, amíg a felhasználó be nem írja, hogy \"elég\"</span>
+<span class="is">while</span> <span class="var">szo</span> <span class="is">!=</span> <span class="str">"elég"</span>:
+    <span class="var">szo</span> <span class="is">=</span> <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Mondj valamit: "</span>)</span>
+    <span class="fn">if</span> <span class="var">szo</span> <span class="is">!=</span> <span class="str">"elég"</span>:  <span class="komment"># Ezzel elkerüljük, hogy a kilépő szót is visszamondja</span>
+        <span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A papagáj mondja: {<span class="var">szo</span>}"</span>)</span>
+          
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"A papagáj elrepült."</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <div class="task-card">
+      <details>
+          <summary>2. feladat: Számkitaláló játék</summary>
+          <p>Készítsünk egy klasszikus játékot! A gép "gondol" egy számra (hozz létre egy változót, pl. <code>gondolt_szam = 7</code>). <br>
+          Kérj be a felhasználótól egy tippet (ne felejtsd el <code>int()</code>-té alakítani!). Írj egy <code>while</code> ciklust, ami addig kér be új tippet, amíg a tipp <b>nem egyenlő</b> a gondolt számmal.<br>
+          Ha eltalálta (tehát a ciklus véget ért), írd ki, hogy <i>"Gratulálok, eltaláltad!"</i></p>
+          
+          <div class="extra">
+            <b>Nehezítés haladóknak:</b> A cikluson belül egy <code>if-else</code> elágazással segíts a játékosnak, és írd ki, hogy a tippje túl nagy, vagy túl kicsi volt-e!
+          </div>
+
+          <details class="megoldasok">
+            <summary><i>Mutasd a megoldást!</i></summary>
+            <pre><code><span class="var">gondolt_szam</span> <span class="is">=</span> <span class="int">7</span>
+<span class="var">tipp</span> <span class="is">=</span> <span class="int">0</span>  <span class="komment"># Kezdőérték, ami biztosan nem a gondolt szám</span>
+          
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"Gondoltam egy számra 1 és 10 között. Találd ki!"</span>)</span>
+          
+<span class="is">while</span> <span class="var">tipp</span> <span class="is">!=</span> <span class="var">gondolt_szam</span>:
+    <span class="var">tipp_szoveg</span> <span class="is">=</span> <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Mi a tipped? "</span>)</span>
+    <span class="var">tipp</span> <span class="is">=</span> <span class="fn">int</span><span class="elso-zarojel">(<span class="var">tipp_szoveg</span>)</span>
+    
+    <span class="komment"># Segítség (haladó rész)</span>
+    <span class="fn">if</span> <span class="var">tipp</span> <span class="is">&lt;</span> <span class="var">gondolt_szam</span>:
+        <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Nagyobb számra gondoltam!"</span>)</span>
+    <span class="fn">elif</span> <span class="var">tipp</span> <span class="is">&gt;</span> <span class="var">gondolt_szam</span>:
+        <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Kisebb számra gondoltam!"</span>)</span>
+          
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"Gratulálok, eltaláltad!"</span>)</span></code></pre>
+          </details>
+      </details>
+    </div>
+  </div>
+</body>
+</html>

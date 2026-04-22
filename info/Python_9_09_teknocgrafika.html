@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐍 Python alapok: Teknőcgrafika</title>
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
+</head>
+<body>
+    
+  <h2>🐍 Python alapok: Rajzolás a Teknőccel (Turtle)</h2>
+    
+  <div class="task-card">
+    <h3>15. Teknőcgrafika: A Scratch és a Pencil Code után szabadon!</h3>
+    
+    <p class="intro">Emlékszel, amikor Scratch-ben a tollat használva, vagy a Pencil Code-ban JavaScripttel rajzoltattunk alakzatokat? A Python is rendelkezik egy beépített rajzoló modullal, amit <b>turtle</b>-nek (teknőc) hívnak. A logika pontosan ugyanaz: van egy virtuális "robotunk" (a teknőc), akinek parancsokat adhatunk, hogy mennyit menjen előre, és hány fokot forduljon.</p>
+
+    <details open>
+      <summary>Az első vonalak (Alapok)</summary>
+      <p>Ahhoz, hogy rajzolni tudjunk, először be kell importálnunk a <code>turtle</code> modult, és létre kell hoznunk a saját teknőcünket (akit a példában <code>t</code>-nek nevezünk el).</p>
+      
+      <pre><code><span class="is">import</span> <span class="var">turtle</span>
+
+<span class="komment"># Létrehozzuk a teknőcöt és a rajzvásznat</span>
+<span class="var">t</span> <span class="is">=</span> <span class="var">turtle</span>.<span class="fn">Turtle</span><span class="elso-zarojel">()</span>
+<span class="var">t</span>.<span class="fn">shape</span><span class="elso-zarojel">(<span class="str">"turtle"</span>)</span>  <span class="komment"># Hogy tényleg teknőc formája legyen!</span>
+
+<span class="komment"># Mozgás parancsok</span>
+<span class="var">t</span>.<span class="fn">forward</span><span class="elso-zarojel">(<span class="int">100</span>)</span>     <span class="komment"># Előre 100 képpontot</span>
+<span class="var">t</span>.<span class="fn">right</span><span class="elso-zarojel">(<span class="int">90</span>)</span>        <span class="komment"># Jobbra fordul 90 fokot</span>
+<span class="var">t</span>.<span class="fn">forward</span><span class="elso-zarojel">(<span class="int">100</span>)</span>
+
+<span class="var">turtle</span>.<span class="fn">done</span><span class="elso-zarojel">()</span>      <span class="komment"># Ezt a legvégére írjuk, hogy az ablak ne záródjon be azonnal!</span></code></pre>
+    </details>
+
+    <details>
+      <summary>Szabályos alakzatok ciklussal</summary>
+      <p>Ha egy négyzetet szeretnénk rajzolni, nem írjuk le négyszer az előre-fordul parancsokat. Ehelyett – ahogy azt már megtanultuk – bevetjük a <code>for</code> ciklust!</p>
+
+      <pre><code><span class="is">import</span> <span class="var">turtle</span>
+
+<span class="var">t</span> <span class="is">=</span> <span class="var">turtle</span>.<span class="fn">Turtle</span><span class="elso-zarojel">()</span>
+
+<span class="komment"># Négyszer ismételjük a behúzott parancsokat</span>
+<span class="is">for</span> <span class="var">i</span> <span class="is">in</span> <span class="fn">range</span><span class="elso-zarojel">(<span class="int">4</span>)</span>:
+    <span class="var">t</span>.<span class="fn">forward</span><span class="elso-zarojel">(<span class="int">100</span>)</span>
+    <span class="var">t</span>.<span class="fn">right</span><span class="elso-zarojel">(<span class="int">90</span>)</span>
+
+<span class="var">turtle</span>.<span class="fn">done</span><span class="elso-zarojel">()</span></code></pre>
+      
+      <div class="extra">
+        <b>Matek zseniknek:</b> Bármilyen szabályos sokszöget rajzolhatsz, ha a 360 fokot elosztod a szögek számával! Például egy hatszögnél: <code>range(6)</code> és <code>t.right(360 / 6)</code>.
+      </div>
+    </details>
+
+    <details>
+      <summary>A Mandala (Ciklus a ciklusban + Random színek!)</summary>
+      <p>Most kössük össze a tudásunkat! Rajzoljunk egy négyzetet, utána forduljunk egy picit, és rajzoljuk meg újra... mindezt 36-szor! Hogy még szebb legyen, a vonalak színét a <code>random</code> modul segítségével minden lépésnél véletlenszerűen választjuk ki egy listából.</p>
+
+      <pre><code><span class="is">import</span> <span class="var">turtle</span>
+<span class="is">import</span> <span class="var">random</span>
+
+<span class="var">t</span> <span class="is">=</span> <span class="var">turtle</span>.<span class="fn">Turtle</span><span class="elso-zarojel">()</span>
+<span class="var">t</span>.<span class="fn">speed</span><span class="elso-zarojel">(<span class="int">0</span>)</span>  <span class="komment"># A 0 a leggyorsabb rajzolási sebesség</span>
+
+<span class="var">szinek</span> <span class="is">=</span> [<span class="str">"red"</span>, <span class="str">"blue"</span>, <span class="str">"green"</span>, <span class="str">"purple"</span>, <span class="str">"orange"</span>, <span class="str">"magenta"</span>]
+
+<span class="komment"># Külső ciklus: 36-szor ismétli a négyzetrajzolást és a forgatást</span>
+<span class="is">for</span> <span class="var">i</span> <span class="is">in</span> <span class="fn">range</span><span class="elso-zarojel">(<span class="int">36</span>)</span>:
+    <span class="komment"># Véletlen szín választása a listából</span>
+    <span class="var">t</span>.<span class="fn">color</span><span class="elso-zarojel">(<span class="var">random</span>.<span class="fn">choice</span><span class="masodik-zarojel">(<span class="var">szinek</span>)</span>)</span>
+    
+    <span class="komment"># Belső ciklus: Ez maga a négyzet megrajzolása</span>
+    <span class="is">for</span> <span class="var">j</span> <span class="is">in</span> <span class="fn">range</span><span class="elso-zarojel">(<span class="int">4</span>)</span>:
+        <span class="var">t</span>.<span class="fn">forward</span><span class="elso-zarojel">(<span class="int">100</span>)</span>
+        <span class="var">t</span>.<span class="fn">right</span><span class="elso-zarojel">(<span class="int">90</span>)</span>
+        
+    <span class="komment"># A négyzet után fordulunk 10 fokot (36 * 10 = 360 fok, egy teljes kör!)</span>
+    <span class="var">t</span>.<span class="fn">right</span><span class="elso-zarojel">(<span class="int">10</span>)</span>
+
+<span class="var">turtle</span>.<span class="fn">done</span><span class="elso-zarojel">()</span></code></pre>
+    </details>
+
+    <details>
+      <summary>Varázslat haladóknak: A Fraktálfa (Rekurzió)</summary>
+      <p>A függvényeknél tanultuk a <code>def</code> parancsot. Mi történik, ha egy függvény <b>önmagát hívja meg</b>? Ezt hívják <b>rekurziónak</b>. A természet is így építkezik: egy fa ága kettéágazik, majd azok a kisebb ágak is kettéágaznak, és így tovább...</p>
+
+      <pre><code><span class="is">import</span> <span class="var">turtle</span>
+
+<span class="var">t</span> <span class="is">=</span> <span class="var">turtle</span>.<span class="fn">Turtle</span><span class="elso-zarojel">()</span>
+<span class="var">t</span>.<span class="fn">left</span><span class="elso-zarojel">(<span class="int">90</span>)</span>   <span class="komment"># Felfelé nézzen a teknőc (a fa törzse miatt)</span>
+<span class="var">t</span>.<span class="fn">speed</span><span class="elso-zarojel">(<span class="int">0</span>)</span>
+
+<span class="komment"># Saját függvény definiálása</span>
+<span class="is">def</span> <span class="fn">fa_rajzolas</span><span class="elso-zarojel">(<span class="var">ag_hossza</span>)</span>:
+    <span class="komment"># Csak akkor rajzolunk, ha az ág még elég nagy</span>
+    <span class="fn">if</span> <span class="var">ag_hossza</span> <span class="is">&gt;</span> <span class="int">5</span>:
+        <span class="var">t</span>.<span class="fn">forward</span><span class="elso-zarojel">(<span class="var">ag_hossza</span>)</span>      <span class="komment"># Megrajzolja a főágat</span>
+        <span class="var">t</span>.<span class="fn">right</span><span class="elso-zarojel">(<span class="int">20</span>)</span>                 <span class="komment"># Jobbra dől</span>
+        
+        <span class="komment"># ITT A VARÁZSLAT: Meghívja önmagát, de egy rövidebb ággal!</span>
+        <span class="fn">fa_rajzolas</span><span class="elso-zarojel">(<span class="var">ag_hossza</span> <span class="is">-</span> <span class="int">15</span>)</span>
+        
+        <span class="var">t</span>.<span class="fn">left</span><span class="elso-zarojel">(<span class="int">40</span>)</span>                  <span class="komment"># Átlendül a bal oldalra</span>
+        <span class="fn">fa_rajzolas</span><span class="elso-zarojel">(<span class="var">ag_hossza</span> <span class="is">-</span> <span class="int">15</span>)</span> <span class="komment"># Bal oldali kisebb ág</span>
+        
+        <span class="var">t</span>.<span class="fn">right</span><span class="elso-zarojel">(<span class="int">20</span>)</span>                 <span class="komment"># Visszaáll középre</span>
+        <span class="var">t</span>.<span class="fn">backward</span><span class="elso-zarojel">(<span class="var">ag_hossza</span>)</span>     <span class="komment"># Visszamegy az ág tövébe</span>
+
+<span class="komment"># Főprogram: Elindítjuk a varázslatot egy 75 hosszú törzzsel!</span>
+<span class="fn">fa_rajzolas</span><span class="elso-zarojel">(<span class="int">75</span>)</span>
+
+<span class="var">turtle</span>.<span class="fn">done</span><span class="elso-zarojel">()</span></code></pre>
+      <div class="osszefoglalas">
+        Ha ezt lefuttatod, meg fogod látni, milyen gyönyörűen kirajzolja a gép a fa ágait! Próbáld meg átírni a paramétereket (pl. a forgások fokát 20 helyett 30-ra), és figyeld meg, hogyan változik a fa lombkoronája!
+      </div>
+    </details>
+  </div>
+
+</body>
+</html>

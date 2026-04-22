@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 1. rész: Kémiai alapfogalmak</title>
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
+</head>
+<body class="theme-kem">
+    
+  <h2>🧪 1. rész: Kémiai alapfogalmak</h2>
+    
+  <p class="intro">Ebben a fejezetben lefektetjük az alapokat: megismerkedünk az anyagok csoportosításával, a tiszta anyagok és keverékek közötti különbséggel, valamint a kémia legfontosabb alapfogalmaival.</p>
+
+  <div class="task-card">
+    <h3>1. Az anyagok csoportosítása</h3>
+    <p>A környezetünkben található anyagokat összetételük alapján két nagy csoportra oszthatjuk:</p>
+    
+    <div class="sides">
+        <div class="left-free">
+            <h4>Tiszta anyagok</h4>
+            <ul>
+                <li>Csak egyféle kémiai részecskéből állnak.</li>
+                <li>Fizikai módszerekkel nem bonthatók tovább.</li>
+                <li><b>Elemek:</b> egyféle atomból állnak (pl. <ruby>Fe<rt>0</rt></ruby>, <ruby>O<rt>0</rt></ruby><sub>2</sub>).</li>
+                <li><b>Vegyületek:</b> többféle atomból állnak (pl. H<sub>2</sub>O, NaCl).</li>
+            </ul>
+        </div>
+        <div class="right-free">
+            <h4>Keverékek</h4>
+            <ul>
+                <li>Többféle kémiai részecskéből állnak.</li>
+                <li>Fizikai módszerekkel (pl. szűrés, lepárlás) szétválaszthatók.</li>
+                <li><b>Homogén:</b> szemmel nem különíthetők el az alkotórészek (pl. sós víz, levegő).</li>
+                <li><b>Heterogén:</b> látszanak a fázishatárok (pl. homokos víz, tej).</li>
+            </ul>
+        </div>
+    </div>
+
+    <details class="emelt">
+        <summary>Emelt szint: Allotróp módosulatok</summary>
+        <p>Az elemeknek létezhetnek allotróp módosulataik is. Ez azt jelenti, hogy ugyanaz az elem többféle szerkezeti formában is előfordulhat (pl. a szén esetén a gyémánt és a grafit, vagy az oxigén esetén az O<sub>2</sub> és az ózon, az O<sub>3</sub>).</p>
+    </details>
+  </div>
+
+  <div class="task-card">
+    <h3>2. Fizikai és kémiai változások</h3>
+    <p>Fontos megkülönböztetni, hogy mi történik az anyaggal egy folyamat során:</p>
+    
+    <table>
+        <tr>
+            <th>Jellemző</th>
+            <th>Fizikai változás</th>
+            <th>Kémiai változás (reakció)</th>
+        </tr>
+        <tr>
+            <td><b>Anyagi minőség</b></td>
+            <td>Nem változik meg</td>
+            <td>Megváltozik (új anyag jön létre)</td>
+        </tr>
+        <tr>
+            <td><b>Részecskék</b></td>
+            <td>Csak a távolságuk/rendezettségük változik</td>
+            <td>Kötések bomlanak fel és jönnek létre</td>
+        </tr>
+        <tr>
+            <td><b>Példa</b></td>
+            <td>Jég olvadása, cukor oldódása</td>
+            <td>Papír égése, vas rozsdásodása</td>
+        </tr>
+    </table>
+
+    <div class="szorgalmi">
+        <p><b>Gondolkodtató:</b> A cukor oldódása vízben fizikai vagy kémiai változás? <br>
+        <i>Válasz:</i> Fizikai, mert a cukormolekulák épek maradnak, csak a vízmolekulák körbeveszik őket (hidratáció). Ha elpárologtatjuk a vizet, visszakapjuk a cukrot.</p>
+    </div>
+  </div>
+
+  <div class="task-card">
+    <h3>❓ Gyors ellenőrzés</h3>
+    <p>Melyik állítás igaz a <b>levegőre</b>?</p>
+    
+    <button class="gomb" onclick="checkQuiz(this, false, 'A levegőben nitrogén, oxigén és egyéb gázok vannak összekeveredve.')">Tiszta anyag, azon belül elem.</button>
+    <button class="gomb" onclick="checkQuiz(this, false, 'Bár több gázból áll, az alkotórészek nem kémiai kötéssel kapcsolódnak.')">Tiszta anyag, azon belül vegyület.</button>
+    <button class="gomb" onclick="checkQuiz(this, true, 'Így van! Gázok homogén keveréke.')">Homogén keverék.</button>
+  </div>
+
+  <div class="task-card">
+    <h3>3. Alapvető oxidációs számok</h3>
+    <p>Jegyezd meg az alapvető szabályokat!</p>
+    <div class="osszefoglalas">
+        <ul>
+            <li>Elemek oxidációs száma mindig <span class="ox-num">0</span>.</li>
+            <li>A Hidrogén vegyületeiben általában <span class="ox-num">+I</span>.</li>
+            <li>Az Oxigén vegyületeiben általában <span class="ox-num">-II</span>.</li>
+        </ul>
+    </div>
+    
+    <p>Próbáld kiolvasni a képletet: <br>
+        <span class="keplet">
+            <ruby>H<rt>+I</rt></ruby><sub>2</sub><ruby>O<rt>-II</rt></ruby>
+        </span>
+    </p>
+
+    <details>
+        <summary>Részletes leírás: Miért így számolunk?</summary>
+        <p>A vízmolekulában két hidrogén van (+1 +1 = +2) és egy oxigén (-2). Az összegük (+2 - 2 = 0), ami megfelel a szabálynak, miszerint a semleges molekulák oxidációs számainak összege nulla.</p>
+    </details>
+  </div>
+
+  <div id="kep-modal" class="modal-hatter">
+      <span class="modal-bezaras">&times;</span>
+      <div class="modal-tartalom">
+          <img id="modal-benne-levo-kep" src="" alt="">
+      </div>
+  </div>
+
+</body>
+</html>

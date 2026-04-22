@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Kémia: Alapfogalmak</title>
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
+</head>
+<body class="theme-kem">
+    <h2>🧪 Kémiai alapfogalmak és Oxidációs számok</h2>
+
+    <div class="task-card">
+        <h3>1. Oxidációs számok meghatározása</h3>
+        <p class="intro">Az oxidációs szám egy névleges töltés, amelyet az atomhoz rendelünk egy vegyületben. Segít követni az elektronok vándorlását a reakciók során.</p>
+        
+        <p>Példa a kénsav molekulára: 
+            <span class="ox-container">H<sub>2</sub><span class="ox-num">+VI</span><span class="ox-atom">S</span>O<sub>4</sub></span>
+        </p>
+
+        <div class="emelt">
+            <p>Emelt szint: Az oxidációs szám nem azonos a valenciával! Elemekben az oxidációs szám mindig 0.</p>
+        </div>
+    </div>
+
+    <div class="task-card">
+        <h3>Példák oxidációs számokra (Tökéletes elrendezés)</h3>
+        
+        <p>Nézzük a kénsavat, ahol csak a kén (S) fölé teszünk számot:</p>
+        
+        <p class="keplet">
+            H<sub>2</sub><ruby>S<rt>+VI</rt></ruby>O<sub>4</sub>
+        </p>
+
+        <hr style="margin: 20px 0;">
+
+        <p>Nézzük a kálium-permanganátot, ahol MINDEN atom fölé teszünk számot:</p>
+
+        <p class="keplet">
+            <ruby>K<rt>+I</rt></ruby><ruby>Mn<rt>+VII</rt></ruby><ruby>O<rt>-II</rt></ruby><sub>4</sub>
+        </p>
+        
+        <hr style="margin: 20px 0;">
+        
+        <p>És egy bonyolultabb, kalcium-karbid (ahogy a javításaidban is szerepel):</p>
+        
+        <p class="keplet">
+            <ruby>Ca<rt>+II</rt></ruby><ruby>C<rt>-I</rt></ruby><sub>2</sub>
+        </p>
+    </div>
+
+    <div class="task-card">
+        <h3>❓ Ellenőrző kérdés</h3>
+        <p>Mennyi a mangán oxidációs száma a <b>KMnO<sub>4</sub></b> (kálium-permanganát) vegyületben?</p>
+        
+        <button class="gomb" onclick="checkQuiz(this, false, 'A K=+1, az O=-2. Számolj utána!')">+5</button>
+        <button class="gomb" onclick="checkQuiz(this, true, 'Nagyon jó! (+1) + (+7) + 4*(-2) = 0')">+7</button>
+        <button class="gomb" onclick="checkQuiz(this, false, 'A mangán itt a legmagasabb oxidációs állapotában van.')">+2</button>
+    </div>
+
+    <div id="kep-modal" class="modal-hatter">
+        <span class="modal-bezaras">&times;</span>
+        <div class="modal-tartalom">
+            <img id="modal-benne-levo-kep" src="" alt="">
+        </div>
+    </div>
+</body>
+</html>

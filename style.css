@@ -45,7 +45,7 @@
 }
 
 /* --- DARK MODE VÁLTOZÓK --- */
-body.dark-mode {
+html.dark-mode {
   --primary: #111a28;
   --secondary: #5dade2;
 
@@ -95,7 +95,7 @@ body.theme-bio {
   --summary-hover: #145a32;
   --heading-color: #196f3d;
 }
-body.dark-mode.theme-bio {
+html.dark-mode.theme-bio {
   --primary: #0f301d;
   --intro-bg: #145a32;
   --summary-color: #58d68d;
@@ -112,7 +112,7 @@ body.theme-kem {
   --summary-hover: #512e5f;
   --heading-color: #5b2c6f;
 }
-body.dark-mode.theme-kem {
+html.dark-mode.theme-kem {
   --primary: #2c1a36;
   --intro-bg: #4a235a;
   --summary-color: #bb8fce;
@@ -140,6 +140,8 @@ h1, h2, h3 { color: var(--heading-color); }
 .intro { background: var(--intro-bg); padding: 15px; border-left: 5px solid var(--secondary); margin-bottom: 20px; transition: background-color 0.4s; }
 .raw-text-box { background: var(--raw-box-bg); border: 2px dashed var(--border-dark); padding: 15px; border-radius: 5px; font-family: 'Courier New', Courier, monospace; margin-bottom: 30px; transition: background-color 0.4s; }
 .raw-text-box p { margin: 0; }
+.bekezdessel {white-space: pre-wrap;}
+button.copy-btn:first-child + .raw-text-box {padding-top: 2.4rem;}
 .extra { background-color: var(--extra-bg); border-radius: 5px; border: 2.5px dashed var(--extra-summary-color); font-style: italic; font-size: medium; transition: background-color 0.4s; }
 .extra summary { color: var(--extra-summary-color); list-style-type: '💡 '; }
 details[open].extra > summary { list-style-type: '💡 ▼ '; }
@@ -164,7 +166,7 @@ code.inline { background: var(--inline-code-bg); color: var(--inline-code-color)
 
 .output-box { background: #eef2f5; border-left: 3px solid #7f8c8d; padding: 10px; font-family: 'Consolas', monospace; margin-top: 5px; color: #2c3e50; }
 .gomb { background: var(--gomb-bg); border: 2px solid var(--border-dark); padding: 5px; border-radius: 5px; font-family: 'Courier New', Courier, monospace; margin-bottom: 30px; hyphens: none; transition: background-color 0.4s; }
-.sticky-footer .gomb{ background: #222; }
+/* .sticky-footer .gomb{ background: #222; } */
 
 .left { max-width: 49%; margin-right: auto; }
 .right { max-width: 49%; margin-left: auto; }
@@ -192,12 +194,12 @@ div.back:hover { background-color: var(--back-hover); }
 /* Interaktív és animált elemek */
 .ia { font-weight: bold; color: maroon; text-decoration: underline; cursor: pointer; transition: color 0.2s; }
 .ia:hover { color: red; }
-body.dark-mode .ia { color: #ff7675; }
-body.dark-mode .ia:hover { color: #ff9ff3; }
+html.dark-mode .ia { color: #ff7675; }
+html.dark-mode .ia:hover { color: #ff9ff3; }
 
 .right-container { position: relative; flex: 1; min-height: 120px; margin-left: 20px; }
-.rejtett-kep { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; visibility: hidden; transform: translateY(5px); transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s; }
-.rejtett-kep.lathato { opacity: 1; visibility: visible; transform: translateY(0); }
+.rejtett-kep {opacity: 0; visibility: hidden; pointer-events: none; position: absolute !important; transform: translateY(5px); transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s; }
+.rejtett-kep.lathato {opacity: 1; visibility: visible; pointer-events: auto; position: relative !important; display: block !important; transform: translateY(0);}
 
 .lenyilo-tartalom { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s ease-in-out; }
 .lenyilo-tartalom.lathato { max-height: 1000px; opacity: 1; margin-top: 15px; }
@@ -210,8 +212,9 @@ details[open] summary ~ * { animation: sweep 0.5s ease-in-out; }
 .modal-hatter.lathato { visibility: visible; opacity: 1; }
 .modal-tartalom { position: relative; margin: 5vh auto; max-width: fit-content; text-align: center; transform: scale(0.7); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .modal-hatter.lathato .modal-tartalom { transform: scale(1); }
-#modal-benne-levo-kep { max-width: 90vw; max-height: 85vh; border: 2px solid white; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); cursor: zoom-in; transition: max-width 0.3s ease, max-height 0.3s ease; display: block; }
-#modal-benne-levo-kep.nagyitott { max-width: 500vw; max-height: 500vh; cursor: zoom-out; }
+#modal-benne-levo-kep { max-width: 90vw; max-height: 85vh; border: 2px solid white; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); cursor: zoom-in; transition: transform 0.3s ease, max-height 0.3s ease; display: block; transform-origin: center center; }
+#modal-benne-levo-kep.kep-svg-wrapper img {max-height: 80vh; width: auto;}
+#modal-benne-levo-kep.nagyitott { transform: scale(2.2) !important; cursor: zoom-out; z-index: 1005;}
 
 .modal-bezaras { visibility: hidden; opacity: 0; transition: opacity 0.3s ease, visibility 0.3s ease, color 0.2s; position: absolute; z-index: 1001; right: 20px; top: 30px; font-size: 45px; font-weight: bold; cursor: pointer; line-height: 1; }
 .modal-bezaras.lathato { visibility: visible; opacity: 1; color: white; }
@@ -247,7 +250,7 @@ code .normal {color: #abb2bf;}
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
   margin-bottom: 20px;
 }
-body.dark-mode .top-nav { border-bottom: 1px solid #2c3e50; }
+html.dark-mode .top-nav { border-bottom: 1px solid #2c3e50; }
 
 .nav-list { list-style-type: none; margin: 0; padding: 0; display: flex; }
 .nav-item { position: relative; }
@@ -269,12 +272,14 @@ body.dark-mode .top-nav { border-bottom: 1px solid #2c3e50; }
   position: absolute; 
   background-color: var(--card-bg); 
   min-width: 280px; 
+  max-height: 85vh;
   box-shadow: 0 8px 16px rgba(0,0,0,0.2); 
   border-radius: 0 0 5px 5px; 
   z-index: 1001; 
   border: 1px solid var(--border-light);
+  overflow: auto;
 }
-body.dark-mode .dropdown-content { border-color: #2c3e50; }
+html.dark-mode .dropdown-content { border-color: #2c3e50; }
 
 .dropdown-content a {
   color: var(--text) !important; 
@@ -306,3 +311,70 @@ body.dark-mode .dropdown-content { border-color: #2c3e50; }
 
 .nav-item.dropdown:hover .dropdown-content { display: block; animation: fadeInDown 0.3s ease; }
 @keyframes fadeInDown { from {opacity: 0; transform: translateY(-10px);} to {opacity: 1; transform: translateY(0);} }
+
+/* --- KÉMIA STÍLUSOK --- */
+/* Oxidációs szám az atom fölött */
+/* --- KÉMIA: TÖKÉLETES OXIDÁCIÓS SZÁMOK --- */
+ruby {ruby-position: over; /* Biztosítja, hogy felülre kerüljön */ ruby-align: center;  /* Középre igazítja az atom felett */}
+
+rt {font-size: 0.65em; font-weight: bold; color: var(--secondary); line-height: 1;}
+
+/* Egy kis extra, hogy a képletek jobban olvashatóak lettek */
+.keplet {font-size: 1.2em; letter-spacing: 1px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+
+/* --- KÉMIA: Emelt szintű és szorgalmi blokkok --- */
+.emelt {border-left: 5px solid var(--secondary); padding-left: 15px; font-style: italic; margin: 15px 0;}
+.szorgalmi {background-color: var(--intro-bg); border: 1px solid var(--secondary); padding: 15px; border-radius: 8px; margin: 15px 0;}
+
+/* reszponzív egymás melletti/alatti tartalmak */
+
+.resp {display: grid; gap: 10px;}
+@media (min-width: 600px) {
+  .resp-left {grid-area: 1 / span 3;}
+  .resp-right {grid-area: 1 / span 1;}
+}
+
+/* --- KÉP + SVG OVERLAY (SZENDVICS DOBOZ) --- */
+.kep-svg-wrapper {
+    position: relative;
+    display: block;
+    max-width: fit-content;
+    margin: 0 auto;
+    padding: 0;
+    line-height: 0;
+    font-size: 0;
+}
+
+.kep-svg-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+/* Az átlátszó fólia, ami a képre simul */
+.svg-reteg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* A kattintás "átmegy" rajta, mintha ott se lenne */
+}
+
+/* Egy csinos, villogó vagy feltűnő keret stílusa a Wordhöz */
+.svg-kiemeles {
+    fill: none;
+    stroke: #f00;              /* Vastag piros keret */
+    stroke-width: 3;
+}
+
+.svg-kiemeles-hatteres {
+    fill: rgba(231, 76, 60, 0.2); /* Enyhén pirosas, áttetsző kitöltés */
+    stroke: #e74c3c;              /* Vastag piros keret */
+    stroke-width: 4;
+    stroke-dasharray: 8, 4;       /* Szaggatott vonal */
+}
+
+.svg-homaly {fill: rgba(0,0,0,0.5); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);}

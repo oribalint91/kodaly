@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐍 Python Ismétlés</title>
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
+</head>
+<body>
+    
+  <h2>🐍 9. évfolyam: Év eleji Python Gyorstalpaló</h2>
+    
+  <p class="intro">Új tanév, új kihívások! Mielőtt belevágunk a komolyabb fejlesztésekbe (függvények, modulok, saját játékok), rázzuk gatyába azt a tudást, amit a korábbiakban megszereztünk. Ebben a leckében egyetlen oldalon áttekintjük a Python legfontosabb alapjait. Ha ezek mennek, bármit meg tudsz építeni!</p>
+
+  <div class="task-card">
+    <h3>1. Változók, Adattípusok és Adatbekérés</h3>
+    <p>A változók olyanok, mint a felcímkézett dobozok: adatokat tárolunk bennük. A leggyakoribb típusok: <b>Szöveg</b> (String), <b>Egész szám</b> (Integer), <b>Törtszám</b> (Float) és <b>Logikai</b> (Boolean).</p>
+    
+    <pre><code><span class="komment"># Adatbekérés és típuskonverzió (szövegből számot csinálunk az int() segítségével)</span>
+<span class="var">nev</span> <span class="is">=</span> <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Hogy hívnak? "</span>)</span>
+<span class="var">kor</span> <span class="is">=</span> <span class="fn">int</span><span class="elso-zarojel">(<span class="fn">input</span><span class="masodik-zarojel">(<span class="str">"Hány éves vagy? "</span>)</span>)</span>
+
+<span class="komment"># Változó értékének növelése</span>
+<span class="var">kor</span> <span class="is">=</span> <span class="var">kor</span> <span class="is">+</span> <span class="int">1</span>
+
+<span class="komment"># Kiírás f-string (formázott szöveg) segítségével</span>
+<span class="print">print</span><span class="elso-zarojel">(f<span class="str">"Szia {<span class="var">nev</span>}, jövőre {<span class="var">kor</span>} éves leszel!"</span>)</span></code></pre>
+  </div>
+
+  <div class="task-card">
+    <h3>2. Döntéshozatal: Az <code>if - elif - else</code></h3>
+    <p>A programunk képes útvonalakat választani a feltételek alapján. Ne feledd: a Python a <b>behúzásokból (Tab)</b> tudja, hogy mi tartozik a feltétel belsejébe!</p>
+    
+    <pre><code><span class="var">pontszam</span> <span class="is">=</span> <span class="int">85</span>
+
+<span class="fn">if</span> <span class="var">pontszam</span> <span class="is">&gt;=</span> <span class=\"int\">90</span>:
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Jeles!"</span>)</span>
+<span class="fn">elif</span> <span class="var">pontszam</span> <span class="is">&gt;=</span> <span class=\"int\">70</span>:
+    <span class="komment"># Ha az első nem volt igaz, de ez igen:</span>
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Jó eredmény!"</span>)</span>
+<span class="fn">else</span>:
+    <span class="komment"># Ha semmi sem volt igaz a fentiek közül:</span>
+    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"Ezen még dolgozni kell."</span>)</span></code></pre>
+  </div>
+
+  <div class="task-card">
+    <h3>3. Lista: Több adat egy dobozban</h3>
+    <p>Ahelyett, hogy száz változót hoznánk létre, használhatunk listát <code>[]</code>. Ne feledd, a Python nullától (0) kezd el számolni!</p>
+    
+    <pre><code><span class="var">hatizsak</span> <span class="is">=</span> [<span class="str">"Kard"</span>, <span class="str">"Pajzs"</span>, <span class="str">"Alma"</span>]
+
+<span class="print">print</span><span class="elso-zarojel">(<span class="var">hatizsak</span>[<span class="int">0</span>])</span>  <span class="komment"># Kiírja: Kard (a legelső elem)</span>
+
+<span class="komment"># Új elem hozzáadása a lista végéhez</span>
+<span class="var">hatizsak</span>.<span class="fn">append</span><span class="elso-zarojel">(<span class="str">"Kötél"</span>)</span></code></pre>
+  </div>
+
+  <div class="task-card">
+    <h3>4. Ciklusok: A fáradhatatlan gép</h3>
+    
+    <details>
+      <summary>A <code>for</code> ciklus (Tudjuk, hányszor fut le)</summary>
+      <p>Akkor használjuk, ha egy listán akarunk végigmenni, vagy pontosan tudjuk a lépések számát (pl. <code>range()</code>).</p>
+      <pre><code><span class="var">hatizsak</span> <span class="is">=</span> [<span class="str">"Kard"</span>, <span class="str">"Pajzs"</span>, <span class="str">"Alma"</span>]
+
+<span class="komment"># Végigmegy a lista összes elemén egyesével</span>
+<span class="is">for</span> <span class="var">targy</span> <span class="is">in</span> <span class="var">hatizsak</span>:
+    <span class="print">print</span><span class="elso-zarojel">(f<span class="str">"A táskámban van: {<span class="var">targy</span>}"</span>)</span></code></pre>
+    </details>
+
+    <details>
+      <summary>A <code>while</code> ciklus (Addig fut, AMÍG egy feltétel igaz)</summary>
+      <p>Tökéletes játékokhoz, jelszókéréshez, vagy ha nem tudjuk előre a lépések számát. Vigyázz a végtelen ciklusokkal!</p>
+      <pre><code><span class="var">jelszo</span> <span class="is">=</span> <span class="str">""</span>
+
+<span class="komment"># Addig kérdezi, amíg a beírt szó NEM egyenlő a titokkal</span>
+<span class="is">while</span> <span class="var">jelszo</span> <span class="is">!=</span> <span class="str">"nyithataram"</span>:
+    <span class="var">jelszo</span> <span class="is">=</span> <span class="fn">input</span><span class="elso-zarojel">(<span class="str">"Mondd a jelszót: "</span>)</span>
+    
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"A barlang ajtaja kinyílt!"</span>)</span></code></pre>
+    </details>
+  </div>
+
+  <div class="task-card">
+    <h3>🛠️ Bemelegítő Gyakorlat</h3>
+    <details class="extra">
+        <summary>Kihívás: A Varázsló Kvíze</summary>
+        <p>1. Hozz létre egy <code>pontszam = 0</code> változót!<br>
+        2. Kérdezd meg egy <code>input()</code>-tal: <i>"Mennyi 7 * 8?"</i> (A választ konvertáld számmá!)<br>
+        3. Írj egy <code>if-else</code>-t: Ha a válasz 56, írd ki, hogy "Helyes!", és növeld a pontszámot 1-gyel. Ha nem, írd ki, hogy "Helytelen!".<br>
+        4. (Szorgalmi): Tedd az egészet egy <code>while</code> ciklusba, ami addig fut, amíg a pontszám el nem éri az 1-et (tehát amíg jól nem válaszol)!</p>
+    </details>
+  </div>
+
+</body>
+</html>
