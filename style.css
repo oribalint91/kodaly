@@ -166,6 +166,7 @@ code.inline { background: var(--inline-code-bg); color: var(--inline-code-color)
 
 .output-box { background: #eef2f5; border-left: 3px solid #7f8c8d; padding: 10px; font-family: 'Consolas', monospace; margin-top: 5px; color: #2c3e50; }
 .gomb { background: var(--gomb-bg); border: 2px solid var(--border-dark); padding: 5px; border-radius: 5px; font-family: 'Courier New', Courier, monospace; margin-bottom: 30px; hyphens: none; transition: background-color 0.4s; }
+.enyhe-kiemeles {background-color: var(--gomb-bg);}
 /* .sticky-footer .gomb{ background: #222; } */
 
 .left { max-width: 49%; margin-right: auto; }
