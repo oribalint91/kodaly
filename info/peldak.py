@@ -6,7 +6,8 @@ print(str(list(i for i in range(20) if i%2 == 0))) # ha magyarázni szeretnél e
 l = list(i for i in range(5))
 print(len(l), l)
 
-print(str(next i for i in range(100, -1, -2)))
+for i in range(100, -1, -2):
+    print(i)
 
 idojaras = "napos"
 T = 5
@@ -30,3 +31,4 @@ else:
 kivansagok = ["örök élet", "rengeteg pénz", "nyugodt élet", "akciós kenyér", "örök boldogság"]
 
 print(kivansagok[-1])
+print(f"egy ember {6+7} éves")

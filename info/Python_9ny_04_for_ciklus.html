@@ -25,9 +25,9 @@
             <div class="code-container">
               <pre><code><span class="var">hatizsak</span> <span class="is">=</span> [<span class="str">"Kötél"</span>, <span class="str">"Fáklya"</span>, <span class="str">"Kard"</span>]
               
-    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"A kezemben van: "</span> <span class="is">+</span> <span class="var">hatizsak</span>[<span class="int">0</span>])</span>
-    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"A kezemben van: "</span> <span class="is">+</span> <span class="var">hatizsak</span>[<span class="int">1</span>])</span>
-    <span class="print">print</span><span class="elso-zarojel">(<span class="str">"A kezemben van: "</span> <span class="is">+</span> <span class="var">hatizsak</span>[<span class="int">2</span>])</span></code></pre>
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"A kezemben van: "</span> <span class="is">+</span> <span class="var">hatizsak</span>[<span class="int">0</span>])</span>
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"A kezemben van: "</span> <span class="is">+</span> <span class="var">hatizsak</span>[<span class="int">1</span>])</span>
+<span class="print">print</span><span class="elso-zarojel">(<span class="str">"A kezemben van: "</span> <span class="is">+</span> <span class="var">hatizsak</span>[<span class="int">2</span>])</span></code></pre>
             </div>
                 
                 <p>Ez három elemnél még csak-csak elmegy, de mi van, ha 1000 tárgy van a táskában? Itt jön a mágia! A <code>for</code> ciklussal ezt mindössze <b>két sorban</b> meg tudjuk oldani:</p>
@@ -196,6 +196,28 @@
     </div>
 
   </div>
+
+  <div class="task-card">
+    <h3>Ismétlő feladatok</h3>
+    <details>
+      <summary>1. feladat</summary>
+      <p>Másold le a lenti kódot, és módosítsd úgy, hogy ne 0-tól, hanem 5-től számoljon el 10-ig!</p>
+      <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Kód másolása</button>
+<pre><code><span class="is">for</span><span class="var"> i</span> <span class="is">in</span> <span class="fn">range</span><span class="elso-zarojel">(<span class="int">11</span>)</span>:
+    <span class="fn">print<span class="elso-zarojel">(<span class="var">i</span>)</span></span></code></pre>
+      </div>
+    </details>
+
+    <details>
+      <summary>2. feladat</summary>
+      <p>Másold le a lenti kódot, és javítsd, hogy valóban kiírja a lista minden elemét sorban, a mondat részeként!</p>
+<pre><code><span class="var">könyvek</span> <span class="is">=</span> [<span class="str">"Micimackó"</span>, <span class="str">Harry Potter és a bölcsek köve</span>, <span class="str">A gyűrűk ura: A gyűrű szövetsége</span>, <span class="str">Piszkos Fred, a kapitány</span>, <span class="str">Momo</span>, <span class="str">Egri csillagok</span>]
+<span class="is">for<span class="var"> könyv</span> in <span class="var">könyvek</span>:
+<span class="fn">print</span><span class="elso-zarojel">(f<span class="str">"Egy könyv, amit már olvastam, és tetszett: {könyv}</span></span></code></pre>
+    </details>
+  </div>
+
     
     <button id="theme-toggle" title="Sötét/Világos mód">🌙</button>
     
