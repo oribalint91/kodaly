@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 A kémiai reakciók alapfogalmai</title>
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
+</head>
+<body class="theme-kem">
+    <h2>🧪 A kémiai reakciók alapfogalmai</h2>
+    <p class="intro">Eddig megtanultuk, hogy a körülöttünk levő anyagok <b>milyen részecskékből állnak</b>, ezek a részecskék <b>hogyan kapcsolódhatnak egymással</b>, és hogy ezekből a kapcsolatokból <b>milyen tulajdonságok következnek</b>. Most azt kezdjük el vizsgálni, hogy <b>hogyan lesz az egyik anyagból a másik</b>, az egyik részecskéből a másik</p>
+
+    <div class="task-card">
+        <h3>A világ körülöttünk</h3>
+        <p>Ha meggyújtok egy gyufát, az égni fog. Ha a vas eszközt kint hagyok az esőben, előbb-utóbb teljesen el fog tűnni a rozsda miatt. Amikor a gyufa a dobozban van, ugyanúgy érintkezik oxigénnel, mégsem gyullad meg. Ha egy vas kanállal megkeverem a teámat, az nem rozsdásodik el, pedig érintkezik vízzel és oxigénnel is. Ahhoz, hogy az anyagok reagáljanak egymással, kell még valami... <span class="ia" data-tipus="toggle" data-target="tuz">Mi kell ahhoz, hogy a gyufa el is égjen?</span></p>
+        <div class="lenyilo-tartalom" id="tuz">Kell valami, hogy elinduljon a reakció: tűz. Még helyesebben energia: ha a gyufát a doboz szélén húzom végig, akkor is energiát közlök vele, amire meg fog gyulladni!</div>
+        <p><i>A gyufa égése teljesen új anyagokat hoz létre a fából és az oxigénből</i> (meg persze a gyufa fején levő foszforból).</p>
+    </div>
+
+    <div class="task-card">
+        <h3>A változások egyszerű kémiai értelmezése</h3>
+        <p><b>Hogyan lesz <i>a</i> anyagból <i>c</i> anyag?</b> A kémiai reakciók az <b>elektronszerkezet megváltozásával</b> járnak. Tehát <b>új kötések alakulnak ki</b>. Nézzük most a hidrogén égését!</p>
+        <div class="resp">
+            <div class="resp-left">Ha hidrogént égetünk, víz keletkezik: <span class="keplet">2 H<sub>2</sub> + O<sub>2</sub> → 2 H<sub>2</sub>O</span>. Ha érdekel, ezt <span class="ia" data-tipus="modal" data-target="durranogaz">ide kattintva</span> megnézheted!</div>
+            <div class="resp-right"></div>
+        </div>
+        <div class="rejtett-kep" id="durranogaz"><iframe width="358" height="636" src="https://www.youtube.com/embed/cv_D-pAi7QI" title="How To Produce Hydrogen And Oxygen From Water/ Electrolysis Of Water, #shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+    </div>
+    
+    <div id="kep-modal" class="modal-hatter">
+        <span class="modal-bezaras">&times;</span>
+        <div class="modal-tartalom">
+            <img id="modal-benne-levo-kep" src="" alt="">
+        </div>
+    </div>
+</body>
+</html>

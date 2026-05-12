@@ -43,7 +43,26 @@ document.addEventListener("DOMContentLoaded", function(){
                 ujKep.style.display = "inline-block";
                 // ujKep.style.transform = "none";
 
+                const belsoFelirat = ujKep.querySelector(".kep-felirat");
+                let feliratSzoveg = "";
+
+                if (belsoFelirat) {
+                    feliratSzoveg = belsoFelirat.innerHTML;
+                    belsoFelirat.remove(); //kiveszem a dobozból, hogy a nagyítás ne vonatkozzon rá
+                } else {
+                    const imgElem = ujKep.querySelector("img");
+                    if (imgElem && imgElem.alt) feliratSzoveg = imgElem.alt;
+                    else if (celElem.alt) feliratSzoveg = celElem.alt;
+                }
+
                 modalTartalom.appendChild(ujKep);
+
+                if (feliratSzoveg) {
+                    const feliratDiv = document.createElement("div");
+                    feliratDiv.className = "modal-felirat";
+                    feliratDiv.innerHTML = feliratSzoveg;
+                    modalTartalom.appendChild(feliratDiv);
+                }
 
                 modal.classList.add("lathato");
                 if(bezaroGomb) bezaroGomb.classList.add("lathato");
@@ -103,6 +122,28 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         })
     }
+
+    // ctrl + c beállítása, hogy formázva másoljon
+    document.addEventListener("copy", function(e) {
+        const kivalasztottSzoveg = window.getSelection();
+
+        if (!kivalasztottSzoveg || kivalasztottSzoveg.toString().length === 0) return;
+
+        let aDobozbanVan = false;
+        let elem = kivalasztottSzoveg.anchorNode;
+        while (elem && elem !== document.body) {
+            if (elem.classList && elem.classList.contains("bekezdessel")) {
+                aDobozbanVan = true;
+                break;
+            }
+            elem = elem.parentNode;
+        }
+
+        if (aDobozbanVan) {
+            e.preventDefault(); //megakadályozza az alap másolást
+            e.clipboardData.setData("text/plain", kivalasztottSzoveg.toString());
+        }
+    })
 });
 
 // Másolás funkció a kóddobozokhoz

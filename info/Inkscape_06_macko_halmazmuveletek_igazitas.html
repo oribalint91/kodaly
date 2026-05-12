@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✒️ Inkscape: igazítás, halmazműveletek</title>
+    <link rel="stylesheet" href="../style.css">
+    <script type="text/javascript" src="../script.js"></script>
+</head>
+<body>
+
+    <h2>✒️ Inkscape: igazítás, halmazműveletek</h2>
+    <p class="intro">Ebben a leírásban az Inkscape halmazműveleteivel fogsz megismerkedni. Mivel az Inkscape <b>vektorgrafikus program, matematikai műveletekkel írja le</b> az alakzatokat. Mint ilyen, a halmazokat is ismeri, és tud azokkal műveleteket is végezni. A gyakorlatban ezt úgy látjuk, hogy <b>több alakzatból elkészíthetünk egy kombináltat</b> úgy, hogy egyeseket összevonunk, másokat pedig kivonunk. <br>
+    Hasonlóképpen azt is meg tudja csinálni a matematikai leírások segítségével, hogy egymáshoz igazítja vagy arányosan osztja el az alakzatokat. Ha a koordinátarendszerben gondolkodsz, akkor ezt könnyű elképzelni: például ugyanarra kell állítani a kijelölt alakzatok x<sub>1</sub> koordinátáit.<br>
+    Ebben a leckében ezekkel a műveletekkel készítünk egy mackófejet közösen.</p>
+
+    <div class="task-card">
+        <h3>Halmazműveletek elvégzése, a mackófej kontúrja</h3>
+        <details>
+            <summary>Alakzatok beillesztése, méretezése és igazítása</summary>
+            <p>Egy segédvonal segítségével elkészítjük a mackófej kontúrját: a fejet és a két fület.</p>
+            <div class="resp">
+                <div class="resp-left">
+                    <ol>
+                        <li><b>Segédvonal beszúrása:</b> válaszd a <i>Toll eszközt</i> (<div class="kep-svg-wrapper" style="display: inline;"><svg viewBox="0 365 29 29" style="height: 1.2rem; border: 1px solid #ccc;"><image href="kepek/inkscape_teljes_ablak.png" x="0" y="0" width="1920" height="1020"/></svg></div>), kattints a lap felső részének közepén valahová egyszer! Amíg nyomva tartod a <span class="gomb">ctrl</span> gombot, addig csak 15°-onként tudod elforgatni a szakaszt, amit rajzolsz. Így könnyen tudsz pontosan függőleges vonalat rajzolni. Kattints valahol a lap alsó részén, hogy egy függőleges vonalat kapj! Amikor két pontod van a szakaszon, nyomd meg az <span class="gomb">Enter</span>-t! Ha nem látod a vonalat, akkor a <span class="gomb">Shift</span> nyomva tartása mellett kattints valamelyik színre, hogy adj neki körvonalszínt!</li>
+                        <li><b>A fej beszúrása: </b>válaszd az <i>Ellipszis és körív</i> eszközt (<div class="kep-svg-wrapper" style="display: inline;"><svg viewBox="0 235 29 29" style="height: 1.2rem; border: 1px solid #ccc;"><image href="kepek/inkscape_teljes_ablak.png" x="0" y="0" width="1920" height="1020"/></svg></div>)! A <span class="gomb">ctrl</span>-t nyomva tartva tudsz rajzolni szabályos kört. Rajzolj egy nagyot, kb. 50-60 mm-es sugarút!</li>
+                        <li><b>Illesztések beállítása és a fej illesztése a segédvonalhoz: </b>az ablak jobb felső részén keresd az <i>Illesztés</i> (<div class="kep-svg-wrapper" style="display: inline;"><svg viewBox="1839.5 64.5 29 29" style="height: 1.2rem; border: 1px solid #ccc;"><image href="kepek/inkscape_teljes_ablak.png" x="0" y="0" width="1920" height="1020"/></svg></div>) gombot! Ha nem kék a háttere (vagyis nem aktív), akkor egyszer kattints rá! Kattints utána a jobb oldalán levő nyílhegyre! A <span class="ia" data-target="illesztes" data-tipus="modal">megjelenő menüben</span></li>
+                        <li><b>Az egyik fül beszúrása és elhelyezése: </b></li>
+                        <li><b>A másik fül beszúrása és elhelyezése: </b></li>
+                    </ol>
+                </div>
+                <div class="kep-svg-wrapper rejtett-kep" id="illesztes">
+                    <img src="kepek/inkscape_illesztes.png" alt="">
+                    <svg viewBox="0 0 338 801" class="svg-reteg">
+                        <rect x="71.7" y="38.1" width="91.2" height="26.5" class="svg-kiemeles" />
+                    </svg>
+                </div>
+            </div>
+        </details>
+        <details>
+            <summary>A mackófej egyesítése, a segédvonal kitörlése</summary>
+            <p>Kitöröljük a segédvonalat, megszüntetjük a mackófej és a fülek közti kontúrvonalat úgy, hogy egyesítjük a fejet és a két fület egy halmazművelettel. Egy későbbi művelethez előregondolva másolatot készítünk a fejről, amelyet egyelőre úgy hagyunk, ahogy létrejött.</p>
+            <ol start="6">
+                <li><b>A segédvonal kitörlése és a másolat létrehozása: </b></li>
+                <li><b>A három megmaradt alakzat egyesítése egyszerű halmazművelettel: </b></li>
+            </ol>
+        </details>
+    </div>
+
+    <div class="task-card">
+        <h3>Alakzatok igazítása, a mackófej részletei</h3>
+        <details>
+            <summary>A mackó orrának és szájának elkészítése</summary>
+            <p>Először külön megrajzoljuk a mackó száját és orrát, majd elhelyezzük a fej középvonalában.</p>
+            <ol start="8">
+                <li><b>Orr rajzolása: </b></li>
+                <li><b>Száj rajzolása: </b></li>
+                <li><b>Orr és száj csoportosítása: </b></li>
+                <li><b>Orr és száj elhelyezése a fej középvonalában: </b></li>
+            </ol>
+        </details>
+        <details>
+            <summary>A mackó szemeinek elkészítése</summary>
+            <p>Elkészítjük a mackó szemeit. Egyet készítünk el teljesen nulláról, a másikat másolatként hozzuk majd létre, és egy kicsit alakítunk rajta. Ezután elhelyezzük őket a középvonaltól azonos távolságra, vízszintesen egy vonalban.</p>
+            <ol start="12">
+                <li><b>A szem kontúrjának megrajzolása: </b></li>
+                <li><b>A pupilla megrajzolása: </b></li>
+                <li><b>A második szem elkészítése és a két szem függőleges elhelyezkedése: </b></li>
+                <li><b>A szemek elhelyezése a fejen: </b></li>
+            </ol>
+        </details>
+        <details>
+            <summary>A mackófej színezése, a fülek részletei</summary>
+            <p>Beszínezzük a fejet (ha eddig nem megfelelő színű volt), és a fül belsejéhez egy rózsaszín részt adunk. Ebben a lépésben lesz szükség a 6. lépésben elkészített  másolatokra. Ha nincsenek ilyenjeid, akkor készíts most egy akkora kört, mint a mackófej, és helyezd el ugyanoda, ahol a fej is van!</p>
+            <ol start="16">
+                <li><b>A fül belsejének elkészítése halmazművelettel: </b></li>
+                <li><b>A fül belsejének és a mackófejnek a kiszínezése: </b></li>
+            </ol>
+        </details>
+    </div>
+
+    <div class="task-card">
+        <h3>Halmazműveletek elvégzése, szöveg kivágása színes háttérből</h3>
+        <details>
+            <summary>Háttér készítése és szöveg kivágása</summary>
+            <p>Készítünk egy hátteret a teljes rajznak. A háttér kitöltéséhez valamilyen sötét színt választunk, hogy jól látszódjon, ha ebből kivágunk egy részt.</p>
+            <ol start="18">
+                <li><b>Háttéralakzat készítése és kitöltése: </b></li>
+                <li><b>Szöveg készítése: </b></li>
+                <li><b>Útvonal készítése, majd a szöveg illesztése: </b></li>
+                <li><b>A szöveg elhelyezése, az útvonal elrejtése és a szöveg kivágása a háttérből: </b></li>
+            </ol>
+        </details>
+    </div>
+    <div class="osszefoglalas">Ha mindennel készen vagy, akkor mentsd el a munkádat. Fontos, hogy A sima mentés egy Inkscape svg-fájlt hoz létre, amelyet sok helyen nem tudsz felahsználni (pl. TikTok, Insta stb.). Ahhoz, hogy mindenhol működjön, a képet exportálni kell valami olyan formátumban, amit ezek a felületek és a legtöbb gyakori program is tud kezelni. Egy ilyen formátum a png, ami azért is jó, mert az átlátszóságot <span style="font-weight: normal;">(alfa-csatorna)</span> is értelmezi, így a kivágott betűk is jól jelennek majd meg.</div>
+    
+    <div id="kep-modal" class="modal-hatter">
+        <span class="modal-bezaras">&times;</span>
+        <div class="modal-tartalom">
+            <img id="modal-benne-levo-kep" src="" alt="">
+        </div>
+    </div>
+</body>
+</html>
