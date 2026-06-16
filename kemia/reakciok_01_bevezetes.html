@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🧪 A kémiai reakciók alapfogalmai</title>
     <link rel="stylesheet" href="../style.css">
-    <script type="text/javascript" src="../script.js"></script>
+    <script type="text/javascript" src="../script.js?v=2"></script>
     <script>window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] } };</script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 </head>
@@ -15,7 +15,7 @@
 
     <div class="task-card">
         <h3>A világ körülöttünk</h3>
-        <p>Ha meggyújtok egy gyufát, az égni fog. Ha a vas eszközt kint hagyok az esőben, előbb-utóbb teljesen el fog tűnni a rozsda miatt. Amikor a gyufa a dobozban van, ugyanúgy érintkezik oxigénnel, mégsem gyullad meg. Ha egy vas kanállal megkeverem a teámat, az nem rozsdásodik el, pedig érintkezik vízzel és oxigénnel is. Ahhoz, hogy az anyagok reagáljanak egymással, kell még valami... <span class="ia" data-tipus="toggle" data-target="tuz">Mi kell ahhoz, hogy a gyufa el is égjen?</span></p>
+        <p>Ha meggyújtok egy gyufát, az égni fog. Ha valamilyen vas eszközt kint hagyok az esőben, előbb-utóbb teljesen el fog tűnni a rozsda miatt. Amikor a gyufa a dobozban van, ugyanúgy érintkezik oxigénnel, mégsem gyullad meg. Ha egy vas kanállal megkeverem a teámat, az nem rozsdásodik el, pedig érintkezik vízzel és oxigénnel is. Ahhoz, hogy az anyagok reagáljanak egymással, kell még valami... <span class="ia" data-tipus="toggle" data-target="tuz">Mi kell ahhoz, hogy a gyufa el is égjen?</span></p>
         <div class="lenyilo-tartalom" id="tuz">Kell valami, hogy elinduljon a reakció: tűz. Még helyesebben energia: ha a gyufát a doboz szélén húzom végig, akkor is energiát közlök vele, amire meg fog gyulladni!</div>
         <p><i>A gyufa égése teljesen új anyagokat hoz létre a fából és az oxigénből</i> (meg persze a gyufa fején levő foszforból).</p>
     </div>
@@ -23,12 +23,868 @@
     <div class="task-card">
         <h3>A változások egyszerű kémiai értelmezése</h3>
         <p><b>Hogyan lesz <i>a</i> anyagból <i>c</i> anyag?</b> A kémiai reakciók az <b>elektronszerkezet megváltozásával</b> járnak. Tehát <b>új kötések alakulnak ki</b>. Nézzük most a hidrogén égését!</p>
-        <div class="resp">
-            <div class="resp-left">Ha hidrogént égetünk, víz keletkezik: <span class="keplet">2 H<sub>2</sub> + O<sub>2</sub> → 2 H<sub>2</sub>O</span>. Ha érdekel, ezt <span class="ia" data-tipus="modal" data-target="durranogaz">ide kattintva</span> megnézheted!</div>
-            <div class="resp-right"></div>
-        </div>
+        <p>Ha hidrogént égetünk, víz keletkezik: <span class="keplet">2 H<sub>2</sub> + O<sub>2</sub> → 2 H<sub>2</sub>O</span>. Ha érdekel, <span class="ia" data-tipus="modal" data-target="durranogaz">ide kattintva</span> megnézheted, hogyan néz ki ez a kémcsőben! <br>
+        A vízmolekulában az oxigén egy-egy hidrogénnel alakít ki kötéseket. Ez működhet, ha atomok találkoznak, de a valóságban <b>nem atomok találkoznak egy kémiai reakcióban.</b> Ahhoz, hogy ezek a kötések kialakulhassanak, <b>a korábbi kötéseknek először fel kell szakadniuk</b>. Mivel a kötések azért jöttek létre, mert jobban megéri energetikailag, ha párosítva vannak (a megfelelő módon) az elektronok, mint ha párosítatlanok, <b>a kötések felszakításához energiát kell felhasználnunk</b>. <span class="ia" data-tipus="modal" data-target="uj_kotes">Emelt szintű magyarázó ábrát itt találsz.</span></p>
+        <div class="rejtett-kep" id="uj_kotes"><img src="kepek/uj_kotes.png" alt="A régi kötés felszakadása és az új kialakulása gyökképződés közben. Narancssárgával és csillaggal jelölve a nagy energiájú, instabil aktivált komplex. Ezekről mind olvashatsz lejjebb!"></div>
         <div class="rejtett-kep" id="durranogaz"><iframe width="358" height="636" src="https://www.youtube.com/embed/cv_D-pAi7QI" title="How To Produce Hydrogen And Oxygen From Water/ Electrolysis Of Water, #shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
     </div>
+    <div class="task-card" id="energetika">
+        <h3>A változások energetikája</h3>
+        <p>A lenti ábrán azt látod, hogy egy reakció alatt hogyan változik az energiaszint. Az <i>y</i> tengelyen az energia szerepel, ami természetesen felfelé nő. Szokás szerint ilyenkor mindig <b>a reagáló anyagok szempontjából</b> nézzük az energiaszinteket, vagyis a magasabb érték azt jelenti, hogy a rendszerben több az energia. A kattintható részek segítségével megnézheted, hogy mi történik a reakció során, és minek mi a jelentése. Válassz egy típust, és lépkedj végig a magyarázaton!</p>
+        <div style="text-align: center; margin-bottom: 15px;">
+            <button class="gomb" id="btn-exo-mod" onclick="valasztModot('exo')" style="background-color: var(--secondary); color: white;">Exoterm folyamat</button>
+            <button class="gomb" id="btn-endo-mod" onclick="valasztModot('endo')">Endoterm folyamat</button>
+        </div>
+
+        <div class="resp">
+            <div class="resp-left" style="text-align: center;">
+                <div style="max-width: 320px; margin: 0 auto; background: transparent;">
+                    <svg viewBox="0 0 55 55" id="energia-svg" style="width: 100%; height: auto; display: block;">
+                      <style>
+                        /* Alap elhalványítás */
+                        #energia-svg .diagram-elem { transition: opacity 0.4s ease, stroke-width 0.3s ease; opacity: 0.1; }
+                        #energia-svg #tengely, #energia-svg #path105 { opacity: 1 !important; stroke: var(--text) !important; }
+                        #energia-svg text:not(.diagram-elem), #energia-svg textPath { fill: var(--text) !important; font-size: 4px; }
+                        
+                        /* KIEMELÉS - HALVÁNY ÁLLAPOT */
+                        #energia-svg .halvany-path { opacity: 0.15 !important; }
+                        
+                        /* JAVÍTÁS: CSAK a .vastagodo osztályú elemek hízzanak meg! */
+                        #energia-svg .vastagodo.aktiv-path { opacity: 1 !important; stroke-width: 1.5px !important; }
+                        
+                        /* A nyilak és szövegek (.fix-vastagsag) CSAK előtűnnek, a vastagságuk rögzített marad! */
+                        #energia-svg .fix-vastagsag.aktiv-path { opacity: 1 !important; }
+                        #energia-svg text.fix-vastagsag.aktiv-path { stroke-width: 0 !important; }
+                      </style>
+                      <defs>
+                        <marker id="ArrowTip" markerWidth="6" markerHeight="6" refX="8" refY="5" orient="auto-start-reverse" viewBox="0 0 10 10" preserveAspectRatio="xMaxYMid">
+                          <path style="fill:var(--text);fill-opacity:1;stroke:none;" d="M 0 0 L 10 5 L 0 10 L 3 5 Z" />
+                        </marker>
+                        <marker id="ArrowTipBlue" markerWidth="6" markerHeight="6" refX="8" refY="5" orient="auto-start-reverse" viewBox="0 0 10 10" preserveAspectRatio="xMaxYMid">
+                          <path style="fill:#0066ff;fill-opacity:1;stroke:none;" d="M 0 0 L 10 5 L 0 10 L 3 5 Z" />
+                        </marker>
+                      </defs>
+                      <g id="layer1" transform="translate(-239.59165,-85.334482)">
+                        <g id="g156"><path style="fill:none;stroke:#000;stroke-width:0.6;marker-end:url(#ArrowTip)" d="M 243.64373,139.80811 V 87.88508" id="path105" /></g>
+                        <text xml:space="preserve" id="felirat" x="245" y="91" style="font-size:3px;font-family:sans-serif;fill:var(--text);stroke:none;"><textPath id="textPath156-7">Energia</textPath></text>
+                        <path style="fill:none;stroke:#000;stroke-width:0.6;marker-end:url(#ArrowTip)" d="M 243.64373,139.80811 V 87.88508" id="tengely" />
+                        
+                        <path class="diagram-elem vastagodo" style="fill:none;stroke:#ff6600;stroke-width:0.8;" d="m 251.06523,112.57129 4.79023,-17.877374 m 10.74929,0 3.7,13.808614" id="endoterm_ut" />
+                        <path class="diagram-elem vastagodo" style="fill:none;stroke:#ff6600;stroke-width:0.8;" d="m 251.06523,112.57129 4.79023,-17.877374 m 10.74929,0 7.40001,27.617224" id="exoterm_ut" />
+                        
+                        <path class="diagram-elem vastagodo" style="fill:none;stroke:#0066ff;stroke-width:0.8;stroke-dasharray:1.5, 1.5;" d="m 251.06523,112.57129 3.65407,-6.32905 h 12.5094 l 6.77605,16.0689" id="exoterm_katalizator" />
+                        <path class="diagram-elem vastagodo" style="fill:none;stroke:#0066ff;stroke-width:0.8;stroke-dasharray:1.5, 1.5;" d="m 251.06523,112.57129 3.65407,-6.32905 h 12.5094 l 3.07605,2.26029" id="endoterm_katalizator" />
+                        
+                        <path class="diagram-elem vastagodo" style="fill:none;stroke:#44aa00;stroke-width:1;" d="m 243.64373,112.57129 h 7.4215" id="kiindulasi" />
+                        <path class="diagram-elem vastagodo" style="fill:none;stroke:#ff0000;stroke-width:1;" d="m 255.85546,94.693916 h 10.74929" id="aktivalt" />
+                        <path class="diagram-elem vastagodo" style="fill:none;stroke:#ffcc00;stroke-width:1;" d="m 274.00475,122.31114 h 14.43823" id="exoterm_termek" />
+                        <path class="diagram-elem vastagodo" style="fill:none;stroke:#ffcc00;stroke-width:1;" d="m 270.30475,108.50253 h 14.43823" id="endoterm_termek" />
+
+                        <path class="diagram-elem fix-vastagsag" id="exo_Ea_nyil" style="fill:none;stroke:var(--text);stroke-width:0.4;marker-end:url(#ArrowTip)" d="M 258,112.5 L 258,95.5" />
+                        <text class="diagram-elem fix-vastagsag" id="exo_Ea_szoveg" x="254" y="104" style="font-size:3px;fill:var(--text);stroke:none;">E*</text>
+                        <path class="diagram-elem fix-vastagsag" id="exo_dH_nyil" style="fill:none;stroke:var(--text);stroke-width:0.4;marker-end:url(#ArrowTip)" d="M 280,112.5 L 280,121.5" />
+                        <text class="diagram-elem fix-vastagsag" id="exo_dH_szoveg" x="281" y="118" style="font-size:3px;fill:var(--text);stroke:none;">Δ<tspan baseline-shift="sub" font-size="2">r</tspan>H &lt; 0</text>
+                        <path class="diagram-elem fix-vastagsag" id="endo_Ea_nyil" style="fill:none;stroke:var(--text);stroke-width:0.4;marker-end:url(#ArrowTip)" d="M 258,112.5 L 258,95.5" />
+                        <text class="diagram-elem fix-vastagsag" id="endo_Ea_szoveg" x="254" y="104" style="font-size:3px;fill:var(--text);stroke:none;">E*</text>
+                        <path class="diagram-elem fix-vastagsag" id="endo_dH_nyil" style="fill:none;stroke:var(--text);stroke-width:0.4;marker-end:url(#ArrowTip)" d="M 276,112.5 L 276,109.5" />
+                        <text class="diagram-elem fix-vastagsag" id="endo_dH_szoveg" x="277.5" y="112" style="font-size:3px;fill:var(--text);stroke:none;">Δ<tspan baseline-shift="sub" font-size="2">r</tspan>H &gt; 0</text>
+
+                        <path class="diagram-elem fix-vastagsag" id="exo_Ea_kat_nyil" style="fill:none;stroke:#0066ff;stroke-width:0.4;marker-end:url(#ArrowTipBlue)" d="M 263,112.5 L 263,106.5" />
+                        <text class="diagram-elem fix-vastagsag" id="exo_Ea_kat_szoveg" x="256.5" y="110" style="font-size:3px;fill:#0066ff;stroke:none;">E*<tspan baseline-shift="sub" font-size="2">kat</tspan></text>
+                        <path class="diagram-elem fix-vastagsag" id="endo_Ea_kat_nyil" style="fill:none;stroke:#0066ff;stroke-width:0.4;marker-end:url(#ArrowTipBlue)" d="M 263,112.5 L 263,106.5" />
+                        <text class="diagram-elem fix-vastagsag" id="endo_Ea_kat_szoveg" x="256.5" y="110" style="font-size:3px;fill:#0066ff;stroke:none;">E*<tspan baseline-shift="sub" font-size="2">kat</tspan></text>
+                      </g>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="resp-right" style="display: flex; flex-direction: column; justify-content: center;">
+                <div class="osszefoglalas" id="magyarazo-szoveg" style="min-height: 120px; font-size: 0.95rem; display: block; padding: 15px; box-sizing: border-box;">
+                    Válassz egy reakciótípust a kezdéshez!
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 5px; margin-top: 15px;">
+                    <button class="gomb" id="btn-vissza" onclick="leptet(-1)" disabled>◀ Vissza</button>
+                    <button class="gomb" id="btn-katalizator" onclick="toggleKatalizator()" style="display:none; background-color: #e9ecef;">⚡ Katalizátor</button>
+                    <button class="gomb" id="btn-elore" onclick="leptet(1)" disabled>Előre ▶</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let aktualisMod = 'exo'; 
+            let aktualisLepes = 0;
+            let katalizatorLathato = false;
+
+            const diagramLepesek = {
+                exo: [
+                    { szoveg: "<b>1. Kiindulási állapot:</b> a reagáló anyagok (zöld vonal) egy kezdeti, fix energiaszinttel rendelkeznek. Ez a konkrét anyagoktól függ, vagyis más a vízé és más a konyhasóé pl. A reakció elindításához energiát kell velük közölni.", highlight: ["kiindulasi"] },
+                    { szoveg: "<b>2. Aktivált komplex:</b> az anyagok elérik a reakcióhoz szükséges legmagasabb energiájú állapotot. Az ehhez a 'lökéshez' szükséges energiát hívjuk <b>aktiválási energiának</b> (E*). Mivel ennek az állapotnak mindkét szomszédja <i>alacsonyabb energiaszinten van</i>, az aktivált komplex lényegében <b>azonnal tovább- vagy visszaalakul</b>.", highlight: ["kiindulasi", "aktivalt", "exoterm_ut", "exo_Ea_nyil", "exo_Ea_szoveg"] },
+                    { szoveg: "<b>3. Végállapot (termékek):</b> az exoterm reakció során a termékek energiaszintje alacsonyabb lesz. A két állapot közti energiakülönbség a <b>reakcióhő</b> (lefelé mutató nyíl, Δ<sub>r</sub>H). Mivel a rendszer energiája csökkent, értéke negatív: Δ<sub>r</sub>H < 0.", highlight: ["kiindulasi", "aktivalt", "exoterm_ut", "exoterm_termek", "exo_Ea_nyil", "exo_Ea_szoveg", "exo_dH_nyil", "exo_dH_szoveg"] }
+                ],
+                endo: [
+                    { szoveg: "<b>1. Kiindulási állapot:</b> a kiindulási anyagok (zöld vonal) itt is egy fix energiaszintről indulnak. Ennek a pontos értéke a részt vevő anyagoktól függ, így pl. más grafitra és gyémántra.", highlight: ["kiindulasi"] },
+                    { szoveg: "<b>2. Aktivált komplex:</b> a részecskék elérik az instabil csúcsot. Az ehhez befektetett energia az <b>aktiválási energia</b> (E*). Mivel az aktivált komplex mindkét szomszédja alacsonyabb energiaszinten van, az (aktivált komplex) mindenképp tovább- vagy visszaalakul.", highlight: ["kiindulasi", "aktivalt", "endoterm_ut", "endo_Ea_nyil", "endo_Ea_szoveg"] },
+                    { szoveg: "<b>3. Végállapot (Termékek):</b> endoterm reakciónál a keletkező termékek energiaszintje magasabb lesz, mint a kiindulási anyagoké volt. A rendszer energiát nyelt el a környezetéből, így a <b>reakcióhő pozitív</b> (felfelé mutató nyíl): Δ<sub>r</sub>H > 0.", highlight: ["kiindulasi", "aktivalt", "endoterm_ut", "endoterm_termek", "endo_Ea_nyil", "endo_Ea_szoveg", "endo_dH_nyil", "endo_dH_szoveg"] }
+                ]
+            };
+
+            function valasztModot(mod) {
+                aktualisMod = mod;
+                aktualisLepes = 0;
+                katalizatorLathato = false;
+                
+                document.getElementById('btn-exo-mod').style.backgroundColor = mod === 'exo' ? 'var(--secondary)' : 'var(--gomb-bg)';
+                document.getElementById('btn-exo-mod').style.color = mod === 'exo' ? 'white' : 'var(--text)';
+                document.getElementById('btn-endo-mod').style.backgroundColor = mod === 'endo' ? 'var(--secondary)' : 'var(--gomb-bg)';
+                document.getElementById('btn-endo-mod').style.color = mod === 'endo' ? 'white' : 'var(--text)';
+                
+                frissitDiagramot();
+            }
+
+            function leptet(irany) {
+                aktualisLepes += irany;
+                if (aktualisLepes < 0) aktualisLepes = 0;
+                if (aktualisLepes > 2) aktualisLepes = 2;
+                frissitDiagramot();
+            }
+
+            function toggleKatalizator() {
+                katalizatorLathato = !katalizatorLathato;
+                frissitDiagramot(); 
+            }
+
+            function frissitDiagramot() {
+                const lepesAdat = diagramLepesek[aktualisMod][aktualisLepes];
+                
+                document.getElementById('btn-vissza').disabled = aktualisLepes === 0;
+                document.getElementById('btn-elore').disabled = aktualisLepes === 2;
+                document.getElementById('btn-katalizator').style.display = aktualisLepes >= 1 ? 'block' : 'none';
+                document.getElementById('btn-katalizator').style.backgroundColor = katalizatorLathato ? '#3498db55' : 'var(--gomb-bg)';
+
+                let kiirandoSzoveg = lepesAdat.szoveg;
+                if (katalizatorLathato && aktualisLepes >= 1) {
+                    kiirandoSzoveg = "<b>Katalizátor hatása:</b> Látod a kék szaggatott vonalat és a kisebb kék nyilat? A katalizátor egy <b>alacsonyabb aktiválási energiájú</b> (<span style='color:#0066ff; font-weight:bold;'>E*<sub>kat</sub></span>) utat nyit meg, így a reakció sokkal gyorsabban beindul. A kezdő és végpont azonban nem változott, így a reakcióhő (Δ<sub>r</sub>H) ugyanannyi maradt!";
+                }
+                document.getElementById('magyarazo-szoveg').innerHTML = kiirandoSzoveg;
+
+                const elems = document.querySelectorAll('#energia-svg .diagram-elem');
+                elems.forEach(p => {
+                    p.classList.remove('aktiv-path', 'halvany-path');
+                    p.classList.add('halvany-path');
+                });
+
+                lepesAdat.highlight.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.classList.remove('halvany-path');
+                        el.classList.add('aktiv-path');
+                    }
+                });
+                
+                if (katalizatorLathato && aktualisLepes >= 1) {
+                    const katId = aktualisMod === 'exo' ? 'exoterm_katalizator' : 'endoterm_katalizator';
+                    document.getElementById(katId).classList.replace('halvany-path', 'aktiv-path');
+                    
+                    const normEaNyil = document.getElementById(aktualisMod + '_Ea_nyil');
+                    const normEaSzoveg = document.getElementById(aktualisMod + '_Ea_szoveg');
+                    if (normEaNyil) normEaNyil.classList.replace('aktiv-path', 'halvany-path');
+                    if (normEaSzoveg) normEaSzoveg.classList.replace('aktiv-path', 'halvany-path');
+
+                    const katEaNyil = document.getElementById(aktualisMod + '_Ea_kat_nyil');
+                    const katEaSzoveg = document.getElementById(aktualisMod + '_Ea_kat_szoveg');
+                    if (katEaNyil) katEaNyil.classList.replace('halvany-path', 'aktiv-path');
+                    if (katEaSzoveg) katEaSzoveg.classList.replace('halvany-path', 'aktiv-path');
+
+                    const akt = document.getElementById('aktivalt');
+                    const ut = document.getElementById(aktualisMod + 'term_ut');
+                    if (akt) akt.classList.replace('aktiv-path', 'halvany-path');
+                    if (ut) ut.classList.replace('aktiv-path', 'halvany-path');
+                }
+            }
+        </script>
+        
+        
+        </div>
+    </div>
+
+    <div class="task-card">
+        <h3>A reakció lefolyása és az aktiválási energia – középszinten</h3>
+        <div class="resp">
+            <div class="resp-left">
+                <p>Képzeld el, hogy van két biliárdgolyód. Az egyikkel el kell találnod a másikat, és be kell löknöd a lyukba. Három dolog számít: 
+                    <ul>
+                        <li>a golyó sebessége,</li>
+                        <li>a golyó iránya</li>
+                        <li>és hogy a második golyónak melyik részét találja el az első.</li>
+                    </ul>
+                    Ha <b>mindhárom feltétel jól teljesül, akkor a golyó bemegy a lukba.</b> Ez felel meg a példánkban a kémiai reakciónak. Ilyenkor azt mondhatom, hogy az <b>ütközés hatásos volt.</b>
+                </p>
+                <p>Egy másik példa, ha megfogsz két LEGO-kockát. Ha az azonos felüket nyomod össze, nem történik semmi. Ha viszont az <b>ellenkező oldalukat közelíted, megfelelő erővel és jól forgatva</b>, akkor az elemek összeállnak. Itt ez a példa a kémiai reakció. Itt is számít <b>az energia, az irány és az orientáció</b>.</p>
+                
+            </div>
+            <div class="resp-right">
+                
+                <svg
+                style="width: 100%; height:auto; max-width: 500px; display:block; margin: 0 auto;"
+                viewBox="0 0 101.43065 93.585396"
+                version="1.1"
+                id="svg1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:svg="http://www.w3.org/2000/svg">
+                <defs
+                    id="defs1">
+                    <marker
+                    style="overflow:visible"
+                    id="marker5"
+                    refX="0"
+                    refY="0"
+                    orient="auto-start-reverse"
+                    markerWidth="1"
+                    markerHeight="1"
+                    viewBox="0 0 1 1"
+                    preserveAspectRatio="xMidYMid">
+                    <path
+                        transform="scale(0.5)"
+                        style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+                        d="m 6,0 c -3,1 -7,3 -9,5 0,0 0,-4 2,-5 -2,-1 -2,-5 -2,-5 2,2 6,4 9,5 z"
+                        id="path5" />
+                    </marker>
+                    <marker
+                    style="overflow:visible"
+                    id="ArrowTriangleStylized"
+                    refX="0"
+                    refY="0"
+                    orient="auto-start-reverse"
+                    markerWidth="1"
+                    markerHeight="1"
+                    viewBox="0 0 1 1"
+                    preserveAspectRatio="xMidYMid">
+                    <path
+                        transform="scale(0.5)"
+                        style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+                        d="m 6,0 c -3,1 -7,3 -9,5 0,0 0,-4 2,-5 -2,-1 -2,-5 -2,-5 2,2 6,4 9,5 z"
+                        id="path4" />
+                    </marker>
+                </defs>
+                <g
+                    id="layer1"
+                    transform="translate(-53.422636,-71.912713)">
+                    <rect
+                    style="fill:#008000;stroke:none;stroke-width:1"
+                    id="rect1"
+                    width="95.637733"
+                    height="87.79245"
+                    x="53.422638"
+                    y="77.705658"
+                    rx="0"
+                    ry="0" />
+                    <circle
+                    style="fill:#000000;stroke:none;stroke-width:1"
+                    id="path1"
+                    cx="144.01932"
+                    cy="82.746681"
+                    r="10.833965" />
+                    <circle
+                    style="fill:#cc00ff;stroke:none;stroke-width:0.642973"
+                    id="circle1"
+                    cx="-97.625114"
+                    cy="-97.620399"
+                    r="6.9660001"
+                    transform="scale(-1)" />
+                    <circle
+                    style="fill:#ffffff;stroke:none;stroke-width:0.642973"
+                    id="circle2"
+                    cx="-69.979836"
+                    cy="-125.63927"
+                    r="6.9660001"
+                    transform="scale(-1)" />
+                    <path
+                    style="fill:#cc00ff;stroke:#ff0000;stroke-width:1;marker-end:url(#ArrowTriangleStylized)"
+                    d="M 69.979835,125.63926 97.625113,97.620398"
+                    id="path2" />
+                    <path
+                    style="fill:none;stroke:#ff0000;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;marker-end:url(#marker5)"
+                    d="M 97.625113,97.620396 117.53985,77.705658 144.20377,103.24881"
+                    id="path3" />
+                    <path
+                    style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized)"
+                    d="M 69.979833,125.63926 90.659113,97.620398"
+                    id="path6" />
+                    <path
+                    style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized)"
+                    d="M 90.659113,97.620396 130.87181,91.597988"
+                    id="path7" />
+                    <path
+                    style="fill:none;stroke:#ff0000;stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized)"
+                    d="m 69.979833,125.63926 15.197523,4.74187"
+                    id="path8" />
+                </g>
+                </svg>
+                <p class="enyhe-kiemeles">Pirossal két "sikertelen ütközés" (az egyik minden szempontból rossz), feketével pedig egy "sikeres". A szaggatott vonalak a ciklámen golyó útját jelzik.</p>
+                <div style="max-width: 50%; margin: auto;"><img src="kepek/bricks.png" alt="Két LEGO-kocka, mert ilyet még biztosan nem láttál."></div>
+            </div>
+        </div>
+        <div class="resp">
+            <div class="resp-left">
+                <p>A kémia pontosan így működik. Nem mindegy, hogy <b>milyen erővel</b> ütköznek a részecskék, valamint, hogy <b>melyik feleik találkoznak egymással</b>. Két ionvegyület reakciójának modelljét látod a képen, egyszerűsítve. Ha az azonos töltésű részek ütköznek, akkor nem történik reakció az elektrosztatikus taszítás miatt, de ha az ellentétesek, akkor történhet. Ekkor már csak az energia a kérdés: elég erős-e az ütközés ahhoz, hogy a "biliárdgolyót belökje a lukba".</p>
+            </div>
+            <div class="resp-right">
+                <svg
+                    style="width: 100%; height:auto; max-width: 500px; display:block; margin: 0 auto;"
+                    viewBox="0 0 125.9618 102.85396"
+                    version="1.1"
+                    id="svg1"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:svg="http://www.w3.org/2000/svg">
+                    <defs
+                        id="defs1">
+                        <linearGradient
+                        id="linearGradient13">
+                        <stop
+                            style="stop-color:#ff0000;stop-opacity:1;"
+                            offset="0"
+                            id="stop14" />
+                        <stop
+                            style="stop-color:#00ff00;stop-opacity:1;"
+                            offset="1"
+                            id="stop15" />
+                        </linearGradient>
+                        <linearGradient
+                        id="linearGradient12">
+                        <stop
+                            style="stop-color:#ff0000;stop-opacity:1;"
+                            offset="0"
+                            id="stop12" />
+                        <stop
+                            style="stop-color:#00ff00;stop-opacity:1;"
+                            offset="1"
+                            id="stop13" />
+                        </linearGradient>
+                        <marker
+                        style="overflow:visible"
+                        id="ArrowTriangleStylized"
+                        refX="0"
+                        refY="0"
+                        orient="auto-start-reverse"
+                        markerWidth="1"
+                        markerHeight="1"
+                        viewBox="0 0 1 1"
+                        preserveAspectRatio="xMidYMid">
+                        <path
+                            transform="scale(0.5)"
+                            style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+                            d="m 6,0 c -3,1 -7,3 -9,5 0,0 0,-4 2,-5 -2,-1 -2,-5 -2,-5 2,2 6,4 9,5 z"
+                            id="path4" />
+                        </marker>
+                        <linearGradient
+                        xlink:href="#linearGradient12"
+                        id="linearGradient11"
+                        x1="87.418869"
+                        y1="284.1113"
+                        x2="127.76604"
+                        y2="284.1113"
+                        gradientUnits="userSpaceOnUse"
+                        gradientTransform="translate(23.346699,-79.94717)" />
+                        <linearGradient
+                        xlink:href="#linearGradient13"
+                        id="linearGradient15"
+                        x1="38.852829"
+                        y1="239.46793"
+                        x2="88.166039"
+                        y2="239.46793"
+                        gradientUnits="userSpaceOnUse"
+                        gradientTransform="translate(-12.701887,-35.490566)" />
+                        <linearGradient
+                        xlink:href="#linearGradient12"
+                        id="linearGradient18"
+                        gradientUnits="userSpaceOnUse"
+                        gradientTransform="translate(-238.53163,-48.197168)"
+                        x1="87.418869"
+                        y1="284.1113"
+                        x2="127.76604"
+                        y2="284.1113" />
+                        <linearGradient
+                        xlink:href="#linearGradient13"
+                        id="linearGradient19"
+                        gradientUnits="userSpaceOnUse"
+                        gradientTransform="translate(-12.701887,-3.7405651)"
+                        x1="38.852829"
+                        y1="239.46793"
+                        x2="88.166039"
+                        y2="239.46793" />
+                        <linearGradient
+                        xlink:href="#linearGradient12"
+                        id="linearGradient21"
+                        gradientUnits="userSpaceOnUse"
+                        gradientTransform="translate(165.36335,-408.17129)"
+                        x1="87.418869"
+                        y1="284.1113"
+                        x2="127.76604"
+                        y2="284.1113" />
+                        <linearGradient
+                        xlink:href="#linearGradient13"
+                        id="linearGradient22"
+                        gradientUnits="userSpaceOnUse"
+                        gradientTransform="translate(-12.701887,33.301103)"
+                        x1="38.852829"
+                        y1="239.46793"
+                        x2="88.166039"
+                        y2="239.46793" />
+                    </defs>
+                    <g
+                        id="layer1"
+                        transform="translate(-25.650943,-190.77544)">
+                        <ellipse
+                        style="fill:url(#linearGradient15);fill-opacity:1;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0"
+                        id="path9"
+                        cx="50.807549"
+                        cy="203.97736"
+                        rx="24.656605"
+                        ry="8.2188683" />
+                        <ellipse
+                        style="opacity:1;fill:url(#linearGradient11);fill-opacity:1;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0"
+                        id="path10"
+                        cx="130.93916"
+                        cy="204.16412"
+                        rx="20.173584"
+                        ry="12.88868" />
+                        <path
+                        style="opacity:1;fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized)"
+                        d="m 75.46415,203.97735 v 0 h 9.339622"
+                        id="path15" />
+                        <path
+                        style="opacity:1;fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized)"
+                        d="m 110.76557,204.16412 -10.08679,-0.18677"
+                        id="path16" />
+                        <ellipse
+                        style="fill:url(#linearGradient19);fill-opacity:1;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0"
+                        id="ellipse16"
+                        cx="50.807549"
+                        cy="235.72739"
+                        rx="24.656605"
+                        ry="8.2188683" />
+                        <ellipse
+                        style="opacity:1;fill:url(#linearGradient18);fill-opacity:1;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0"
+                        id="ellipse17"
+                        cx="-130.93916"
+                        cy="235.91415"
+                        rx="20.173584"
+                        ry="12.88868"
+                        transform="scale(-1,1)" />
+                        <path
+                        style="opacity:1;fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized)"
+                        d="m 75.46415,235.72737 v 0 h 9.339622"
+                        id="path17" />
+                        <path
+                        style="opacity:1;fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized)"
+                        d="m 110.76557,235.91414 -10.08679,-0.18677"
+                        id="path18" />
+                        <ellipse
+                        style="fill:url(#linearGradient22);fill-opacity:1;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0"
+                        id="ellipse19"
+                        cx="50.807549"
+                        cy="272.76904"
+                        rx="24.656605"
+                        ry="8.2188683" />
+                        <ellipse
+                        style="opacity:1;fill:url(#linearGradient21);fill-opacity:1;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0"
+                        id="ellipse20"
+                        cx="272.95581"
+                        cy="-124.06004"
+                        rx="20.173584"
+                        ry="12.88868"
+                        transform="rotate(90)" />
+                        <path
+                        style="opacity:1;fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized)"
+                        d="m 75.46415,272.76906 v 0 h 9.339622"
+                        id="path20" />
+                        <path
+                        style="opacity:1;fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized)"
+                        d="m 110.76557,272.95583 -10.08679,-0.18677"
+                        id="path21" />
+                        <text
+                        xml:space="preserve"
+                        style="font-weight:bold;font-size:7.7611px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';word-spacing:0px;writing-mode:lr-tb;direction:ltr;opacity:1;fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0"
+                        x="87.232544"
+                        y="206.93533"
+                        id="text22"><tspan
+                            id="tspan22"
+                            style="fill:#008000;stroke:none;stroke-width:1"
+                            x="90.232544"
+                            y="206.93533">✓</tspan><tspan
+                            style="stroke-width:1"
+                            x="90.232544"
+                            y="216.72655"
+                            id="tspan23" /><tspan
+                            style="stroke-width:1"
+                            x="87.232544"
+                            y="226.42792"
+                            id="tspan24" /><tspan
+                            style="fill:#ff0000;stroke:none;stroke-width:1"
+                            x="89.232544"
+                            y="238.1293"
+                            id="tspan25">✕</tspan><tspan
+                            style="stroke-width:1"
+                            x="87.232544"
+                            y="245.92052"
+                            id="tspan26" /><tspan
+                            style="stroke-width:1"
+                            x="87.232544"
+                            y="255.62189"
+                            id="tspan27" /><tspan
+                            style="stroke-width:1"
+                            x="89.232544"
+                            y="265.32327"
+                            id="tspan28" /><tspan
+                            style="fill:#ff0000;stroke:none;stroke-width:1"
+                            x="89.232544"
+                            y="275.02463"
+                            id="tspan29">✕</tspan></text>
+                    </g>
+                    </svg>
+                    <p class="enyhe-kiemeles">Három lehetséges ütközés poláris részecskék esetében. Csak a legfelső a sikeres, mert itt találkoznak az ellentétes töltések.</p>
+            </div>
+        </div>
+        <hr class="elvalaszto">
+        <h4>A kémia valósága</h4>
+        <div class="resp">
+            <div class="resp-left">
+                <p>A nátrium-hidroxid és a hidrogénklorid reakciójában konyhasó és víz keletkezik. Egyenlettel leírva ez <span class="keplet">NaOH + HCl → NaCl + H<sub>2</sub>O</span>. Itt az eddig létező molekulapályák helyett újaknak kell kialakulniuk. Ehhez az kell, hogy a részecskék úgy ütközzenek, ahogyan <i>ki tudnak alakulni a molekulapályák köztük</i>: a nátriumion a klórral, a hidroxidion a hidrogénnel.</p>
+            </div>
+            <div class="resp-right">
+                <svg viewBox="0 0 158.79695 92.529984" style="width: 100%; height: auto; max-width: 450px; display: block; margin: 0 auto;" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                    <defs
+                        id="defs1">
+                        <marker style="overflow:visible" id="marker5" refX="0" refY="0" orient="auto-start-reverse" markerWidth="1" markerHeight="1" viewBox="0 0 1 1" preserveAspectRatio="xMidYMid">
+                        <path
+                            transform="scale(0.5)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m 6,0 c -3,1 -7,3 -9,5 0,0 0,-4 2,-5 -2,-1 -2,-5 -2,-5 2,2 6,4 9,5 z" id="path5" />
+                        </marker>
+                        <marker style="overflow:visible" id="ArrowTriangleStylized" refX="0" refY="0" orient="auto-start-reverse" markerWidth="1" markerHeight="1" viewBox="0 0 1 1" preserveAspectRatio="xMidYMid">
+                        <path
+                            transform="scale(0.5)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m 6,0 c -3,1 -7,3 -9,5 0,0 0,-4 2,-5 -2,-1 -2,-5 -2,-5 2,2 6,4 9,5 z" id="path4" />
+                        </marker>
+                        <marker style="overflow:visible" id="ArrowTriangleStylized-4" refX="0" refY="0" orient="auto-start-reverse" markerWidth="1" markerHeight="1" viewBox="0 0 1 1" preserveAspectRatio="xMidYMid">
+                        <path transform="scale(0.5)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m 6,0 c -3,1 -7,3 -9,5 0,0 0,-4 2,-5 -2,-1 -2,-5 -2,-5 2,2 6,4 9,5 z" id="path4-8" />
+                        </marker>
+                        <marker style="overflow:visible" id="ArrowTriangleStylized-3" refX="0" refY="0" orient="auto-start-reverse" markerWidth="1" markerHeight="1" viewBox="0 0 1 1" preserveAspectRatio="xMidYMid">
+                        <path transform="scale(0.5)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="m 6,0 c -3,1 -7,3 -9,5 0,0 0,-4 2,-5 -2,-1 -2,-5 -2,-5 2,2 6,4 9,5 z" id="path4-2" />
+                        </marker>
+                    </defs>
+                    <g id="layer1" transform="translate(-0.74716753)">
+                        <g id="g39" transform="translate(55.146717,16.437736)">
+                        <rect style="fill:#008000;stroke:none;stroke-width:1" id="rect1" width="95.637733" height="87.79245" x="53.422638" y="77.705658" rx="0" ry="0" />
+                        <circle style="fill:var(--text);stroke:none;stroke-width:1" id="path1" cx="144.01932" cy="82.746681" r="10.833965" />
+                        <circle style="fill:#cc00ff;stroke:none;stroke-width:0.642973" id="circle1" cx="-97.625114" cy="-97.620399" r="6.9660001" transform="scale(-1)" />
+                        <circle style="fill:#ffffff;stroke:none;stroke-width:0.642973" id="circle2" cx="-69.979836" cy="-125.63927" r="6.9660001" transform="scale(-1)" />
+                        <path style="fill:#cc00ff;stroke:#ff0000;stroke-width:1;marker-end:url(#ArrowTriangleStylized)" d="M 69.979835,125.63926 97.625113,97.620398" id="path2" />
+                        <path style="fill:none;stroke:#ff0000;stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;marker-end:url(#marker5)" d="M 97.625113,97.620396 117.53985,77.705658 144.20377,103.24881" id="path3" />
+                        <path
+                            style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized)"
+                            d="M 69.979833,125.63926 90.659113,97.620398"
+                            id="path6" />
+                        <path
+                            style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:1, 1;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized)"
+                            d="M 90.659113,97.620396 130.87181,91.597988"
+                            id="path7" />
+                        <path
+                            style="fill:none;stroke:#ff0000;stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized)"
+                            d="m 69.979833,125.63926 15.197523,4.74187"
+                            id="path8" />
+                        </g>
+                        <path
+                        style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized-3)"
+                        d="m 102.8456,13.369074 v 0 h 9.33961"
+                        id="path15-6" />
+                        <g
+                        id="g38">
+                        <path
+                            style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized-4)"
+                            d="m 30.864032,10.796046 v 0 h 9.339622"
+                            id="path15-5" />
+                        <path
+                            style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized-4)"
+                            d="m 66.165452,10.982816 -10.08679,-0.18677"
+                            id="path16-5" />
+                        <path
+                            style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized-4)"
+                            d="m 30.864032,43.796046 v 0 h 9.339622"
+                            id="masodik-jobbra" />
+                        <path
+                            style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized-4)"
+                            d="m 66.165452,43.982816 -10.08679,-0.18677"
+                            id="masodik-balra" />
+                        <path
+                            style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized-4)"
+                            d="m 30.864032,75.796046 v 0 h 9.339622"
+                            id="harmadik-j" />
+                        <path
+                            style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized-4)"
+                            d="m 66.165452,75.982816 -10.08679,-0.18677"
+                            id="harmadik-b" />
+                        <text xml:space="preserve" style="font-weight:bold;font-size:7.7611px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';word-spacing:0px;writing-mode:lr-tb;direction:ltr;fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" x="42.632427" y="13.754029" id="text22-1"><tspan
+                            id="tspan22-7" style="fill:#008000;stroke:none;stroke-width:1" x="46.632427" y="12.754029">✓</tspan><tspan
+                            style="stroke-width:1" x="42.632427" y="23.545246" id="tspan23-1" /><tspan
+                            style="stroke-width:1" x="42.632427" y="33.24662" id="tspan24-1" /><tspan
+                            style="fill:#008000;stroke:none;stroke-width:1" x="46.632427" y="45.947994" id="tspan25-5">✓</tspan><tspan
+                            style="stroke-width:1" x="42.632427" y="52.739212" id="tspan26-2" /><tspan
+                            style="stroke-width:1" x="42.632427" y="62.440586" id="tspan27-7" /><tspan
+                            style="stroke-width:1" x="42.632427" y="72.14196" id="tspan28-6" /><tspan
+                            style="fill:#ff0000;stroke:none;stroke-width:1" x="45.632427" y="78.843338" id="tspan29-1">✕</tspan></text>
+                        </g>
+                        <g
+                        id="g32">
+                        <circle style="fill:#00ff00;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="path29" cx="11.767922" cy="11.020755" r="11.020755" />
+                        <circle style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="path30" cx="26.711319" cy="11.020755" r="3.9226413" />
+                        </g>
+                        <g
+                        id="g31"
+                        transform="rotate(-45.150947,71.836604,-3.9527307)">
+                        <circle style="fill:#cccccc;stroke:var(--text);stroke-width:1.12436;stroke-dasharray:none;stroke-dashoffset:0" id="circle30" cx="55.587437" cy="16.214937" r="4.4103222" />
+                        <circle style="opacity:1;fill:#ff0000;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="path31" cx="63.521336" cy="7.2901726" r="7.2901726" />
+                        <circle style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="circle31" cx="69.850395" cy="16.687918" r="3.9226413" />
+                        </g>
+                        <g
+                        id="g37"
+                        transform="translate(14.569811)">
+                        <circle style="fill:#00ff00;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="circle32" cx="117.60126" cy="11.020755" r="11.020755" />
+                        <circle style="fill:#cccccc;stroke:var(--text);stroke-width:1.12436;stroke-dasharray:none;stroke-dashoffset:0" id="circle34" cx="133.03233" cy="11.020755" r="4.4103222" />
+                        </g>
+                        <g
+                        id="g36"
+                        transform="translate(-21.667925,29.513208)">
+                        <circle style="fill:#ff0000;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="circle35" cx="169.35468" cy="7.2901726" r="7.2901726" />
+                        <circle style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="circle33" cx="161.91995" cy="15.619121" r="3.9226413" />
+                        <circle style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="circle36" cx="176.78938" cy="15.619121" r="3.9226413" />
+                        </g>
+                        <g
+                        id="g41"
+                        transform="matrix(-1,0,0,1,31.881128,31.750001)">
+                        <circle style="fill:#00ff00;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="circle40" cx="11.767922" cy="11.020755" r="11.020755" />
+                        <circle style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="circle41" cx="26.711319" cy="11.020755" r="3.9226413" />
+                        </g>
+                        <g
+                        id="g43"
+                        transform="translate(0,63.500003)">
+                        <circle style="fill:#00ff00;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="circle42" cx="11.767922" cy="11.020755" r="11.020755" />
+                        <circle style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="circle43" cx="26.711319" cy="11.020755" r="3.9226413" />
+                        </g>
+                        <g
+                        id="g46"
+                        transform="rotate(61.47119,40.353919,43.020163)">
+                        <circle style="fill:#cccccc;stroke:var(--text);stroke-width:1.12436;stroke-dasharray:none;stroke-dashoffset:0" id="circle44" cx="55.587437" cy="16.214937" r="4.4103222" />
+                        <circle style="opacity:1;fill:#ff0000;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="circle45" cx="63.521336" cy="7.2901726" r="7.2901726" />
+                        <circle style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="circle46" cx="69.850395" cy="16.687918" r="3.9226413" />
+                        </g>
+                        <g
+                        id="g49"
+                        transform="rotate(61.47119,13.655167,58.895161)">
+                        <circle style="fill:#cccccc;stroke:var(--text);stroke-width:1.12436;stroke-dasharray:none;stroke-dashoffset:0" id="circle47" cx="55.587437" cy="16.214937" r="4.4103222" />
+                        <circle style="opacity:1;fill:#ff0000;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="circle48" cx="63.521336" cy="7.2901726" r="7.2901726" />
+                        <circle style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0" id="circle49" cx="69.850395" cy="16.687918" r="3.9226413" />
+                        </g>
+                        <path
+                        style="fill:none;stroke:var(--text);stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#ArrowTriangleStylized-3)"
+                        d="m 103.93382,43.486792 v 0 l 7.82195,-5.103475"
+                        id="path49" />
+                    </g>
+                    </svg>
+            </div>
+        </div>
+        <p>A molekulák ütközésekor már két hatásos ütközést ábrázoltam. Az a hatástalan, amikor olyan részek találkoznak, amelyek közt nem alakulhat ki új moelkulapálya. A <span style="color:#0f0">zöld</span> a klórt, a <span style="color: #ccc;">szürke</span> a nátriumot, a <span style="color: #f00;">piros</span> az oxigént, a <span style="color: var(--gomb-bg); text-shadow: 0 0 2px var(--text);">körberajzolt</span> pedig a hidrogéneket jelöli. A jobb oldalon a termékek (a konyhasó és a víz) csak egyszer szerepelnek.</p>
+        <hr class="elvalaszto">
+
+        <h4>A hőmérséklet hatása</h4>
+        <p>Attól, hogy a megfelelő részek ütköznek egymással, még nem biztos, hogy tényleg történni fog valami. A fa folyamatosan találkozik oxigénnel, mégsem ég el (persze ennek más oka is van, de egyelőre elég ez a kép is). Ahogy már írtam, <b>a korábbi kötéseket fel kell szakítani</b>, ehhez pedig energia kell. Hogyan szerezhet energiát egy részecske? Mondjuk úgy, hogy <b>gyorsabban mozog</b>. <b><i>A sikeres ütközéshez tehát az orientáció mellett az ütközés megfelelő energiája is kell.</i></b> Kis energiánál egyszerűen lepattannak egymásról a részecskék, mert az elektronfelhők taszítása győz.</p>
+        <p class="extra"><b>Emergens</b> tulajdonságnak nevezzük azt, ami úgy jellemzője egy rendszernek, hogy az alkotóinak még nem az. Erre kiváló példa a hőmérséklet. Az egyes részecskéknek <b>nincs hőmérséklete, nekik sebességük, mozgási energiájuk</b> lehet. A sok részecske egyedi sebességének átlaga lesz számunkra a hőmérséklet. Ugyanilyen tulajdonság a halmazállapot is: egy vízmolekulának nincs ilyen tulajdonsága, de ha sokat összerakunk, akkor már fontos ezt is leírni. Az embereknél is léteznek ilyenek: például a társadalom sok szerepe és tulajdonsága, eredménye nem létezik akkor, ha csak egy embert vizsgálunk.</p>
+        <p><b>A hőmérséklet emelése minden reakciót gyorsít.</b> Az endoterm reakcióknak természetesen jobban kedvez, ezért azokat jobban gyorsítja, de fontos, hogy az exotermet is gyorsítja. Csak azt kevésbé.</p>
+        <div class="emelt">
+            <div class="task-card">
+                <h4>A hőmérséklet hatása: A Maxwell–Boltzmann-eloszlás</h4>
+                <p>A reakciósebesség a hőmérséklet növelésével drasztikusan nő. De miért? Egy gázban vagy folyadékban a részecskék nem egyforma sebességgel mozognak. Van, amelyik szinte áll, és van, amelyik "szuperszonikus" sebességgel száguld. Ezt az eloszlást mutatja a Maxwell–Boltzmann-görbe. A csúszkán az abszolút hőmérsékletet látod kelvinben, ez a celsiusban mért hőmérsékletnél 273,15-tel nagyobb.</p>
+                <div class="osszefoglalas">
+                    Próbáld ki! Húzd a csúszkát, és figyeld meg, hogyan változik a részecskék sebességeloszlása magasabb hőmérsékleten! 
+                    A szaggatott vonal jelzi a reakcióhoz szükséges <b>Aktiválási energiát ($E^*$)</b>. Csak a vonaltól <b>jobbra</b> lévő részecskék képesek reagálni!
+                </div>
+            
+                <div style="text-align: center; margin: 20px 0;">
+                    <label for="homerseklet-csuszka" style="font-weight: bold;">Hőmérséklet (T): <span id="T-ertek" style="color: var(--secondary);">300</span> K</label><br>
+                    <input type="range" id="homerseklet-csuszka" min="100" max="1200" value="300" step="10" style="width: 80%; max-width: 400px; margin-top: 10px;">
+            </div>
+
+            <div class="kep-svg-wrapper" style="max-width: 500px; width: 100%;">
+                <svg viewBox="0 -10 500 250" id="mb-diagram" style="width: 100%; height: auto; display: block; border-bottom: 2px solid var(--text); border-left: 2px solid var(--text);">
+                
+                    <line x1="300" y1="0" x2="300" y2="240" stroke="#ff0000" stroke-width="2" stroke-dasharray="5,5" />
+                    <text x="305" y="20" fill="#ff0000" font-family="sans-serif" font-size="14" font-weight="bold">E* (Aktiválási energia)</text>
+                
+                    <path id="mb-terulet" fill="rgba(255, 0, 0, 0.2)" stroke="none" d="" />
+
+                    <path id="mb-gorbe" fill="none" stroke="var(--secondary)" stroke-width="3" d="" />
+                
+                    <text x="400" y="235" fill="var(--text)" font-family="sans-serif" font-size="12">Sebesség (v) →</text>
+                    <text x="10" y="0" fill="var(--text)" font-family="sans-serif" font-size="12">↑ Részecskék száma</text>
+                </svg>
+            </div>
+        </div>
+        </div>
+        <!-- Maxwell–Boltzmann-eloszlás generálása JavaScripttel -->
+        <script>
+            const T_csuszka = document.getElementById("homerseklet-csuszka");
+            const T_ertek = document.getElementById("T-ertek");
+            const mb_gorbe = document.getElementById("mb-gorbe");
+            const mb_terulet = document.getElementById("mb-terulet");
+
+            // Ha léteznek az elemek az oldalon, akkor elindítjuk
+            if (T_csuszka && mb_gorbe) {
+                
+                // A Maxwell-Boltzmann matematikai függvénye (leegyszerűsítve az SVG rajzoláshoz)
+                function szamolMaxwellBoltzmann(v, T) {
+                    const M = 0.028; // Moláris tömeg (pl. Nitrogén gáz kg/mol)
+                    const R = 8.314; // Egyetemes gázállandó
+                    
+                    // Az egyenlet részei
+                    const tenyezo1 = 4 * Math.PI;
+                    const tenyezo2 = Math.pow(M / (2 * Math.PI * R * T), 1.5);
+                    const tenyezo3 = v * v;
+                    const kitevo = -(M * v * v) / (2 * R * T);
+                    const tenyezo4 = Math.exp(kitevo);
+                    
+                    // Visszaadjuk a valószínűséget (amit majd felskálázunk az SVG-hez)
+                    return tenyezo1 * tenyezo2 * tenyezo3 * tenyezo4;
+                }
+
+                // Ez a függvény rajzolja meg magát a görbét
+                function rajzolMBGorbet() {
+                    const T = parseInt(T_csuszka.value);
+                    T_ertek.innerText = T; // Kijelző frissítése
+
+                    let pathString = "";
+                    let teruletString = "";
+                    const svgSzelesseg = 500;
+                    const svgMagassag = 240; // Y=0 pont a képernyő alján
+                    
+                    // X tengely skálázása (0-tól kb 1500 m/s-ig)
+                    const v_max = 1500; 
+                    // Y tengely skálázása, hogy szép nagy legyen a görbe
+                    const y_skala = 100000; 
+                    
+                    const aktivalasiEnergiaX = 300; // Az SVG-ben a 300-as X koordinátánál van a vonal
+
+                    // Végigmegyünk a sebességeken és kiszámoljuk a pontokat
+                    for (let x = 0; x <= svgSzelesseg; x += 2) {
+                        // SVG X koordináta átváltása valódi sebességre (m/s)
+                        const v = (x / svgSzelesseg) * v_max; 
+                        
+                        // Függvényérték kiszámolása
+                        const y_valodi = szamolMaxwellBoltzmann(v, T);
+                        
+                        // SVG Y koordináta (A böngészőben az Y lefelé nő, ezért ki kell vonni a magasságból!)
+                        const y_svg = svgMagassag - (y_valodi * y_skala);
+
+                        if (x === 0) {
+                            pathString += `M ${x} ${y_svg} `;
+                        } else {
+                            pathString += `L ${x} ${y_svg} `;
+                        }
+
+                        // Ha átléptük az Aktiválási energiát, elkezdjük gyűjteni a pontokat a satírozáshoz
+                        if (x === aktivalasiEnergiaX) {
+                            teruletString += `M ${x} ${svgMagassag} L ${x} ${y_svg} `;
+                        } else if (x > aktivalasiEnergiaX) {
+                            teruletString += `L ${x} ${y_svg} `;
+                        }
+                    }
+
+                    // A satírozott terület bezárása (jobb alsó sarok)
+                    teruletString += `L ${svgSzelesseg} ${svgMagassag} Z`;
+
+                    // SVG frissítése a kiszámolt útvonalakkal
+                    mb_gorbe.setAttribute("d", pathString);
+                    mb_terulet.setAttribute("d", teruletString);
+                }
+
+                // Eseményfigyelő a csúszkára (ha húzzák, azonnal újrarajzolja)
+                T_csuszka.addEventListener("input", rajzolMBGorbet);
+
+                // Első rajzolás az oldal betöltésekor
+                rajzolMBGorbet();
+            }
+        </script>
+        <hr class="elvalaszto">
+        <h4>Katalizátor alkalmazása</h4>
+        <p>Beszéltünk a hatásos ütközésekről, a hőmérséklet szerepéről, és említettem az aktivált komplexet. Az <b>aktivált komplex</b> a legmagasabb energiájú állapot. A magas energia azt jelenti, hogy az állapot <b>nem stabil, spontán átalakul</b>. Olyan ez, mint egy hegy teteje, ahonnan egy kő valamelyik irányba lefelé fog távozni. A hegy két oldalán egy-egy völgy van, ezek a kiindulási anyagokat és a termékeket jelentik. Ahhoz, hogy az egyik oldalról eljussunk a másikra, át kell menni a hegyen. A katalizátor abban segít, hogy a hegy tetejére könnyebben eljussunk. Ha ez így most annyira nem tiszta, akkor javaslom, hogy olvass vissza, és nézd meg az exo- és endoterm reakciók energiadiagramját katalizátor alkalmazásával és anélkül, <a href="#energetika">ide kattintva</a>!</p>
+        <p><b>A katalizátorok néhány tulajdonsága:</b>
+            <ul>
+                <li>új reakcióutat nyit meg,</li>
+                <li>csökkenti az aktiválási energiát,</li>
+                <li>a reakció után változatlan mennyiségben áll rendelkezésre, de</li>
+                <li><b>nem</b> változtatja meg a reakcióhőt vagy a reakció irányát!</li>
+            </ul>
+        </p>
+        <div class="resp">
+            <div class="resp-left">
+                <p>Egy konkrét példa következik a katalizátor alkalmazására a tüzelőanyag-cellákból. A szürke körök platina nanorészecskéket jelképeznek. Ezek nagyon apró platinaszemcsék. A fehér körökkel jelzett, két hidrogénből álló hidrogénmolekulák kapcsolatba lépnek ezekkel a platina nanorészecskékkel, és <b>atomokra bomlanak</b>. A kapcsolat gyenge, de ahhoz elég erős, hogy a hidrogénmolekulák felszakadjanak. A hidrogénatomokkal már könnyen reakcióba lép az oxigén, és víz keletkezhet.
+                    <br><i>Mi történt tehát?</i> A <b>magas energiájú állapot (atomos hidrogén) helyett egy köztes, alacsonyabb energiájú állapotot találtunk</b> (gyengébben kötött hidrogénatomok). Emiatt az energia, amit fel kell használnunk, csökkent. Olyan ez, mint amikor a hegyi út helyett egy alagúton megyünk keresztül: sokkal kevesebb energia kell hozzá.</p>
+            </div>
+            <div class="resp-right">
+                <svg
+                    width="35.136486mm" height="50.024612mm" viewBox="0 0 35.136486 50.024612" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                    <defs
+                        id="defs1" />
+                    <g id="layer1" transform="translate(-248.90158,-8.7701081)"> 
+                        <rect style="fill:#000000;stroke:#000000;stroke-width:1" id="rect1" width="3.7436976" height="48.489796" x="249.40157" y="9.8049231" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30" cx="255.73019" cy="11.855042" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-8" cx="258.40784" cy="17.9016" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-1" cx="254.44475" cy="20.967699" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-2" cx="258.93701" cy="25.045351" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-23" cx="261.05368" cy="13.403684" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-85" cx="255.49744" cy="27.162018" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-9" cx="261.05368" cy="32.718269" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-4" cx="255.76202" cy="33.247433" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-3" cx="255.23285" cy="41.449516" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-87" cx="258.93701" cy="38.274517" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-93" cx="260.78909" cy="43.830769" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-5" cx="255.76202" cy="47.005768" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-0" cx="254.4391" cy="53.62035" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-50" cx="258.67242" cy="50.01379" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-13" cx="260.52451" cy="55.207851" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-46" cx="263.9754" cy="48.754597" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-84" cx="263.96411" cy="26.103683" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-88" cx="263.96411" cy="18.166183" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-59" cx="263.43494" cy="39.332851" r="2.584934" />
+                        <circle style="fill:#808080;stroke:#808080;stroke-width:1" id="path30-6" cx="266.01987" cy="41.917786" r="2.584934" />
+                        <circle style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-dasharray:none" id="path60" cx="212.68805" cy="-183.80688" r="1.2478992" transform="rotate(43.583035)" />
+                        <circle style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-dasharray:none" id="circle60" cx="215.18384" cy="-183.80688" r="1.2478992" transform="rotate(43.583035)" />
+                        <circle style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-dasharray:none" id="path60-4" cx="129.72702" cy="249.446" r="1.2478992" transform="rotate(-55.422341)" />
+                        <circle style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-dasharray:none" id="circle60-2" cx="132.22281" cy="249.446" r="1.2478992" transform="rotate(-55.422341)" />
+                        <circle style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-dasharray:none" id="path60-7" cx="277.50671" cy="48.125431" r="1.2478992" />
+                        <circle style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-dasharray:none" id="circle60-26" cx="280.0025" cy="48.125431" r="1.2478992" />
+                        <circle style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-dasharray:none" id="path60-75" cx="264.9729" cy="22.349981" r="1.2478992" />
+                        <circle style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-dasharray:none" id="circle60-4" cx="263.93909" cy="52.603626" r="1.2478992" />
+                        <circle style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-dasharray:none" id="circle61" cx="264.5694" cy="35.081726" r="1.2478992" />
+                        <circle style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-dasharray:none" id="circle62" cx="267.21658" cy="46.048672" r="1.2478992" />
+                        <circle style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-dasharray:none" id="path60-1" cx="264.67792" cy="30.313782" r="1.2478992" />
+                        <circle style="fill:#ffffff;stroke:#000000;stroke-width:0.4;stroke-dasharray:none" id="circle60-46" cx="274.35895" cy="26.910246" r="1.2478992" />
+                    </g>
+                    </svg>
+
+            </div>
+            <!-- golyócskák ütköznek, ehhez kell egy bizonyos energiamennyiség. hatásos és nem hatásos ütközések. felaszakadó kötések. melegítés hatása általában és az exo- ileltve endoterm reakciókra. katalizátor egyszerűen, hasonlattal, illetve könnyű konkrét páldával. -->
+        </div>
+        <p></p>
+    </div>
+
+    <div class="task-card" hidden>
+        <h3>A reackió lefolyása és az aktiválási energia – emelt szinten</h3>
+        <!-- elektronfelhők átfednek, orientáció. energiaeloszlás alakulása simán és a hőmérséklet függvényében. katalizátor konkrét példával, kicsit komplikáltabban. -->
+        <p></p>
+    </div>
+
+    <div class="task-card">
+        <h3>Gyakorló tesztsor</h3>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfX1Cex2dadOKtiMTS7scQc7XOhb8fYaPljE9wAMWM5e4qhBA/viewform?embedded=true" width=100% height=600px frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>
     
     <div id="kep-modal" class="modal-hatter">
         <span class="modal-bezaras">&times;</span>

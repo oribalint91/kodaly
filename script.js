@@ -251,7 +251,15 @@ function generateNavbar() {
                 {
                     name: "Általános kémia",
                     items: [
-                        // {title: "1. Atomok", file: "kemia_01.html"}
+                        {title: "1. Atommag, radioaktivitás", file: "alapok_03_atommag_radioaktivitas.html"},
+                        {title: "1+. Atommodellek, bevezetés", file: "alapok_02_atommodell_atommag.html"}
+                    ]
+                },
+                {
+                    name: "Reakciókinetika",
+                    items: [
+                        {title: "1. Bevezetés, alapfogalmak", file: "reakciok_01_bevezetes.html"},
+                        {title: "2. Reakciók sebessége és iránya", file: "reakciok_02_sebesseg_irany.html"}
                     ]
                 }
             ]
