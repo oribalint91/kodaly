@@ -42,6 +42,16 @@
   /* Kódblokk színei */
   --code-bg: #282c34;
   --code-text: #abb2bf;
+
+  /* Táblázat változók (Világos mód) */
+  --modal-table-bg: #ffffff;
+  --modal-table-text: #333333;
+  --modal-table-header-bg: #e0e0e0;
+  --modal-table-border: #999999;
+
+  --theme-table-header-text: #ffffff;
+  --theme-table-border: var(--secondary);
+  --theme-table-stripe-bg: rgba(52, 152, 219, 0.05); /* Nagyon halvány másodlagos szín a zebracsíkozáshoz */
 }
 
 /* --- DARK MODE VÁLTOZÓK --- */
@@ -83,6 +93,16 @@ html.dark-mode {
   --back-hover: #c0392b;
   --a: #5dade2;
   --a-hover: #aed6f1;
+
+  /* Táblázat változók (Sötét mód) */
+  --modal-table-bg: #1e1e1e;
+  --modal-table-text: #e0e0e0;
+  --modal-table-header-bg: #333333;
+  --modal-table-border: #555555;
+
+  --theme-table-header-text: #e0e0e0;
+  --theme-table-border: var(--secondary);
+  --theme-table-stripe-bg: rgba(255, 255, 255, 0.03); /* Leheletnyi világosítás a sötét sorokon */
 }
 
 /* --- TANTÁRGYI TÉMÁK (SZÍNKÓDOK) --- */
@@ -391,3 +411,116 @@ rt {font-size: 0.65em; font-weight: bold; color: var(--secondary); line-height: 
 }
 
 .svg-homaly {fill: rgba(0,0,0,0.5); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);}
+
+/* =========================================
+   TÁBLÁZAT STÍLUSOK
+   ========================================= */
+
+/* 1. Szürke-fehér táblázat a Modalban */
+.modal-tartalom table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px auto;
+    background-color: var(--modal-table-bg);
+    color: var(--modal-table-text);
+    font-size: 1rem;
+}
+.modal-tartalom th, 
+.modal-tartalom td {
+    border: 1px solid var(--modal-table-border);
+    padding: 10px 15px;
+    text-align: left;
+}
+.modal-tartalom th {
+    background-color: var(--modal-table-header-bg);
+    font-weight: bold;
+}
+
+/* 2. Téma-színű táblázat a jegyzetben (Használd a <table class="tema-tabla"> kóddal!) */
+.tema-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: var(--card-bg);
+    /* Egy vastagabb, témaszínű külső keret nagyon elegáns tud lenni */
+    border: 2px solid var(--primary); 
+}
+.tema-tabla th, 
+.tema-tabla td {
+    /* Vékony, halvány témaszínű belső keretek */
+    border: 1px solid var(--theme-table-border);
+    padding: 12px 15px;
+    text-align: left;
+}
+.tema-tabla th {
+    /* A fejléc megkapja az adott tantárgy főszínét (Kémia: lila, Biosz: zöld) */
+    background-color: var(--primary);
+    color: var(--theme-table-header-text);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9em;
+}
+/* Zebracsíkos sorok a könnyebb olvashatóságért */
+.tema-tabla tr:nth-child(even) {
+    background-color: var(--theme-table-stripe-bg);
+}
+/* Kellemes hover effekt (ha az egeret a sor fölé húzzák) */
+.tema-tabla tr:hover {
+    background-color: var(--intro-bg);
+    transition: background-color 0.2s;
+}
+
+/* --- OLDALSÓ (HORIZONTÁLIS) TOGGLE ANIMÁCIÓ --- */
+.side-toggle-container {
+    display: flex;
+    flex-wrap: nowrap; /* Nem engedjük sortörni asztali nézeten */
+    width: 100%;
+    overflow: hidden; /* Hogy az animáció közben ne lógjon ki semmi */
+}
+
+/* A bal oldali fő tartalom: alapból kitölti a teret */
+.side-main {
+    flex: 1;
+    transition: all 0.5s ease-in-out;
+}
+
+/* A jobb oldali magyarázat: alapból nulla széles és láthatatlan */
+.side-panel {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding-left: 0;
+    margin-left: 0;
+    border-left: 0px solid var(--secondary);
+    transition: all 0.5s ease-in-out;
+}
+
+/* Amikor a JavaScript rátette a 'lathato' osztályt! */
+.side-panel.lathato {
+    width: 50%; /* Vagy amennyit szeretnél, pl. 40% is lehet */
+    opacity: 1;
+    padding-left: 20px;
+    margin-left: 20px;
+    border-left: 3px solid var(--secondary); /* Szép, témaszínű elválasztó vonal */
+}
+
+/* Mobilos nézet: ha kicsi a képernyő, váltson vissza egymás alatti, lefelé nyíló módra! */
+@media (max-width: 600px) {
+    .side-toggle-container {
+        flex-direction: column;
+    }
+    .side-panel.lathato {
+        width: 100%;
+        padding-left: 0;
+        margin-left: 0;
+        margin-top: 15px;
+        border-left: none;
+        border-top: 3px solid var(--secondary); /* A vonal átkerül felülre */
+        padding-top: 15px;
+    }
+}
+
+/* a szövegbe ágyazott képek (inline) stílusa */
+.inline-img {max-width: 100%; height: 1.2rem; display: inline-block; vertical-align: middle; margin: 0 5px; border-radius: 5px; transition: transform 0.3s ease, box-shadow 0.3s ease; object-fit: cover;}
+.inline-img:hover {transform: scale(1.05); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);}
