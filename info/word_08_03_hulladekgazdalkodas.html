@@ -82,7 +82,18 @@
                         Az egyes címsorokat nagyon egyszerűen lehet beállítani. Csak jelöld ki a szöveget, és válaszd ki a kívánt címsor stílust egy bal kattintással a <i>Kezdőlap</i> fül <i>Címsorok</i> szekciójában.<br>
                         <span class="extra">Gyorsabban is beállíthatod ezeket a címsorokat. Mivel a teljes bekezdésre hatnak, elég, ha a kurzor valahol a címsor bekezdésében villog, nem kell kijelölni. Ezekhez a stílusokhoz be vannak állítva gyorsbillentyűk: a Címsor 1-hez használhatod az <span class="gomb">Alt + 1</span>, a Címsor 2-höz az <span class="gomb">Alt + 2</span> stb. gombokat.</span><br>
                     <span class="ia" data-tipus="modal" data-target="cimsorok">Azt, hogy melyik címsor milyen szintű, ide kattintva nézheted meg.</span> A bal szélen levők a Címsor 1 stílusúak, az eggyel beljebb kezdődők Címsor 2, a számozott, legbeljebb kezdődők pedig Címsor 3 stílusúak.</li>
-                    <li><b>Címsorok beállítása: </b>a címsorok (és amúgy minden más stílus) kinézetét a stílusnál tudod módosítani. Ehhez kattints <b>jobb egérgombbal</b> a <i>Kezdőlap</i> fül <i>Címsorok</i> szekciójában arra a stílusra, amelyiket szeretnéd módosítani. A fel<span class="ia" data-target="cimsorstilusok" data-tipus="toggle">Állítsd be a címsorstílusokat az itt megadottak szerint!</span></li>
+                    <li><b>Címsorok beállítása: </b>a címsorok (és amúgy minden más stílus) kinézetét a stílusnál tudod módosítani. Ehhez kattints <b>jobb egérgombbal</b> a <i>Kezdőlap</i> fül <i>Címsorok</i> szekciójában arra a stílusra, amelyiket szeretnéd módosítani. A megjelenő <span class="ia" title="ez az a menü, ami a jobb egérgombbal nyílik meg">Helyi menüben</span> válaszd ki a <span class="ia" data-target="stilusok_helyi_menu" data-tipus="modal">Módosítás</span> lehetőséget. <br>
+                    <span class="ia" data-target="stilus-modositasa" data-tipus="modal">A megjelenő párbeszédablakban tudod módosítani a címsorstílusokat.</span><br><span class="ia" data-target="cimsorstilusok" data-tipus="toggle">Állítsd be a címsorstílusokat az itt megadottak szerint!</span></li>
+                    <div class="rejtett-kep kep-svg-wrapper" id="stilusok_helyi_menu"><img src="kepek/word_stilusok_helyi_menu.png" alt="">
+                    <svg viewBox="0 0 601 258" class="svg-reteg">
+            <rect x="220" y="73" width="180" height="36.5" class="svg-kiemeles" />
+        </svg></div>
+                    <div class="rejtett-kep kep-svg-wrapper" id="stilus-modositasa"><img src="kepek/word_stilus_modositasa.png" alt="Az alapvető beállításokat a magenta színnel keretezett részben tudod állítani. Ami nincs itt, pl. a térközök, azt a <i>Formátum</i> gombra kattintva tudod beállítani. A pirossal keretett részben választhatod ki, hogy a betűtípust, a formátumot vagy pl. a nyelvet szeretnéd-e módosítani. Ha végeztél, a zölddel keretett <i>OK</i> gombra kattintva tudod elmenteni a módosításokat.">
+                    <svg viewBox="0 0 870 693" class="svg-reteg">
+                        <rect x="20" y="390" width="180" height="260" class="svg-kiemeles" />
+                        <rect x="10" y="220" width="565" height="90" fill="none" stroke="#d2d" stroke-width="3" />
+                        <rect x="620" y="650" width="110" height="30" fill="none" stroke="#295" stroke-width="3" />
+                    </svg></div>
                 </ol></p>
             </details>
             <div class="rejtett-kep" id="cimsorok"><pre style="text-align: left;">Hulladéktípusok és csoportosításuk
@@ -110,7 +121,7 @@ Források
     <tr>
         <th>Stílus</th>
         <th>Betűformátum</th>
-        <th class="ia" data-target="bekezdesformazas" data-tipus="modal">Bekezdésformátum</th>
+        <th><span class="ia" data-target="bekezdesformazas" data-tipus="modal">Bekezdésformátum</span></th>
     </tr>
     <tr>
         <td>Címsor 1</td>
@@ -128,6 +139,27 @@ Források
         <td>Térköz előtte és utána is 6 pontos</td>
     </tr>
 </table></div>
+</div>
+<div class="rejtett-kep kep-svg-wrapper" id="kiskapitalis">
+    <img src="kepek/word_betutipus.png" alt="A Kiskapitális beállítást csak a Betűtípus párbeszédablakban tudod beállítani. A stílusok szerkesztésénél ezt a Formátum részben találod. A beállítást itt is pirossal kereteztem.">
+    <svg viewBox="0 0 777 652" class="svg-reteg">
+        <rect x="520" y="334" width="100" height="28" class="svg-kiemeles"></rect>
+    </svg>
+</div>
+<div class="rejtett-kep kep-svg-wrapper" id="bekezdesformazas">
+    <img src="kepek/word_bekezdes.png" alt="A bekezdésformázásnál a térközöket és a sorközt tudod beállítani. A térköz az egyes bekezdések között megjelenő hely nagysága (sárga keretben), a sorköz pedig a dokumentum minden sora közt megjelenő üres hely (kék keretben). A behúzás azt jelenti, hogy egy-egy bekezdés a margótól milyen távolságra kezdődik vagy ér véget, de lehet speciális behúzást adni csak a bekezdés első sorának (zöld keretben). A párbeszédablak tetjén (piros keretben) két fül közt válthatsz, a <i>Behúzás és térköz</i> fülön tudod beállítani az eddig említetteket, a <i>Szövegbeosztás</i> fülön pedig további dolgokat, pl. azt, hogy egy bekezdés mindig új oldalon kezdődjön vagy hogy az utána jövővel egy oldalra kerüljön.">
+    <svg viewBox="0 0 592 700" class="svg-reteg">
+        <rect x="10" y="50" width="250" height="31" class="svg-kiemeles"></rect>
+        <rect x="10" y="350" width="240" height="85" fill="none" stroke="#cc2" stroke-width="3"></rect>
+        <rect x="280" y="375" width="295" height="63" fill="none" stroke="#26c" stroke-width="3"></rect>
+        <rect x="10" y="208" width="570" height="85" fill="none" stroke="#295" stroke-width="3"></rect>
+    </svg>
+</div>
+<div class="rejtett-kep kep-svg-wrapper" id="uj_lap">
+    <img src="kepek/word_bekezdes_szovegbeosztas.png" alt="A Bekezdés párbeszédablak Szövegbeosztás fülén tudod beállítani, hogy a bekezdés mindig új oldalon kezdődjön. Ehhez a pirossal keretezett jelölőnégyzetet kell bepipálnod.">
+    <svg viewBox="0 0 594 699" class="svg-reteg">
+        <rect x="20" y="185" width="130" height="28" class="svg-kiemeles"></rect>
+    </svg>
 </div>
 
 <div class="task-card">
