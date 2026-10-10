@@ -167,17 +167,50 @@ Források
         <details>
             <summary>Önálló feladat</summary>
             <p>Nyisd meg az Élőfej és élőláb szerkesztését! Állítsd be, hogy az első oldal, és a páros és páratlan oldalak is eltérők legyenek! <br>
-            Az élőfejbe kerüljön az <i>A hulladékokról</i> szöveg! Az élőlábba az oldalszámot szúrd be, páros oldalakon balra, páratlanokon jobbra igazítva. Figyelj, hogy minden oldalon helyes legyen az oldalszám, az Oldalszám hivatkozást használd!</p>
+            Az élőfejbe kerüljön – az első oldal kivételével – az <i>A hulladékokról</i> szöveg! Az élőlábba (itt is az első oldal kivételével) az oldalszámot szúrd be, páros oldalakon balra, páratlanokon jobbra igazítva. Figyelj, hogy minden oldalon helyes legyen az oldalszám, az Oldalszám hivatkozást használd!</p>
         </details>
         <details>
             <summary>Részletes leírás lépésenként</summary>
             <p><ol start="9">
-                <li><b>Élőfej és élőláb megnyitása: </b></li>
-                <li><b>Beállítások módosítása: </b></li>
-                <li><b>Az élőfej tartalma: </b></li>
-                <li><b>Az élőláb tartalma: </b></li>
+                <li><b>Élőfej és élőláb megnyitása: </b>legalább háromféleképpen teheted. Szerintem a legegyszerűbb, ha <b>duplán valamelyik oldal tetejére vagy aljára kattintasz</b>, oda, ahol <span class="ia" data-target="elofej" data-tipus="modal">már/még nincs szöveg</span>. <br>
+                A második módszer, ha a <i>Beszúrás</i> fülön <span class="ia" data-target="beszuras-elofej" data-tipus="modal">kiválasztod az Élőfej (vagy az Élőláb) lehetőséget</span>. Innen közvetlenül is be tudsz szúrni oldalszámot, ha ez a feladat. <br>
+                A harmdaik módszer az örök megoldás, ha nem tudod, hol keress valamit: Csak írd be a <span class="ia" data-target="kereses" data-tipus="modal">keresés részbe</span> a kívánt beállítást, és nagy eséllyel kapsz egy arra használható menüt.</li>
+                <li><b>Beállítások módosítása: </b>pipáld be azokat e jelölőket, amelyekkel <b>az első oldal eltérő</b> és a <b>páros és páratlan oldalak is eltérők</b> lesznek! Ezeket a beállításokat az <span class="ia" data-target="elofej_elolab" data-tipus="modal">Élőfej és élőláb</span> részben tudod módosítani.</li>
+                <li><b>Az élőfej tartalma: </b>az élőfej és élőláb használatának előnye, hogy a megadott beállítások alapján automatikusan jelennek meg az összes oldalon. Két dologra kell emiatt figyelni, az első már az élőfejben megjelenik. <br>
+                Mivel beállítottuk, hogy az első oldal élőfeje másmilyen legyen, mint a többi, ezért ezt üresen tudjuk hagyni. Mivel viszont a páros és páratlan oldalak is eltérők, <b>egy páros és egy páratlan oldalon is be kell írni</b> a kívánt szöveget: <i>A hulladékokról</i>.</li>
+                <li><b>Az élőláb tartalma: </b>most menj egy oldal aljára! Ide az oldalszámot szúrjuk be, a páros oldalakon balra, a páratlanokon jobbra igazítva. Most jön a második dolog, amire figyelni kell (és ami amúgy nagy dokumentumoknál már segít, nem úgy mint egy ilyen kicsinél). <b>Ha beírjuk a 2. oldal aljára, hogy "2", akkor az összes többi páros oldalon is az jelenik meg, hogy "2".</b> Nyilván ez olyan nagyon sokat nem segít, szóval nem is így kell csinálni. A helyes megoldás, hogy az oldalszámot a <span class="ia" data-target="oldalszam" data-tipus="modal">Oldalszám hivatkozást</span> használva szúrjuk be. Ezt megtalálhatod az <i>Élőfej és élőláb</i> fülön, a <i>Beszúrás</i> fülön, de rá is kereshetsz a szokásos helyen. <br>
+                He mindennel megvagy, lépj ki az élőfej/élőláb szerkesztésből! Ehhez kattinthatsz duplán valahova a lap közeépre (<i>törzsszöveg</i>), rákattinthatsz az <i>Élőfej és élőláb</i> fül jobb végén a nagy piros X-re, vagy nyomhatsz egy <span class="gomb">Esc</span>-t is.</li>
             </ol></p>
         </details>
+    </div>
+    <div class="rejtett-kep kep-svg-wrapper" id="elofej"><img src="kepek/word_teljes_ablak.png" alt="">
+        <svg viewBox="0 0 1910 1074" class="svg-reteg">
+            <rect x="500" y="270" width="940" height="80" class="svg-kiemeles" />
+        </svg>
+    </div>
+    <div class="rejtett-kep kep-svg-wrapper" id="beszuras-elofej"><img src="kepek/word_beszuras.png" alt="Az élőfej és élőláb részben megnyithatod a dokumentumnak ezeket a részeit, de közvetlenül is be tudsz szúrni például oldalszámot, ha ez a feladat.">
+        <svg viewBox="0 0 1867 161" class="svg-reteg">
+            <rect x="1000" y="20" width="140" height="140" class="svg-kiemeles" />
+        </svg>
+    </div>
+    <div class="rejtett-kep kep-svg-wrapper" id="kereses">
+        <img src="kepek/word_teljes_ablak.png" alt="Ha nem tudod, hol keress valamit, akkor a menüszalag fölött található keresősávba írd be a kívánt beállítást. A Word nagy eséllyel ad egy arra használható menüt. Ha a képernyőd keskenyebb, akkor a keresősávot a menüszalag jobb szélén található nagyító ikonra kattintva tudod előhozni.">
+        <svg viewBox="0 0 1910 1074" class="svg-reteg">
+            <rect x="730" y="0" width="490" height="45" class="svg-kiemeles" />
+        </svg>
+    </div>
+    <div class="rejtett-kep kep-svg-wrapper" id="elofej_elolab">
+        <img src="kepek/word_elofej_elolab.png" alt="Az élőfejet/élőlábat megnyitva a program automatikusan a menüszalagban megnyitja az Élőfej és élőláb eszközök menüt. Ha mégsem, akkor a pirossal jelölt részre kell kattintanod. A kékkel keretezett részen állíthatod be, hogy az első oldal eltérő legyen-e, és hogy a páros és páratlan oldalak is eltérők legyenek-e. Jelenleg mind a három legyen bepipálva!">
+        <svg viewBox="0 0 1529 158" class="svg-reteg">
+            <rect x="930" y="0" width="135" height="38" class="svg-kiemeles" />
+            <rect x="950" y="40" width="200" height="88" fill="none" stroke="#26c" stroke-width="3"></rect>
+        </svg>
+    </div>
+    <div class="rejtett-kep kep-svg-wrapper" id="oldalszam">
+        <img src="kepek/word_elofej_elolab.png" alt="Pirossal keretezve találod az oldalszám beszúrúsára használható menüt. Most az Élőfej és élőláb fülön találhatót látod, de a Beszúrás fülön is megtalálod. Az is jó, ha a keresősávba beírod, hogy oldalszám, és a megjelenő menüből kiválasztod. A lehetőségek közül érdemes a &quot;jelenlegi pozíció&quot; lehetőséget kiválasztani, ha már beállítottad pl. a betűtípust és -méretet, egyébként jók az automatikus elhelyezések is.">
+        <svg viewBox="0 0 1529 158" class="svg-reteg">
+            <rect x="117" y="38" width="91" height="80" class="svg-kiemeles" />
+        </svg>
     </div>
 
     <div class="task-card">
