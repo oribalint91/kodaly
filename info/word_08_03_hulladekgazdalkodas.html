@@ -274,17 +274,45 @@ Források
         <h3>Képek beillesztése, kiemelés</h3>
         <details>
             <summary>Önálló feladat</summary>
-            <p></p>
+            <p>Az első oldalra szúrd be a <i>kuka.png</i> képet! Méretezd arányosan 6 cm szélességűre, futtasd körül négyzetesen a szöveget, és helyezd a képet a lap tetején (az <i>Egy átlagos család</i> kezdetű bekezdéssel egy vonalba) a jobb oldalra! A kép alá illeszd be a minta szerint az <i>A háztartási hulladék összetétele Magyarországon</i> képaláírást! <br>
+            A <i>Hulladékpiramis</i> című rész mellé szúrd be a <i>hulladékpiramis.png</i> képet! Méretezd arányosan 5 cm magasra, futtasd körül a szöveget négyzetesen, igazítsd a lap jobb oldalára és adj hozzá egy vékony fekete szegélyt!</p>
         </details>
         <details>
             <summary>Részletes leírás lépésenként</summary>
             <p><ol start="17">
-                <li><b>Kép beillesztése az első oldalra: </b></li>
-                <li><b>Képaláírás beillesztése: </b></li>
-                <li><b>Kép beillesztése a <i>Hulladékpiramis</i> cím mellé: </b></li>
-                <li><b>Vékony szegély beállítása: </b></li>
+                <li><b>Kép beillesztése az első oldalra, méretezés és elhelyezés: </b>a letöltött képet is többféleképpen leheet beilleszteni. Talán a legegyszerűbb, ha megnyitod a Fájlkezelőt (ez elvileg úgyis nyitva van a forrsásszöveg miatt), rákattintasz egyszer a képre, és behúzod a Word-dokumentumba. Ha ez nem szimpatikus, akkor persze használhatod a <i>Beszúrás</i> fül <i>Képek</i> lehetőségén belül az <i>Ez az eszköz</i> pontot. Ekkor ki kell keresni a felugró párbeszédablakban a képet. <br>
+                Ha duplán a képre kattintasz, a program a Képformátum menüre ugrik. Itt a jobb szélen találod a kép méretezési lehetőségeit. <span class="ia" data-target="szelesseg" data-tipus="modal">Válaszd ki a szélességet</span>, és írd be, hogy 6 cm! Itt most elhagyhatod a mértékegységet is.<br>
+                Ha a képre kattintasz, a jobb oldalán fent megjelenik egy kis kék ikon, ez a <i>Szöveg körbefuttatása</i>: <img src="kepek/word_korbefuttatas.png" alt="A szöveg körbefuttatásának kis ikonja." class="inline-img">. Kattints erre, és válaszd ki a második sor első elemét, a <i>Négyzetes</i> lehetőséget! Ha ezt megcsináltad, a program engedi, hogy a képet (relatíve) szabadon mozgasd. Húzd fel az <i>Egy átlagos család</i> kezdetű bekezdéssel egy vonalba, és igazítsd a lap jobb széléhez! Zöld segédvonalak segítenek a pontos elhelyezésben.</li>
+                <li><b>Képaláírás beillesztése: </b>képaláírást a lábjegyzethez nagyon hasonlóan lehet beilleszteni. A <i>Hivatkozások</i> fülön találod a <span class="ia" data-target="felirat" data-tipus="modal">Felirat beszúrása lehetőséget</span>. A <span class="ia" data-target="kepalairas" data-tipus="modal">megjelenő párbeszédablakban</span> beírhatod a képaláírást. Ha ki szeretnéd törölni az automatikus részt (pl. 1. ábra), azt csak a párbeszédablak bezárása után tudod megtenni. Írd be a képaláírást: <i>A háztartási hulladék összetétele Magyarországon</i>!</li>
+                <li><b>Kép beillesztése a <i>Hulladékpiramis</i> cím mellé: </b>keresd meg a <i>Hulladékpiramis</i> címet, és szúrd be a <i>hulladékpiramis.png</i> képet a mellé. Állítsd a <b>magasságát</b> (igen, itt most nem a szélességet, hanem a magasságot állítjuk fixre) 5 cm-re! Állítsd be itt is a szöveg négyzetes körbefuttatását!</li>
+                <li><b>Vékony szegély beállítása: </b>a képet kijelölve a Képformátum menüben a <span class="ia" data-target="szegely" data-tipus="modal">><i>Képszegély</i> lehetőséget</span> válaszd ki! Állíts be egy vékony fekete folytonos vonalat szegélynek!</li>
             </ol></p>
         </details>
+    </div>
+    <div class="rejtett-kep kep-svg-wrapper" id="felirat">
+        <img src="kepek/word_hivatkozas.png" alt="A képaláírás beszúrása a lábjegyzethez nagyon hasonlóan történik. A Hivatkozások fülön találod a <i>Felirat beszúrása</i> lehetőséget. Képek mellett táblázatokhoz is ezzel adhatsz magyarázó szöveget.">
+        <svg viewBox="0 0 1821 158" class="svg-reteg">
+            <rect x="900" y="25" width="90" height="130" class="svg-kiemeles" />
+        </svg>
+    </div>
+    <div class="rejtett-kep kep-svg-wrapper" id="kepalairas">
+        <img src="kepek/word_kepalairas.png" alt="Itt állíthatod be, hogy mi legyen a képaláírás szövege. Azt is megadhatod, hogy a kép vagy táblázat alá vagy fölé kerüljön a felirat. Ha a képaláírásban szeretnéd törölni az automatikusan beszúrt részt (pl. 1. ábra), azt csak a párbeszédablak bezárása után tudod megtenni. Na jó, csak félig: az "ábra" szó törlését a párbeszédablakban is megteheted, de a számot csak a bezárás után tudod eltüntetni.">
+        <svg viewBox="0 0 440 304" class="svg-reteg">
+            <rect x="900" y="25" width="90" height="130" class="svg-kiemeles" />
+        </svg>
+    </div>
+        <div class="rejtett-kep kep-svg-wrapper" id="szelesseg">
+        <img src="kepek/word_kepformatum_menu.png" alt="Válaszd ki a jobb szélen a pirossal jelölt részen a kép szélességét (az oldalra mutató nyilak jelzik). Írd be ide, hogy 6 cm!">
+        <svg viewBox="0 0 1887 157" class="svg-reteg">
+            <rect x="1730" y="25" width="140" height="100" class="svg-kiemeles" />
+        </svg>
+    </div>
+    </div>
+        <div class="rejtett-kep kep-svg-wrapper" id="szegely">
+        <img src="kepek/word_kepformatum_menu.png" alt="A pirossal jelölt <i>Képszegély</i> lehetőséget kiválasztva tudod beállítani a kép szegélyét. A szegély vastagságát, színét és stílusát is megadhatod.">
+        <svg viewBox="0 0 1887 157" class="svg-reteg">
+            <rect x="980" y="25" width="140" height="38" class="svg-kiemeles" />
+        </svg>
     </div>
 
     <div class="task-card">
