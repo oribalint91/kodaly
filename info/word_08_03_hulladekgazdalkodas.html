@@ -164,6 +164,7 @@ Források
 
 <div class="task-card">
         <h3>Élőfej és élőláb, oldalszám beillesztése</h3>
+        <p>Az élőfej és az élőláb a dokumentum tetején és alján található, a szövegtől elkülönített rész. A dokumentum minden oldalán megjelenik, de a beállításoknak megfelelően lehetnek különbségek az egyes szakaszok tartalmában. Alapvetően olyan dolgokat szoktak ide írni, mint az oldalszám, a dokumentum (pl. könyv) címe, esetleg a szerző neve vagy az aktuális fejezetcím.</p>
         <details>
             <summary>Önálló feladat</summary>
             <p>Nyisd meg az Élőfej és élőláb szerkesztését! Állítsd be, hogy az első oldal, és a páros és páratlan oldalak is eltérők legyenek! <br>
@@ -230,7 +231,7 @@ Források
         </details>
     </div>
     <div class="rejtett-kep kep-svg-wrapper" id="beszuras_tartalom">
-        <img src="kepek/word_hivatkozas.png" alt="A Tartalom részen többféle tartalomjegyzék közül választhatsz. A legegyszerűbb, ha az elsőt választod, de ha szeretnél, akkor a <i>Tartalomjegyzék beszúrása</i> lehetőséget választva további beállításokat is megadhatsz.">
+        <img src="kepek/word_hivatkozas.png" alt="A Tartalom részen többféle tartalomjegyzék közül választhatsz. A legegyszerűbb, ha az elsőt választod, de ha szeretnél, akkor az <i>Egyéni tartalomjegyzék</i> lehetőséget választva további beállításokat is megadhatsz.">
         <svg viewBox="0 0 1821 158" class="svg-reteg">
             <rect x="15" y="25" width="190" height="130" class="svg-kiemeles" />
         </svg>
@@ -238,23 +239,35 @@ Források
 
     <div class="task-card" id="orai_vege">
         <h3>Lábjegyzet és a források megjelölése</h3>
+        <p>Amikor más munkáját is felhasználjuk, fontos megjelölni ezeket a műveket. Ezzel magunkat is védjük, hiszen hivatkozni tudunk rá, hogy onnan szereztük az információinkat. Az interneten rengeteg olyan kép található, amelyek szabadon felhasználhatók, de ezeknél is fontos megjelölni, hogy ki készítette őket – kivétel persze, ha saját alkotást használunk.<br>
+        Bár most nem erre haszáljuk, gyakran lábjegyzvetbe kerülnek az ilyen forrásmegjelölések. A mostani feladatban egy magyarázó részt fűzünk az egyik szóhoz.</p>
         <details>
             <summary>Önálló feladat</summary>
-            <p>A második oldalon keresd meg a <i>biopamut</i> kifejezést! Jelöld ki, majd ehhez a szóhoz szúrd be lábjegyzetként a leírás alatt, szaggatott keretű dobozban található szöveget!<hr>
-            Amikor más munkáját is felhasználjuk, fontos megjelölni ezeket a műveket. Ezzel magunkat is védjük, hiszen hivatkozni tudunk rá, hogy onnan szereztük az információinkat. Az interneten rengeteg olyan kép található, amelyek szabadon felhasználhatók, de ezeknél is fontos megjelölni, hogy ki készítette őket – kivétel persze, ha saját alkotást használunk.<br>
-            <b>Fizikai könyvek</b> használatakor fel kell tüntetni <b>a szerzőt, a címet, a kiadó nevét, a kiadás dátumát és a felahsznált oldalak számát</b>. Ha <b>online forrással</b> dolgoztunk, akkor a <b>teljes webcím</b> mellett (amit a böngésző címsorából másolhatsz ki) fel kell tüntetni <b>a letöltés dátumát</b> is, hiszen az oldalt azóta szerkeszthették.</p>
-        </details>
+            <p>A második oldalon keresd meg a <i>biopamut</i> kifejezést! Jelöld ki, majd ehhez a szóhoz szúrd be lábjegyzetként az itt található szöveget!
+                <div class="code-container">
+                    <button class="copy-btn" onclick="copyCode(this)">Lábjegyzet másolása</button>
+                    <div class="raw-text-box">Egy hagyományos 150 grammos póló előállításhoz 8000 liter vizet használnak fel. Ugyanis ennyi vízre van szüksége a gyapotnak, melyből a pamutszál készül. Egy ugyanilyen típusú, de biopamutból készült póló esetében a vízfelhasználás kevesebb, mint 1000 liter víz.</div>
+                </div><hr>
+                <b>Fizikai könyvek</b> használatakor fel kell tüntetni <b>a szerzőt, a címet, a kiadó nevét, a kiadás dátumát és a felahsznált oldalak számát</b>. Ha <b>online forrással</b> dolgoztunk, akkor a <b>teljes webcím</b> mellett (amit a böngésző címsorából másolhatsz ki) fel kell tüntetni <b>a letöltés dátumát</b> is, hiszen az oldalt azóta szerkeszthették. Ha AI által generált tartalommal dolgoztunk, akkor a <b>felhasznált AI eszközt</b> is fel kell tüntetni. Fontos viszont, hogy ne ezekkel a részekkel próbáld alátámasztani az érveidet (pl. Magyarországon élnek jegesmedvék, mert az AI írta → ez rossz).</p>
+            </details>
         <details>
             <summary>Részletes leírás lépésenként</summary>
             <p><ol start="15">
-                <li><b>Lábjegyzet beszúrása: </b></li>
-                <li><b>A hivatkozás szabályai, forrásmegjelölés: </b></li>
+                <li><b>Lábjegyzet beszúrása: </b>a második oldalon a <i>biopamut</i> kifejezéshez szúrunk be egy magyarázó lábjegyzetet. Keresd meg ezt a szót! Ha nem szeretnéd végigolvasni, akkor a <span class="gomb">ctrl + f</span> billentyűkombináció használatával megnyithatod a keresést. Ha ide beírod a keresett szót, majd entert nyomsz, a program kijelöli a talált szót (sorban egymás után, ha többször is előfordul). <br>
+                Ha kijelölted a biopamut szót, akkor keresd meg a <span class="ia" data-target="labjegyzet" data-tipus="modal"><i>Hivatkozások</i> fülön a Lábjegyzet beszúrása</span> lehetőséget. Kattintás után a lap lajára kerülsz. Ide másold be a következő szöveget:
+                    <div class="code-container">
+                    <button class="copy-btn" onclick="copyCode(this)">Lábjegyzet másolása</button>
+                    <div class="raw-text-box">Egy hagyományos 150 grammos póló előállításhoz 8000 liter vizet használnak fel. Ugyanis ennyi vízre van szüksége a gyapotnak, melyből a pamutszál készül. Egy ugyanilyen típusú, de biopamutból készült póló esetében a vízfelhasználás kevesebb, mint 1000 liter víz.</div>
+                </div></li>
+                <li><b>A hivatkozás szabályai, forrásmegjelölés: </b>a hivatkozások használatakor fontos, hogy pontosan be lehessen azonosítani a felhasznált forrást. Nem elég tehát olyan, hogy "tankönyv", "az internet" vagy "a chatGPT". <b>Fizikai könyvek</b> használatakor fel kell tüntetni <b>a szerzőt, a címet, a kiadó nevét, a kiadás dátumát és a felahsznált oldalak számát</b>. Ha <b>online forrással</b> dolgoztunk, akkor a <b>teljes webcím</b> mellett (amit a böngésző címsorából másolhatsz ki) fel kell tüntetni <b>a letöltés dátumát</b> is, hiszen az oldalt azóta szerkeszthették. Ha AI által generált tartalommal dolgoztunk, akkor a <b>felhasznált AI eszközt</b> is fel kell tüntetni. Fontos viszont, hogy ne ezekkel a részekkel próbáld alátámasztani az érveidet (pl. Magyarországon élnek jegesmedvék, mert az AI írta → ez rossz).</li>
             </ol></p>
         </details>
-        <div class="code-container">
-            <button class="copy-btn" onclick="copyCode(this)">Lábjegyzet másolása</button>
-            <div class="raw-text-box">Egy hagyományos 150 grammos póló előállításhoz 8000 liter vizet használnak fel. Ugyanis ennyi vízre van szüksége a gyapotnak, melyből a pamutszál készül. Egy ugyanilyen típusú, de biopamutból készült póló esetében a vízfelhasználás kevesebb, mint 1000 liter víz.</div>
-        </div>
+        <div class="rejtett-kep kep-svg-wrapper" id="labjegyzet">
+        <img src="kepek/word_hivatkozas.png" alt="Ez egyszerű: jelöld ki a szót vagy szövegrészt, amihez lábjegyzetet hoznál létre, majd írd be az oldal aljára, amit szeretnél.">
+        <svg viewBox="0 0 1821 158" class="svg-reteg">
+            <rect x="210" y="25" width="95" height="130" class="svg-kiemeles" />
+        </svg>
+    </div>
     </div>
 
     <div class="task-card">
