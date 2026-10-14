@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10. évfolyam – Szövegszerkesztés dolgozat</title>
+  <link rel="stylesheet" href="../style.css?v=2">
+  <script type="text/javascript" src="../script.js?v=2"></script>
+  <style>
+    /* Csoportválasztó sáv stílusa */
+    .csoport-valaszto {
+      background: var(--card-bg);
+      border: 3px solid var(--secondary);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .csoport-gombok {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .csoport-btn {
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 10px 25px;
+      cursor: pointer;
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .csoport-btn:hover {
+      transform: scale(1.05);
+      background-color: var(--primary);
+    }
+    /* Amíg nem választott csoportot, elrejtjük a feladatokat */
+    #dolgozat-tartalom {
+      display: none;
+    }
+    .aktiv-csoport-badge {
+      display: inline-block;
+      background: var(--secondary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🌍 A légkör kémiája – Szövegszerkesztés dolgozat (10. évfolyam) <span id="csoport-jelzo" class="aktiv-csoport-badge" style="display:none;"></span></h2>
+  
+  <p class="intro">Ebben a dolgozatban egy kémiai témájú szöveget kell megformáznod a tanult szabályok alapján. Sorban haladj a feladatokkal! Ne felejtsd el <b>minden lépés után menteni a munkádat (Ctrl + S)</b>! Az óra végén a fájlt a Fájlkezelőben másold be a <i>Dolgozatok</i> megosztott meghajtóra!<br>
+  A részfeladatok alatt lévő jelölőnégyzetekkel követheted a haladásodat és a várható jegyedet az oldal alján lévő sávon.</p>
+
+  <!-- CSOPORTVÁLASZTÓ DOBOZ -->
+  <div class="csoport-valaszto" id="valaszto-doboz">
+    <h3>Válaszd ki a csoportodat a kezdéshez!</h3>
+    <p>Kattints arra a betűjelre, amit a tanártól kaptál! <b>Figyelem:</b> a választás után csak a saját csoportod feladatai maradnak a képernyőn!</p>
+    <div class="csoport-gombok">
+      <button class="csoport-btn" onclick="inditDolgozat('A')">🅰️ A csoport</button>
+      <button class="csoport-btn" onclick="inditDolgozat('B')">🅱️ B csoport</button>
+      <button class="csoport-btn" onclick="inditDolgozat('C')">©️ C csoport</button>
+    </div>
+  </div>
+
+  <!-- A DOLGOZAT TARTALMA (Csoportválasztás után jelenik meg) -->
+  <div id="dolgozat-tartalom">
+
+    <h2>Nyers szöveg és képek, amikkel dolgozni fogsz</h2>
+    <p>A feladatokhoz szükséged lesz erre a két képre. Kattints rájuk jobb gombbal, és válaszd a <i>Kép másolása</i> vagy <i>Kép mentése másként...</i> opciót, amikor a feladat kéri:</p>
+    <div style="display: flex; gap: 20px; justify-content: center; margin-bottom: 20px;">
+      <div style="text-align: center;">
+        <img src="kepek/nitrogen.jpg" alt="Nitrogén körforgása" style="max-height: 120px; border-radius: 5px; border: 1px solid var(--border-dark);">
+        <div class="kep-felirat">1. kép: nitrogen.jpg</div>
+      </div>
+      <div style="text-align: center;">
+        <img src="kepek/szmog.jpg" alt="Városi szmog" style="max-height: 120px; border-radius: 5px; border: 1px solid var(--border-dark);">
+        <div class="kep-felirat">2. kép: szmog.jpg</div>
+      </div>
+    </div>
+
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+      <div class="raw-text-box bekezdessel">A légkör kémiája és a légszennyezés
+Emlékszel még?
+A Földet körülvevő gázburok, a légkör (atmoszféra) alapvető feltétele a földi életnek. Legfontosabb összetevői a nitrogén (N2), az oxigén (O2), a nemesgázok és a szén-dioxid (CO2), valamint a változó mennyiségű vízgőz (H2O). A tiszta, száraz levegő térfogatának 78%-át nitrogén, 21%-át oxigén alkotja.
+A nitrogén és az oxigén szerepe
+A nitrogén (N2) színtelen, szagtalan, a levegőnél&nbsp;kissé kisebb sűrűségű gáz. Kémiailag rendkívül közömbös, mert a molekulában a két atomot nagyon erős háromszoros kovalens&nbsp;kötés tartja össze. A természetben mégis körforgásban van: a villámlás energiája vagy a talajbaktériumok képesek megkötni.
+Az oxigén (O2) ezzel szemben nagyon reakcióképes elem. Elengedhetetlen a&nbsp;sejtlégzéshez és az égési folyamatokhoz. A felső légkörben található háromatomos módosulata, az ózon (O3) védi meg az élővilágot a Nap káros ultraibolya sugárzásától.
+A szén-dioxid és az üvegházhatás
+A szén-dioxid (CO2) a levegőnek csak&nbsp;mintegy 0,04%-át teszi ki, szerepe mégis óriási. A növények a fotoszintézis során felhasználják, miközben oxigént termelnek. Emellett a vízgőzzel és a metánnal (CH4) együtt a legfontosabb üvegházhatású gáz: visszatartja a Föld felszínéről kisugárzott hő egy részét, így biztosítja a bolygó élhető átlaghőmérsékletét.
+Tudtad?
+Természetes üvegházhatás nélkül a Föld felszíni átlaghőmérséklete +15 °C helyett körülbelül -18 °C lenne! A problémát az jelenti, hogy a fosszilis tüzelőanyagok  (szén, kőolaj, földgáz) elégetésével az emberiség drasztikusan megnövelte a légköri CO2 koncentrációját, ami globális felmelegedéshez vezet.
+A légszennyező anyagok csoportosítása
+A légkörbe kerülő káros anyagokat eredetük szerint két fő csoportba sorolhatjuk. Vannak természetes folyamatokból  és emberi (antropogén) tevékenységből származó szennyezők.
+A légszennyező anyagok lehetnek	 	 	 
+Természetes eredetűek	 	Antropogén eredetűek	 
+Forrás	Kibocsátott anyag	Forrás	Kibocsátott anyag
+Vulkánkitörés	Kén-dioxid (SO2), por	Közlekedés	Nitrogén-oxidok, korom
+Erdőtüzek	Szén-monoxid (CO), füst	Ipari erőművek	Szén-dioxid (CO2), kén-dioxid
+Mocsarak, állattenyésztés	Metán (CH4)	Háztartási tüzelés	Szálló por, szén-monoxid
+A városi szmog két típusa
+A nagyvárosokban kialakuló füstködnek, vagyis a szmognak két fajtáját különböztetjük meg. A London-típusú (redukáló) szmog télen, magas páratartalom és szélcsend idején alakul ki a széntüzelésből származó kén-dioxid (SO2) és korom miatt - ez savas kémhatású és erősen ingerli a légutakat. A Los Angeles-típusú (oxidáló vagy fotokémiai) szmog nyáron, erős napsütésben jön létre a gépjárművek kipufogógázaiból - főként nitrogén-oxidokból - és ózon keletkezésével jár.
+Fontosabb fogalmak
+Atmoszféra - A Földet körülvevő gázburok.
+Üvegházhatás - A légkör hőmegtartó képessége, amelyet az üvegházhatású gázok okoznak.
+Szmog - Füstköd, a nagyvárosok jellegzetes légszennyezési jelensége.</div>
+    </div>
+
+    <!-- 1. FELADAT: ALAPOK -->
+    <div class="task-card">
+      <h3>1. feladat: Dokumentum létrehozása és oldalbeállítás</h3>
+      
+      <details>
+        <summary>Szöveg beillesztése és mentés</summary>
+        <p>Másold ki a fenti nyers szöveget a <i>Másolás</i> gombbal, illeszd be egy új Word-dokumentumba, majd mentsd el a saját mappádba (H:) <b><i>A légkör kémiája <u>Saját Neved</u>.docx</i></b> néven (az <span class="gomb">F12</span> billentyűvel)!</p>
+        <p class="eros-kiemeles">Mindenképp legyen benne a neved a fájlnévben!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-A">
+        <summary>Margók beállítása (A csoport)</summary>
+        <p>Állítsd be a dokumentumban a <b>bal margót 3 cm-esre</b>, a többit (jobb, alsó, felső) pedig <b>2-2 cm-esre</b> az <i>Elrendezés → Margók → Egyéni margók...</i> menüpontban!</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-B">
+        <summary>Margók beállítása (B csoport)</summary>
+        <p>Állítsd be a dokumentumban a <b>felső és alsó margót 2,5 cm-esre</b>, a bal és jobb margót pedig <b>2-2 cm-esre</b> az <i>Elrendezés → Margók → Egyéni margók...</i> menüpontban!</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-C">
+        <summary>Automatikus elválasztás (C csoport)</summary>
+        <p>Kapcsold be a teljes dokumentumra az <b>automatikus elválasztást</b> (<i>Elrendezés → Elválasztás → Automatikus</i>)!</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+    </div>
+
+    <!-- 2. FELADAT: SZÖVEGTISZTÍTÁS ÉS INDEXEK -->
+    <div class="task-card">
+      <h3>2. feladat: Kémiai képletek és Keresés-csere</h3>
+
+      <details>
+        <summary>Kémiai képletek alsó indexelése</summary>
+        <p>A szövegben a kémiai képletek számai sima számként szerepelnek (pl. N2, O2, CO2, H2O, O3, CH4, SO2). Alakítsd át a képletekben lévő összes számot <b>alsó indexszé</b> (pl. CO<sub>2</sub>)! Használhatod a <span class="gomb">Ctrl</span> kijelölést a gyorsításhoz, vagy akár a Keresés és cserét is!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-A">
+        <summary>Dupla szóközök javítása (A csoport)</summary>
+        <p>A szövegben több helyen véletlenül két szóköz maradt egymás mellett. A <i>Keresés és csere</i> (<span class="gomb">Ctrl + H</span>) ablak segítségével cseréld le az összes <b>dupla szóközt</b> egyetlen sima szóközre!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-B">
+        <summary>Nem törhető szóközök cseréje (B csoport)</summary>
+        <p>Weboldalak másolásakor gyakran kerülnek a szövegbe ún. <i>nem törhető szóközök</i> (jele a mindent mutat nézetben egy kis karika a szavak közt). A <i>Keresés és csere</i> (<span class="gomb">Ctrl + H</span>) ablakban (<i>Egyebek → Speciális → Nem törhető szóköz</i>) cseréld le az összes ilyet sima szóközre!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-C">
+        <summary>Kötőjelek cseréje gondolatjelre (C csoport)</summary>
+        <p>A mondatközti beszúrásoknál és a fogalmaknál a szövegben szóközökkel határolt kiskötőjel (<code> - </code>) szerepel nagykötőjel (gondolatjel: <code> – </code>) helyett. A <i>Keresés és csere</i> (<span class="gomb">Ctrl + H</span>) ablakban cseréld le az összes <b>szóköz-kötőjel-szóköz</b> részt <b>szóköz-gondolatjel-szóközre</b>! (A gondolatjelet a <i>Speciális → Félkvirtmínusz</i> opcióval szúrhatod be).</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+    </div>
+
+    <!-- 3. FELADAT: STÍLUSOK ÉS KIEMELÉSEK -->
+    <div class="task-card">
+      <h3>3. feladat: Stílusok és szövegkiemelések</h3>
+
+      <details class="csop-A">
+        <summary>Normál stílus módosítása (A csoport)</summary>
+        <p>A <i>Stílusok</i> között módosítsd a <b>Normál</b> stílust: a betűtípus legyen <i>Times New Roman</i>, a mérete <i>12 pont</i>, az igazítása <i>sorkizárt</i>, a sorköze pedig <i>1,15-szörös</i>!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-B">
+        <summary>Címsor 1 stílus módosítása (B csoport)</summary>
+        <p>A <i>Stílusok</i> között módosítsd a <b>Címsor 1</b> stílust: legyen <i>18 pontos</i>, <i>félkövér</i>, <i>középre igazított</i>, a színe legyen <i>sötétzöld</i>, a térköze pedig előtte és utána is <i>12 pont</i>!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-C">
+        <summary>Címsor 2 stílus módosítása (C csoport)</summary>
+        <p>A <i>Stílusok</i> között módosítsd a <b>Címsor 2</b> stílust: legyen <i>14 pontos</i>, <i>félkövér</i>, <i>balra igazított</i>, a színe pedig valamilyen <i>középzöld</i> árnyalat, térköz előtte <i>12 pont</i>, utána <i>6 pont</i>!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details>
+        <summary>Címsorok alkalmazása a szövegben</summary>
+        <p>Formázd meg a legelső sort (<i>A légkör kémiája és a légszennyezés</i>) <b>Címsor 1</b> stílussal! Az alábbi alcímekre pedig alkalmazd a <b>Címsor 2</b> stílust:</p>
+        <ul>
+          <li>Emlékszel még?</li>
+          <li>A nitrogén és az oxigén szerepe</li>
+          <li>A szén-dioxid és az üvegházhatás</li>
+          <li>Tudtad?</li>
+          <li>A légszennyező anyagok csoportosítása</li>
+          <li>A városi szmog két típusa</li>
+          <li>Fontosabb fogalmak</li>
+        </ul>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-A">
+        <summary>Bekezdés árnyékolása (A csoport)</summary>
+        <p>Jelöld ki az <i>Emlékszel még?</i> alcímet és a közvetlenül alatta lévő bekezdést együtt, majd adj nekik <b>halványzöld háttérárnyékolást</b> (festékesvödör ikon a Bekezdés blokkban)!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-B">
+        <summary>Bekezdés keretezése (B csoport)</summary>
+        <p>Jelöld ki a <i>Tudtad?</i> alcímet és a közvetlenül alatta lévő bekezdést együtt, majd a <i>Szegélyek és árnyékolás</i> menüben tegyél köréjük <b>1,5 pont vastag, zöld színű külső szegélyt (keretet)</b>!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-C">
+        <summary>Bekezdés kiemelése és felsorolás (C csoport)</summary>
+        <p>Jelöld ki a <i>Fontosabb fogalmak</i> alcímet és az alatta lévő 3 sort: alakítsd a 3 fogalmat <b>felsorolássá</b>, majd a címmel együtt adj nekik <b>sötétzöld háttérárnyékolást</b> (figyelj rá, hogy a betűszín váltson fehérre, hogy olvasható maradjon)!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+    </div>
+
+    <!-- 4. FELADAT: KÉPEK -->
+    <div class="task-card">
+      <h3>4. feladat: Képek beszúrása és elhelyezése</h3>
+
+      <details>
+        <summary>Mindkét kép beszúrása</summary>
+        <p>Szúrd be a <code>nitrogen.jpg</code> képet <i>A nitrogén és az oxigén szerepe</i> részhez, a <code>szmog.jpg</code> képet pedig <i>A városi szmog két típusa</i> részhez!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-A">
+        <summary>Az első kép (nitrogen.jpg) részletes formázása (A csoport)</summary>
+        <p>A második képpel most nem kell többet foglalkoznod. Az első képet (<code>nitrogen.jpg</code>) viszont formázd meg:</p>
+        <ul>
+          <li>A <b>szélessége legyen 7,5 cm</b> (a magasság arányosan változzon)!</li>
+          <li>A szöveg <b>négyzetesen</b> fusson körbe körülötte!</li>
+          <li>Igazítsd a <b>jobb oldali margóhoz</b>, a nitrogénről szóló bekezdés mellé, és adj neki egy vékony <b>zöld képszegélyt</b>!</li>
+        </ul>
+        <div class="feladat-ellenorzo" data-pont="3">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+3 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-B">
+        <summary>A második kép (szmog.jpg) részletes formázása (B csoport)</summary>
+        <p>Az első képpel most nem kell többet foglalkoznod. A második képet (<code>szmog.jpg</code>) viszont formázd meg:</p>
+        <ul>
+          <li>A <b>szélessége legyen 8 cm</b> (a magasság arányosan változzon)!</li>
+          <li>A szöveg <b>szorosan</b> fusson körbe körülötte!</li>
+          <li>Igazítsd a <b>bal oldali margóhoz</b>, a szmogról szóló bekezdés mellé, és adj neki egy vékony <b>sötétzöld képszegélyt</b>!</li>
+        </ul>
+        <div class="feladat-ellenorzo" data-pont="3">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+3 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-C">
+        <summary>Az első kép (nitrogen.jpg) részletes formázása (C csoport)</summary>
+        <p>A második képpel most nem kell többet foglalkoznod. Az első képet (<code>nitrogen.jpg</code>) viszont formázd meg:</p>
+        <ul>
+          <li>A <b>szélessége legyen 7 cm</b> (a magasság arányosan változzon)!</li>
+          <li>A szöveg <b>négyzetesen</b> fusson körbe körülötte!</li>
+          <li>Igazítsd a <b>jobb oldali margóhoz</b>, és a <i>Képeffektusok</i> között állíts be rá egy szolid <b>külső árnyékot</b>!</li>
+        </ul>
+        <div class="feladat-ellenorzo" data-pont="3">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+3 pont)</label>
+        </div>
+      </details>
+    </div>
+
+    <!-- 5. FELADAT: TÁBLÁZAT -->
+    <div class="task-card">
+      <h3>5. feladat: Táblázat készítése és formázása</h3>
+
+      <details>
+        <summary>Szöveg átalakítása táblázattá</summary>
+        <p>Keresd meg <i>A légszennyező anyagok lehetnek</i> kezdetű részt (6 sor), jelöld ki, és alakítsd táblázattá (<i>Beszúrás → Táblázat → Szövegből táblázat...</i>)! Figyelj rá, hogy a cellahatároló karakter a <b>Tabulátor</b> legyen (4 oszlopos, 6 soros táblázatot kell kapnod)!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-A">
+        <summary>Cellaegyesítés a fejlécben (A csoport)</summary>
+        <p>A táblázat legelső sorában lévő 4 cellát <b>egyesítsd</b>! A második sorban a <i>Természetes eredetűek</i> cellát egyesítsd a tőle jobbra lévő üres cellával, és ugyanígy az <i>Antropogén eredetűek</i> cellát is a jobb oldali szomszédjával! Mindhárom egyesített címet igazítsd <b>középre</b> és tedd <b>félkövérré</b>!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-B">
+        <summary>Oszlopok színezése és kiemelése (B csoport)</summary>
+        <p>A táblázatban a „Forrás” oszlopokat (tehát az <b>1. és a 3. oszlop</b> celláit a 3. sortól lefelé) emeld ki <b>félkövérrel</b>, és állíts be nekik <b>halványzöld cellaárnyékolást</b>!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-C">
+        <summary>Automatikus méretezés és igazítás (C csoport)</summary>
+        <p>Jelöld ki a teljes táblázatot, és az <i>Elrendezés → Automatikus méretezés</i> menüben válaszd a <b>Méretezés a tartalomhoz</b> opciót, majd igazítsd az egész táblázatot az oldal közepére!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+    </div>
+
+    <!-- 6. FELADAT: ÉLŐFEJ ÉS ÉLŐLÁB -->
+    <div class="task-card">
+      <h3>6. feladat: Élőfej, élőláb és oldalszámozás</h3>
+
+      <details>
+        <summary>Első oldal eltérő beállítása</summary>
+        <p>Lépj be az élőfej/élőláb szerkesztőbe, és a <i>Tervezés (Élőfej és élőláb)</i> fülön pipáld be az <b>Első oldal eltérő</b> opciót (így a címlapon nem fog megjelenni a fejléc/lábléc)!</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-A">
+        <summary>Élőfej készítése vonallal (A csoport)</summary>
+        <p>A 2. oldal élőfejében írd be középre igazítva a dokumentum címét: <i>A légkör kémiája és a légszennyezés</i>, majd tegyél az élőfej bekezdése alá egy <b>alsó szegélyvonalat</b>!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-B">
+        <summary>Élőfej készítése vonallal (B csoport)</summary>
+        <p>A 2. oldal élőfejében írd be jobbra igazítva a <b>saját nevedet és osztályodat</b>, majd tegyél az élőfej bekezdése alá egy <b>alsó szegélyvonalat</b>!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-C">
+        <summary>Oldalszámozás az élőlábban (C csoport)</summary>
+        <p>A 2. oldal élőlábába szúrj be <b>oldalszámozást</b> a lap aljára, középre igazítva!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+    </div>
+
+    <!-- 7. FELADAT: HALADÓ ELEMEK -->
+    <div class="task-card">
+      <h3>7. feladat: Hivatkozások (Tartalomjegyzék / Képaláírás / Lábjegyzet)</h3>
+
+      <details class="csop-A">
+        <summary>Tartalomjegyzék beszúrása új oldalra (A csoport)</summary>
+        <p>A dokumentum legvégén szúrj be egy <b>oldaltörést</b> (<span class="gomb">Ctrl + Enter</span>), majd az új oldalra szúrj be egy <b>automatikus tartalomjegyzéket</b> (<i>Hivatkozások → Tartalomjegyzék</i>)!</p>
+        <div class="feladat-ellenorzo" data-pont="3">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+3 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-B">
+        <summary>Képaláírás (Felirat) beszúrása (B csoport)</summary>
+        <p>Kattints jobb gombbal az általad megformázott második képre (<code>szmog.jpg</code>), válaszd a <b>Felirat beszúrása...</b> menüpontot, és adj hozzá képaláírást: <i>1. ábra: Füstköd a nagyváros felett</i>!</p>
+        <div class="feladat-ellenorzo" data-pont="3">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+3 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-C">
+        <summary>Lábjegyzet beszúrása (C csoport)</summary>
+        <p>Keresd meg a szövegben az <i>antropogén</i> szót (a táblázat előtti mondatban), tedd mögé a kurzort, és a <i>Hivatkozások → Lábjegyzet beszúrása</i> gombbal adj hozzá magyarázó lábjegyzetet a lap aljára: <i>Antropogén: emberi tevékenységből származó hatás.</i></p>
+        <div class="feladat-ellenorzo" data-pont="3">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+3 pont)</label>
+        </div>
+      </details>
+    </div>
+
+    <!-- 8. FELADAT: BEADÁS -->
+    <div class="task-card">
+      <h3>8. feladat: A munka mentése és beadása</h3>
+      <details>
+        <summary>Mentsd el és másold a Dolgozatok meghajtóra!</summary>
+        <p>Mentsd el utoljára a dokumentumot (<span class="gomb">Ctrl + S</span>), zárd be a Wordöt, majd a Fájlkezelőből másold át a fájlt a <i>Dolgozatok</i> megosztott meghajtóra! Kérdezd meg, hogy megérkezett-e!</p>
+      </details>
+    </div>
+
+  </div>
+
+  <!-- LEBEGŐ PROGRESS BAR ÉS ÉRTÉKELŐ SÁV -->
+  <div class="progress-sticky" id="sticky-bar" style="display: none;">
+    <div class="progress-info">
+      <span id="haladas-szoveg">Haladás: 0%</span>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+    </div>
+    <div class="pont-info">
+      Önértékelés: <span id="szerzett-pont">0</span> / <span id="max-pont">0</span> pont 
+      <span id="varhato-jegy" class="jegy-jelzo">Várható jegy: -</span>
+    </div>
+  </div>
+
+  <script>
+    function inditDolgozat(csoport) {
+      // 1. Kitöröljük a másik két csoport feladatait a DOM-ból, hogy a pontszámítás pontos legyen
+      const osszesCsoport = ['A', 'B', 'C'];
+      osszesCsoport.forEach(cs => {
+        if (cs !== csoport) {
+          document.querySelectorAll('.csop-' + cs).forEach(elem => elem.remove());
+        }
+      });
+
+      // 2. Megjelenítjük a feladatsort és a fejléc-jelzőt, elrejtjük a választót
+      document.getElementById('valaszto-doboz').style.display = 'none';
+      document.getElementById('dolgozat-tartalom').style.display = 'block';
+      document.getElementById('sticky-bar').style.display = 'flex';
+      
+      const jelzo = document.getElementById('csoport-jelzo');
+      jelzo.innerText = csoport + ' csoport';
+      jelzo.style.display = 'inline-block';
+
+      // 3. Újraszámoljuk a maximális pontszámot a megmaradt feladatokból
+      let ujMaxPont = 0;
+      const megmaradtEllenorzok = document.querySelectorAll('.feladat-ellenorzo');
+      megmaradtEllenorzok.forEach(ell => {
+        ujMaxPont += parseInt(ell.getAttribute('data-pont')) || 0;
+      });
+      document.getElementById('max-pont').innerText = ujMaxPont;
+
+      // 4. Egy bármelyik checkboxra kiváltunk egy üres 'change' eseményt, hogy a script.js frissítse a számlálót
+      const elsoBox = document.querySelector('.kesz-box');
+      if (elsoBox) {
+        elsoBox.dispatchEvent(new Event('change'));
+      }
+    }
+
+    window.addEventListener('beforeunload', function(e) {
+      e.preventDefault();
+      e.returnValue = '';
+    });
+  </script>
+
+</body>
+</html>

@@ -39,7 +39,7 @@
         <details>
             <summary>Önálló feladat</summary>
             <p>Nyisd meg a <i>hulladek_nyers.txt</i> fájlt, másold ki innen a szöveget és illeszd be egy üres Word-dokumentumba! Mentsd el a munkádat <i>hulladék</i> néven otthon a Dokumentumokba, a suliban a saját H: meghajtódon készített évfolyammappába!</p>
-            <p>A teljes dokumentumban állítsd a <b>betűméretet 12 pontosra</b>, a <b>betűtípust Calibrire</b>, a <b>térközt mindenhol 0 pontosra</b>, a <b>sorközt szimplára</b>! Kapcsold be az automatikus elválasztást!</p>
+            <p>A teljes dokumentumban állítsd a <b>betűméretet 12 pontosra</b>, a <b>betűtípust Calibrire</b>, a <b>térközt mindenhol 0 pontosra</b>, a <b>sorközt szimplára</b>, illetve a teljes dokumentum <b>legyen sorkizárt</b>! Kapcsold be az automatikus elválasztást!</p>
         </details>
         <details>
             <summary>Részletes leírás lépésenként</summary>
@@ -176,9 +176,12 @@ Források
                 <li><b>Élőfej és élőláb megnyitása: </b>legalább háromféleképpen teheted. Szerintem a legegyszerűbb, ha <b>duplán valamelyik oldal tetejére vagy aljára kattintasz</b>, oda, ahol <span class="ia" data-target="elofej" data-tipus="modal">már/még nincs szöveg</span>. <br>
                 A második módszer, ha a <i>Beszúrás</i> fülön <span class="ia" data-target="beszuras-elofej" data-tipus="modal">kiválasztod az Élőfej (vagy az Élőláb) lehetőséget</span>. Innen közvetlenül is be tudsz szúrni oldalszámot, ha ez a feladat. <br>
                 A harmdaik módszer az örök megoldás, ha nem tudod, hol keress valamit: Csak írd be a <span class="ia" data-target="kereses" data-tipus="modal">keresés részbe</span> a kívánt beállítást, és nagy eséllyel kapsz egy arra használható menüt.</li>
+
                 <li><b>Beállítások módosítása: </b>pipáld be azokat e jelölőket, amelyekkel <b>az első oldal eltérő</b> és a <b>páros és páratlan oldalak is eltérők</b> lesznek! Ezeket a beállításokat az <span class="ia" data-target="elofej_elolab" data-tipus="modal">Élőfej és élőláb</span> részben tudod módosítani.</li>
+
                 <li><b>Az élőfej tartalma: </b>az élőfej és élőláb használatának előnye, hogy a megadott beállítások alapján automatikusan jelennek meg az összes oldalon. Két dologra kell emiatt figyelni, az első már az élőfejben megjelenik. <br>
                 Mivel beállítottuk, hogy az első oldal élőfeje másmilyen legyen, mint a többi, ezért ezt üresen tudjuk hagyni. Mivel viszont a páros és páratlan oldalak is eltérők, <b>egy páros és egy páratlan oldalon is be kell írni</b> a kívánt szöveget: <i>A hulladékokról</i>.</li>
+
                 <li><b>Az élőláb tartalma: </b>most menj egy oldal aljára! Ide az oldalszámot szúrjuk be, a páros oldalakon balra, a páratlanokon jobbra igazítva. Most jön a második dolog, amire figyelni kell (és ami amúgy nagy dokumentumoknál már segít, nem úgy mint egy ilyen kicsinél). <b>Ha beírjuk a 2. oldal aljára, hogy "2", akkor az összes többi páros oldalon is az jelenik meg, hogy "2".</b> Nyilván ez olyan nagyon sokat nem segít, szóval nem is így kell csinálni. A helyes megoldás, hogy az oldalszámot a <span class="ia" data-target="oldalszam" data-tipus="modal">Oldalszám hivatkozást</span> használva szúrjuk be. Ezt megtalálhatod az <i>Élőfej és élőláb</i> fülön, a <i>Beszúrás</i> fülön, de rá is kereshetsz a szokásos helyen. <br>
                 He mindennel megvagy, lépj ki az élőfej/élőláb szerkesztésből! Ehhez kattinthatsz duplán valahova a lap közeépre (<i>törzsszöveg</i>), rákattinthatsz az <i>Élőfej és élőláb</i> fül jobb végén a nagy piros X-re, vagy nyomhatsz egy <span class="gomb">Esc</span>-t is.</li>
             </ol></p>
@@ -225,6 +228,7 @@ Források
             <p><ol start="13">
                 <li><b>Új oldal beszúrása: </b>ha új oldalt szeretnénk beszúrni, akkor nem érdemes entereket nyomogatni addig, amíg nem lesz egyszer csak egy új oldal. Ez megint nem kiszúrás, hanem így ez a rész akkor is új oldalon kezdődik, ha pl. beszúrsz még egy képet vagy módosítod az egész szöveg betűméretét. <br>
                 Új oldalt a legegyszerűbben a <span class="gomb">ctrl + Enter</span> billentyűkombinációval tudunk beszúrni. Ha nagyon szeretnéd, akkor kattintgatva is be lehet tenni egy töréspontot: ezeket az <i>Elrendezés</i> fülön találod a bal oldalon.</li>
+
                 <li><b>Tartalomjegyzék beszúrása: </b>az új oldalre szúrj be egy automatikus tartalomjegyzéket! Ezt a <span class="ia" data-target="beszuras_tartalom" data-tipus="modal"><i>Hivatkozások</i> fülön találod</span>. Kattints a <i>Tartalom</i> gombra, és válassz egy szimpatikus tartalomjegyzéket! Természetesen itt is használhatod a Keresés részt.<br>
                 <span class="extra">Meg lehet adni kézzel is a tartalomjegyzék beállításait, itt, a menü alján. A részben ezen kívül van még egy fontos gomb, a <i>Frissítés</i>. Ezzel tudod frissíteni a tartalomjegyzéket, ha a dokumentumban változtattál a címsorokon vagy írtál még hozzá. A frissítésnél érdemes a <i>Teljes tartalomjegyzék frissítése</i> lehetőséget választani, mert így a címsorok szövege és az oldalszámok is frissülnek.</span></li>
             </ol></p>
@@ -259,6 +263,7 @@ Források
                     <button class="copy-btn" onclick="copyCode(this)">Lábjegyzet másolása</button>
                     <div class="raw-text-box">Egy hagyományos 150 grammos póló előállításhoz 8000 liter vizet használnak fel. Ugyanis ennyi vízre van szüksége a gyapotnak, melyből a pamutszál készül. Egy ugyanilyen típusú, de biopamutból készült póló esetében a vízfelhasználás kevesebb, mint 1000 liter víz.</div>
                 </div></li>
+
                 <li><b>A hivatkozás szabályai, forrásmegjelölés: </b>a hivatkozások használatakor fontos, hogy pontosan be lehessen azonosítani a felhasznált forrást. Nem elég tehát olyan, hogy "tankönyv", "az internet" vagy "a chatGPT". <b>Fizikai könyvek</b> használatakor fel kell tüntetni <b>a szerzőt, a címet, a kiadó nevét, a kiadás dátumát és a felahsznált oldalak számát</b>. Ha <b>online forrással</b> dolgoztunk, akkor a <b>teljes webcím</b> mellett (amit a böngésző címsorából másolhatsz ki) fel kell tüntetni <b>a letöltés dátumát</b> is, hiszen az oldalt azóta szerkeszthették. Ha AI által generált tartalommal dolgoztunk, akkor a <b>felhasznált AI eszközt</b> is fel kell tüntetni. Fontos viszont, hogy ne ezekkel a részekkel próbáld alátámasztani az érveidet (pl. Magyarországon élnek jegesmedvék, mert az AI írta → ez rossz).</li>
             </ol></p>
         </details>
@@ -280,12 +285,12 @@ Források
         <details>
             <summary>Részletes leírás lépésenként</summary>
             <p><ol start="17">
-                <li><b>Kép beillesztése az első oldalra, méretezés és elhelyezés: </b>a letöltött képet is többféleképpen leheet beilleszteni. Talán a legegyszerűbb, ha megnyitod a Fájlkezelőt (ez elvileg úgyis nyitva van a forrsásszöveg miatt), rákattintasz egyszer a képre, és behúzod a Word-dokumentumba. Ha ez nem szimpatikus, akkor persze használhatod a <i>Beszúrás</i> fül <i>Képek</i> lehetőségén belül az <i>Ez az eszköz</i> pontot. Ekkor ki kell keresni a felugró párbeszédablakban a képet. <br>
+                <li><b>Kép beillesztése az első oldalra, méretezés és elhelyezés: </b>a letöltött képeket is többféleképpen lehet beilleszteni. Talán a legegyszerűbb, ha megnyitod a Fájlkezelőt (ez elvileg úgyis nyitva van a forrsásszöveg miatt), rákattintasz egyszer a képre, és behúzod a Word-dokumentumba. Most keresd ki a <i>kuka.png</i> képet, és illeszd be az első oldalra. Ha ez a módszer nem szimpatikus, akkor persze használhatod a <i>Beszúrás</i> fül <i>Képek</i> lehetőségén belül az <i>Ez az eszköz</i> pontot. Ekkor ki kell keresni a felugró párbeszédablakban a képet. <br>
                 Ha duplán a képre kattintasz, a program a Képformátum menüre ugrik. Itt a jobb szélen találod a kép méretezési lehetőségeit. <span class="ia" data-target="szelesseg" data-tipus="modal">Válaszd ki a szélességet</span>, és írd be, hogy 6 cm! Itt most elhagyhatod a mértékegységet is.<br>
                 Ha a képre kattintasz, a jobb oldalán fent megjelenik egy kis kék ikon, ez a <i>Szöveg körbefuttatása</i>: <img src="kepek/word_korbefuttatas.png" alt="A szöveg körbefuttatásának kis ikonja." class="inline-img">. Kattints erre, és válaszd ki a második sor első elemét, a <i>Négyzetes</i> lehetőséget! Ha ezt megcsináltad, a program engedi, hogy a képet (relatíve) szabadon mozgasd. Húzd fel az <i>Egy átlagos család</i> kezdetű bekezdéssel egy vonalba, és igazítsd a lap jobb széléhez! Zöld segédvonalak segítenek a pontos elhelyezésben.</li>
                 <li><b>Képaláírás beillesztése: </b>képaláírást a lábjegyzethez nagyon hasonlóan lehet beilleszteni. A <i>Hivatkozások</i> fülön találod a <span class="ia" data-target="felirat" data-tipus="modal">Felirat beszúrása lehetőséget</span>. A <span class="ia" data-target="kepalairas" data-tipus="modal">megjelenő párbeszédablakban</span> beírhatod a képaláírást. Ha ki szeretnéd törölni az automatikus részt (pl. 1. ábra), azt csak a párbeszédablak bezárása után tudod megtenni. Írd be a képaláírást: <i>A háztartási hulladék összetétele Magyarországon</i>!</li>
                 <li><b>Kép beillesztése a <i>Hulladékpiramis</i> cím mellé: </b>keresd meg a <i>Hulladékpiramis</i> címet, és szúrd be a <i>hulladékpiramis.png</i> képet a mellé. Állítsd a <b>magasságát</b> (igen, itt most nem a szélességet, hanem a magasságot állítjuk fixre) 5 cm-re! Állítsd be itt is a szöveg négyzetes körbefuttatását!</li>
-                <li><b>Vékony szegély beállítása: </b>a képet kijelölve a Képformátum menüben a <span class="ia" data-target="szegely" data-tipus="modal">><i>Képszegély</i> lehetőséget</span> válaszd ki! Állíts be egy vékony fekete folytonos vonalat szegélynek!</li>
+                <li><b>Vékony szegély beállítása: </b>a képet kijelölve a Képformátum menüben a <span class="ia" data-target="szegely" data-tipus="modal"><i>Képszegély</i> lehetőséget</span> válaszd ki! Állíts be egy vékony fekete folytonos vonalat szegélynek!</li>
             </ol></p>
         </details>
     </div>

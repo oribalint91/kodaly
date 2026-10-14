@@ -331,3 +331,90 @@ function checkQuiz(button, isCorrect, feedback) {
         feedbackDiv.style.borderColor = "red";
     }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    // --- ÖNÉRTÉKELŐ PROGRESS BAR RENDSZER ---
+    const ellenorzok = document.querySelectorAll(".feladat-ellenorzo");
+    
+    // Ha nincs az oldalon ilyen feladat, ne is fusson le a kód (pl. kémia jegyzetnél)
+    if (ellenorzok.length === 0) {
+        const stickyBar = document.querySelector(".progress-sticky");
+        if (stickyBar) stickyBar.style.display = "none";
+        return;
+    }
+
+    let maxPont = 0;
+    let osszesFeladat = ellenorzok.length;
+
+    // Kiszámoljuk a maximális pontszámot a HTML data-pont attribútumokból
+    ellenorzok.forEach(ell => {
+        maxPont += parseInt(ell.getAttribute("data-pont")) || 0;
+    });
+
+    document.getElementById("max-pont").innerText = maxPont;
+
+    // Eseményfigyelők rákötése a checkboxokra
+    ellenorzok.forEach(ell => {
+        const keszBox = ell.querySelector(".kesz-box");
+        const hibatlanBox = ell.querySelector(".hibatlan-box");
+        const hibatlanLabel = ell.querySelector(".hibatlan-label");
+
+        // "Kész" checkbox kattintása
+        keszBox.addEventListener("change", function() {
+            if (this.checked) {
+                // Engedélyezzük a "Szerintem hibátlan" gombot
+                hibatlanBox.disabled = false;
+                hibatlanLabel.classList.remove("disable-label");
+            } else {
+                // Ha kikapcsolja a Készt, a Hibátlan is kikapcsol és letiltódik
+                hibatlanBox.checked = false;
+                hibatlanBox.disabled = true;
+                hibatlanLabel.classList.add("disable-label");
+            }
+            kiertekel();
+        });
+
+        // "Hibátlan" checkbox kattintása
+        hibatlanBox.addEventListener("change", function() {
+            kiertekel();
+        });
+    });
+
+    function kiertekel() {
+        // Dinamikusan lekérjük az aktuálisan oldalon lévő feladatokat (csoportválasztás után!)
+        const aktualisEllenorzok = document.querySelectorAll(".feladat-ellenorzo");
+        let keszDarab = 0;
+        let szerzettPont = 0;
+        let aktualisMaxPont = 0;
+
+        aktualisEllenorzok.forEach(ell => {
+            const keszBox = ell.querySelector(".kesz-box");
+            const hibatlanBox = ell.querySelector(".hibatlan-box");
+            const pontErtek = parseInt(ell.getAttribute("data-pont")) || 0;
+
+            aktualisMaxPont += pontErtek;
+            if (keszBox.checked) keszDarab++;
+            if (hibatlanBox.checked) szerzettPont += pontErtek;
+        });
+
+        // Progress bar (Százalék a KÉSZ feladatok alapján)
+        const szazalek = Math.round((keszDarab / aktualisEllenorzok.length) * 100);
+        document.getElementById("haladas-szoveg").innerText = `Haladás: ${szazalek}%`;
+        document.getElementById("progress-fill").style.width = `${szazalek}%`;
+
+        // Pontszám frissítése
+        document.getElementById("szerzett-pont").innerText = szerzettPont;
+        document.getElementById("max-pont").innerText = aktualisMaxPont;
+
+        // Várható jegy becslése (százalékos ponthatárok: 40-55-70-85%)
+        const pontSzazalek = (szerzettPont / aktualisMaxPont) * 100;
+        let jegy = 1;
+        if (pontSzazalek >= 85) jegy = 5;
+        else if (pontSzazalek >= 70) jegy = 4;
+        else if (pontSzazalek >= 55) jegy = 3;
+        else if (pontSzazalek >= 40) jegy = 2;
+
+        const jegySzoveg = keszDarab === 0 ? "-" : jegy;
+        document.getElementById("varhato-jegy").innerText = `Várható jegy: ${jegySzoveg}`;
+    }
+});

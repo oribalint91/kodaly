@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hosszú szöveg szerkesztése – önálló munka</title>
+  <link rel="stylesheet" href="../style.css">
+  <script type="text/javascript" src="../script.js"></script>
+</head>
+<body>
+  <!-- <div class="back"><a href="../index.html">Vissza a kezdőlapra</a></div> -->
+  <h2>A mesterséges intelligencia világa – hosszabb szöveg önálló formázása</h2>
+  <p class="intro">Ebben a dokumentumban önálló munkához találsz feladatokat. Sorban haladj, mert úgy növekszik a nehézség! A pirossal szedett, aláhúzott szövegrészletek a feladatokhoz tartozó segédletekre mutatnak. Ne felejtsd el <b>minden lépés után menteni a munkádat</b>! A végén a Fájlkezelőben másold le, majd illeszd be a <i>Beadott (X:)</i> megosztott meghajtóra! <br>
+  Újdonság, hogy követheted a hzaladásodat. Minden részfeladat mellett találsz egy jelölőt, amit bepipálhatsz, hogy lásd, azt már megcsináltad. Ha használod, a leírás alján egy progress baron láthatod, hogy hol jársz.</p>
+
+  <h2>Nyers szöveg, amivel dolgozni fogsz</h2>
+
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+    <div class="raw-text-box bekezdessel">A mesterséges intelligencia világa
+Mi is az a mesterséges intelligencia?
+A mesterséges intelligencia (röviden MI, angolul AI) az informatika egy olyan ága, amelynek célja olyan gépek és programok létrehozása, amelyek képesek az emberi gondolkodáshoz hasonló feladatokat elvégezni. Ide tartozik a tanulás, a problémamegoldás, a nyelv megértése és a környezet érzékelése. Nem egyetlen technológiáról beszélünk, hanem sokféle módszer összességéről, amelyek forradalmasítják a mindennapjainkat.
+A gépi tanulás alapjai
+Az MI egyik legfontosabb területe a gépi tanulás. Régebben a programozóknak minden egyes lépést pontosan meg kellett határozniuk a számítógép számára. A gépi tanulás során azonban a gép hatalmas mennyiségű adatot kap, és ezekből önállóan ismeri fel a mintázatokat. Ha például ezer képet mutatunk neki macskákról és kutyákról, egy idő után magától is el tudja dönteni egy új képről, hogy melyik állat van rajta.
+Hol találkozunk az MI-vel a mindennapokban?
+Sokan azt hiszik, hogy a mesterséges intelligencia csak a sci-fi filmekben létezik, pedig már most is átszövi az életünket. Amikor a telefonunk arcfelismeréssel old fel, amikor a streaming szolgáltató filmet ajánl nekünk, vagy amikor az útvonaltervező újratervezi az utat a dugó miatt, mind-mind MI-t használunk. A hangalapú asszisztensek és a modern videójátékok okos karakterei szintén ezen a technológián alapulnak.
+Az MI történetének mérföldkövei
+1950 - A Turing&#8209teszt megalkotása, amely a gépi intelligenciát méri - Alan Turing
+1997 - A Deep Blue szuperszámítógép legyőzi a regnáló sakkvilágbajnokot - IBM
+2011 - A Watson nevű gép megnyeri a televíziós kvízműsort az emberi bajnokok ellen - IBM
+2022 - A ChatGPT nyelvi modell megjelenése, amely emberi szintű szöveggenerálásra képes - OpenAI
+Veszélyek és etikai kérdések
+Mint minden nagy találmánynak, az MI-nek is vannak árnyoldalai. A szakemberek folyamatosan vitáznak arról, hogyan lehet biztonságosan használni ezeket a rendszereket. Komoly kérdés a személyes adatok védelme, hiszen az MI rengeteg információt gyűjt rólunk. Emellett felmerül a munkahelyek elvesztésének félelme is, mivel a robotok egyre több olyan feladatot tudnak elvégezni, amit eddig csak emberek tudtak.
+Jövőkép: Mi vár ránk?
+A mesterséges intelligencia fejlődése megállíthatatlan. A jövőben valószínűleg még okosabb orvosi diagnosztikai rendszerek, teljesen önvezető autók és személyre szabott oktatási programok várnak ránk. A legfontosabb feladatunk az lesz, hogy megtanuljunk együttműködni ezekkel az eszközökkel.
+    </div>
+  </div>
+
+  <div class="task-card">
+    <h3>1. feladat: dokumentum létrehozása, szöveg beillesztése</h3>
+    <details>
+      <summary>A szöveg másolása, Word-dokumentum létrehozása és beillesztés</summary>
+      <p>Másold ki a fenti szöveget! Használhatod a Másolás gombot is a szöveg fölött. Nyisd meg a Wordöt, hozz létre egy új üres dokumentumot, és illeszd be a kimásolt szöveget!</p>
+      <!-- önértékelő jelölő -->
+      <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+          <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+          <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)
+        </label>
+      </div>
+    </details>
+
+    <details>
+      <summary>Dokumentum mentése</summary>
+      <p> A fájlt mentsd el a saját mappádba (<i>bejelentkezesi.felhasznaloneved (H:)</i>) <i>A mesterséges intelligencia <u>saját neved</u></i> néven!</p>
+      <p class="eros-kiemeles">Mindenképp legyen benne a neved a fájlnévben, különben nem tudom, kié, és nem tudok elégtelentől eltérő értékelést adni.</p>
+      <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)
+        </label>
+    </div>
+    </details>
+  </div>
+
+  <div class="task-card">
+    <h3>2. feladat: alapbeállítások és az automatikus elválasztás</h3>
+    
+    <details>
+    <summary>Margók beállítása</summary>
+    <p>Állítsd be a dokumentumban a bal  margót 3 cm-esre, a többit jobb, alsó, felső) pedig 2-2 cm-re. Mivel ilyen nem volt az összefoglaláskor, ehhez <span class="ia" data-target="margok" data-tipus="modal">részletes leírást kapsz</span>, és <span class="ia" data-target="margok2" data-tipus="modal">még egy kis segítséget</span>.</p>
+    <div class="rejtett-kep kep-svg-wrapper" id="margok"><img src="kepek/margok.png" alt="Kattints a fenti menüben az <i>Elrendezés</i> fülre, majd bal oldalon a <i>Margók</i> gombra. Válaszd az <i>Egyéni margók...</i> opciót">
+      <svg viewBox="0 0 501 736" class="svg-reteg">
+            <rect x="5" y="35" width="65" height="110" class="svg-kiemeles" />
+            <rect x="410" y="20" width="85" height="30" class="svg-kiemeles" />
+            <rect x="45" y="690" width="130" height="35" class="svg-kiemeles" />
+        </svg>
+    </div>
+        <div class=rejtett-kep kep-svg-wrapper" id="margok2"><img src="kepek/margok2.png" alt="Írd be a bal margóhoz, hogy 3, a többihez (alsó, felső, jobb), hogy 2. Gyorsabban tudsz navigálni, ha nem írsz most mértékegységeket (de fizika- és kémiaórán írj!), illetve ha a <i>felső</i> beállítással kezded, a 2 után pedig egy tabulátorral mész a következő margóra."></div>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary>Elválasztás bekapcsolása</summary>
+    <p>Kapcsold be az automatikus elválasztást a dokumentumban.</p>
+    <p class="extra">Ehhez a beállításhoz nem kell kijelölnöd semmit, alapbeállítás szerint a teljes dokumentumra érvényes.</p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)
+        </label>
+    </div>
+    </details>
+    
+  </div>
+<div class="task-card">
+  <h3>3. feladat: stílusok beállítása és alkalmazása</h3>
+  
+  <details>
+    <summary>Normál stílus módosítása</summary>
+    <p>A <i>Stílusok</i> közt módosítsd a <i>Normál</i> stílust. Legyen a <b>betűtípusa</b> <i>Times New Roman</i>, a <b>mérete</b> <i>12 pont</i>, az <b>igazítása</b> <i>sorkizárt</i>, a <b>sorköze</b> pedig <i>1,15-szörös</i>.</p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary>Címsor 1 stílus módosítása</summary>
+    <p>A <i>Stílusok</i> közt módosítsd a <i>Címsor 1</i> stílust. Legyen a <b>betűtípusa</b> <i>Times New Roman</i>, legyen <b>félkövér</b>, a <b>mérete</b> legyen <i>18 pont</i>, <b>igazítsd</b> <i>középre</i>, a <b>színe</b> legyen valamilyen <i>bordó</i>, a <b>térköze</b> pedig legyen előtte és utána is <i>12 pontos</i>.</p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="3">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+3 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary>Címsor 2 stílus módosítása</summary>
+    <p>A <i>Stílusok</i> közt módosítsd a <i>Címsor 2</i> stílust. Legyen a <b>betűtípusa</b> <i>Times New Roman</i>, a <b>mérete</b> <i>14 pont</i>, <b>igazítsd</b> <i>balra</i>, a <b>színe</b> pedig ennek is valamilyen (MÁSMILYEN!) <i>bordó</i>.</p>
+    <p class="extra">Amiről nincs szó egy ilyen feladatban, azzal nem kell foglalkozni. Például a Címsor 2 stílus térközét nem kell módosítani.</p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary>Címsorok alkalmazása</summary>
+    <p>Címsor 1 stílussal a dokumentum címét formázzuk. Jelöld ki a legelső sort (<i>A mesterseges intelligencia világa</i>), és alkalmazd rá a <i>Címsor 1</i> stílust.</p>
+    <p>Címsor 2 stílussal a dokumentum alcímeit formázzuk. Jelöld ki a következő sorokat, és alkalmazd rájuk a <i>Címsor 2</i> stílust:
+    <ul>
+        <li>Mi is az a mesterseges intelligencia?</li>
+        <li>A gépi tanulás alapjai</li>
+        <li>Hol találkozunk az MI-vel a mindennapokban?</li>
+        <li>Az MI történetének mérföldkövei</li>
+        <li>Veszélyek és etikai kérdések</li>
+        <li>Jövőkép: Mi vár ránk?</li>
+    </ul>
+    </p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="3">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+3 pont)
+        </label>
+    </div>
+    </details>
+
+</div>
+
+<div class="task-card">
+  <h3>4. feladat: képek beszúrása</h3>
+  
+  <details>
+    <summary>Első kép beszúrása</summary>
+    <p>Keress egy képet az interneten, ami szerinted jól kapcsolódik a dokumentum témájához! Másold vagy mentsd el a képet, és szúrd be a dokumentumba!</p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary>Első kép méretezése és kerezetése</summary>
+    <p>Méretezd át a képet úgy, hogy a magassága 8 cm legyen! Válassz a képnek egy vékony keretet, olyan színnel, ami jól illik a dokumentum stílusához és a kép színeihez!</p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary>Első kép elhelyezése, körbefuttatása</summary>
+    <p>Állítsd be, hogy a szöveg négyzetesen fusson körbe a kép körül! Helyezd el a képet az első oldalon a jobb margónál! Ebben segítenek a zöld segédvonalak.</p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary>Második kép beszúrása</summary>
+    <p>Keress egy másik képet az interneten, ami szerinted jól kapcsolódik a dokumentum témájához! Másold vagy mentsd el a képet, és szúrd be a dokumentumba!</p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary>Második kép méretezése</summary>
+    <p>Méretezd át a képet úgy, hogy a magassága 8 cm legyen!</p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary>Második kép elhelyezése, körbefuttatása</summary>
+    <p>Állítsd be, hogy a szöveg négyzetesen fusson körbe a kép körül! Helyezd el a képet a második oldalon a bal margónál! Ebben is segítenek a zöld segédvonalak.</p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)
+        </label>
+    </div>
+    </details>
+</div>
+
+<div class="task-card">
+  <h3>5. feladat: táblázat készítése és formázása</h3>
+
+  <details>
+    <summary>Táblázat készítése</summary>
+    <p>Keresd meg az <i>Az MI történetének mérföldkövei</i> utáni 4 sort, és jelöld ki! <span class="ia" data-target="tablazat" data-tipus="toggle">Alakítsd ezt a részt táblázattá!</span></p>
+    <div class="lenyilo-tartalom" id="tablazat">Ehhez a <i>Beszúrás</i> fülön keresd a <i>Táblázat</i> opciót. A lenyíló menüben válaszd ki a <i>Szövegből táblázat...</i> opciót! A beállítások között válaszd ki a </div>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="3">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+3 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary>Táblázat formázása</summary>
+    <p></p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)
+        </label>
+    </div>
+    </details>
+</div>
+
+<div class="task-card">
+    <h3>6. feladat: élőfej és oldalszámozás</h3>
+
+    <details>
+    <summary>Első oldal eltérő formázása</summary>
+    <p></p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary>Élőfej beállítása</summary>
+    <p></p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary>Oldalszámok beszúrása az élőlábba</summary>
+    <p></p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)
+        </label>
+    </div>
+    </details>
+</div>
+
+<div class="task-card">
+    <h3>7. feladat: tartalomjegyzék készítése</h3>
+
+    <details>
+    <summary>Új oldal beszúrása</summary>
+    <p></p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary>Tartalomjegyzék készítése</summary>
+    <p></p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)
+        </label>
+    </div>
+    </details>
+</div>
+
+<div class="task-card">
+  <h3>8. feladat: a munka beadása</h3>
+
+    <details>
+    <summary></summary>
+    <p></p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary></summary>
+    <p></p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)
+        </label>
+    </div>
+    </details>
+
+    <details>
+    <summary></summary>
+    <p></p>
+    <!-- önértékelő jelölő -->
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label class="kesz-label">
+            <input type="checkbox" class="kesz-box"> Megcsináltam
+        </label>
+        <label class="hibatlan-label disable-label">
+            <input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)
+        </label>
+    </div>
+    </details>
+  <details>
+    <summary>Add be a helyes néven elmentett munkát!</summary>
+    <p>Mentsd el a munkádat, nyisd meg a Fájlkezelőt, és másold be a Dolgozatok megosztott meghajtóra! Ha beküldted, kérdezd meg, hogy megkaptam-e! Ha nem tudod, mit kell csinálni, akkor nézd meg az alsó sorban a lebegő leírást!</p>
+  </details>
+</div>
+<div class="sticky-footer">
+  <div class="footer-content">
+    <details>
+      <summary><marquee class="blink" behavior="" direction=""><b>‼️Ne felejtsd el 📬 leadni a munkádat‼️</b></marquee></summary>
+      <div style="padding-top: 10px;">
+        <p>Ha végeztél vagy vége az órának, az alábbiak szerint adhatod be a mukádat.<br>
+        <span style="color:red">Görgess le a részletekhez, ha valami nem tiszta!</span></p>
+        <ol type="I">
+          <div class="sides">
+            <li>Nézd meg a fájlnevet, hogy helyes-e!<img src="kepek/fajlnev.png" alt="">
+          </div>
+          <div class="sides">
+            <div class="left">Ha nem, akkor nyomd meg a billentyűzet legfelső sorában az <span class="gomb">F12</span> gombot! A felugró menüben átírhatod a fájlnevet, és a megfelelő helyre mentheted. A saját mappádat a bal oldalon az <i>Ez a gép</i>re kattintva találod meg. Ha erre duplán kattintasz, akkor ezen belül is létrehozhatsz egy almappát a jelenlegi tanévre. Ha jó helyen vagy, és a fájlnév is stimmel, akkor kattints a <i>Mentés</i> gombra!</div><div class="right"><img src="kepek/mentes_maskent.png" alt=""></div>
+          </div></li>
+          <div class="sides">
+            <div class="left">
+              <li>Ha elmentetted, nyisd meg a Fájlkezelőt (<img src="kepek/fajlkezelo.png" alt="">)! Itt a <i>Kezdőképernyő</i> alatt (ez jelenik meg automatikusan) látnod kell az éppen most elmentett fájlodat. Kattints erre <b>egyszer</b>, hogy kijelöld (nem akarjuk megnyitni, ezért ne duplán; ha mégis duplán kattintottál, akkor térj vissza a pont elejére!), majd nyomd meg a <span class="gomb">ctrl + c</span> billentyűkombinációt!
+            </div><div class="right"><img src="kepek/fajlkezelo_kezdokepernyo.png" alt=""></div></li>
+          </div>
+          <li>A <i>Fájlkezelőben</i> keresd meg a bal oldalon az <i>Ez a gép</i> hivatkozást, majd kattints rá! Keresd meg ebben a <i>Dolgozatok</i> megosztott meghajtót, nyisd meg, és illeszd be ide a lemásolt fájlodat: kattints egyszer az üres részbe a Fájlkezelőben, és nyomd meg a <span class="gomb">ctrl + v</span> gombokat!</li>
+          <li>Ha készen vagy, kérdezd meg, hogy megjött-e a munkád, és jó-e. Előfordul, hogy nem érkezik meg, ilyenkor még egyszer meg kell ismételni a II-III. pontokban írtakat.</li>
+        </ol>
+      </div>
+    </details>
+  </div>
+</div>
+    <script>window.addEventListener('beforeunload', function(e) {
+      e.preventDefault();
+      e.returnValue = '';
+    });</script>
+
+<!-- LEBEGŐ PROGRESS BAR ÉS ÉRTÉKELŐ SÁV -->
+    <div class="progress-sticky">
+        <div class="progress-info">
+            <span id="haladas-szoveg">Haladás: 0%</span>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+        </div>
+        <div class="pont-info">
+            Önértékelés: <span id="szerzett-pont">0</span> / <span id="max-pont">0</span> pont 
+            <span id="varhato-jegy" class="jegy-jelzo">Várható jegy: -</span>
+        </div>
+    </div>
+
+    <div id="kep-modal" class="modal-hatter">
+        <span class="modal-bezaras">&times;</span>
+        <div class="modal-tartalom">
+            <img id="modal-benne-levo-kep" src="" alt="">
+        </div>
+    </div>
+
+</body>
+</html>

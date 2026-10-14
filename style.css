@@ -187,6 +187,7 @@ code.inline { background: var(--inline-code-bg); color: var(--inline-code-color)
 .output-box { background: #eef2f5; border-left: 3px solid #7f8c8d; padding: 10px; font-family: 'Consolas', monospace; margin-top: 5px; color: #2c3e50; }
 .gomb { background: var(--gomb-bg); border: 2px solid var(--border-dark); padding: 5px; border-radius: 5px; font-family: 'Courier New', Courier, monospace; margin-bottom: 30px; hyphens: none; transition: background-color 0.4s; }
 .enyhe-kiemeles {background-color: var(--gomb-bg);}
+.eros-kiemeles {background-color: var(--secondary); color: var(--card-bg); font-weight: bold; border-left: 5px solid var(--summary-hover); padding-left: 5px}
 hr.elvalaszto {margin: 20px 0;}
 /* .sticky-footer .gomb{ background: #222; } */
 
@@ -524,3 +525,117 @@ rt {font-size: 0.65em; font-weight: bold; color: var(--secondary); line-height: 
 /* a szövegbe ágyazott képek (inline) stílusa */
 .inline-img {max-width: 100%; height: 1.2rem; display: inline-block; vertical-align: middle; margin: 0 5px; border-radius: 5px; transition: transform 0.3s ease, box-shadow 0.3s ease; object-fit: cover;}
 .inline-img:hover {transform: scale(1.05); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);}
+
+/* --- FELADAT ELLENŐRZŐ DOBOZOK --- */
+.feladat-ellenorzo {
+    background-color: var(--intro-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    transition: background-color 0.4s;
+}
+
+.feladat-ellenorzo label {
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Ha a "Kész" nincs bepipálva, a "Hibátlan" halvány marad */
+.disable-label {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
+
+.kesz-box, .hibatlan-box {
+    width: 18px;
+    height: 18px;
+    cursor: inherit;
+}
+
+/* --- LEBEGŐ PROGRESS BAR (MŰSZERFAL) --- */
+.progress-sticky {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--card-bg);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+    padding: 12px 90px 12px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-top: 2px solid var(--secondary);
+    transition: background-color 0.4s;
+    box-sizing: border-box;
+}
+
+.progress-info {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    max-width: 50%;
+}
+
+#haladas-szoveg {
+    font-weight: bold;
+    color: var(--text);
+    min-width: 100px;
+}
+
+.progress-bar-container {
+    flex: 1;
+    background-color: var(--border-light);
+    height: 12px;
+    border-radius: 6px;
+    margin: 0 15px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background-color: var(--secondary);
+    height: 100%;
+    width: 0%;
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pont-info {
+    font-weight: bold;
+    color: var(--text);
+    text-align: right;
+}
+
+.jegy-jelzo {
+    display: inline-block;
+    background-color: var(--secondary);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 10px;
+    font-size: 0.9em;
+}
+
+/* Mobilos nézet: egymás alá kerül a sáv és a pontszám */
+@media (max-width: 600px) {
+    .progress-sticky {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+    .progress-info {
+        max-width: 100%;
+        width: 100%;
+    }
+    .pont-info {
+        text-align: center;
+        width: 100%;
+    }
+}
