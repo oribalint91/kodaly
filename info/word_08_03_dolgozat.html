@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hosszú szöveg szerkesztése – Dolgozat (8. osztály)</title>
+  <link rel="stylesheet" href="../style.css?v=2">
+  <script type="text/javascript" src="../script.js?v=2"></script>
+  <style>
+    .csoport-valaszto {
+      background: var(--card-bg);
+      border: 3px solid var(--secondary);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .csoport-gombok {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .csoport-btn {
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 10px 25px;
+      cursor: pointer;
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .csoport-btn:hover {
+      transform: scale(1.05);
+      background-color: var(--primary);
+    }
+    #dolgozat-tartalom {
+      display: none;
+    }
+    .aktiv-csoport-badge {
+      display: inline-block;
+      background: var(--secondary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- <div class="back"><a href="../index.html">Vissza a kezdőlapra</a></div> -->
+  <h2>A mesterséges intelligencia világa – hosszabb szöveg önálló formázása <span id="csoport-jelzo" class="aktiv-csoport-badge" style="display:none;"></span></h2>
+  
+  <p class="intro">Ebben a dokumentumban önálló munkához találsz feladatokat. Sorban haladj, mert úgy növekszik a nehézség! A pirossal szedett, aláhúzott szövegrészletek a feladatokhoz tartozó segédletekre mutatnak. Ne felejtsd el <b>minden lépés után menteni a munkádat</b>! A végén a Fájlkezelőben másold le, majd illeszd be a <i>Dolgozatok</i> megosztott meghajtóra! <br>
+  Újdonság, hogy követheted a haladásodat. Minden részfeladat mellett találsz egy jelölőt, amit bepipálhatsz, hogy lásd, azt már megcsináltad. Ha használod, a leírás alján egy progress baron láthatod, hogy hol jársz.</p>
+
+  <!-- CSOPORTVÁLASZTÓ DOBOZ -->
+  <div class="csoport-valaszto" id="valaszto-doboz">
+    <h3>Válaszd ki a csoportodat a kezdéshez!</h3>
+    <p>Kattints arra a csoportra, amit a tanártól kaptál! A választás után csak a saját csoportod feladatai maradnak a képernyőn.</p>
+    <div class="csoport-gombok">
+      <button class="csoport-btn" onclick="inditDolgozat('A')">🅰️ A csoport</button>
+      <button class="csoport-btn" onclick="inditDolgozat('B')">🅱️ B csoport</button>
+      <button class="csoport-btn" onclick="inditDolgozat('C')">©️ C csoport</button>
+    </div>
+  </div>
+
+  <!-- DOLGOZAT TARTALMA -->
+  <div id="dolgozat-tartalom">
+
+    <h2>Nyers szöveg, amivel dolgozni fogsz</h2>
+
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+      <div class="raw-text-box bekezdessel">A mesterséges intelligencia világa
+Mi is az a mesterséges intelligencia?
+A mesterséges intelligencia (röviden MI, angolul AI) az informatika egy olyan ága, amelynek célja olyan gépek és programok létrehozása, amelyek képesek az emberi gondolkodáshoz hasonló feladatokat elvégezni. Ide tartozik a tanulás, a problémamegoldás, a nyelv megértése és a környezet érzékelése. Nem egyetlen technológiáról beszélünk, hanem sokféle módszer összességéről, amelyek forradalmasítják a mindennapjainkat.
+A gépi tanulás alapjai
+Az MI egyik legfontosabb területe a gépi tanulás. Régebben a programozóknak minden egyes lépést pontosan meg kellett határozniuk a számítógép számára. A gépi tanulás során azonban a gép hatalmas mennyiségű adatot kap, és ezekből önállóan ismeri fel a mintázatokat. Ha például ezer képet mutatunk neki macskákról és kutyákról, egy idő után magától is el tudja dönteni egy új képről, hogy melyik állat van rajta.
+Hol találkozunk az MI-vel a mindennapokban?
+Sokan azt hiszik, hogy a mesterséges intelligencia csak a sci-fi filmekben létezik, pedig már most is átszövi az életünket. Amikor a telefonunk arcfelismeréssel old fel, amikor a streaming szolgáltató filmet ajánl nekünk, vagy amikor az útvonaltervező újratervezi az utat a dugó miatt, mind-mind MI-t használunk. A hangalapú asszisztensek és a modern videójátékok okos karakterei szintén ezen a technológián alapulnak.
+Az MI történetének mérföldkövei
+1950 - A Turing&#8209;teszt megalkotása, amely a gépi intelligenciát méri - Alan Turing
+1997 - A Deep Blue szuperszámítógép legyőzi a regnáló sakkvilágbajnokot - IBM
+2011 - A Watson nevű gép megnyeri a televíziós kvízműsort az emberi bajnokok ellen - IBM
+2022 - A ChatGPT nyelvi modell megjelenése, amely emberi szintű szöveggenerálásra képes - OpenAI
+Veszélyek és etikai kérdések
+Mint minden nagy találmánynak, az MI-nek is vannak árnyoldalai. A szakemberek folyamatosan vitáznak arról, hogyan lehet biztonságosan használni ezeket a rendszereket. Komoly kérdés a személyes adatok védelme, hiszen az MI rengeteg információt gyűjt rólunk. Emellett felmerül a munkahelyek elvesztésének félelme is, mivel a robotok egyre több olyan feladatot tudnak elvégezni, amit eddig csak emberek tudtak.
+Jövőkép: Mi vár ránk?
+A mesterséges intelligencia fejlődése megállíthatatlan. A jövőben valószínűleg még okosabb orvosi diagnosztikai rendszerek, teljesen önvezető autók és személyre szabott oktatási programok várnak ránk. A legfontosabb feladatunk az lesz, hogy megtanuljunk együttműködni ezekkel az eszközökkel.</div>
+    </div>
+
+    <!-- 1. FELADAT -->
+    <div class="task-card">
+      <h3>1. feladat: dokumentum létrehozása, szöveg beillesztése</h3>
+      <details>
+        <summary>A szöveg másolása, Word-dokumentum létrehozása és beillesztés</summary>
+        <p>Másold ki a fenti szöveget! Használhatod a Másolás gombot is a szöveg fölött. Nyisd meg a Wordöt, hozz létre egy új üres dokumentumot, és illeszd be a kimásolt szöveget!</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+
+      <details>
+        <summary>Dokumentum mentése</summary>
+        <p>A fájlt mentsd el a saját mappádba (<i>bejelentkezesi.felhasznaloneved (H:)</i>) <i>A mesterséges intelligencia <u>saját neved</u></i> néven!</p>
+        <p class="eros-kiemeles">Mindenképp legyen benne a neved a fájlnévben, különben nem tudom, kié, és nem tudok elégtelentől eltérő értékelést adni.</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+    </div>
+
+    <!-- 2. FELADAT -->
+    <div class="task-card">
+      <h3>2. feladat: alapbeállítások és az automatikus elválasztás</h3>
+      
+      <details>
+        <summary>Margók beállítása</summary>
+        <p>Állítsd be a dokumentumban a bal margót 3 cm-esre, a többit (jobb, alsó, felső) pedig 2-2 cm-re. Mivel ilyen nem volt az összefoglaláskor, ehhez <span class="ia" data-target="margok" data-tipus="modal">részletes leírást kapsz</span>, és <span class="ia" data-target="margok2" data-tipus="modal">még egy kis segítséget</span>.</p>
+        <div class="rejtett-kep kep-svg-wrapper" id="margok">
+          <img src="kepek/margok.png" alt="Kattints a fenti menüben az <i>Elrendezés</i> fülre, majd bal oldalon a <i>Margók</i> gombra. Válaszd az <i>Egyéni margók...</i> opciót">
+          <svg viewBox="0 0 501 736" class="svg-reteg">
+            <rect x="5" y="35" width="65" height="110" class="svg-kiemeles" />
+            <rect x="410" y="20" width="85" height="30" class="svg-kiemeles" />
+            <rect x="45" y="690" width="130" height="35" class="svg-kiemeles" />
+          </svg>
+        </div>
+        <div class="rejtett-kep kep-svg-wrapper" id="margok2">
+          <img src="kepek/margok2.png" alt="Írd be a bal margóhoz, hogy 3, a többihez (alsó, felső, jobb), hogy 2. Gyorsabban tudsz navigálni, ha nem írsz most mértékegységeket (de fizika- és kémiaórán írj!), illetve ha a <i>felső</i> beállítással kezded, a 2 után pedig egy tabulátorral mész a következő margóra.">
+        </div>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+
+      <details>
+        <summary>Elválasztás bekapcsolása</summary>
+        <p>Kapcsold be az automatikus elválasztást a dokumentumban (<i>Elrendezés</i> fül → <i>Elválasztás</i> → <i>Automatikus</i>).</p>
+        <p class="extra">Ehhez a beállításhoz nem kell kijelölnöd semmit, alapbeállítás szerint a teljes dokumentumra érvényes.</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+    </div>
+
+    <!-- 3. FELADAT -->
+    <div class="task-card">
+      <h3>3. feladat: stílusok beállítása és alkalmazása</h3>
+      
+      <details class="csop-A">
+        <summary>Normál stílus módosítása (A csoport)</summary>
+        <p>A <i>Stílusok</i> közt módosítsd a <i>Normál</i> stílust. Legyen a <b>betűtípusa</b> <i>Times New Roman</i>, a <b>mérete</b> <i>12 pont</i>, az <b>igazítása</b> <i>sorkizárt</i>, a <b>sorköze</b> pedig <i>1,15-szörös</i>.</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-B">
+        <summary>Címsor 1 stílus módosítása (B csoport)</summary>
+        <p>A <i>Stílusok</i> közt módosítsd a <i>Címsor 1</i> stílust. Legyen a <b>betűtípusa</b> <i>Times New Roman</i>, legyen <b>félkövér</b>, a <b>mérete</b> legyen <i>18 pont</i>, <b>igazítsd</b> <i>középre</i>, a <b>színe</b> legyen valamilyen <i>bordó</i>, a <b>térköze</b> pedig legyen előtte és utána is <i>12 pontos</i>.</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-C">
+        <summary>Címsor 2 stílus módosítása (C csoport)</summary>
+        <p>A <i>Stílusok</i> közt módosítsd a <i>Címsor 2</i> stílust. Legyen a <b>betűtípusa</b> <i>Times New Roman</i>, legyen <b>dőlt</b>, a <b>mérete</b> <i>14 pont</i>, <b>igazítsd</b> <i>balra</i>, a <b>színe</b> pedig legyen valamilyen <i>kék</i>.</p>
+        <p class="extra">Amiről nincs szó egy ilyen feladatban, azzal nem kell foglalkozni. Például a Címsor 2 stílus térközét nem kell módosítani.</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details>
+        <summary>Címsorok alkalmazása</summary>
+        <p>Címsor 1 stílussal a dokumentum címét formázzuk. Jelöld ki a legelső sort (<i>A mesterséges intelligencia világa</i>), és alkalmazd rá a <i>Címsor 1</i> stílust.</p>
+        <p>Címsor 2 stílussal a dokumentum alcímeit formázzuk. Jelöld ki a következő sorokat, és alkalmazd rájuk a <i>Címsor 2</i> stílust:</p>
+        <ul>
+          <li>Mi is az a mesterséges intelligencia?</li>
+          <li>A gépi tanulás alapjai</li>
+          <li>Hol találkozunk az MI-vel a mindennapokban?</li>
+          <li>Az MI történetének mérföldkövei</li>
+          <li>Veszélyek és etikai kérdések</li>
+          <li>Jövőkép: Mi vár ránk?</li>
+        </ul>
+        <div class="feladat-ellenorzo" data-pont="3">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+3 pont)</label>
+        </div>
+      </details>
+    </div>
+
+    <!-- 4. FELADAT -->
+    <div class="task-card">
+      <h3>4. feladat: képek beszúrása és formázása</h3>
+      
+      <details>
+        <summary>Első kép beszúrása</summary>
+        <p>Keress egy képet az interneten (vagy a <i>Beszúrás → Képek → Online képek...</i> menüben), ami szerinted jól kapcsolódik a dokumentum témájához! Másold vagy mentsd el a képet, és szúrd be a dokumentum első oldalára!</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+
+      <details>
+        <summary>Második kép beszúrása</summary>
+        <p>Keress egy másik képet az interneten, ami szintén kapcsolódik a mesterséges intelligenciához, és szúrd be a dokumentum második oldalára!</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+
+      <!-- KÉP FORMÁZÁS - A CSOPORT -->
+      <details class="csop-A">
+        <summary>Első kép méretezése és keretezése (A csoport)</summary>
+        <p>A második képpel most nem kell többet foglalkoznod. Az <b>első képet</b> viszont méretezd át úgy, hogy a <b>magassága 8 cm</b> legyen! Válassz a képnek egy <b>vékony keretet</b> (<i>Képformátum → Képszegély</i>), olyan színnel, ami jól illik a dokumentumhoz!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-A">
+        <summary>Első kép elhelyezése, körbefuttatása (A csoport)</summary>
+        <p>Állítsd be az <b>első képre</b>, hogy a szöveg <b>négyzetesen</b> fusson körbe körülötte! Helyezd el a képet az első oldalon a <b>jobb margónál</b>! Ebben segítenek a zöld segédvonalak.</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+
+      <!-- KÉP FORMÁZÁS - B CSOPORT -->
+      <details class="csop-B">
+        <summary>Második kép méretezése és keretezése (B csoport)</summary>
+        <p>Az első képpel most nem kell többet foglalkoznod. A <b>második képet</b> viszont méretezd át úgy, hogy a <b>magassága 8 cm</b> legyen! Válassz a képnek egy <b>vékony keretet</b> (<i>Képformátum → Képszegély</i>), olyan színnel, ami jól illik a dokumentumhoz!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-B">
+        <summary>Második kép elhelyezése, körbefuttatása (B csoport)</summary>
+        <p>Állítsd be a <b>második képre</b>, hogy a szöveg <b>négyzetesen</b> fusson körbe körülötte! Helyezd el a képet a második oldalon a <b>bal margónál</b>! Ebben segítenek a zöld segédvonalak.</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+
+      <!-- KÉP FORMÁZÁS - C CSOPORT -->
+      <details class="csop-C">
+        <summary>Első kép méretezése és effektusa (C csoport)</summary>
+        <p>A második képpel most nem kell többet foglalkoznod. Az <b>első képet</b> viszont méretezd át úgy, hogy a <b>szélessége 7 cm</b> legyen! A <i>Képformátum → Képeffektusok</i> menüben válassz rá valamilyen <b>Lágy szélek</b> effektust!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-C">
+        <summary>Első kép elhelyezése, körbefuttatása (C csoport)</summary>
+        <p>Állítsd be az <b>első képre</b>, hogy a szöveg <b>négyzetesen</b> fusson körbe körülötte! Helyezd el a képet az első oldalon a <b>jobb margónál</b>! Ebben segítenek a zöld segédvonalak.</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+    </div>
+
+    <!-- 5. FELADAT -->
+    <div class="task-card">
+      <h3>5. feladat: táblázat készítése és formázása</h3>
+
+      <details>
+        <summary>Táblázat készítése</summary>
+        <p>Keresd meg az <i>Az MI történetének mérföldkövei</i> utáni 4 sort (1950-től 2022-ig), és jelöld ki! <span class="ia" data-target="tablazat" data-tipus="toggle">Alakítsd ezt a részt 3 oszlopos táblázattá</span> úgy, hogy az évszámok, az események és a nevek/cégek külön oszlopba kerüljenek!</p>
+        <div class="lenyilo-tartalom" id="tablazat">Ehhez a <i>Beszúrás</i> fülön keresd a <i>Táblázat</i> opciót. A lenyíló menüben válaszd ki a <i>Szövegből táblázat...</i> opciót! A beállítások között az elválasztójel az <i>Egyéb:</i> <b><code>-</code></b> (kötőjel) legyen, így 3 oszlopod lesz!</div>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <details>
+        <summary>Táblázat formázása</summary>
+        <p>Kattints bárhová a táblázaton belül, majd a fenti <i>Táblázattervező</i> fülön válassz ki egy neked tetsző, színes <b>beépített táblázatstílust</b> a listából!</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+    </div>
+
+    <!-- 6. FELADAT -->
+    <div class="task-card">
+      <h3>6. feladat: élőfej, oldalszámozás és tartalomjegyzék</h3>
+
+      <!-- A CSOPORT: Első oldal eltérő + Élőfej cím -->
+      <details class="csop-A">
+        <summary>Első oldal eltérő formázása (A csoport)</summary>
+        <p>Nyisd meg az <i>Élőfej és élőláb</i> szerkesztőjét (kattints duplán a lap legfelső, üres részére), és a fenti menüben a <i>Beállítások</i> alatt pipáld be az <b>Első oldal eltérő</b> jelölőnégyzetet!</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-A">
+        <summary>Élőfej beállítása (A csoport)</summary>
+        <p>Az első oldal kivételével a többi oldalon (tehát a <b>második oldal</b> élőfejében) írd be: <i>A mesterséges intelligencia világa</i>, és <b>igazítsd középre</b>!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <!-- B CSOPORT: Oldalszám + Tartalomjegyzék -->
+      <details class="csop-B">
+        <summary>Oldalszámok beszúrása az élőlábba (B csoport)</summary>
+        <p>Nyisd meg az élőláb szerkesztőjét (kattints duplán a lap legalsó, üres részére), és az <i>Élőfej és élőláb → Oldalszám</i> menüben szúrd be az oldalszámot úgy, hogy minden oldalon megjelenjen!</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-B">
+        <summary>Új oldal és tartalomjegyzék készítése (B csoport)</summary>
+        <p>Szúrj be egy üres oldalt (oldaltörést a <span class="gomb">Ctrl + Enter</span> billentyűkombinációval) a dokumentum legelejére, ide pedig szúrj be egy <b>automatikus tartalomjegyzéket</b> (<i>Hivatkozások → Tartalomjegyzék</i>)!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+
+      <!-- C CSOPORT: Első oldal eltérő + Élőfej név és Élőláb oldalszám -->
+      <details class="csop-C">
+        <summary>Első oldal eltérő formázása (C csoport)</summary>
+        <p>Nyisd meg az <i>Élőfej és élőláb</i> szerkesztőjét (kattints duplán a lap legfelső, üres részére), és a fenti menüben a <i>Beállítások</i> alatt pipáld be az <b>Első oldal eltérő</b> jelölőnégyzetet!</p>
+        <div class="feladat-ellenorzo" data-pont="1">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+1 pont)</label>
+        </div>
+      </details>
+
+      <details class="csop-C">
+        <summary>Élőfej és oldalszám beállítása (C csoport)</summary>
+        <p>A <b>második oldal</b> élőfejében írd be a <b>saját nevedet</b>, és igazítsd <b>jobbra</b>! Ezután menj az <b>élőlábba</b>, és az <i>Oldalszám</i> paranccsal szúrd be az oldalszámozást!</p>
+        <div class="feladat-ellenorzo" data-pont="2">
+          <label class="kesz-label"><input type="checkbox" class="kesz-box"> Megcsináltam</label>
+          <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan (+2 pont)</label>
+        </div>
+      </details>
+    </div>
+
+    <!-- 7. FELADAT: BEADÁS -->
+    <div class="task-card">
+      <h3>7. feladat: a munka beadása</h3>
+      <details>
+        <summary>Add be a helyes néven elmentett munkát!</summary>
+        <p>Mentsd el a munkádat, nyisd meg a Fájlkezelőt, és másold be a Dolgozatok megosztott meghajtóra! Ha beküldted, kérdezd meg, hogy megkaptam-e! Ha nem tudod, mit kell csinálni, akkor nézd meg az alsó sorban a lebegő leírást!</p>
+      </details>
+    </div>
+
+  </div>
+
+  <!-- LEBEGŐ FOOTER A BEADÁSHOZ -->
+  <div class="sticky-footer">
+    <div class="footer-content">
+      <details>
+        <summary><marquee class="blink" behavior="" direction=""><b>‼️Ne felejtsd el 📬 leadni a munkádat‼️</b></marquee></summary>
+        <div style="padding-top: 10px;">
+          <p>Ha végeztél vagy vége az órának, az alábbiak szerint adhatod be a munkádat.<br>
+          <span style="color:red">Görgess le a részletekhez, ha valami nem tiszta!</span></p>
+          <ol type="I">
+            <div class="sides">
+              <li>Nézd meg a fájlnevet, hogy helyes-e!<img src="kepek/fajlnev.png" alt=""></li>
+            </div>
+            <div class="sides">
+              <div class="left">Ha nem, akkor nyomd meg a billentyűzet legfelső sorában az <span class="gomb">F12</span> gombot! A felugró menüben átírhatod a fájlnevet, és a megfelelő helyre mentheted. A saját mappádat a bal oldalon az <i>Ez a gép</i>re kattintva találod meg. Ha erre duplán kattintasz, akkor ezen belül is létrehozhatsz egy almappát a jelenlegi tanévre. Ha jó helyen vagy, és a fájlnév is stimmel, akkor kattints a <i>Mentés</i> gombra!</div>
+              <div class="right"><img src="kepek/mentes_maskent.png" alt=""></div>
+            </div>
+            <div class="sides">
+              <div class="left">
+                <li>Ha elmentetted, nyisd meg a Fájlkezelőt (<img src="kepek/fajlkezelo.png" alt="">)! Itt a <i>Kezdőképernyő</i> alatt (ez jelenik meg automatikusan) látnod kell az éppen most elmentett fájlodat. Kattints erre <b>egyszer</b>, hogy kijelöld (nem akarjuk megnyitni, ezért ne duplán; ha mégis duplán kattintottál, akkor térj vissza a pont elejére!), majd nyomd meg a <span class="gomb">ctrl + c</span> billentyűkombinációt!</li>
+              </div>
+              <div class="right"><img src="kepek/fajlkezelo_kezdokepernyo.png" alt=""></div>
+            </div>
+            <li>A <i>Fájlkezelőben</i> keresd meg a bal oldalon az <i>Ez a gép</i> hivatkozást, majd kattints rá! Keresd meg ebben a <i>Dolgozatok</i> megosztott meghajtót, nyisd meg, és illeszd be ide a lemásolt fájlodat: kattints egyszer az üres részbe a Fájlkezelőben, és nyomd meg a <span class="gomb">ctrl + v</span> gombokat!</li>
+            <li>Ha készen vagy, kérdezd meg, hogy megjött-e a munkád, és jó-e. Előfordul, hogy nem érkezik meg, ilyenkor még egyszer meg kell ismételni a II-III. pontokban írtakat.</li>
+          </ol>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- LEBEGŐ PROGRESS BAR ÉS ÉRTÉKELŐ SÁV -->
+  <div class="progress-sticky" id="sticky-bar" style="display: none;">
+    <div class="progress-info">
+      <span id="haladas-szoveg">Haladás: 0%</span>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+    </div>
+    <div class="pont-info">
+      Önértékelés: <span id="szerzett-pont">0</span> / <span id="max-pont">18</span> pont 
+      <span id="varhato-jegy" class="jegy-jelzo">Várható jegy: -</span>
+    </div>
+  </div>
+
+  <div id="kep-modal" class="modal-hatter">
+    <span class="modal-bezaras">&times;</span>
+    <div class="modal-tartalom">
+      <img id="modal-benne-levo-kep" src="" alt="">
+    </div>
+  </div>
+
+  <script>
+    function inditDolgozat(csoport) {
+      const osszesCsoport = ['A', 'B', 'C'];
+      osszesCsoport.forEach(cs => {
+        if (cs !== csoport) {
+          document.querySelectorAll('.csop-' + cs).forEach(elem => elem.remove());
+        }
+      });
+
+      document.getElementById('valaszto-doboz').style.display = 'none';
+      document.getElementById('dolgozat-tartalom').style.display = 'block';
+      document.getElementById('sticky-bar').style.display = 'flex';
+      
+      const jelzo = document.getElementById('csoport-jelzo');
+      jelzo.innerText = csoport + ' csoport';
+      jelzo.style.display = 'inline-block';
+
+      let ujMaxPont = 0;
+      const megmaradtEllenorzok = document.querySelectorAll('.feladat-ellenorzo');
+      megmaradtEllenorzok.forEach(ell => {
+        ujMaxPont += parseInt(ell.getAttribute('data-pont')) || 0;
+      });
+      document.getElementById('max-pont').innerText = ujMaxPont;
+
+      const elsoBox = document.querySelector('.kesz-box');
+      if (elsoBox) {
+        elsoBox.dispatchEvent(new Event('change'));
+      }
+    }
+
+    window.addEventListener('beforeunload', function(e) {
+      e.preventDefault();
+      e.returnValue = '';
+    });
+  </script>
+
+</body>
+</html>
