@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🖥️ Hardver, fájltípusok és az operációs rendszer</title>
+  <link rel="stylesheet" href="../style.css?v=2">
+  <script type="text/javascript" src="../script.js?v=2"></script>
+  <style>
+    .badge-alap {
+      background: #27ae60 !important;
+    }
+    .badge-halado {
+      background: #d35400 !important;
+      box-shadow: 0 0 6px rgba(211, 84, 0, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🖥️ 1. rész: hardver, fájltípusok és az operációs rendszer</h2>
+  <p class="intro">Ahhoz, hogy egy számítógépet ne csak „nyomogass”, hanem valóban értsd és urald, három dolgot kell átlátnod: <b>mi dolgozik a gépházban (hardver)</b>, <b>milyen formában tároljuk az adatokat (fájlok és kiterjesztések)</b>, és <b>hogyan irányíthatod mindezt villámgyorsan (operációs rendszer)</b>.
+  <br>Egy kis segítség: ha <span class="ia" data-target="pelda" data-tipus="toggle">így formázott részt látsz</span>, arra rákattintva extra magyarázat vagy kép jelenik meg.</p>
+  <div class="lenyilo-tartalom" id="pelda">Ez most csak egy példa tartalom, de máskor értelmes dolgokat találhatsz itt, pl. segítséget, ha nem értesz valamit teljesen.</div>
+
+  <!-- 1. MODUL: HARDVER -->
+  <div class="task-card">
+    <h3>1. A számítógép felépítése (hardver alapok)</h3>
+    <p><b>Hardvernek</b> nevezzük a számítógép minden fizikai, megfogható alkatrészét, <b>szoftvernek</b> pedig a rajta futó programokat és adatokat. A mai gépek túlnyomó többsége a <b>Neumann-elvek</b> alapján működik, ahol a központi egység a memóriából olvassa ki a programokat és az adatokat is.</p>
+
+    <div class="osszefoglalas">
+      <b>A konyha-hasonlat – hogyan dolgoznak együtt az alkatrészek?</b><br>
+      • <b>Processzor (CPU):</b> A <i>séf</i>. Ő végzi a tényleges munkát, a számolást és a feladatok végrehajtását.<br>
+      • <b>Operatív memória (RAM):</b> A <i>konyhapult</i>. Ide pakolja ki a séf azt, amivel éppen abban a pillanatban dolgozik. Minél nagyobb a pult, annál több program futhat egyszerre akadás nélkül. Ha lekapcsolják a villanyt (kikapcsol a gép), a pult azonnal kiürül!<br>
+      • <b>Háttértár (SSD / HDD):</b> A <i>kamra és a hűtőszekrény</i>. Itt tárolunk mindent hosszú távon. Kikapcsolás után is megmarad benne minden adat, de innen előbb ki kell hozni a fájlokat a pultra (a RAM-ba), hogy a séf dolgozhasson velük!
+    </div>
+
+    <details open>
+      <summary>A legfontosabb belső alkatrészek és jellemzőik</summary>
+      <table class="tema-tabla">
+        <thead>
+          <tr>
+            <th>Alkatrész</th>
+            <th>Feladata</th>
+            <th>Főbb jellemzői (Mire figyelj vásárláskor?)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Alaplap (Motherboard)</b></td>
+            <td>A gép „idegrendszere” és gerince: összeköti az összes alkatrészt egymással, és elosztja köztük az áramot.</td>
+            <td><b>Foglalat (Socket):</b> meghatározza, milyen CPU megy bele.<br><b>Csatlakozók:</b> PCIe, M.2, SATA, USB portok száma.</td>
+          </tr>
+          <tr>
+            <td><b>Processzor (CPU)</b></td>
+            <td>A gép „agya” (Központi Feldolgozó Egység). Végrehajtja a programok utasításait és a matematikai műveleteket.</td>
+            <td><b>Órajel (Hz):</b> hány műveletet végez másodpercenként. Manapság jellemzően 3.0–5.0 GHz közötti, vagyis 3-5 milliárd művelet másodpercenként.<br><b>Magok és szálak száma (Cores/Threads):</b> hány feladatot tud valóban párhuzamosan végezni (pl. 8 mag / 16 szál).</td>
+          </tr>
+          <tr>
+            <td><b>Memória (RAM)</b></td>
+            <td>Ideiglenes, szupergyors munkaterület az éppen futó programoknak és megnyitott fájloknak.</td>
+            <td><b>Kapacitás (GB):</b> ma 16–32 GB az ideális.<br><b>Típus és sebesség:</b> DDR4, DDR5 (a korábbiak ma már elavultak!).<br><b>Felejtő (volatilis) tároló:</b> áram nélkül azonnal elveszíti a tartalmát!</td>
+          </tr>
+          <tr>
+            <td><b>Videókártya (GPU)</b></td>
+            <td>A képi megjelenítésért, 3D grafikáért, videóvágásért és ma már a <b>mesterséges intelligencia (MI)</b> számításokért felel.</td>
+            <td><b>Integrált (IGP):</b> a processzorba van építve, irodai munkára és filmnézésre tökéletes, keveset fogyaszt.<br><b>Dedikált (önálló kártya):</b> saját memóriája (VRAM) és hűtése van; játékokhoz, 3D tervezéshez elengedhetetlen.</td>
+          </tr>
+          <tr>
+            <td><b>Tápegység (PSU)</b></td>
+            <td>A konnektorból érkező váltóáramot alakítja át a gép alkatrészeinek megfelelő, stabil egyenárammá.</td>
+            <td><b>Teljesítmény (Watt, W):</b> pl. 650 W.<br><b>Hatásfok (80 Plus minősítés):</b> megmutatja, mennyi áram vész el hő formájában.</td>
+          </tr>
+        </tbody>
+      </table>
+    </details>
+
+    <details>
+      <summary>Háttértárak nagy összehasonlítása: HDD vs. SATA SSD vs. NVMe SSD</summary>
+      <p>A háttértárak nem felejtik el az adatokat kikapcsoláskor sem. A technológia azonban hatalmasat fejlődött:</p>
+      <table class="tema-tabla">
+        <thead>
+          <tr>
+            <th>Jellemző</th>
+            <th>HDD (Merevlemez)</th>
+            <th>SATA SSD</th>
+            <th>M.2 NVMe SSD</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Működési elv</b></td>
+            <td>Mágneses, gyorsan forgó lemezek és mozgó olvasófej.</td>
+            <td>Flash memória (nincs mozgó alkatrész), régi SATA kábelen.</td>
+            <td>Flash memória, közvetlenül az alaplap gyors PCIe sínjére csatlakozik.</td>
+          </tr>
+          <tr>
+            <td><b>Sebesség (Olvasás)</b></td>
+            <td>Lassú (~100–200 MB/s)</td>
+            <td>Gyors (~500–550 MB/s)</td>
+            <td>Villámgyors (~3500 – 7500+ MB/s)</td>
+          </tr>
+          <tr>
+            <td><b>Ütésállóság és zaj</b></td>
+            <td>Érzékeny az ütésre (ha leesik, tönkremehet), zúg és kattog.</td>
+            <td>Teljesen néma, ütésálló.</td>
+            <td>Teljesen néma, ütésálló, rágógumi méretű.</td>
+          </tr>
+          <tr>
+            <td><b>Mire érdemes használni?</b></td>
+            <td>Olcsó adattemetőnek (filmek, biztonsági mentések tárolására, sok TB-os méretben).</td>
+            <td>Régebbi gépek, laptopok felgyorsítására.</td>
+            <td>Modern gépekben az operációs rendszernek és a programoknak/játékoknak.</td>
+          </tr>
+        </tbody>
+      </table>
+    </details>
+
+    <details>
+      <summary>Perifériák csoportosítása (bemeneti, kimeneti, be-/kimeneti)</summary>
+      <p>A központi egységhez csatlakozó külső eszközöket <b>perifériáknak</b> hívjuk, és az adatáramlás iránya szerint 3 csoportba soroljuk őket:</p>
+      <ul>
+        <li><b>Bemeneti (Input) eszközök – adatot juttatnak A GÉPBE:</b> billentyűzet, egér, mikrofon, webkamera, szkenner (lapolvasó), vonalkódolvasó, gamepad.</li>
+        <li><b>Kimeneti (Output) eszközök – adatot hoznak KI A GÉPBŐL nekünk:</b> monitor, projektor, nyomtató, hangszóró, fejhallgató (mikrofon nélkül).</li>
+        <li><b>Be- és kimeneti (I/O) vagy háttértár eszközök – mindkét irányba dolgoznak:</b> érintőképernyő (megjelenít ÉS érzékeli az ujjad), headset (fejhallgató + mikrofon egyben), multifunkciós nyomtató (nyomtat + szkennel), pendrive, külső SSD, hálózati kártya / router.</li>
+      </ul>
+    </details>
+  </div>
+
+  <!-- 2. MODUL: FÁJLTÍPUSOK -->
+  <div class="task-card">
+    <h3>2. Fájltípusok, kiterjesztések és tömörítés</h3>
+    <p>Minden fájl egy névből és egy – ponttal elválasztott – kiterjesztésből áll: <code class="inline">FÁJLNÉV.KITERJESZTÉS</code>. A <b>kiterjesztés</b> mondja meg az operációs rendszernek és a programoknak, hogy milyen típusú adat van a fájlban, és melyik programmal kell megnyitni (pl. a <code class="inline">.docx</code>-et a Worddel, az <code class="inline">.mp3</code>-at a lejátszóval).</p>
+
+    <div class="bemutatas">
+      <p>⚠️ Szabályok és veszélyek a fájlnevekkel kapcsolatban</p>
+      <ul>
+        <li><b>Történelmi 3 karakter:</b> Régen (DOS idején) a kiterjesztés maximum 3 betű lehetett (ezért létezik ma is <code class="inline">.htm</code> és <code class="inline">.html</code>, vagy <code class="inline">.jpg</code> és <code class="inline">.jpeg</code>). Ma már nincs ilyen korlát.</li>
+        <li><b>Ne írd át kézzel a kiterjesztést!</b> Ha egy <code class="inline">kép.jpg</code> fájlt egyszerűen átnevezel <code class="inline">kép.pdf</code>-re, attól a belseje nem alakul át PDF-fé, csak elrontod a fájlt! Átalakításhoz a <i>Mentés másként (F12)</i> vagy az <i>Exportálás</i> funkciót kell használni. <br>
+        <div class="enyhe-kiemeles">Néhány kivétel akad. Ha például letöltesz egy képet, amely <code class="inline">.webp</code> kiterjesztéssel rendelkezik, azt átnevezéssel átalakíthatod <code class="inline">.png</code>-re. Erre azért lehet szükség, mert sok program nem ismeri az újabb képformátumokat.</div></li>
+        <li><b>Tiltott és kerülendő karakterek:</b> Fájlnévbe SOHA ne tegyél pontot (a kiterjesztés elválasztóján kívül) vagy vesszőt, és a rendszer nem is engedi a következőket: <code class="inline">\ / : * ? " &lt; &gt; |</code>. A teljes elérési út ne legyen 255 karakternél hosszabb!</li>
+        <li><b>Kis- és nagybetűk:</b> Windows alatt a <code class="inline">cím.docx</code> és a <code class="inline">CÍM.docx</code> <b>ugyanannak</b> a fájlnak számít (nem lehetnek egy mappában). Linux és webszerverek alatt viszont két külön fájlnak számítanak!</li>
+        <li><b><span class="ia" data-target="elnevezes" data-tipus="toggle">Beszédes nevek</span>:</b> A <code class="inline">doksi1.docx</code> rossz név. Helyette használj ilyet: <code class="inline">2026_okt_tortenelem_essze_Nevem.docx</code>!</li>
+        <div class="lenyilo-tartalom" id="elnevezes">Magyarul olyan nevet adj a dolgaidnak, amikről fel fogod egy év múlva is ismerni, hogy mi az. Ugyanígy érdemes átlátható mappaszerkezetet alkotni. Próbálj meg <i>outside the box</i> gondolkodni: az, hogy most tudod, mi a "beadandó", nem jelenti azt, hogy később is tudni fogod.</div>
+      </ul>
+    </div>
+
+    <div class="eros-kiemeles" style="margin: 15px 0; padding: 12px; border-radius: 6px;">
+      🛡️ <b>Profi tipp – <span class="ia" data-target="kiterjesztesek" data-tipus="modal">Kapcsold be a kiterjesztések megjelenítését!</span></b><br>
+      A Windows alapból „eldugja” az ismert fájlok kiterjesztését. Ezt a <b>Fájlkezelő → Nézet → Megjelenítés → Fájlnévkiterjesztések</b> menüpontban azonnal érdemes bekapcsolni! Miért? Mert a csalók gyakran küldenek <code class="inline">nyeremeny.pdf.exe</code> nevű vírust. Ha a kiterjesztés rejtve van, te csak annyit látsz, hogy <code class="inline">nyeremeny.pdf</code>, rákattintasz, és máris elindítottál egy futtatható vírust!
+    </div>
+    <div class="rejtett-kep kep-svg-wrapper" id="kiterjesztesek"><img src="kepek/oprsz_mappa_rejtett.png" alt="">
+      <svg viewBox="0 0 1045 686" class="svg-reteg">
+        <rect x="520" y="472" width="100" height="28" class="svg-kiemeles"></rect>
+        <rect x="700" y="575" width="165" height="28" class="svg-kiemeles"></rect>
+        <path d="
+        M 0,0 L 1045,0 L 1045,686 L0,686 Z
+        M 520,472 h 100 v 28 h -100 Z
+        M 700,575 h 165 v 28 h -165 Z" fill="rgba(0,0,0,0.50)" fill-rule="evenodd"/>
+      </svg>
+    </div>
+
+    <div class="osszefoglalas" style="margin: 15px 0;">
+      ⭐ <b>Ne ess pánikba, nem kell az összeset bemagolnod!</b><br>
+      A lenti táblázatokban csak a <b>⭐ csillaggal és kiemeléssel jelölt</b> kiterjesztéseket (összesen 16 darabot) kell kötelezően felismerned a dolgozatban! A többi csak tájékoztató jellegű, vagy pluszpontot érhet, ha emlékszel rájuk.
+    </div>
+
+    <details>
+      <summary>📁 Képfájlok (raszteres vs. vektoros) és a veszteséges tömörítés</summary>
+      <p>A képek két nagy világra oszlanak: a <b>rasztergrafikus (pixelalapú)</b> képek apró színes négyzetekből (képpontokból) állnak, így ha belenagyítasz, „kockásodnak” (pixelesednek). A <b>vektorgrafikus</b> képek matematikai görbéket és alakzatokat tárolnak, így <b>végtelenül nagyíthatók</b> minőségromlás nélkül!</p>
+      
+      <table class="tema-tabla">
+        <thead>
+          <tr><th>Kiterjesztés</th><th>Típus és tömörítés</th><th>Jellemzők és használat</th></tr>
+        </thead>
+        <tbody>
+          <tr class="kiemeles">
+            <td>⭐ <b>.jpg / .jpeg</b></td>
+            <td>Raszteres, <b>veszteséges</b></td>
+            <td><b>[KÖTELEZŐ]</b> A legelterjedtebb fotóformátum. Kis fájlméret, de nem tud átlátszó hátteret.</td>
+          </tr>
+          <tr class="kiemeles">
+            <td>⭐ <b>.png</b></td>
+            <td>Raszteres, <b>veszteségmentes</b></td>
+            <td><b>[KÖTELEZŐ]</b> Kiváló minőségű, támogatja az <b>átlátszó hátteret</b>. Képernyőképekhez, webes ábrákhoz ideális.</td>
+          </tr>
+          <tr class="kiemeles">
+            <td>⭐ <b>.svg</b></td>
+            <td><b>Vektorgrafikus!</b></td>
+            <td><b>[KÖTELEZŐ]</b> Torzulás nélkül méretezhető, szöveges kódból áll, animálható és programozható. <i>Vigyázat: mivel kódot tartalmazhat, nem megbízható helyről letöltve akár vírusos is lehet!</i></td>
+          </tr>
+          <tr>
+            <td><b>.gif</b></td>
+            <td>Raszteres, veszteségmentes</td>
+            <td>Maximum 8 bites (256 színű) képeket kezel, viszont <b>animálható</b> (rövid, hang nélküli mozgóképek).</td>
+          </tr>
+          <tr>
+            <td><b>.webp</b> és <b>.heic</b></td>
+            <td>Raszteres, modern</td>
+            <td>A <b>.webp</b> a modern weboldalak, a <b>.heic</b> pedig a modern telefonok (pl. iPhone) helytakarékos képformátuma.</td>
+          </tr>
+          <tr>
+            <td><b>.bmp</b> és <b>.ico</b></td>
+            <td>Raszteres</td>
+            <td>A <b>.bmp</b> régi bittérkép (óriási méretű); az <b>.ico</b> pedig a Windows kis ikonjainak fájlja.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="extra" style="padding: 10px; margin-top: 10px;">
+        <b>Mi a különbség a veszteséges és a veszteségmentes tömörítés között?</b><br>
+        • <b>Veszteséges tömörítés (pl. JPG, MP3, MP4):</b> a fájlméret drasztikus csökkentése érdekében végleg eldob olyan adatokat, amiket az emberi szem vagy fül kevésbé vesz észre (pl. csökkenti a színárnyalatok számát, a felbontást, a videó képkockaszámát – <i>FPS</i> –, vagy a hang bitsűrűségét). Az eredeti minőség többé nem állítható vissza! <i>(Bár ma már MI-vel feljavítják a homályos képeket, az MI nem „látja” az elveszett adatot, csak kitalálja, odaképzeli a részleteket!)</i><br>
+        • <b>Veszteségmentes tömörítés (pl. ZIP, PNG, FLAC):</b> Úgy csökkenti a méretet, hogy <b>egyetlen bit adat sem vész el</b>! Ha például egy képben 20 fehér pixel követi egymást, nem írja le 20-szor, hogy „fehér”, hanem csak annyit: „20×fehér”. Kicsomagoláskor hajszálpontosan az eredeti fájlt kapjuk vissza! (Egy programot vagy szöveget csak veszteségmentesen szabad tömöríteni, különben használhatatlanná válna!)
+      </div>
+    </details>
+
+    <details>
+      <summary>🎵 Hangok, 🎬 videók és 📦 tömörített archívumok</summary>
+      <table class="tema-tabla">
+        <thead>
+          <tr><th>Kategória</th><th>Kiterjesztés</th><th>Mit kell tudni róla?</th></tr>
+        </thead>
+        <tbody>
+          <tr class="kiemeles">
+            <td rowspan="4"><b>Hangfájlok</b></td>
+            <td>⭐ <b>.mp3</b></td>
+            <td><b>[KÖTELEZŐ]</b> <b>Veszteségesen</b> tömörített, de az átlag fülnek kiváló minőségű, kis méretű zenei formátum.</td>
+          </tr>
+          <tr class="kiemeles">
+            <td>⭐ <b>.wav</b></td>
+            <td><b>[KÖTELEZŐ]</b> <b>Tömörítetlen</b>, stúdióminőségű, ezért hatalmas méretű hangfájl.</td>
+          </tr>
+          <tr>
+            <td><b>.flac</b></td>
+            <td><b>Veszteségmentesen</b> tömörített hangfájl: stúdióminőség, de a WAV-nál kisebb méretben.</td>
+          </tr>
+          <tr>
+            <td><b>.mid / .midi</b></td>
+            <td>NEM felvett hangot tárol, hanem „digitális kottát” elektronikus hangszerek, szintetizátorok vezérléséhez.</td>
+          </tr>
+          <tr class="kiemeles">
+            <td rowspan="2"><b>Videók</b></td>
+            <td>⭐ <b>.mp4</b></td>
+            <td><b>[KÖTELEZŐ]</b> A legelterjedtebb modern videóformátum; minden eszköz, telefon és böngésző lejátssza (képet, több hangsávot és feliratot is tartalmazhat).</td>
+          </tr>
+          <tr>
+            <td><b>.mkv, .avi, .mov, .wmv</b></td>
+            <td>Egyéb videóformátumok: az <b>.mkv</b> sok hangsávos filmekhez népszerű, a <b>.mov</b> az Apple formátuma, az <b>.avi / .wmv</b> pedig régebbi Microsoft videók.</td>
+          </tr>
+          <tr class="kiemeles">
+            <td rowspan="2"><b>Tömörített mappák és lemezképek</b></td>
+            <td>⭐ <b>.zip</b> (és .rar)</td>
+            <td><b>[KÖTELEZŐ]</b> <b>Veszteségmentesen</b> tömörített csomag. Több száz fájlt és mappát tud egyetlen kisebb fájlba összecsomagolni.</td>
+          </tr>
+          <tr>
+            <td><b>.iso</b></td>
+            <td><b>Lemezképfájl:</b> egy CD, DVD vagy telepítő pendrive teljes, pontos virtuális másolata egyetlen fájlban.</td>
+          </tr>
+        </tbody>
+      </table>
+    </details>
+
+    <details>
+      <summary>📄 Irodai dokumentumok, 🌐 webes fájlok, 💻 kódok és ⚙️ rendszerfájlok</summary>
+      <table class="tema-tabla">
+        <thead>
+          <tr><th>Kategória</th><th>Kiterjesztés</th><th>Mit kell tudni róla?</th></tr>
+        </thead>
+        <tbody>
+          <tr class="kiemeles">
+            <td rowspan="5"><b>Szöveg, táblázat, prezentáció</b></td>
+            <td>⭐ <b>.txt</b></td>
+            <td><b>[KÖTELEZŐ]</b> Teljesen formázatlan, nyers szövegfájl (pl. Jegyzettömb).</td>
+          </tr>
+          <tr class="kiemeles">
+            <td>⭐ <b>.docx, .xlsx, .pptx</b><br>(és .doc, .xls, .ppt)</td>
+            <td><b>[KÖTELEZŐ]</b> Microsoft <b>Word</b> (szöveg: .docx), <b>Excel</b> (táblázat: .xlsx) és <b>PowerPoint</b> (prezentáció: .pptx) fájlok. A végén lévő <b>„x”</b> a modern, biztonságosabb és tömörített verziót jelöli!</td>
+          </tr>
+          <tr class="kiemeles">
+            <td>⭐ <b>.pdf</b></td>
+            <td><b>[KÖTELEZŐ]</b> <b>Platformfüggetlen dokumentum:</b> minden gépen és telefonon hajszálpontosan ugyanúgy néz ki, nem csúszik szét a formázása.</td>
+          </tr>
+          <tr>
+            <td><b>.rtf, .ppsx, .dotx</b></td>
+            <td>Az <b>.rtf</b> egyszerű formázott szöveg; a <b>.ppsx</b> azonnal diavetítésként induló prezentáció; a <b>.dotx</b> pedig Word sablon.</td>
+          </tr>
+          <tr>
+            <td><b>.odt / .ods / .odp</b></td>
+            <td>Nyílt forráskódú (OpenDocument) szöveg, táblázat és prezentáció (pl. LibreOffice).</td>
+          </tr>
+          <tr>
+            <td><b>Adat, betű, névjegy</b></td>
+            <td><b>.csv, .sql, .xml, .ttf, .vcf</b></td>
+            <td>A <b>.csv / .sql / .xml</b> sok adat (adatbázisok, webshopok) tárolására való; a <b>.ttf</b> vektoros betűtípus; a <b>.vcf</b> pedig telefonos névjegykártya.</td>
+          </tr>
+          <tr class="kiemeles">
+            <td rowspan="2"><b>Web és programozás</b></td>
+            <td>⭐ <b>.html</b> (és .css, .js)</td>
+            <td><b>[KÖTELEZŐ]</b> A <b>.html</b> a weboldalak tartalmát és szerkezetét leíró nyelv. (A <b>.css</b> a stílusért, a <b>.js</b> a működésért felel).</td>
+          </tr>
+          <tr class="kiemeles">
+            <td>⭐ <b>.py</b> (és .php, .cpp)</td>
+            <td><b>[KÖTELEZŐ]</b> A <b>.py</b> Python programkód (amit órán is írunk!). A <b>.php</b> webszerver-kód, a <b>.c / .cpp</b> pedig C/C++ forráskód.</td>
+          </tr>
+          <tr class="kiemeles">
+            <td rowspan="3"><b>Futtatható és rendszerfájlok</b></td>
+            <td>⭐ <b>.exe</b> (és .msi, .bat)</td>
+            <td><b>[KÖTELEZŐ]</b> Windows alatt <b>futtatható program (.exe)</b>. Csak megbízható forrásból származót indíts el! (Az <b>.msi</b> telepítő, a <b>.bat</b> parancsfájl).</td>
+          </tr>
+          <tr class="kiemeles">
+            <td>⭐ <b>.lnk</b></td>
+            <td><b>[KÖTELEZŐ]</b> <b>Parancsikon:</b> csak egy kis hivatkozás a valódi fájlra vagy programra, nyugodtan törölhető.</td>
+          </tr>
+          <tr>
+            <td><b>.dll, .sys, .ini</b><br>vs. <b>.tmp, .bak</b></td>
+            <td>A <b>.dll, .sys, .ini</b> fontos rendszerfájlok (ne töröld őket!). A <b>.tmp</b> (ideiglenes fájl) és a <b>.bak</b> (biztonsági másolat) viszont törölhető.</td>
+          </tr>
+        </tbody>
+      </table>
+    </details>
+  </div>
+
+  <!-- 3. MODUL: OPERÁCIÓS RENDSZER -->
+  <div class="task-card">
+    <h3>3. Az operációs rendszer profi kezelése (Windows 10 / 11)</h3>
+    <p>Az <b>operációs rendszer (OS)</b> a legfontosabb alapszoftver (pl. Windows, macOS, Linux, Android, iOS): összeköti a hardvert a felhasználóval, elosztja az erőforrásokat (CPU-időt, memóriát) a futó programok között, és kezeli a fájlokat.</p>
+
+    <details open>
+      <summary>Grafikus (GUI) vs. parancssoros (CLI) felület és az elérési utak</summary>
+      <ul>
+        <li><b>Grafikus felület (GUI – Graphical User Interface):</b> Ablakokat, ikonokat, menüket és egeret/érintőképernyőt használunk. Könnyű megtanulni, mert nem kell fejből tudni a parancsokat, elég megtalálni őket. Ezeket a felületeket már valamennyire ismered, hiszen a Windows Asztal, a Fájlkezelő vagy a telefonod kezdőképernyője is ennek a része.</li>
+        <li><b>Szöveges / parancssoros felület (CLI – Command Line Interface, pl. <code class="inline">cmd</code> vagy <code class="inline">PowerShell</code>):</b> Csak billentyűzettel, szöveges parancsokkal irányítjuk a gépet. Pontos <i>szintaxist</i> (helyesírást) igényel, cserébe sokkal gyorsabb automatizálást és mélyebb rendszerbeállításokat tesz lehetővé (szervereken gyakran nincs is grafikus felület!). <span class="ia" data-target="cli" data-tipus="toggle">Ide kattintva</span> néhány egyszerű példát láthatsz arról, hogyan használhatod a parancssort.</li>
+        <div class="lenyilo-tartalom" id="cli">
+          <b>Parancssor (cmd) példák:</b><br>
+          • <code class="inline">dir</code> – listázza a mappák és fájlok nevét az aktuális könyvtárban.<br>
+          • <code class="inline">cd Dokumentumok</code> – belép a Dokumentumok mappába.<br>
+          • <code class="inline">cd ..</code> – visszalép egy szinttel a mappaszerkezetben.<br>
+          • <code class="inline">mkdir UjMappa</code> – létrehoz egy új mappát az aktuális könyvtárban.<br>
+          • <code class="inline">del fajl.txt</code> – törli a fajl.txt nevű fájlt az aktuális könyvtárból.<br>
+          • <code class="inline">copy forras.txt cel.txt</code> – lemásolja a forras.txt fájlt cel.txt néven az aktuális könyvtárba.
+        </div>
+      </ul>
+      <div class="bemutatas">
+        <p>🗺️ Mit jelent egy fájl elérési útja (Path)?</p>
+        Amikor ezt látod: <code class="inline">C:\Users\Bálint\Documents\Kémia\jegyzet.docx</code><br>
+        • <b>C:\</b> – A meghajtó (vagy partíció) betűjele és a gyökérkönyvtár. A Windows mindig a <code class="inline">C:</code> meghajtóra települ.<br>
+        • <b>\ (Backslash – visszaper):</b> Windowsban ez választja el egymástól a mappákat (webcímekben és Linuxon sima <code class="inline">/</code> perjel van!).<br>
+        • <b>Users\Bálint\Documents\Kémia\</b> – Egymásba ágyazott mappák (könyvtárak) sora.<br>
+        • <b>jegyzet.docx</b> – Maga a fájl neve és kiterjesztése.
+      </div>
+    </details>
+
+    <details>
+      <summary>🗑️ A lomtár titka, a lemezkarbantartó és a parancsikon csapdája</summary>
+      <ul>
+        <li><b>A lomtár NEM felhő!</b> Sokan azt hiszik, hogy amit kitörölnek a <span class="gomb">Delete</span> gombbal, az már nem foglal helyet. Tévedés! A lomtár a meghajtó egy elkülönített mappája: amíg nem üríted ki a lomtárat, a törölt film <b>ugyanúgy foglalja a helyet a gépeden</b>!</li>
+        <li><b>Végleges törlés:</b> Ha a <span class="gomb">Shift + Delete</span> kombinációt nyomod meg (vagy pendrive-ról/hálózati meghajtóról törölsz), a fájl <b>kihagyja a lomtárat</b>, és azonnal, véglegesen törlődik!</li>
+        <li><b>A parancsikon (.lnk) csapdája:</b> Az asztalon lévő ikonok kis nyíllal a sarkukban csak <i>parancsikonok</i> (mutatók). Ha egy 80 GB-os játék parancsikonját letörlöd az asztalról, a játék NEM törlődik le a gépről! Programokat szabályosan a <b>Gépház → Alkalmazások → Telepített alkalmazások</b> menüben kell eltávolítani (Uninstall). Ha pedig egy pendrive-ra csak a parancsikont másolod át a valódi fájl helyett, a suliban nem fog megnyílni a munkád!</li>
+        <li><span class="ia" data-target="tarhely" data-tipus="toggle">Kattints ide, ha a lemezkarbantartóról egy kicsit többet tudnál meg!</span></li>
+      </ul>
+    </details>
+    <div class="lenyilo-tartalom resp" id="tarhely">
+      <div class="resp-left">
+        A Fájlkezelőben az <i>Ez a gép</i> részben kattints jobb gombbal arra a meghajtóra, amit ellenőrizni szeretnél! A <b>C:</b> az, amelyiken az operációs rendszer van, így ezt nem jó telezsúfolni. Kattints a <i>Tulajdonságok</i> opcióra, és a megjelenő ablakban keresd a <b>Lemezkarbantartó</b> gombot!<br><br>
+        Ennek segítségével törölheted a felesleges ideiglenes fájlokat, a böngészők által elmentett szemetet és a frissítések maradványait anélkül, hogy a saját dokumentumaid sérülnének.
+      </div>
+      <div class="resp-right"><img src="kepek/oprsz_C_tulajdonsagai.png" alt="A C meghajtó tulajdonságai"></div>
+    </div>
+
+    <details>
+      <summary>🚀 Ha belassul a gép: A feladatkezelő (Task Manager) mesterfokon</summary>
+      <p>Ha lefagy egy program, vagy csiga lassú a gép, nyisd meg a <b>Feladatkezelőt</b> (<span class="gomb">Ctrl + Shift + Esc</span>, vagy jobb klikk a tálcára → <i>Feladatkezelő</i>, esetleg <span class="gomb">Ctrl + Alt + Delete</span>):</p>
+      <ol>
+        <li><b>Folyamatok (Processes) fül:</b> Itt látod, melyik program hány százalékban terheli a <b>Processzort (CPU)</b>, a <b>Memóriát (RAM)</b>, a <b>Lemezegységet</b> vagy a <b>Hálózatot</b>. Ha a fejlécre kattintasz, sorba rendezheted őket! A lefagyott programot kijelölve a <i>Feladat befejezése</i> gombbal lőheted le.</li>
+        <li><b>Indítási alkalmazások (Startup apps) fül – a lassú gépindítás ellenszere!</b> Itt látod azokat a programokat (pl. Spotify, Discord, Steam, Teams), amik a gép bekapcsolásakor <b>automatikusan elindulnak a háttérben</b>, és zabálják a memóriát. Amelyiknek „Magas” a hatása, és nem kell azonnal, arra kattints jobb gombbal, és válaszd a <b>Letiltás</b> opciót! (A program nem törlődik, csak nem indul el magától minden reggel).</li>
+        <li><b>Teljesítmény (Performance) fül:</b> Innen egyetlen pillantással leolvashatod a géped pontos adatait: milyen típusú a CPU-d, hány GB RAM van a gépben, SSD vagy HDD dolgozik-e benne, és milyen videókártyád van!</li>
+      </ol>
+    </details>
+
+    <details>
+      <summary>⌨️ A túlélő gyorsbillentyűk (amikkel 3-szor gyorsabb leszel)</summary>
+      <p>Nem kell az összeset bemagolnod, de a kiemelteket mindenképp próbáld ki és használd:</p>
+      <table class="tema-tabla">
+        <thead>
+          <tr><th>Billentyűparancs</th><th>Hol működik?</th><th>Mit csinál? (És miért zseniális?)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="billentyu-kombo"><span class="gomb">Win + V</span></td><td>Windows 10 / 11</td><td><b>Vágólap-előzmények!</b> Nem csak a legutolsó másolt dolgot tudod beilleszteni, hanem visszanézheted az előző 20 kimásolt szöveget és képet!</td></tr>
+          <tr><td class="billentyu-kombo"><span class="gomb">Win + Shift + S</span></td><td>Windows 10 / 11</td><td><b>Képernyőmetsző:</b> kijelölhetsz egy tetszőleges téglalapot a képernyőn, amit azonnal a vágólapra fotóz.</td></tr>
+          <tr><td class="billentyu-kombo"><span class="gomb">Win + E</span></td><td>Windows</td><td>Azonnal megnyitja a <b>Fájlkezelőt</b> (File Explorer).</td></tr>
+          <tr><td class="billentyu-kombo"><span class="gomb">Win + L</span></td><td>Windows</td><td><b>Zárolja a gépet</b> (Lock). Ha felállsz a géptől a suliban, mindig nyomd meg, hogy más ne piszkáljon bele a fiókodba!</td></tr>
+          <tr><td class="billentyu-kombo"><span class="gomb">Win + D</span></td><td>Windows</td><td>Letesz minden ablakot a tálcára, és megmutatja az <b>Asztalt</b> (Desktop). Újra megnyomva visszahozza őket.</td></tr>
+          <tr><td class="billentyu-kombo"><span class="gomb">Win + .</span> (pont)</td><td>Windows</td><td>Felhozza a beépített <b>Emoji és szimbólum billentyűzetet</b> 😊🚀.</td></tr>
+          <tr><td class="billentyu-kombo"><span class="gomb">Alt + Tab</span></td><td>Windows</td><td>Gyors váltás a megnyitott programok/ablakok között.</td></tr>
+          <tr><td class="billentyu-kombo"><span class="gomb">Alt + F4</span></td><td>Minden program</td><td>Bezárja az éppen aktív ablakot (az Asztalon állva kikapcsolja a gépet).</td></tr>
+          <tr><td class="billentyu-kombo"><span class="gomb">F2</span></td><td>Fájlkezelő / Excel</td><td>A kijelölt fájl vagy mappa <b>azonnali átnevezése</b> (Excelben cella szerkesztése).</td></tr>
+          <tr><td class="billentyu-kombo"><span class="gomb">Ctrl + Z</span> / <span class="gomb">Ctrl + Y</span></td><td>Szinte bárhol</td><td>Utolsó művelet <b>visszavonása</b> (Undo) / visszavont művelet <b>újra végrehajtása</b> (Redo).</td></tr>
+          <tr><td class="billentyu-kombo"><span class="gomb">Ctrl + F</span></td><td>Böngésző, Word, PDF</td><td><b>Keresés</b> az oldalon vagy a dokumentumban egy adott szóra.</td></tr>
+          <tr><td class="billentyu-kombo"><span class="gomb">Ctrl + Shift + T</span></td><td>Böngészők</td><td>Visszanyitja a <b>legutóbb véletlenül bezárt böngészőlapot</b>! (A sima <span class="gomb">Ctrl + T</span> új lapot nyit, a <span class="gomb">Ctrl + W</span> bezárja a lapot).</td></tr>
+        </tbody>
+      </table>
+    </details>
+
+    <details class="extra">
+      <summary>🕵️‍♂️ Hacker sarok: Titkos Futtatás (Win + R), CMD és PowerShell parancsok, gag-ek</summary>
+      <p>Ha szeretnéd lenyűgözni a barátaidat, vagy pillanatok alatt kideríteni, miért nem megy az internet, ezeket a szöveges parancsokat próbáld ki! (Nyomj <span class="gomb">Win + R</span>-t, írd be, hogy <code class="inline">cmd</code>, majd nyomj Entert!)</p>
+
+      <h4>1. Hasznos hálózati és rendszer-parancsok (CMD)</h4>
+      <table class="tema-tabla">
+        <thead>
+          <tr><th>Parancs</th><th>Mit csinál?</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code class="inline">ipconfig</code></td>
+            <td>Kiírja a géped hálózati adatait! Az <b>IPv4-cím</b> megmutatja a géped helyi „házszámát” a hálózaton (pl. <code class="inline">192.168.1.105</code>), az <b>Alapértelmezett átjáró</b> pedig maga a routered! (Ha <code class="inline">ipconfig /all</code>-t írsz, a fizikai MAC-címedet is látod).</td>
+          </tr>
+          <tr>
+            <td><code class="inline">arp -a</code></td>
+            <td><b>Kik vannak még a hálózaton?</b> Kilistázza az összes olyan eszközt (telefonokat, más gépeket, okostévét), amikkel a géped kapcsolatba lépett a helyi Wi-Fi vagy kábelhálózaton!</td>
+          </tr>
+          <tr>
+            <td><code class="inline">ping google.com</code></td>
+            <td>Megméri, hogy eljut-e az adat a gépedtől a Google szerveréig, és hány ezredmásodperc (ms) a késleltetés (a <i>ping</i>). Online játékosoknak kötelező!</td>
+          </tr>
+          <tr>
+            <td><code class="inline">tracert google.com</code></td>
+            <td><b>Útvonalkövetés:</b> megmutatja az összes köztes állomást (routert, szervert), amin a te adatcsomagod átugrik Budapesttől egészen a célállomásig!</td>
+          </tr>
+          <tr>
+            <td><code class="inline">systeminfo</code></td>
+            <td>Egyetlen gombnyomásra kiír mindent a gépedről: pontosan mikor telepítették rá a Windowst, mennyi ideje van bekapcsolva a gép, és milyen hardverek vannak benne.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>2. Szórakoztató gag-ek és látványos trükkök</h4>
+      <ul>
+        <li>🟢 <b>A „Mátrix / Hacker” képernyő:</b> Írd be a CMD-be: <code class="inline">color 0a</code> (fekete háttér, világító zöld betűk), majd írd be: <code class="inline">cd \</code>, végül pedig: <code class="inline">tree</code>! A gép elkezdi villámgyorsan, fa-szerkezetben kilistázni a meghajtód összes mappáját. (Ha meguntad, a <span class="gomb">Ctrl + C</span> azonnal leállítja!).</li>
+        <li>🎬 <b>Star Wars a parancssorban (ASCII mozi):</b> Ha van internetkapcsolat, gépeld be a CMD-be: <code class="inline">curl ascii.live/forrest</code> vagy <code class="inline">curl ascii.live/rick</code> (ne felejtsd el levenni a hangerőt, vagy élvezd a karakterekből kirajzolt animációt!).</li>
+        <li>🗣️ <b>Szólaltasd meg a gépet (PowerShell gag):</b> Nyisd meg a <b>PowerShellt</b>, másold be ezt a sort, és nyomj Entert – a gép angolul felolvassa a szöveget:<br>
+        <code class="inline">Add-Type -AssemblyName System.speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak("Hello master, your computer is ready!")</code></li>
+        <li>⏱️ <b>Időzített gépkikapcsolás:</b> Ha elalvás előtt filmet nézel, írd be: <code class="inline">shutdown -s -t 3600</code> – a gép pontosan 3600 másodperc (1 óra) múlva magától kikapcsol! <i>(Visszavonás: <code class="inline">shutdown -a</code>)</i>.</li>
+      </ul>
+
+      <h4>3. Gyorsindító varázsszavak a Futtatás (<span class="gomb">Win + R</span>) ablakba</h4>
+      <p>Nyomd le a <span class="gomb">Win + R</span> gombokat, és írd be bármelyiket: <code class="inline">calc</code> (Számológép), <code class="inline">notepad</code> (Jegyzettömb), <code class="inline">mspaint</code> (Paint), <code class="inline">osk</code> (Képernyő-billentyűzet, ha elromlott a klaviatúrád!), <code class="inline">cleanmgr</code> (Lemezkarbantartó), <code class="inline">dxdiag</code> (Részletes DirectX hardver- és videókártya-diagnosztika).</p>
+    </details>
+  </div>
+
+  <!-- 4. MODUL: KVÍZ -->
+  <div class="task-card">
+    <h3>🎯 Gyakorlófeladatok: hardver, fájltípusok és operációs rendszer</h3>
+    <p>A rendszer az adatbankból minden alkalommal 10 véletlenszerű feladatot sorsol ki. A ⭐ csillaggal jelölt kérdések az alapkövetelményeket kérik számon, míg a 🌟 pluszpontos kérdésekkel extra pontokat lehet gyűjteni.</p>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+      <button class="gomb" onclick="ujKvizSorsolas(10)" style="background: var(--secondary); color: white; font-weight: bold; padding: 10px 18px; cursor: pointer;">🎲 Új 10 kérdés sorsolása</button>
+      <div id="kviz-eredmeny-jelzo" style="font-weight: bold; font-size: 1.1rem;"></div>
+    </div>
+
+    <div id="kviz-terulet" class="kviz-kontener"></div>
+
+    <div style="text-align: center; margin-top: 20px;">
+      <button class="gomb" id="kviz-ellenorzo-gomb" onclick="ellenorizKozpontiKviz()" style="background: #27ae60; color: white; font-weight: bold; font-size: 1.1rem; padding: 12px 25px; cursor: pointer;">✅ Válaszok ellenőrzése</button>
+    </div>
+  </div>
+
+  <script>
+    const kerdesBank = [
+      // 1. EGYSZERŰ VÁLASZTÁS
+      { szint: "alap", tipus: "single", kategoria: "Hardver", kerdes: "Melyik alkatrész felelős az éppen futó programok és adatok ideiglenes tárolásáért, amely kikapcsoláskor mindent elfelejt?", opciok: ["NVMe SSD", "RAM (Operatív memória)", "HDD (Merevlemez)", "Tápegység (PSU)"], helyes: 1, magyarazat: "A RAM (konyhapult) szupergyors, de felejtő memória: áram nélkül elvész a tartalma." },
+      { szint: "alap", tipus: "single", kategoria: "Hardver", kerdes: "Melyik háttértár-típus a leggyorsabb a mai számítógépekben?", opciok: ["7200 RPM-es HDD", "Külső mágneses merevlemez", "SATA csatolófelületű SSD", "M.2 NVMe SSD"], helyes: 3, magyarazat: "Az M.2 NVMe SSD közvetlenül a PCIe sínre csatlakozik, így akár 3500–7500 MB/s sebességre is képes." },
+      { szint: "alap", tipus: "single", kategoria: "Hardver", kerdes: "Mit mutat meg a processzor (CPU) esetén a GHz-ben (gigahertzben) megadott érték?", opciok: ["A processzor memóriájának méretét", "Az órajelet (másodpercenként hány milliárd ciklust végez)", "A processzormagok számát", "A fogyasztást wattban"], helyes: 1, magyarazat: "A Hz (és GHz) az órajel mértékegysége." },
+      { szint: "alap", tipus: "single", kategoria: "Hardver", kerdes: "Melyik alkatrésznek van döntő szerepe a 3D-s játékok megjelenítésében ÉS a modern mesterséges intelligencia (MI) modellek futtatásában?", opciok: ["Hangkártya", "Dedikált videókártya (GPU)", "Hálózati kártya", "Optikai meghajtó"], helyes: 1, magyarazat: "A GPU párhuzamos számítási képessége miatt a grafika mellett az MI-számításokban is kulcsfontosságú." },
+      { szint: "alap", tipus: "single", kategoria: "Fájltípusok", kerdes: "Melyik képformátum VEKTORos (tehát végtelenül nagyítható minőségromlás és pixelesedés nélkül)?", opciok: [".jpg", ".png", ".svg", ".bmp"], helyes: 2, magyarazat: "Az .svg matematikai alakzatokként tárolja az ábrát, nem pixelekként." },
+      { szint: "alap", tipus: "single", kategoria: "Fájltípusok", kerdes: "Melyik képformátumot érdemes választanod, ha átlátszó hátterű logót szeretnél elmenteni veszteségmentesen?", opciok: [".jpg", ".png", ".bmp", ".mp4"], helyes: 1, magyarazat: "A .png veszteségmentesen tömörít és támogatja az átlátszó hátteret." },
+      { szint: "alap", tipus: "single", kategoria: "Fájltípusok", kerdes: "Mi történik, ha egy 'tablazat.xlsx' fájlt a Fájlkezelőben átnevezel 'tablazat.pdf'-re?", opciok: ["A Windows automatikusan átkonvertálja PDF dokumentummá", "A fájl szerkezete nem változik meg, így a PDF-olvasó hibát fog írni megnyitáskor", "A fájl mérete a felére csökken", "Vírusos lesz a fájl"], helyes: 1, magyarazat: "A kiterjesztés kézi átírása nem alakítja át a belső adatszerkezetet, csak megzavarja az operációs rendszert." },
+      { szint: "halado", tipus: "single", kategoria: "Fájltípusok", kerdes: "Melyik kiterjesztés jelöl egy olyan hangfájlt, ami NEM felvett hangot, hanem elektronikus hangszereknek szóló digitális kottát tartalmaz?", opciok: [".wav", ".flac", ".mp3", ".mid / .midi"], helyes: 3, magyarazat: "A MIDI fájlok szintetizátorok vezérlőutasításait tárolják." },
+      { szint: "halado", tipus: "single", kategoria: "Fájltípusok", kerdes: "Melyik fájl tartalmazza egy teljes CD/DVD lemez vagy telepítő pendrive pontos virtuális másolatát (lemezképet)?", opciok: [".iso", ".bak", ".lnk", ".tmp"], helyes: 0, magyarazat: "Az .iso egy lemezképfájl (image)." },
+      { szint: "alap", tipus: "single", kategoria: "Operációs rendszer", kerdes: "Mit csinál a Windowsban a Win + V billentyűkombináció?", opciok: ["Sima beillesztést végez", "Megnyitja a vágólap-előzményeket", "Elindítja a vírusirtót", "Visszavonja az utolsó műveletet"], helyes: 1, magyarazat: "A Win + V előhozza a korábban másolt elemek listáját." },
+      { szint: "alap", tipus: "single", kategoria: "Operációs rendszer", kerdes: "A Feladatkezelő melyik fülén tudod letiltani a gép bekapcsolásakor maguktól elinduló programokat?", opciok: ["Teljesítmény", "Felhasználók", "Indítási alkalmazások", "Alkalmazáselőzmények"], helyes: 2, magyarazat: "Az Indítás fülön egy jobb kattintással tiltható le az automatikus indulás." },
+      { szint: "alap", tipus: "single", kategoria: "Operációs rendszer", kerdes: "Melyik fájlnév HIBÁS vagy kerülendő a felsoroltak közül?", opciok: ["2026_okt_kemia_beadando.docx", "tervezet_v2.xlsx", "2026. okt. 20. beadando.docx", "nyaralas_kepek_01.jpg"], helyes: 2, magyarazat: "Fájlnévbe a kiterjesztés pontján kívül nem teszünk pontot, mert megtéveszti a rendszert." },
+
+      // 2. TÖBBVÁLASZOS
+      { szint: "alap", tipus: "multi", kategoria: "Hardver", kerdes: "Jelöld be az ÖSSZES olyan eszközt, amelyik kizárólag BEMENETI (Input) periféria!", opciok: ["Mikrofon", "Monitor", "Webkamera", "Érintőképernyő", "Szkenner (Lapolvasó)"], helyes: [0, 2, 4], magyarazat: "A mikrofon, webkamera és szkenner csak befelé visz adatot." },
+      { szint: "alap", tipus: "multi", kategoria: "Hardver", kerdes: "Mely állítások IGAZAK az SSD-re a hagyományos HDD-vel szemben? (Több válasz!)", opciok: ["Nincs benne mozgó alkatrész, ezért néma", "Sokkal érzékenyebb a leejtésre, mint a HDD", "Sokkal gyorsabban tölt be róla a rendszer", "Mágneses korongokon tárolja az adatokat"], helyes: [0, 2], magyarazat: "Az SSD-ben nincs forgó alkatrész, ezért néma, ütésálló és sokkal gyorsabb." },
+      { szint: "alap", tipus: "multi", kategoria: "Fájltípusok", kerdes: "Mely kiterjesztések jelölnek VESZTESÉGesen tömörített médiát? (Több válasz!)", opciok: [".jpg", ".flac", ".mp3", ".zip", ".png"], helyes: [0, 2], magyarazat: "A .jpg és az .mp3 veszteséges, míg a .flac, .zip és .png veszteségmentes." },
+      { szint: "halado", tipus: "multi", kategoria: "Fájltípusok", kerdes: "Mely fájlokat törölheted le nyugodtan anélkül, hogy tönkretennéd a rendszert vagy a programot? (Több válasz!)", opciok: ["Parancsikon az asztalon (.lnk)", "Rendszerkönyvtár a Windows mappában (.dll)", "Hátramaradt ideiglenes fájl (.tmp)", "Illesztőprogram rendszerfájl (.sys)"], helyes: [0, 2], magyarazat: "A .lnk csak egy mutató, a .tmp pedig ideiglenes szemét." },
+      { szint: "alap", tipus: "multi", kategoria: "Fájltípusok", kerdes: "Mely kiterjesztések tartoznak közvetlenül egy weboldal felépítéséhez és működéséhez? (Több válasz!)", opciok: [".html", ".css", ".js", ".msi", ".bat"], helyes: [0, 1, 2], magyarazat: "A HTML a váz, a CSS a stílus, a JS pedig az interakció." },
+      { szint: "alap", tipus: "multi", kategoria: "Operációs rendszer", kerdes: "Mi történik egy fájllal, ha a sima Delete gombot nyomod meg? (Több válasz!)", opciok: ["A fájl bekerül a lomtárba", "A fájl azonnal felszabadítja a helyet a lemezen", "A fájl továbbra is foglalja a helyet, amíg a lomtárat ki nem üríted", "A fájl még visszaállítható"], helyes: [0, 2, 3], magyarazat: "A sima Delete csak a lomtárba teszi az elemet, helyet még nem szabadít fel." },
+
+      // 3. IGAZ / HAMIS
+      { szint: "alap", tipus: "tf", kategoria: "Fájltípusok", kerdes: "Windows alatt létrehozhatsz egy mappán belül egy 'fizika.docx' és egy 'FIZIKA.docx' nevű fájlt egyszerre.", helyes: false, magyarazat: "Hamis! A Windows nem különbözteti meg a kis- és nagybetűket a fájlnevekben." },
+      { szint: "halado", tipus: "tf", kategoria: "Fájltípusok", kerdes: "Ha egy elmosódott JPG képet mesterséges intelligenciával feljavítunk, visszakapjuk a valódi, eredetileg elveszett információt.", helyes: false, magyarazat: "Hamis! Az MI nem ismeri az elveszett adatot, csak odaképzeli a részleteket." },
+      { szint: "alap", tipus: "tf", kategoria: "Hardver", kerdes: "Az integrált videókártya (IGP) a processzorba van beépítve, és a rendszermemóriát (RAM) használja.", helyes: true, magyarazat: "Igaz! Nincs különálló saját memóriája." },
+      { szint: "alap", tipus: "tf", kategoria: "Operációs rendszer", kerdes: "Ha letörlöd egy játék parancsikonját (.lnk) az asztalról, a játék programfájljai is törlődnek a gépről.", helyes: false, magyarazat: "Hamis! A parancsikon csak egy mutató." },
+      { szint: "alap", tipus: "tf", kategoria: "Operációs rendszer", kerdes: "A parancssoros (CLI) felület használatához nem kell ismerni a parancsokat, mert minden elérhető egérrel a menükből.", helyes: false, magyarazat: "Hamis! A parancssorban nincsenek menük, fejből kell tudni a parancsokat." },
+      { szint: "alap", tipus: "tf", kategoria: "Fájltípusok", kerdes: "A .docx, .xlsx és .pptx végén lévő 'x' betű jelzi, hogy ezek modern, tömörített XML-alapú fájlok.", helyes: true, magyarazat: "Igaz! Ezek a modernebb Office formátumok." },
+      { szint: "halado", tipus: "tf", kategoria: "Fájltípusok", kerdes: "A .ttf betűtípusok rasztergrafikusak, ezért nagyításkor pixelesednek.", helyes: false, magyarazat: "Hamis! A .ttf vektoros, bármilyen méretben éles marad." },
+
+      // 4. RÖVID VÁLASZ
+      { szint: "alap", tipus: "short", kategoria: "Operációs rendszer", kerdes: "Melyik funkcióbillentyűt (F1–F12) nyomod meg a Fájlkezelőben az azonnali átnevezéshez?", elfogadott: ["f2"], magyarazat: "Az F2 az átnevezés gombja." },
+      { szint: "alap", tipus: "short", kategoria: "Operációs rendszer", kerdes: "Melyik funkcióbillentyű (F1–F12) hozza fel a 'Mentés másként' ablakot a Wordben és Excelben?", elfogadott: ["f12"], magyarazat: "Az F12 a Mentés másként billentyűje." },
+      { szint: "alap", tipus: "short", kategoria: "Fájltípusok", kerdes: "Mi a 3 betűs kiterjesztése a platformfüggetlen, kötött elrendezésű dokumentumnak (Portable Document Format)?", elfogadott: ["pdf", ".pdf"], magyarazat: "A .pdf formátum mindenhol ugyanúgy jelenik meg." },
+      { szint: "alap", tipus: "short", kategoria: "Fájltípusok", kerdes: "Mi a kiterjesztése a Windows alatt futtatható programfájloknak (Executable)?", elfogadott: ["exe", ".exe"], magyarazat: "Az .exe a futtatható programok kiterjesztése." },
+      { szint: "alap", tipus: "short", kategoria: "Operációs rendszer", kerdes: "A C:\\Users\\Anna\\Kepek\\cica.png útvonalban melyik betű jelöli a meghajtót?", elfogadott: ["c", "c:", "c:\\"], magyarazat: "A C: a rendszermeghajtó." },
+      { szint: "alap", tipus: "short", kategoria: "Operációs rendszer", kerdes: "Melyik betűt kell lenyomni a Ctrl billentyűvel együtt a visszavonáshoz (Undo)?", elfogadott: ["z", "ctrl+z", "ctrl + z"], magyarazat: "A Ctrl + Z vonja vissza az utolsó lépést." },
+      { szint: "alap", tipus: "short", kategoria: "Operációs rendszer", kerdes: "Melyik betűt kell lenyomni a Windows gombbal a gép azonnali zárolásához (Lock)?", elfogadott: ["l", "win+l", "win + l"], magyarazat: "A Win + L zárja le a képernyőt." },
+
+      // 5. SORBA RENDEZÉS
+      { szint: "alap", tipus: "order", kategoria: "Hardver", kerdes: "Rendezd sorba a tárolókat az olvasási sebességük szerint a LEGLASSABBTÓL (1.) a LEGGYORSABBIG (4.)!", elemek: ["Mágneses merevlemez (HDD)", "SATA SSD", "M.2 NVMe SSD", "Operatív memória (RAM)"], magyarazat: "Sorrend: HDD -> SATA SSD -> NVMe SSD -> RAM." },
+      { szint: "halado", tipus: "order", kategoria: "Fájltípusok", kerdes: "Rendezd a képeket méret szerint a LEGKISEBBTŐL (1.) a LEGNAGYOBBIG (4.)!", elemek: ["Kicsinyített kép (10 KB)", "Fekete-fehér kép (38 KB)", "16 színű kép (152 KB)", "Eredeti színes fotó (903 KB)"], magyarazat: "Minél kevesebb a képpont és a szín, annál kisebb a fájlméret." },
+      { szint: "alap", tipus: "order", kategoria: "Hardver", kerdes: "Rendezd sorba a mértékegységeket a LEGKISEBBTŐL (1.) a LEGNAGYOBBIG (4.)!", elemek: ["Kilobájt (KB)", "Megabájt (MB)", "Gigabájt (GB)", "Terabájt (TB)"], magyarazat: "Sorrend: KB -> MB -> GB -> TB." },
+      { szint: "alap", tipus: "order", kategoria: "Operációs rendszer", kerdes: "A 'C:\\Iskola\\10A\\Kemia\\kiserlet.pdf' alapján rendezd sorba az elemeket a legkülsőtől (1.) a konkrét fájlig (4.)!", elemek: ["C: meghajtó", "Iskola mappa", "Kemia almappa", "kiserlet.pdf fájl"], magyarazat: "Az útvonal a meghajtótól szűkül a fájlig." },
+
+      // 6. CSOPORTBA RENDEZÉS
+      { szint: "alap", tipus: "group", kategoria: "Hardver", kerdes: "Sorold a megfelelő csoportba az eszközöket az adatáramlás iránya szerint!", csoportok: ["Bemeneti (Input)", "Kimeneti (Output)", "Be- és kimeneti (I/O)"], tetelek: [
+        { szoveg: "Billentyűzet és egér", helyesCsoport: 0 },
+        { szoveg: "Monitor és projektor", helyesCsoport: 1 },
+        { szoveg: "Érintőképernyő", helyesCsoport: 2 },
+        { szoveg: "Pendrive", helyesCsoport: 2 }
+      ], magyarazat: "A billentyűzet/egér bemeneti, a monitor kimeneti, a többi kétirányú." },
+      { szint: "halado", tipus: "group", kategoria: "Fájltípusok", kerdes: "Csoportosítsd a kiterjesztéseket típusuk szerint!", csoportok: ["Hangfájl", "Képfájl", "Rendszer- vagy futtatható fájl"], tetelek: [
+        { szoveg: ".flac és .wav", helyesCsoport: 0 },
+        { szoveg: ".webp és .svg", helyesCsoport: 1 },
+        { szoveg: ".dll és .exe", helyesCsoport: 2 },
+        { szoveg: ".png és .gif", helyesCsoport: 1 }
+      ], magyarazat: "A .flac/.wav hang, a .webp/.svg/.png/.gif kép, a .dll/.exe rendszer- és programfájl." },
+      { szint: "alap", tipus: "group", kategoria: "Fájltípusok", kerdes: "Csoportosítsd a formátumokat a tömörítés módja szerint!", csoportok: ["Veszteséges", "Veszteségmentes"], tetelek: [
+        { szoveg: ".jpg (fotó)", helyesCsoport: 0 },
+        { szoveg: ".zip és .rar (archívum)", helyesCsoport: 1 },
+        { szoveg: ".mp3 (zene)", helyesCsoport: 0 },
+        { szoveg: ".flac és .png", helyesCsoport: 1 }
+      ], magyarazat: "A JPG és MP3 adatot dob el, a ZIP, RAR, FLAC és PNG megőrzi az összes bitet." },
+
+      // 7. PÁROSÍTÁS
+      { szint: "alap", tipus: "match", kategoria: "Operációs rendszer", kerdes: "Párosítsd a gyorsbillentyűket a funkciójukkal!", parok: [
+        { bal: "Ctrl + Shift + T", jobb: "Bezárt böngészőlap újranyitása" },
+        { bal: "Win + Shift + S", jobb: "Képernyőmetsző indítása" },
+        { bal: "Shift + Delete", jobb: "Végleges törlés a lomtár kihagyásával" },
+        { bal: "Alt + F4", jobb: "Aktív ablak bezárása" }
+      ], magyarazat: "A mindennapi gyors munkavégzés alapvető billentyűparancsai." },
+      { szint: "halado", tipus: "match", kategoria: "Fájltípusok", kerdes: "Párosítsd a dokumentum-kiterjesztéseket a feladatukkal!", parok: [
+        { bal: ".xlsx / .ods", jobb: "Táblázatkezelő munkafüzet" },
+        { bal: ".ppsx", jobb: "Diavetítésként induló prezentáció" },
+        { bal: ".txt", jobb: "Formázatlan nyers szöveg" },
+        { bal: ".dotx", jobb: "Word dokumentumsablon" }
+      ], magyarazat: "A különböző irodai formátumok pontos szerepe." },
+      { szint: "alap", tipus: "match", kategoria: "Hardver", kerdes: "Párosítsd a hardverelemeket a konyha-hasonlat részeivel!", parok: [
+        { bal: "Processzor (CPU)", jobb: "A séf (számol és utasításokat hajt végre)" },
+        { bal: "RAM (Memória)", jobb: "A konyhapult (gyors, de kikapcsoláskor kiürül)" },
+        { bal: "SSD / HDD", jobb: "A kamra (áram nélkül is tartósan tárol)" },
+        { bal: "Tápegység (PSU)", jobb: "Árammal látja el az alkatrészeket" }
+      ], magyarazat: "A processzor végzi a munkát, a RAM az ideiglenes pult, a háttértár a raktár." }
+    ];
+  </script>
+
+  <div id="kep-modal" class="modal-hatter">
+    <span class="modal-bezaras">&times;</span>
+    <div class="modal-tartalom">
+      <img id="modal-benne-levo-kep" src="" alt="">
+    </div>
+  </div>
+
+</body>
+</html>

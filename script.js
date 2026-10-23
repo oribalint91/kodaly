@@ -222,24 +222,39 @@ function generateNavbar() {
                 {
                     name: "🐍 Python programozás",
                     items: [
-                        { title: "1. Alapismeretek", file: "Python_9ny_01_alapok.html" },
-                        { title: "2. Elágazások (if-else)", file: "Python_9ny_02_alapok_II.html" },
-                        { title: "3. Összetett adattípusok", file: "Python_9ny_03_osszetett_adattipusok.html" },
-                        { title: "4. A for ciklus", file: "Python_9ny_04_for_ciklus.html" },
-                        { title: "5. A while ciklus", file: "Python_9ny_05_while_ciklus.html" },
-                        { title: "Az eddig tanultak átismétlése", file: "Python_9_ismetles.html" },
-                        { title: "6. Kivételkezelés (try-except)", file: "Python_9_06_try_except.html" },
-                        { title: "7. Függvények (def)", file: "Python_9_07_eljarasok_fuggvenyek.html" },
-                        { title: "8. Modulok (random, math)", file: "Python_9_08_modulok.html" },
-                        { title: "9. Teknőcgrafika (Turtle)", file: "Python_9_09_teknocgrafika.html" },
-                        { title: "Az eddig tanultak átismétlése", file: "Python_10_ismetles.html" }
+                    //     { title: "1. Alapismeretek", file: "Python_9ny_01_alapok.html" },
+                    //     { title: "2. Elágazások (if-else)", file: "Python_9ny_02_alapok_II.html" },
+                    //     { title: "3. Összetett adattípusok", file: "Python_9ny_03_osszetett_adattipusok.html" },
+                    //     { title: "4. A for ciklus", file: "Python_9ny_04_for_ciklus.html" },
+                    //     { title: "5. A while ciklus", file: "Python_9ny_05_while_ciklus.html" },
+                    //     { title: "Az eddig tanultak átismétlése", file: "Python_9_ismetles.html" },
+                    //     { title: "6. Kivételkezelés (try-except)", file: "Python_9_06_try_except.html" },
+                    //     { title: "7. Függvények (def)", file: "Python_9_07_eljarasok_fuggvenyek.html" },
+                    //     { title: "8. Modulok (random, math)", file: "Python_9_08_modulok.html" },
+                    //     { title: "9. Teknőcgrafika (Turtle)", file: "Python_9_09_teknocgrafika.html" },
+                    //     { title: "Az eddig tanultak átismétlése", file: "Python_10_ismetles.html" }
                         ]
                 },
                 {
                     name: "Szövegszerkesztés",
                     items: [
                         {title: "Word alapok", file: "word_07_01_A_szamitogep_tortenete.html"},
-                        {title: "Tabulátorok", file: "word_07_02_filmklub.html"}
+                        {title: "Tabulátorok", file: "word_07_02_filmklub.html"},
+                        {title: "Hosszabb szöveg szerkesztése", file: "word_08_03_hulladekgazdalkodas.html"}
+                    ]
+                },
+                {
+                    name: "Táblázatkezelés",
+                    items: [
+                        // {title: "Excel alapok", file: "excel_08_01_alapok.html"},
+                        // {title: "Grafikonok", file: "excel_08_02_grafikonok.html"}
+                    ]
+                },
+                {
+                    name: "🖥️ A számítógép felépítése",
+                    items: [
+                        {title: "A számítógép felépítése, az operációs rendszer", file: "oprsz_felepites_9ny_01_hardver_alapok.html"},
+                        {title: "A számrendszerek és a bináris logika", file: "oprsz_felepites_9ny_02_szamrendszer_alapok.html"}
                     ]
                 }
             ]
@@ -417,4 +432,224 @@ document.addEventListener("DOMContentLoaded", function() {
         const jegySzoveg = keszDarab === 0 ? "-" : jegy;
         document.getElementById("varhato-jegy").innerText = `Várható jegy: ${jegySzoveg}`;
     }
+});
+
+// --- KÖZPONTI KVÍZMOTOR (SORSOLÁS, MEGJELENÍTÉS, ELLENŐRZÉS) ---
+let aktualisKvizKerdesek = [];
+
+function keverKvizTomb(tomb) {
+  const masolat = [...tomb];
+  for (let i = masolat.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [masolat[i], masolat[j]] = [masolat[j], masolat[i]];
+  }
+  return masolat;
+}
+
+function ujKvizSorsolas(darab = 10) {
+  if (typeof kerdesBank === "undefined" || !Array.isArray(kerdesBank) || kerdesBank.length === 0) {
+    return;
+  }
+
+  const eredmenyJelzo = document.getElementById("kviz-eredmeny-jelzo");
+  if (eredmenyJelzo) eredmenyJelzo.innerHTML = "";
+
+  const alapok = kerdesBank.filter(k => k.szint === "alap");
+  const haladok = kerdesBank.filter(k => k.szint === "halado");
+
+  // Ha vannak szintjelölések, 70% alap és 30% haladó kérdést sorsol
+  if (alapok.length > 0 && haladok.length > 0) {
+    const alapDb = Math.min(alapok.length, Math.round(darab * 0.7));
+    const haladoDb = Math.min(haladok.length, darab - alapDb);
+    const sorsoltAlap = keverKvizTomb(alapok).slice(0, alapDb);
+    const sorsoltHalado = keverKvizTomb(haladok).slice(0, haladoDb);
+    aktualisKvizKerdesek = keverKvizTomb([...sorsoltAlap, ...sorsoltHalado]);
+  } else {
+    aktualisKvizKerdesek = keverKvizTomb(kerdesBank).slice(0, darab);
+  }
+
+  renderKozpontiKviz();
+}
+
+function renderKozpontiKviz() {
+  const kontener = document.getElementById("kviz-terulet");
+  if (!kontener) return;
+  kontener.innerHTML = "";
+
+  const tipusNevek = {
+    single: "egyszerű választás",
+    multi: "többválaszos (jelöld be mindet!)",
+    tf: "igaz vagy hamis?",
+    short: "rövid szöveges válasz",
+    order: "sorba rendezés",
+    group: "csoportba sorolás",
+    match: "párosítás"
+  };
+
+  aktualisKvizKerdesek.forEach((k, index) => {
+    const kartya = document.createElement("div");
+    kartya.className = "kviz-kerdes-kartya";
+    kartya.id = `kerdes-doboz-${index}`;
+
+    let szintBadge = "";
+    if (k.szint === "alap") {
+      szintBadge = `<span class="kviz-tipus-badge badge-alap">⭐ alapkövetelmény</span>`;
+    } else if (k.szint === "halado") {
+      szintBadge = `<span class="kviz-tipus-badge badge-halado">🌟 pluszpontos (haladó)</span>`;
+    }
+
+    let belsoHTML = `
+      ${szintBadge}
+      <span class="kviz-tipus-badge">${k.kategoria} • ${tipusNevek[k.tipus] || k.tipus}</span>
+      <p style="font-weight: bold; margin-top: 5px;">${index + 1}. ${k.kerdes}</p>
+    `;
+
+    if (k.tipus === "single") {
+      belsoHTML += `<div class="kviz-opciok">`;
+      k.opciok.forEach((op, opIdx) => {
+        belsoHTML += `
+          <label>
+            <input type="radio" name="q_${index}" value="${opIdx}"> ${op}
+          </label>`;
+      });
+      belsoHTML += `</div>`;
+    } 
+    else if (k.tipus === "multi") {
+      belsoHTML += `<div class="kviz-opciok">`;
+      k.opciok.forEach((op, opIdx) => {
+        belsoHTML += `
+          <label>
+            <input type="checkbox" name="q_${index}" value="${opIdx}"> ${op}
+          </label>`;
+      });
+      belsoHTML += `</div>`;
+    } 
+    else if (k.tipus === "tf") {
+      belsoHTML += `
+        <div class="kviz-opciok">
+          <label><input type="radio" name="q_${index}" value="true"> 🟢 igaz</label>
+          <label><input type="radio" name="q_${index}" value="false"> 🔴 hamis</label>
+        </div>`;
+    } 
+    else if (k.tipus === "short") {
+      belsoHTML += `
+        <input type="text" id="q_${index}_input" class="rovid-input" placeholder="írd ide a választ..." style="width: 100%; max-width: 300px;">
+      `;
+    } 
+    else if (k.tipus === "order") {
+      const kevertElemek = keverKvizTomb(k.elemek.map((el, i) => ({ szoveg: el, eredetiIndex: i })));
+      belsoHTML += `<div>`;
+      for (let pos = 0; pos < k.elemek.length; pos++) {
+        belsoHTML += `
+          <div class="parosito-sor">
+            <b>${pos + 1}. hely:</b>
+            <select id="q_${index}_pos_${pos}">
+              <option value="">-- válassz --</option>
+              ${kevertElemek.map(ke => `<option value="${ke.eredetiIndex}">${ke.szoveg}</option>`).join("")}
+            </select>
+          </div>`;
+      }
+      belsoHTML += `</div>`;
+    } 
+    else if (k.tipus === "group") {
+      belsoHTML += `<div>`;
+      k.tetelek.forEach((tetel, tIdx) => {
+        belsoHTML += `
+          <div class="parosito-sor">
+            <span>${tetel.szoveg}</span>
+            <select id="q_${index}_group_${tIdx}">
+              <option value="">-- melyik csoport? --</option>
+              ${k.csoportok.map((cs, csIdx) => `<option value="${csIdx}">${cs}</option>`).join("")}
+            </select>
+          </div>`;
+      });
+      belsoHTML += `</div>`;
+    } 
+    else if (k.tipus === "match") {
+      const jobbOpciok = keverKvizTomb(k.parok.map((p, i) => ({ szoveg: p.jobb, eredetiIndex: i })));
+      belsoHTML += `<div>`;
+      k.parok.forEach((par, pIdx) => {
+        belsoHTML += `
+          <div class="parosito-sor">
+            <b>${par.bal}</b>
+            <select id="q_${index}_match_${pIdx}">
+              <option value="">-- válassz párt --</option>
+              ${jobbOpciok.map(jo => `<option value="${jo.eredetiIndex}">${jo.szoveg}</option>`).join("")}
+            </select>
+          </div>`;
+      });
+      belsoHTML += `</div>`;
+    }
+
+    belsoHTML += `<div id="visszajelzes-${index}" class="visszajelzes-doboz"></div>`;
+    kartya.innerHTML = belsoHTML;
+    kontener.appendChild(kartya);
+  });
+}
+
+function ellenorizKozpontiKviz() {
+  let helyesPont = 0;
+
+  aktualisKvizKerdesek.forEach((k, index) => {
+    let jo = false;
+    const visszajelzes = document.getElementById(`visszajelzes-${index}`);
+
+    if (k.tipus === "single") {
+      const valasztott = document.querySelector(`input[name="q_${index}"]:checked`);
+      if (valasztott && parseInt(valasztott.value) === k.helyes) jo = true;
+    } 
+    else if (k.tipus === "multi") {
+      const bejeloltek = Array.from(document.querySelectorAll(`input[name="q_${index}"]:checked`)).map(cb => parseInt(cb.value)).sort();
+      const elvart = [...k.helyes].sort();
+      if (bejeloltek.length === elvart.length && bejeloltek.every((v, i) => v === elvart[i])) jo = true;
+    } 
+    else if (k.tipus === "tf") {
+      const valasztott = document.querySelector(`input[name="q_${index}"]:checked`);
+      if (valasztott && (valasztott.value === "true") === k.helyes) jo = true;
+    } 
+    else if (k.tipus === "short") {
+      const beirt = document.getElementById(`q_${index}_input`).value.trim().toLowerCase();
+      if (k.elfogadott.includes(beirt)) jo = true;
+    } 
+    else if (k.tipus === "order") {
+      jo = true;
+      for (let pos = 0; pos < k.elemek.length; pos++) {
+        const val = document.getElementById(`q_${index}_pos_${pos}`).value;
+        if (val === "" || parseInt(val) !== pos) jo = false;
+      }
+    } 
+    else if (k.tipus === "group") {
+      jo = true;
+      k.tetelek.forEach((tetel, tIdx) => {
+        const val = document.getElementById(`q_${index}_group_${tIdx}`).value;
+        if (val === "" || parseInt(val) !== tetel.helyesCsoport) jo = false;
+      });
+    } 
+    else if (k.tipus === "match") {
+      jo = true;
+      k.parok.forEach((par, pIdx) => {
+        const val = document.getElementById(`q_${index}_match_${pIdx}`).value;
+        if (val === "" || parseInt(val) !== pIdx) jo = false;
+      });
+    }
+
+    if (jo) helyesPont++;
+
+    visszajelzes.style.display = "block";
+    visszajelzes.className = "visszajelzes-doboz " + (jo ? "helyes-valasz" : "hibas-valasz");
+    visszajelzes.innerHTML = (jo ? "✔️ <b>helyes!</b> " : "❌ <b>hibás vagy hiányos!</b> ") + k.magyarazat;
+  });
+
+  const szazalek = Math.round((helyesPont / aktualisKvizKerdesek.length) * 100);
+  const eredmenyJelzo = document.getElementById("kviz-eredmeny-jelzo");
+  if (eredmenyJelzo) {
+    eredmenyJelzo.innerHTML = `eredményed: <span style="color: var(--secondary);">${helyesPont} / ${aktualisKvizKerdesek.length} pont (${szazalek}%)</span>`;
+  }
+}
+
+// Automatikus inicializálás, ha az oldalon jelen van a kvíz konténer és a kérdésbank
+document.addEventListener("DOMContentLoaded", function() {
+  if (document.getElementById("kviz-terulet") && typeof kerdesBank !== "undefined") {
+    ujKvizSorsolas(10);
+  }
 });
