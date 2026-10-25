@@ -160,6 +160,8 @@
       </svg>
     </div>
 
+    <h3>Konkrét példák kiterjesztésekre</h3>
+
     <div class="osszefoglalas" style="margin: 15px 0;">
       ⭐ <b>Ne ess pánikba, nem kell az összeset bemagolnod!</b><br>
       A lenti táblázatokban csak a <b>⭐ csillaggal és kiemeléssel jelölt</b> kiterjesztéseket (összesen 16 darabot) kell kötelezően felismerned a dolgozatban! A többi csak tájékoztató jellegű, vagy pluszpontot érhet, ha emlékszel rájuk.
@@ -286,7 +288,8 @@
           </tr>
           <tr>
             <td><b>.odt / .ods / .odp</b></td>
-            <td>Nyílt forráskódú (OpenDocument) szöveg, táblázat és prezentáció (pl. LibreOffice).</td>
+            <td><span class="ia" data-target="nyilt_forraskod" data-tipus="toggle">Nyílt forráskódú</span> (OpenDocument) szöveg, táblázat és prezentáció (pl. LibreOffice).
+            <div class="lenyilo-tartalom extra" id="nyilt_forraskod">A <b>nyílt forráskód</b> lényege, hogy a program kódjához bárki szabadon hozzáférhet, azt módosíthatja és terjesztheti. Az így készült programok olcsóbbak, sőt, sokszor teljesen ingyenesek.</div></td>
           </tr>
           <tr>
             <td><b>Adat, betű, névjegy</b></td>
@@ -296,7 +299,7 @@
           <tr class="kiemeles">
             <td rowspan="2"><b>Web és programozás</b></td>
             <td>⭐ <b>.html</b> (és .css, .js)</td>
-            <td><b>[KÖTELEZŐ]</b> A <b>.html</b> a weboldalak tartalmát és szerkezetét leíró nyelv. (A <b>.css</b> a stílusért, a <b>.js</b> a működésért felel).</td>
+            <td><b>[KÖTELEZŐ]</b> A <b>.html</b> a weboldalak tartalmát és szerkezetét leíró nyelv. (A <b>.css</b> a stílusért, a <b>.js</b> a működésért felel). Ezekkel nemsokára közelebbről is megismerkedünk.</td>
           </tr>
           <tr class="kiemeles">
             <td>⭐ <b>.py</b> (és .php, .cpp)</td>
@@ -338,6 +341,11 @@
           • <code class="inline">mkdir UjMappa</code> – létrehoz egy új mappát az aktuális könyvtárban.<br>
           • <code class="inline">del fajl.txt</code> – törli a fajl.txt nevű fájlt az aktuális könyvtárból.<br>
           • <code class="inline">copy forras.txt cel.txt</code> – lemásolja a forras.txt fájlt cel.txt néven az aktuális könyvtárba.
+          <img src="kepek/oprsz_szoveges1.png" alt="">
+          <p>A parancssorban adhatunk meg szöveges utasításokat az operációs rendszernek (és bizonyos feltételek mellett a programoknak is). A képen a Windows Parancssor látható, amelyet például a <b>cmd</b> paranccsal indíthatunk el. Manapság egyre gyakrabban használjuk helyette a PowerShellt, ami modernebb szintaxissal dolgozik és biztonságosabb.</p>
+          <img src="kepek/oprsz_szoveges2.png" alt="">
+          <img src="kepek/oprsz_szoveges3.png" alt="">
+          <p>A megszokott színeket lecserélhetjük, egyben ezzel láthatunk egy egyszerű dolgot, amit a szöveges operációs rendszerrel megcsináltathatunk.</p>
         </div>
       </ul>
       <div class="bemutatas">
@@ -348,6 +356,8 @@
         • <b>Users\Bálint\Documents\Kémia\</b> – Egymásba ágyazott mappák (könyvtárak) sora.<br>
         • <b>jegyzet.docx</b> – Maga a fájl neve és kiterjesztése.
       </div>
+      <div class="extra">Az elérési út ismerete fontos, ha pl. egy fájlt egy másik fájlban vagy programban szeretnék felhasználni. Amikor weboldalakat készítünk, a képeknek csak a tárolóját és az elérési útját adjuk meg, a html dokumentumba nem kerül bele a konkrét képi információ. <br>
+      Ahogyan a Fájlkezelőben is csak azokat a fájlokat és mappákat látjuk, amelyek az aktuális mappában találhatók, a szöveges eszközök is így működnek. Ha meg szeretnék nyitni egy képet, akkor előbb abba a mappába kell navigálnom, amelyben a kép van.</div>
     </details>
 
     <details>
@@ -361,10 +371,11 @@
     </details>
     <div class="lenyilo-tartalom resp" id="tarhely">
       <div class="resp-left">
-        A Fájlkezelőben az <i>Ez a gép</i> részben kattints jobb gombbal arra a meghajtóra, amit ellenőrizni szeretnél! A <b>C:</b> az, amelyiken az operációs rendszer van, így ezt nem jó telezsúfolni. Kattints a <i>Tulajdonságok</i> opcióra, és a megjelenő ablakban keresd a <b>Lemezkarbantartó</b> gombot!<br><br>
-        Ennek segítségével törölheted a felesleges ideiglenes fájlokat, a böngészők által elmentett szemetet és a frissítések maradványait anélkül, hogy a saját dokumentumaid sérülnének.
+        A Fájlkezelőben az <i>Ez a gép</i> részben kattints jobb gombbal arra a meghajtóra, amit ellenőrizni szeretnél! A <b>C:</b> az, amelyiken az operációs rendszer van, így ezt nem jó telezsúfolni. Kattints a <i>Tulajdonságok</i> opcióra (kattintásra nagyíthatod a képet)! Itt akár át is nevezheted a meghajtót, de most kattints a <b>Részletek</b> gombra!<br><br>
+        Kattintás után megnyílik a <i>Gépház</i>, annak is a Tárterület része. Ennek segítségével törölheted a felesleges ideiglenes fájlokat, a böngészők által elmentett szemetet és a frissítések maradványait anélkül, hogy a saját dokumentumaid sérülnének.
       </div>
-      <div class="resp-right"><img src="kepek/oprsz_C_tulajdonsagai.png" alt="A C meghajtó tulajdonságai"></div>
+      <div class="resp-right ia" data-target="C_tulajdonsagai" data-tipus="modal"><img src="kepek/oprsz_C_tulajdonsagai.png" alt="A C meghajtó tulajdonságai"></div>
+      <div class="rejtett-kep" id="C_tulajdonsagai"><img src="kepek/oprsz_C_tulajdonsagai.png" alt="A C meghajtó tulajdonságai"></div>
     </div>
 
     <details>
