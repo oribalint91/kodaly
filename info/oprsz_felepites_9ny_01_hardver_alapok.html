@@ -212,7 +212,9 @@
       <div class="extra" style="padding: 10px; margin-top: 10px;">
         <b>Mi a különbség a veszteséges és a veszteségmentes tömörítés között?</b><br>
         • <b>Veszteséges tömörítés (pl. JPG, MP3, MP4):</b> a fájlméret drasztikus csökkentése érdekében végleg eldob olyan adatokat, amiket az emberi szem vagy fül kevésbé vesz észre (pl. csökkenti a színárnyalatok számát, a felbontást, a videó képkockaszámát – <i>FPS</i> –, vagy a hang bitsűrűségét). Az eredeti minőség többé nem állítható vissza! <i>(Bár ma már MI-vel feljavítják a homályos képeket, az MI nem „látja” az elveszett adatot, csak kitalálja, odaképzeli a részleteket!)</i><br>
-        • <b>Veszteségmentes tömörítés (pl. ZIP, PNG, FLAC):</b> Úgy csökkenti a méretet, hogy <b>egyetlen bit adat sem vész el</b>! Ha például egy képben 20 fehér pixel követi egymást, nem írja le 20-szor, hogy „fehér”, hanem csak annyit: „20×fehér”. Kicsomagoláskor hajszálpontosan az eredeti fájlt kapjuk vissza! (Egy programot vagy szöveget csak veszteségmentesen szabad tömöríteni, különben használhatatlanná válna!)
+        • <b>Veszteségmentes tömörítés (pl. ZIP, PNG, FLAC):</b> Úgy csökkenti a méretet, hogy <b>egyetlen bit adat sem vész el</b>! Ha például egy képben 20 fehér pixel követi egymást, nem írja le 20-szor, hogy „fehér”, hanem csak annyit: „20×fehér”. Kicsomagoláskor hajszálpontosan az eredeti fájlt kapjuk vissza! (Egy programot vagy szöveget csak veszteségmentesen szabad tömöríteni, különben használhatatlanná válna!) <br>
+        <b>Hogyan lehet nagyobb egy tömörített fájl, mint az eredeti?</b><br>
+        Veszteségmentesen tömörített fájlokhoz a tömörítők hozzácsapnak egy szótárt, ami megmondja, hogy hogyan lehet visszanyerni az eredeti adatokat. Ez olyanokból áll, hogy "MKi. = Magyar Királyság; szh = egyenlő oldalú (szabályos) háromszög". A szótár nyilván nem lehet túl nagy, emiatt egy tömörítési eljárás csak bizonyos rövidítéseket fog tartalmazni (a példánál maradva vagy a töriseket, vagy a matekosakat). Ez a gépeknél azt jelenti, hogy <b>az egyik eljárással képeket, a másikkal szöveges dokumentumokat stb. tudunk hatékonyan tömöríteni</b>. Miért? Azért, mert a kép fog olyan részleteket tartalmazni, hogy "piros piros piros" stb. A tömörítő ebből összerakja, hogy 20×piros, és mivel az elején ott van, hogy ez azt jelenti, hogy írd le 20-szor azt, hogy "piros", ki tudja majd csomagolni. De egy szöveg nem tartalmazza a piros képpontokra való utalást (akkor sem, ha piros betűkkel írom, azt máshogy csinálja), a szótári rész viszont odakerül az elejére. A plusz információk rákerülnek, de a rövidítéseket egyszer sem tudja használni a tömörítő. Olyan ez, mint ha azt mondom, hogy használhatsz nyomtatott történelmi atlaszt. A töri dolgozatban segíteni fog, de a matekban csak annyit értünk el vele, hogy nehezebb lett a táskád.
       </div>
     </details>
 
@@ -345,7 +347,9 @@
           <p>A parancssorban adhatunk meg szöveges utasításokat az operációs rendszernek (és bizonyos feltételek mellett a programoknak is). A képen a Windows Parancssor látható, amelyet például a <b>cmd</b> paranccsal indíthatunk el. Manapság egyre gyakrabban használjuk helyette a PowerShellt, ami modernebb szintaxissal dolgozik és biztonságosabb.</p>
           <img src="kepek/oprsz_szoveges2.png" alt="">
           <img src="kepek/oprsz_szoveges3.png" alt="">
-          <p>A megszokott színeket lecserélhetjük, egyben ezzel láthatunk egy egyszerű dolgot, amit a szöveges operációs rendszerrel megcsináltathatunk.</p>
+          <p>Ha szeretnéd egy kicsit próbálgatni veszély nélkül, hogy hogyan is működik a parancssori programozás, akkor a color paranccsal átállíthatod a színeket. Két számjegyet adhatsz meg. Ha csak egyet adsz, az a karakterek színét változtatja. Ha kettőt adsz meg, az első a háttér, a második a karakterek színét adja meg. A számjegyek 16-os számrendszerben lehetnek bármik... oké, ezt most még nem írtam, tehát a [0123456789abcdef] karakterek közül kell valamit választani. Írd be mondjuk, hogy <span class="inline">color 18</span> és nyomj Entert!
+          <br>Ha hibát ad, akkor nálad is a PowerShell indul el a gépen: ilyenkor írd be, hogy <code class="inline">cmd</code>, nyomj entert, és írd be újra a fentit!<br>
+        Ha meguntad, akkor írj be annyit, hogy <code class="inline">color</code>, nyomj Entert, és visszaáll az eredeti beállítás.</p>
         </div>
       </ul>
       <div class="bemutatas">
@@ -372,31 +376,52 @@
     <div class="lenyilo-tartalom resp" id="tarhely">
       <div class="resp-left">
         A Fájlkezelőben az <i>Ez a gép</i> részben kattints jobb gombbal arra a meghajtóra, amit ellenőrizni szeretnél! A <b>C:</b> az, amelyiken az operációs rendszer van, így ezt nem jó telezsúfolni. Kattints a <i>Tulajdonságok</i> opcióra (kattintásra nagyíthatod a képet)! Itt akár át is nevezheted a meghajtót, de most kattints a <b>Részletek</b> gombra!<br><br>
-        Kattintás után megnyílik a <i>Gépház</i>, annak is a Tárterület része. Ennek segítségével törölheted a felesleges ideiglenes fájlokat, a böngészők által elmentett szemetet és a frissítések maradványait anélkül, hogy a saját dokumentumaid sérülnének.
+        Kattintás után megnyílik a <i>Gépház</i>, annak is a <span class="ia" data-target="tarterulet" data-tipus="modal">Tárterület része</span>. Ennek segítségével törölheted a felesleges ideiglenes fájlokat, a böngészők által elmentett szemetet és a frissítések maradványait anélkül, hogy a saját dokumentumaid sérülnének.
       </div>
       <div class="resp-right ia" data-target="C_tulajdonsagai" data-tipus="modal"><img src="kepek/oprsz_C_tulajdonsagai.png" alt="A C meghajtó tulajdonságai"></div>
       <div class="rejtett-kep" id="C_tulajdonsagai"><img src="kepek/oprsz_C_tulajdonsagai.png" alt="A C meghajtó tulajdonságai"></div>
+      <div class="rejtett-kep" id="tarterulet"><img src="kepek/oprsz_tarterulet.png" alt="A Tárterület részben láthatod, hogy mi mennyi helyet foglal a kiválasztott lemezen. Ha valamire úgy gondolod, hogy már nincs szükséged, itt törölheted, ezzel általában nem csinálsz bajt. Természetesen, ha nem csak te használod a gépet, akkor kérdezd meg, hogy másnak sem kellenek-e már azok a letöltések pl., amiket ki szeretnél törölni."></div>
     </div>
 
     <details>
       <summary>🚀 Ha belassul a gép: A feladatkezelő (Task Manager) mesterfokon</summary>
-      <p>Ha lefagy egy program, vagy csiga lassú a gép, nyisd meg a <b>Feladatkezelőt</b> (<span class="gomb">Ctrl + Shift + Esc</span>, vagy jobb klikk a tálcára → <i>Feladatkezelő</i>, esetleg <span class="gomb">Ctrl + Alt + Delete</span>):</p>
+      <p>Ha lefagy egy program, vagy csiga lassú a gép, nyisd meg a <b>Feladatkezelőt</b> (<span class="gomb">Ctrl + Shift + Esc</span>, vagy jobb klikk a tálcára → <i>Feladatkezelő</i>, esetleg <span class="gomb">Ctrl + Alt + Delete</span>), majd a <span class="ia" data-target="feladatkezelo" data-tipus="modal" style="font-style: italic;">Feladatkezelő</span> lehetőség.</p>
+      <div class="rejtett-kep kep-svg-wrapper" id="feladatkezelo"><img src="kepek/oprsz_feladatkezelo_menuk.png" alt="A <i>Feladatkezelőben</i> több menüt is találsz. Sokszor ezeknek csak az ikonját látod, de ha a három vonalra kattintasz a bal fenti részen, akkor az elnevezéseket is megnézheted.">
+        <svg viewBox="0 0 294 472" class="svg-reteg">
+        <rect x="15" y="80" width="30" height="30" class="svg-kiemeles"></rect></svg>
+      </div>
       <ol>
-        <li><b>Folyamatok (Processes) fül:</b> Itt látod, melyik program hány százalékban terheli a <b>Processzort (CPU)</b>, a <b>Memóriát (RAM)</b>, a <b>Lemezegységet</b> vagy a <b>Hálózatot</b>. Ha a fejlécre kattintasz, sorba rendezheted őket! A lefagyott programot kijelölve a <i>Feladat befejezése</i> gombbal lőheted le.</li>
-        <li><b>Indítási alkalmazások (Startup apps) fül – a lassú gépindítás ellenszere!</b> Itt látod azokat a programokat (pl. Spotify, Discord, Steam, Teams), amik a gép bekapcsolásakor <b>automatikusan elindulnak a háttérben</b>, és zabálják a memóriát. Amelyiknek „Magas” a hatása, és nem kell azonnal, arra kattints jobb gombbal, és válaszd a <b>Letiltás</b> opciót! (A program nem törlődik, csak nem indul el magától minden reggel).</li>
-        <li><b>Teljesítmény (Performance) fül:</b> Innen egyetlen pillantással leolvashatod a géped pontos adatait: milyen típusú a CPU-d, hány GB RAM van a gépben, SSD vagy HDD dolgozik-e benne, és milyen videókártyád van!</li>
+        <li><b><span class="ia" data-target="folyamatok" data-tipus="modal">Folyamatok (Processes) fül</span>:</b> Itt látod, melyik program hány százalékban terheli a <b>Processzort (CPU)</b>, a <b>Memóriát (RAM)</b>, a <b>Lemezegységet</b> vagy a <b>Hálózatot</b>. Ha a fejlécre kattintasz, sorba rendezheted őket! A lefagyott programot kijelölve a <i>Feladat befejezése</i> gombbal lőheted le.</li>
+        <li><b><span class="ia" data-tipus="modal" data-target="inditas">Indítási alkalmazások</span> (Startup apps) fül – a lassú gépindítás ellenszere!</b> Itt látod azokat a programokat (pl. Spotify, Discord, Steam, Teams), amik a gép bekapcsolásakor <b>automatikusan elindulnak a háttérben</b>, és zabálják a memóriát. Amelyiknek „Magas” a hatása, és nem kell azonnal, arra kattints jobb gombbal, és válaszd a <b>Letiltás</b> opciót! (A program nem törlődik, csak nem indul el magától minden reggel).</li>
+        <li><b><span class="ia" data-tipus="modal" data-target="teljesitmeny">Teljesítmény</span> (Performance) fül:</b> Innen egyetlen pillantással leolvashatod a géped pontos adatait: milyen típusú a CPU-d, hány GB RAM van a gépben, SSD vagy HDD dolgozik-e benne, és milyen videókártyád van!</li>
+        <li><b><span class="ia" data-tipus="modal" data-target="felhasznalok">Felhasználók</span> (Users) fül:</b> itt azt nézheted meg, hogy milyen felhasználók vannak bejelentkezve a gépre és milyen folyamatokat (vagy legalábbis mekkora erőforrás-igényűeket) futtatnak. Itt bukik le pl. a tesód, ha miatta lassú a gép.</li>
       </ol>
+      <div class="rejtett-kep kep-svg-wrapper" id="folyamatok"><img src="kepek/oprsz_feladatkezelo_folyamatok.png" alt="A Folyamatok alatt az aktuálisan futó dolgokat látod. A táblázat fejléceiben megnézheted, hogy melyik erőforrás a leggyengébb láncszem; ha rákattintasz, akkor ennek a használata szerint rendezi sorba a folyamatokat a program, és kilőheted, amelyik túl sokat visz el az erőforrásokból.">
+      <svg viewBox="0 0 1150 875" class="svg-reteg">
+        <rect x="500" y="130" width="365" height="75" class="svg-kiemeles"></rect>
+        <rect x="725" y="86" width="170" height="28" class="svg-kiemeles"></rect></svg></div>
+      <div class="rejtett-kep kep-svg-wrapper" id="inditas"><img src="kepek/oprsz_feladatkezelo_inditas.png" alt="Az indításnál érdemes minden olyat letiltani, ami <b>nem kell, hogy magától elinduljon</b> mindig, amikor a gép bekapcsol. Pl. egy böngészőnek itt semmi keresnivalója, de ha nem használod a Teamset vagy a Telefon-kapcsolatot, akkor ezeket is tiltsd le! Fontos, hogy a program ettől még a gépen marad, kézzel el lehet indítani.">
+      <svg viewBox="0 0 1146 876" class="svg-reteg">
+        <rect x="675" y="80" width="250" height="38" class="svg-kiemeles"></rect>
+        <path d="
+        M 0,0 L 1146,0 L 1146,876 L0,876 Z
+        M 675,80 h 250 v 38 h -250 Z
+        M 512,235 h 110 v 620 h -110 Z" fill="rgba(0,0,0,0.50)" fill-rule="evenodd"/>
+      </svg></div>
+      <div class="rejtett-kep kep-svg-wrapper" id="teljesitmeny"><img src="kepek/oprsz_feladatkezelo_teljesitmeny.png" alt="A teljesítmény fülön grafikusan és részletesebben is látod, hogy mivel gazdálkodsz."></div>
+      <div class="rejtett-kep kep-svg-wrapper" id="felhasznalok"><img src="kepek/oprsz_feladatkezelo_felhasznalok.png" alt=""></div>
     </details>
 
     <details>
       <summary>⌨️ A túlélő gyorsbillentyűk (amikkel 3-szor gyorsabb leszel)</summary>
-      <p>Nem kell az összeset bemagolnod, de a kiemelteket mindenképp próbáld ki és használd:</p>
+      <p>Nem kell az összeset bemagolnod, de a kiemelteket mindenképp próbáld ki és használd!</p>
+      <p class="extra">A <span class="gomb">Win</span> a Windows-gomb, amin egy Start-menü-ikon van. Ha azt sem ismered: 🪟.</p>
       <table class="tema-tabla">
         <thead>
           <tr><th>Billentyűparancs</th><th>Hol működik?</th><th>Mit csinál? (És miért zseniális?)</th></tr>
         </thead>
         <tbody>
-          <tr><td class="billentyu-kombo"><span class="gomb">Win + V</span></td><td>Windows 10 / 11</td><td><b>Vágólap-előzmények!</b> Nem csak a legutolsó másolt dolgot tudod beilleszteni, hanem visszanézheted az előző 20 kimásolt szöveget és képet!</td></tr>
+          <tr><td class="billentyu-kombo"><span class="gomb">Win + V</span></td><td>Windows 10 / 11</td><td><b><span class="ia" data-target="vagolap" data-tipus="modal">Vágólap-előzmények</span>!</b> Nem csak a legutolsó másolt dolgot tudod beilleszteni, hanem visszanézheted az előző 20 kimásolt szöveget és képet!</td></tr>
           <tr><td class="billentyu-kombo"><span class="gomb">Win + Shift + S</span></td><td>Windows 10 / 11</td><td><b>Képernyőmetsző:</b> kijelölhetsz egy tetszőleges téglalapot a képernyőn, amit azonnal a vágólapra fotóz.</td></tr>
           <tr><td class="billentyu-kombo"><span class="gomb">Win + E</span></td><td>Windows</td><td>Azonnal megnyitja a <b>Fájlkezelőt</b> (File Explorer).</td></tr>
           <tr><td class="billentyu-kombo"><span class="gomb">Win + L</span></td><td>Windows</td><td><b>Zárolja a gépet</b> (Lock). Ha felállsz a géptől a suliban, mindig nyomd meg, hogy más ne piszkáljon bele a fiókodba!</td></tr>
@@ -410,10 +435,11 @@
           <tr><td class="billentyu-kombo"><span class="gomb">Ctrl + Shift + T</span></td><td>Böngészők</td><td>Visszanyitja a <b>legutóbb véletlenül bezárt böngészőlapot</b>! (A sima <span class="gomb">Ctrl + T</span> új lapot nyit, a <span class="gomb">Ctrl + W</span> bezárja a lapot).</td></tr>
         </tbody>
       </table>
+      <div class="rejtett-kep" id="vagolap"><img src="kepek/oprsz_vagolap.png" alt="A Vágólap egy varázslatos hely. Ide kerül minden, amit ctrl+c-zel vagy ctrl+x-ezel. Vagyis a másolt dolgaid itt &quot;lebegnek&quot;, innen tudod beilleszteni őket. Windows 11-ben be tudod kapcsolni, hogy ne csak az utolsó 1 dolog maradjon itt meg, hanem jóval több is. Természetesen ez több memóriát fogyaszt, de ezt majd látod, hogy belefér-e. Érdekességképpen nézd meg ennek a Vágólap-előzmény ablakocskának a fejlécét, mik vannak még itt?"></div>
     </details>
 
     <details class="extra">
-      <summary>🕵️‍♂️ Hacker sarok: Titkos Futtatás (Win + R), CMD és PowerShell parancsok, gag-ek</summary>
+      <summary>🕵️‍♂️ Hacker sarok: titkos futtatás (Win + R), CMD és PowerShell parancsok, gag-ek</summary>
       <p>Ha szeretnéd lenyűgözni a barátaidat, vagy pillanatok alatt kideríteni, miért nem megy az internet, ezeket a szöveges parancsokat próbáld ki! (Nyomj <span class="gomb">Win + R</span>-t, írd be, hogy <code class="inline">cmd</code>, majd nyomj Entert!)</p>
 
       <h4>1. Hasznos hálózati és rendszer-parancsok (CMD)</h4>
