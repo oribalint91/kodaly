@@ -140,6 +140,23 @@ html.dark-mode.theme-kem {
   --heading-color: #d7bde2;
 }
 
+/* Magyar nyelv és irodalom téma (Bordó / Meleg terrakotta) */
+body.theme-magyar {
+  --primary: #801323;
+  --secondary: #b83b48;
+  --intro-bg: #fdf2f2;
+  --summary-color: #630c19;
+  --summary-hover: #450811;
+  --heading-color: #520914;
+}
+html.dark-mode.theme-magyar {
+  --primary: #380a10;
+  --intro-bg: #4d1018;
+  --summary-color: #e57373;
+  --summary-hover: #ef9a9a;
+  --heading-color: #ffcdd2;
+}
+
 /* --- ALAP STÍLUSOK --- */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
