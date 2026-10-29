@@ -301,6 +301,12 @@ function generateNavbar() {
                 {title: "1. A szóelemzés", file: "nyelvtan_01_szoelemek.html"},
                 {title: "2. A szóalkotás", file: "nyelvtan_02_szoalkotas.html"}
               ]
+            },
+            {
+              name: "Szófajok, mondatbeli szerepek",
+              items: [
+                {title: "1. Szófajok", file: "nyelvtan_03_szofajok.html"}
+              ]
             }
           ]
         }
