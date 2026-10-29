@@ -211,7 +211,7 @@ function generateNavbar() {
     const pathname = window.location.pathname;
 
     // A perjelek (/) hozzáadása pontosítja a felismerést
-    const inSubFolder = pathname.includes('/info/') || pathname.includes('/kemia/') || pathname.includes('/biosz/');
+    const inSubFolder = pathname.includes('/info/') || pathname.includes('/kemia/') || pathname.includes('/biosz/') || pathname.includes('/magyar/');
     const rootPrefix = inSubFolder ? "../" : "./";
 
     const subjects = [
@@ -290,6 +290,19 @@ function generateNavbar() {
                     ]
                 }
             ]
+        },
+        {
+          title: "✍️ Magyar nyelv",
+          folder: "magyar",
+          categories: [
+            {
+              name: "Szóelemzés, szóalkotás",
+              items: [
+                {title: "1. A szóelemzés", file: "nyelvtan_01_szoelemek.html"},
+                {title: "2. A szóalkotás", file: "nyelvtan_02_szoalkotas.html"}
+              ]
+            }
+          ]
         }
     ];
 

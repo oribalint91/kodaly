@@ -1,0 +1,92 @@
+{
+	// Place your kodaly workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log($1);",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"Kodály HTML sablon": {
+		"prefix": "html:kodaly",
+		"scope": "html",
+		"body": [
+	"<!DOCTYPE html>",
+"<html lang='hu'>",
+"<head>",
+  "<meta charset='UTF-8'>",
+  "<meta name='viewport' content='width=device-width, initial-scale=1.0'>",
+  "<title>${1:}</title>",
+  "<link rel='stylesheet' href='../style.css?v=2'>",
+  "<script type='text/javascript' src='../script.js?v=2'></script>",
+  "<style>",
+"",
+  "</style>",
+"</head>",
+"<body $2>",
+"",
+  "<h2>$1</h2>",
+  "<p class='intro'>$4",
+  "<br>Egy kis segítség: ha <span class='ia' data-target='pelda' data-tipus='toggle'>így formázott részt látsz</span>, arra rákattintva extra magyarázat vagy kép jelenik meg.</p>",
+  "<div class='lenyilo-tartalom' id='pelda'>Ez most csak egy példa tartalom, de máskor értelmes dolgokat találhatsz itt, pl. segítséget, ha nem értesz valamit teljesen.</div>",
+"",
+  "<!-- témakör kártyája -->",
+  "<div class='task-card'>",
+    "<h3></h3>",
+"",
+    "<div class='bemutatas'>",
+"      ",
+    "</div>",
+"",
+    "<details>",
+      "<summary></summary>",
+      "<!-- tartalom -->",
+    "</details>",
+  "</div>",
+"",
+    "<!-- kép svg kiemelésekkel -->",
+      "<div class='rejtett-kep kep-svg-wrapper' id='inditas' hidden><img src='' alt=''>",
+      "<svg viewBox='0 0 x y' class='svg-reteg'>",
+        "<rect x='' y='' width='' height='' class='svg-kiemeles'></rect>",
+        "<path d='",
+        "M 0,0 L x0,y0 L x0,y1 Lx1,y1 Z",
+        "M x0v,y0v h szél v mag h -szél Z' fill='rgba(0,0,0,0.50)' fill-rule='evenodd'/>",
+      "</svg></div>",
+"",
+  "<!-- 4. MODUL: KVÍZ -->",
+  "<div class='task-card' hidden>",
+    "<h3>🎯 Gyakorlófeladatok: hardver, fájltípusok és operációs rendszer</h3>",
+    "<p>A rendszer az adatbankból minden alkalommal 10 véletlenszerű feladatot sorsol ki. A ⭐ csillaggal jelölt kérdések az alapkövetelményeket kérik számon, míg a 🌟 pluszpontos kérdésekkel extra pontokat lehet gyűjteni.</p>",
+"",
+    "<div style='display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;'>",
+      "<button class='gomb' onclick='ujKvizSorsolas(10)' style='background: var(--secondary); color: white; font-weight: bold; padding: 10px 18px; cursor: pointer;'>🎲 Új 10 kérdés sorsolása</button>",
+      "<div id='kviz-eredmeny-jelzo' style='font-weight: bold; font-size: 1.1rem;'></div>",
+    "</div>",
+"",
+    "<div id='kviz-terulet' class='kviz-kontener'></div>",
+"",
+    "<div style='text-align: center; margin-top: 20px;'>",
+      "<button class='gomb' id='kviz-ellenorzo-gomb' onclick='ellenorizKozpontiKviz()' style='background: #27ae60; color: white; font-weight: bold; font-size: 1.1rem; padding: 12px 25px; cursor: pointer;'>✅ Válaszok ellenőrzése</button>",
+    "</div>",
+  "</div>",
+"",
+  "<div id='kep-modal' class='modal-hatter'>",
+    "<span class='modal-bezaras'>&times;</span>",
+    "<div class='modal-tartalom'>",
+      "<img id='modal-benne-levo-kep' src='' alt=''>",
+    "</div>",
+  "</div>",
+"",
+"</body>",
+"</html>"],
+"description": "Kodály html-tartalmak alapja"
+	}
+}

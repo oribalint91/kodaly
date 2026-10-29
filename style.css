@@ -754,3 +754,11 @@ rt {font-size: 0.65em; font-weight: bold; color: var(--secondary); line-height: 
 .billentyu-kombo {
   white-space: nowrap;
 }
+
+    .badge-alap {
+      background: #27ae60 !important;
+    }
+    .badge-halado {
+      background: #d35400 !important;
+      box-shadow: 0 0 6px rgba(211, 84, 0, 0.4);
+    }
