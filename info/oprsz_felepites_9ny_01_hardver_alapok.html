@@ -54,19 +54,19 @@
           <tr>
             <td><b>Processzor (CPU)</b></td>
             <td>A gép „agya” (Központi Feldolgozó Egység). Végrehajtja a programok utasításait és a matematikai műveleteket.</td>
-            <td><b>Órajel (Hz):</b> hány műveletet végez másodpercenként. Manapság jellemzően 3.0–5.0 GHz közötti, vagyis 3-5 milliárd művelet másodpercenként.<br><b>Magok és szálak száma (Cores/Threads):</b> hány feladatot tud valóban párhuzamosan végezni (pl. 8 mag / 16 szál). <span class="ia" data-target="cpu" data-tipus="toggle">Ez egyszerűsítés, kicsit bővebben itt olvashatsz róla.</span><br>
+            <td><b>Órajel (Hz):</b> manapság jellemzően 2.0–5.0 GHz közötti. Ez viszont általában nem mondja meg, hogy mennyi műveletet végez másodpercenként a processzor.<br><b>Magok és szálak száma (Cores/Threads):</b> hány feladatot tud valóban párhuzamosan végezni (pl. 8 mag / 16 szál). <span class="ia" data-target="cpu" data-tipus="toggle">Ez egyszerűsítés, kicsit bővebben itt olvashatsz róla.</span><br>
             <div class="lenyilo-tartalom extra" id="cpu">A frekvencia valójában nem azt mutatja meg, hogy mennyi műveletet végez másodpercenként a processzor. A felépítésétől függően egy ciklus alatt végezhet akár több utasítást is, de lehet olyan is, hogy több ciklus kell egy parancs végrehajtásához. Önmagában tehát ez nem ad elég információt a sebességről, de nem rossz iránymutatásnak. <br>
             A különböző processzormagok párhuzamosan végezhetnek műveleteket. A szálak száma is a párhuzamos munkavégzésről ad információt, de nem minden esetben jelenti azt, hogy valóben két utasítást hajthat végre egyszerre. Ez is, mint az előző, az utasítástól és a processzor konkrét felépítésétől függ.</div></td>
           </tr>
           <tr>
             <td><b>Memória (RAM)</b></td>
             <td>Ideiglenes, szupergyors munkaterület az éppen futó programoknak és megnyitott fájloknak.</td>
-            <td><b>Kapacitás (GB):</b> ma 16–32 GB az ideális (bár napi munkához 8 GB is elég lehet, tehát nagyban befolyásolja, hogy mire és hogyan használjuk az eszközt).<br><b>Típus és sebesség:</b> DDR4, DDR5 (a korábbiak ma már elavultak!).<br><b>Felejtő (volatilis) tároló:</b> áram nélkül azonnal elveszíti a tartalmát!</td>
+            <td><b>Kapacitás (GB):</b> ma 8–32 GB az ideális (a felahsználás módjától függően).<br><b>Típus és sebesség:</b> DDR4, DDR5 (a korábbiak ma már kevésbé korszerűek).<br><b>Felejtő (volatilis) tároló:</b> áram nélkül azonnal elveszíti a tartalmát!</td>
           </tr>
           <tr>
             <td><b>Videókártya (GPU)</b></td>
             <td>A képi megjelenítésért, 3D grafikáért, videóvágásért és ma már a <b>mesterséges intelligencia (MI)</b> számításokért felel.</td>
-            <td><b>Integrált (IGP):</b> a processzorba van építve, irodai munkára és filmnézésre tökéletes, keveset fogyaszt.<br><b>Dedikált (önálló kártya):</b> saját memóriája (VRAM) és hűtése van; játékokhoz, 3D tervezéshez elengedhetetlen, ha ezeket valóban nagyon komolyan szeretnénk végezni.</td>
+            <td><b>Integrált (IGP):</b> a processzorba van építve, irodai munkára és filmnézésre tökéletes, keveset fogyaszt. Általában a rendszermemóriát használja.<br><b>Dedikált (önálló kártya):</b> saját memóriája (VRAM) és hűtése van; játékokhoz, 3D tervezéshez elengedhetetlen, ha ezeket valóban nagyon komolyan szeretnénk végezni.</td>
           </tr>
           <tr>
             <td><b>Tápegység (PSU)</b></td>
@@ -105,8 +105,8 @@
           <tr>
             <td><b>Ütésállóság és zaj</b></td>
             <td>Érzékeny az ütésre (ha leesik, tönkremehet), zúg és kattog.</td>
-            <td>Teljesen néma, ütésálló.</td>
-            <td>Teljesen néma, ütésálló, rágógumi méretű.</td>
+            <td>Nincs mozgó alkatrésze, ezért általában nagyon halk, ütésálló.</td>
+            <td>Nincs mozgó alkatrésze, ezért általában nagyon halk, ütésálló, rágógumi méretű.</td>
           </tr>
           <tr>
             <td><b>Mire érdemes használni?</b></td>
@@ -140,7 +140,7 @@
         <li><b>Történelmi 3 karakter:</b> Régen (DOS idején) a kiterjesztés maximum 3 betű lehetett (ezért létezik ma is <code class="inline">.htm</code> és <code class="inline">.html</code>, vagy <code class="inline">.jpg</code> és <code class="inline">.jpeg</code>). Ma már nincs ilyen korlát.</li>
         <li><b>Ne írd át kézzel a kiterjesztést!</b> Ha egy <code class="inline">kép.jpg</code> fájlt egyszerűen átnevezel <code class="inline">kép.pdf</code>-re, attól a belseje nem alakul át PDF-fé, csak elrontod a fájlt! Átalakításhoz a <i>Mentés másként (F12)</i> vagy az <i>Exportálás</i> funkciót kell használni. <br>
         <div class="enyhe-kiemeles">Néhány kivétel akad. Ha például letöltesz egy képet, amely <code class="inline">.webp</code> kiterjesztéssel rendelkezik, azt átnevezéssel átalakíthatod <code class="inline">.png</code>-re. Erre azért lehet szükség, mert sok program nem ismeri az újabb képformátumokat. Fontos megjegyzés, hogy ez nem valódi átalakítás, bizonyos esetekben hibát is okozhat, de az Office programok pl. tudják kezelni az így átnevezett fájlokat. Ha viszont tényleg átalakítanád, ahhoz külön erre való programra van szükség.</div></li>
-        <li><b>Tiltott és kerülendő karakterek:</b> Fájlnévbe javaslom, hogy ne tegyél pontot (a kiterjesztés elválasztóján kívül) vagy vesszőt, mert ezeket nem minden program tudja megfelelően kezelni. A rendszer nem is engedi a következő karakterek használatát: <code class="inline">\ / : * ? " &lt; &gt; |</code>. A teljes elérési út ne legyen 255 karakternél hosszabb (ez szintén nem általános érvényű korlát, de néhány program nem tudja az ennél hosszabbakat kezelni)!</li>
+        <li><b>Tiltott és kerülendő karakterek:</b> a rendszer nem engedi a következő karakterek használatát: <code class="inline">\ / : * ? " &lt; &gt; |</code>. (Néhány program még nem tudja kezelni a hosszú, 255 karakternél hosszabb fájlneveket és a fájlnévbe írt pontot vagy vesszőt. Egy Word-dokumentum elnevezésénél ez nem okoz gondot, ott nyugodtan formázhatod pl. ponttal a dátumot, de ha például programozáshoz használsz fel egy fájlt, akkor ott érdemes lehet más karaktereket használni.)</li>
         <li><b>Kis- és nagybetűk:</b> Windows alatt a <code class="inline">cím.docx</code> és a <code class="inline">CÍM.docx</code> <b>ugyanannak</b> a fájlnak számít (nem lehetnek egy mappában). Linux és webszerverek alatt viszont két külön fájlnak számítanak!</li>
         <li><b><span class="ia" data-target="elnevezes" data-tipus="toggle">Beszédes nevek</span>:</b> A <code class="inline">doksi1.docx</code> rossz név. Helyette használj ilyet: <code class="inline">2026_okt_tortenelem_essze_Nevem.docx</code>!</li>
         <div class="lenyilo-tartalom" id="elnevezes">Magyarul olyan nevet adj a dolgaidnak, amikről fel fogod egy év múlva is ismerni, hogy mi az. Ugyanígy érdemes átlátható mappaszerkezetet alkotni. Próbálj meg <i>outside the box</i> gondolkodni: az, hogy most tudod, mi a "beadandó", nem jelenti azt, hogy később is tudni fogod.</div>
@@ -289,12 +289,12 @@
           </tr>
           <tr class="kiemeles">
             <td>⭐ <b>.docx, .xlsx, .pptx</b><br>(és .doc, .xls, .ppt)</td>
-            <td><b>[KÖTELEZŐ]</b> Microsoft <b>Word</b> (szöveg: .docx), <b>Excel</b> (táblázat: .xlsx) és <b>PowerPoint</b> (prezentáció: .pptx) fájlok. A végén lévő <b>„x”</b> a modern, tömörített verziót jelöli. <br>
+            <td><b>[KÖTELEZŐ]</b> Microsoft <b>Word</b> (szöveg: .docx), <b>Excel</b> (táblázat: .xlsx) és <b>PowerPoint</b> (prezentáció: .pptx) fájlok. A végén lévő <b>„x”</b> a modern Office Open XML-formátumok; belső felépítésük ZIP-alapú csomag, amely XML-fájlokat és egyéb adatokat tartalmaz. <br>
             <span class="extra">Ezek a fájlok valójában kis tömörített mappák, amelyekből kinyerhető minden felhasznált tartalom, pl. a képek. Ha készítesz egy ppt-t, és a mentett fájl formátumát .zip-re változtatod, akkor külön kinyerheted a prezentációban használt képeket, szövegeket és hangokat is.</span></td>
           </tr>
           <tr class="kiemeles">
             <td>⭐ <b>.pdf</b></td>
-            <td><b>[KÖTELEZŐ]</b> <b>Platformfüggetlen dokumentum:</b> minden gépen és telefonon hajszálpontosan ugyanúgy néz ki, nem csúszik szét a formázása.<br>
+            <td><b>[KÖTELEZŐ]</b> <b>Platformfüggetlen dokumentum:</b> célja, hogy lehetőleg minden eszközön megőrizze a dokumentum elrendezését.<br>
             <span class="extra">Apró eltérések azért lehetnek. Ha pl. hiányzik egy betűtípus vagy a megjelenítőben speciális dolgokat állítottál be, akkor elcsúszhat a megjelenés, de a cél, hogy ne legyen ilyen.</span></td>
           </tr>
           <tr>
@@ -303,7 +303,7 @@
           </tr>
           <tr>
             <td><b>.odt / .ods / .odp</b></td>
-            <td><span class="ia" data-target="nyilt_forraskod" data-tipus="toggle">Nyílt forráskódú</span> programmal készített (OpenDocument) szöveg, táblázat és prezentáció (pl. LibreOffice).
+            <td><span class="ia" data-target="nyilt_forraskod" data-tipus="toggle">Nyílt forráskódú</span> programmal (pl. LibreOffice) is szerkeszthető, nyílt szabványú OpenDocument-formátumú szöveg, táblázat és prezentáció.
             <div class="lenyilo-tartalom extra" id="nyilt_forraskod">A <b>nyílt forráskód</b> lényege, hogy a program kódjához bárki szabadon hozzáférhet, azt módosíthatja és terjesztheti. Az így készült programok olcsóbbak, sőt, sokszor teljesen ingyenesek.</div></td>
           </tr>
           <tr>
@@ -407,7 +407,7 @@
       </div>
       <ol>
         <li><b><span class="ia" data-target="folyamatok" data-tipus="modal">Folyamatok (Processes) fül</span>:</b> Itt látod, melyik program hány százalékban terheli a <b>Processzort (CPU)</b>, a <b>Memóriát (RAM)</b>, a <b>Lemezegységet</b> vagy a <b>Hálózatot</b>. Ha a fejlécre kattintasz, sorba rendezheted őket! A lefagyott programot kijelölve a <i>Feladat befejezése</i> gombbal lőheted le.</li>
-        <li><b><span class="ia" data-tipus="modal" data-target="inditas">Indítási alkalmazások</span> (Startup apps) fül – a lassú gépindítás ellenszere!</b> Itt látod azokat a programokat (pl. Spotify, Discord, Steam, Teams), amik a gép bekapcsolásakor <b>automatikusan elindulnak a háttérben</b>, és zabálják a memóriát. Amelyiknek „Magas” a hatása, és nem kell azonnal, arra kattints jobb gombbal, és válaszd a <b>Letiltás</b> opciót! (A program nem törlődik, csak nem indul el magától minden reggel).</li>
+        <li><b><span class="ia" data-tipus="modal" data-target="inditas">Indítási alkalmazások</span> (Startup apps) fül – a lassú gépindítás ellenszere!</b> Itt látod azokat a programokat (pl. Spotify, Discord, Steam, Teams), amik a gép bekapcsolásakor <b>automatikusan elindulnak a háttérben</b>, és zabálják a memóriát. Amelyekről biztosan tudod, hogy  nem kell azonnal elindulniuk a géppel együtt, azokra kattints jobb gombbal, és válaszd a <b>Letiltás</b> opciót! (A program nem törlődik, csak nem indul el magától minden reggel). De fontos, hogy ne kapcsolj ki véletlenül fontos rendszerösszetevőket!</li>
         <li><b><span class="ia" data-tipus="modal" data-target="teljesitmeny">Teljesítmény</span> (Performance) fül:</b> Innen egyetlen pillantással leolvashatod a géped pontos adatait: milyen típusú a CPU-d, hány GB RAM van a gépben, SSD vagy HDD dolgozik-e benne, és milyen videókártyád van!</li>
         <li><b><span class="ia" data-tipus="modal" data-target="felhasznalok">Felhasználók</span> (Users) fül:</b> itt azt nézheted meg, hogy milyen felhasználók vannak bejelentkezve a gépre és milyen folyamatokat (vagy legalábbis mekkora erőforrás-igényűeket) futtatnak.</li>
       </ol>
@@ -469,7 +469,7 @@
           </tr>
           <tr>
             <td><code class="inline">arp -a</code></td>
-            <td><b>Kik vannak még a hálózaton?</b> Kilistázza az összes olyan eszközt (telefonokat, más gépeket, okostévét), amikkel a géped kapcsolatba lépett a helyi Wi-Fi vagy kábelhálózaton!</td>
+            <td><b>Kik vannak még a hálózaton?</b> Kilistázza az összes olyan eszközt (telefonokat, más gépeket, okostévét), amikkel a géped kapcsolatba lépett a helyi Wi-Fi vagy kábelhálózaton! Nem mutatja meg az összes eszközt, csak azokat, amelyekkel már kommunikált a géped.</td>
           </tr>
           <tr>
             <td><code class="inline">ping google.com</code></td>
@@ -477,7 +477,7 @@
           </tr>
           <tr>
             <td><code class="inline">tracert google.com</code></td>
-            <td><b>Útvonalkövetés:</b> megmutatja az összes köztes állomást (routert, szervert), amin a te adatcsomagod átugrik Budapesttől egészen a célállomásig!</td>
+            <td><b>Útvonalkövetés:</b> megmutatja az összes köztes állomást (routert, szervert), amin a te adatcsomagod átugrik Budapesttől egészen a célállomásig – már amelyik válaszol!</td>
           </tr>
           <tr>
             <td><code class="inline">systeminfo</code></td>
@@ -544,7 +544,7 @@
       // 3. IGAZ / HAMIS
       { szint: "alap", tipus: "tf", kategoria: "Fájltípusok", kerdes: "Windows alatt létrehozhatsz egy mappán belül egy 'fizika.docx' és egy 'FIZIKA.docx' nevű fájlt egyszerre.", helyes: false, magyarazat: "Hamis! A Windows nem különbözteti meg a kis- és nagybetűket a fájlnevekben." },
       { szint: "halado", tipus: "tf", kategoria: "Fájltípusok", kerdes: "Ha egy elmosódott JPG képet mesterséges intelligenciával feljavítunk, visszakapjuk a valódi, eredetileg elveszett információt.", helyes: false, magyarazat: "Hamis! Az MI nem ismeri az elveszett adatot, csak odaképzeli a részleteket." },
-      { szint: "alap", tipus: "tf", kategoria: "Hardver", kerdes: "Az integrált videókártya (IGP) a processzorba van beépítve, és a rendszermemóriát (RAM) használja.", helyes: true, magyarazat: "Igaz! Nincs különálló saját memóriája." },
+      { szint: "alap", tipus: "tf", kategoria: "Hardver", kerdes: "Az integrált videókártya (IGP) a processzorba van beépítve, és általában a rendszermemóriát (RAM) használja.", helyes: true, magyarazat: "Igaz! Nincs különálló saját memóriája." },
       { szint: "alap", tipus: "tf", kategoria: "Operációs rendszer", kerdes: "Ha letörlöd egy játék parancsikonját (.lnk) az asztalról, a játék programfájljai is törlődnek a gépről.", helyes: false, magyarazat: "Hamis! A parancsikon csak egy mutató." },
       { szint: "alap", tipus: "tf", kategoria: "Operációs rendszer", kerdes: "A parancssoros (CLI) felület használatához nem kell ismerni a parancsokat, mert minden elérhető egérrel a menükből.", helyes: false, magyarazat: "Hamis! A parancssorban nincsenek menük, fejből kell tudni a parancsokat." },
       { szint: "alap", tipus: "tf", kategoria: "Fájltípusok", kerdes: "A .docx, .xlsx és .pptx végén lévő 'x' betű jelzi, hogy ezek modern, tömörített XML-alapú fájlok.", helyes: true, magyarazat: "Igaz! Ezek a modernebb Office formátumok." },
