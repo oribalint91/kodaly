@@ -4,52 +4,126 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🔢 Számrendszerek és átváltások</title>
-  <link rel="stylesheet" href="../style.css?v=2">
-  <script type="text/javascript" src="../script.js?v=2"></script>
+  <link rel="stylesheet" href="../style.css?v=3">
+  <script type="text/javascript" src="../script.js?v=3" defer></script>
   <script>window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] } };</script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  <style>
+    /* --- JAVÍTOTT RESZPONZÍV ÉS TÖRDELÉSI STÍLUSOK --- */
+    * { box-sizing: border-box; }
+    
+    /* Navbar védelme a globális box-sizing ellen, hogy ne törjön több sorba */
+    .top-nav, .top-nav *, .top-nav ul, .top-nav li, .top-nav a {
+      box-sizing: content-box;
+    }
+
+    .task-card, details, .bemutatas, .osszefoglalas { min-width: 0; overflow-wrap: anywhere; }
+    .MathJax, .math { overflow-wrap: break-word; word-wrap: break-word; max-width: 100%; }
+    .math-container { overflow-x: auto; overflow-y: hidden; max-width: 100%; display: block; padding: 4px 0; }
+    
+    /* A .resp oszlopok egymás alá rendezése, hogy a keskeny konténerben ne torlódjanak a képletek */
+    .resp {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+    .resp > * { min-width: 0; }
+
+    /* Táblázatok reszponzivitása és fejlécek védelme a függőleges töréstől */
+    .table-wrap {
+      max-width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 15px 0;
+    }
+    .table-wrap .tema-tabla { width: 100%; margin: 0; white-space: normal; border-collapse: collapse; }
+    .table-wrap td, .table-wrap th { 
+      overflow-wrap: anywhere; 
+      word-break: normal;
+      hyphens: none;
+      padding: 12px 15px;
+    }
+    .tema-tabla.wide-table th {
+      white-space: nowrap; /* Megakadályozza, hogy a fejléc szavai egybetűs sorokra törjenek */
+    }
+    .tema-tabla.wide-table th, .tema-tabla.wide-table td {
+      min-width: 120px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .tema-tabla.wide-table th:first-child, .tema-tabla.wide-table td:first-child {
+      min-width: 160px;
+      text-align: left;
+    }
+    .bit-sor {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 6px;
+      width: 100%;
+      overflow-x: auto;
+      padding: 8px 0;
+      box-sizing: border-box;
+    }
+    .bit-oszlop { flex: 0 0 54px; text-align: center; }
+    .bit-gomb { width: 42px; height: 42px; font-size: 1.2rem; font-weight: bold; cursor: pointer; }
+    .bit-helyiertek { font-size: 0.85rem; font-weight: bold; }
+  </style>
 </head>
 <body>
 
   <h2>🔢 2. rész: A számrendszerek alapjai és átváltások</h2>
-  <p class="intro">Mi, emberek a <b>tízes (decimális)</b> számrendszert használjuk, mert tíz ujjunk van. A számítógépek belsejében viszont apró tranzisztorok dolgoznak, amik csak két állapotot ismernek: <i>van áram (1)</i> vagy <i>nincs áram (0)</i> – ez a <b>kettes (bináris)</b> számrendszer. Hogy a hosszú nullákból és egyesekből álló sorokat mi is könnyen el tudjuk olvasni, az informatikában gyakran használjuk a <b>tizenhatos (hexadecimális)</b> számrendszert is, matematikaórán pedig bármilyen más alapú (3-as, 4-es, 5-ös, 8-as) számrendszerrel találkozhatsz!</p>
+  <p class="intro">Mi, emberek a <b>tízes (decimális)</b> számrendszert használjuk, mert tíz ujjunk van. A számítógép digitális áramkörei két állapotot jelölnek 0-val és 1-gyel – ez a <b>2-es (bináris)</b> számrendszer. Hogy a hosszú nullákból és egyesekből álló sorokat mi is könnyen el tudjuk olvasni, az informatikában gyakran használjuk a <b>16-os (hexadecimális)</b> számrendszert is, matematikaórán pedig bármilyen más alapú (3-as, 4-es, 5-ös, 7-es, 8-as, 12-es stb.) számrendszerrel találkozhatsz!</p>
 
   <!-- ==========================================
-       1. KÁRTYA: AZ ÓRA-HASONLAT ÉS ALAPFOGALMAK
+       1. KÁRTYA: HELYI ÉRTÉK ÉS ALAKI ÉRTÉK
        ========================================== -->
   <div class="task-card">
-    <h3>1. Mi az a Helyiérték és az Alaki érték? (Az Időmérés trükkje)</h3>
-    <p>Azt hiszed, sosem használtál még a tízesen kívül más számrendszert? Dehogynem: <b>minden nap, amikor ránézel az órára!</b> Az időmérésünk ugyanis <b>60-as számrendszerben</b> működik (1 perc = 60 másodperc, 1 óra = 60 perc = $60 \times 60 = 3600$ másodperc).</p>
+    <h3>1. Helyi érték és alaki érték</h3>
+    <p>Az idő mértékegységei között nem mindig tízes az átváltás: 60 másodperc 1 perc, 60 perc 1 óra, 24 óra 1 nap. Ezért az idő összeadásánál az egyes egységeket külön váltjuk át.</p>
 
     <div class="bemutatas">
       <p>⏱️ Órai példa: Hány másodperc 10 óra 12 perc 5 másodperc?</p>
-      Ha át akarjuk váltani másodpercre, minden számot megszorzunk a saját „helyiértékével”:<br>
+      Ha át akarjuk váltani másodpercre, minden mennyiséget megszorzunk az átváltási szorzójával:<br>
       $$\text{Idő} = (10 \times 3600\text{ s}) + (12 \times 60\text{ s}) + (5 \times 1\text{ s}) = 36\,000 + 720 + 5 = \mathbf{36\,725\text{ s}}$$
-      Ugyanez 60-as számrendszerben felírva: $36\,725_{(10)} = (10)(12)(5)_{(60)} = \text{AC5}_{(60)}$.
     </div>
 
-    <details open>
+    <!-- Előzetes magyarázó blokk az n alapú rendszerek számjegyeiről -->
+    <div class="bemutatas" style="margin-top: 15px; background-color: var(--intro-bg);">
+      <p><b>Hogyan épül fel bármelyik $n$ alapú számrendszer?</b></p>
+      <ul>
+        <li>Egy $n$ alapú számrendszerben a számjegyek mindig <b>0-tól $n - 1$-ig</b> tartanak. Például a <b>7-es számrendszerben</b> a használható számjegyek: <code class="inline">0, 1, 2, 3, 4, 5, 6</code> (a 7-es már nem létezik benne!).</li>
+        <li>Ha a számrendszer alapja nagyobb, mint 10 (például a <b>12-es</b> vagy <b>16-os</b> számrendszer), akkor a 10-nél nagyobb értékű számjegyeket betűkkel jelöljük: <code class="inline">A = 10, B = 11, C = 12, D = 13, E = 14, F = 15</code>.</li>
+      </ul>
+    </div>
+
+    <details open style="margin-top: 15px;">
       <summary>A 3 legfontosabb szabály bármilyen számrendszerben</summary>
       <ol>
-        <li><b>Alapszám ($n$):</b> Megmutatja, hányféle számjegyet használhatunk, és mennyivel szorozzuk a helyiértékeket jobbról balra haladva. <b>Szabály:</b> Egy $n$ alapú számrendszerben a legnagyobb számjegy mindig <b>$n - 1$</b>!
+        <li><b>Alapszám ($n$):</b> Megmutatja, hányféle számjegyet használhatunk, és mennyivel szorozzuk a helyi értékeket jobbról balra haladva. <b>Szabály:</b> Egy $n$ alapú számrendszerben a legnagyobb számjegy mindig <b>$n - 1$</b>!
           <ul>
             <li><b>10-es (decimális):</b> 10 számjegy: <code class="inline">0, 1, 2, 3, 4, 5, 6, 7, 8, 9</code></li>
-            <li><b>2-es (bináris):</b> 2 számjegy: <code class="inline">0, 1</code> (itt sosincs 2-es számjegy!)</li>
-            <li><b>5-ös számrendszer:</b> 5 számjegy: <code class="inline">0, 1, 2, 3, 4</code></li>
-            <li><b>8-as (oktális):</b> 8 számjegy: <code class="inline">0, 1, 2, 3, 4, 5, 6, 7</code></li>
-            <li><b>16-os (hexadecimális):</b> 16 „számjegy” kell ($0$-tól $15$-ig). Mivel a $10, 11, 12, 13, 14, 15$ már kétjegyű lenne, az ábécé nagybetűivel helyettesítjük őket:<br>
-            <b><code class="inline">A = 10</code>, <code class="inline">B = 11</code>, <code class="inline">C = 12</code>, <code class="inline">D = 13</code>, <code class="inline">E = 14</code>, <code class="inline">F = 15</code></b>!</li>
+            <li><b>2-es (bináris):</b> 2 számjegy: <code class="inline">0, 1</code></li>
+            <li><b>7-es számrendszer:</b> 7 számjegy: <code class="inline">0, 1, 2, 3, 4, 5, 6</code></li>
+            <li><b>16-os (hexadecimális):</b> <code class="inline">0-9</code> és <code class="inline">A = 10, B = 11, C = 12, D = 13, E = 14, F = 15</code></li>
           </ul>
         </li>
-        <li><b>Helyiérték (HE):</b> A legutolsó (jobb szélső) egész számjegy helyiértéke <b>MINDIG 1</b> (hiszen $n^0 = 1$). Innen balra lépkedve mindig megszorozzuk a számrendszer alapjával ($1, n, n^2, n^3, n^4\dots$)!
+        <li><b>Helyi érték:</b> Minden számrendszerben a jobb szélső egész számjegy helyi értéke 1 (hiszen $n^0 = 1$). Minden számrendszerben a jobb szélső egész számjegy helyi értéke 1. Innen balra lépkedve mindig megszorozzuk a számrendszer alapjával ($1, n, n^2, n^3, n^4\dots$)!
           <ul>
-            <li><b>2-esben a helyiértékek (2 hatványai):</b> $\dots 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1$</li>
-            <li><b>5-ösben a helyiértékek (5 hatványai):</b> $\dots 625, 125, 25, 5, 1$</li>
-            <li><b>16-osban a helyiértékek (16 hatványai):</b> $\dots 4096, 256, 16, 1$</li>
+            <li><b>2-esben a helyi értékek (2 hatványai):</b> $\dots 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1$</li>
+            <li><b>7-esben a helyi értékek (7 hatványai):</b> $\dots 343, 49, 7, 1$</li>
+            <li><b>16-osban a helyi értékek (16 hatványai):</b> $\dots 4096, 256, 16, 1$</li>
           </ul>
         </li>
-        <li><b>Alaki érték (AÉ) és Valódi érték (VÉ):</b> Az <i>alaki érték</i> maga a leírt számjegy (pl. a $204$-ben a $2$-es). A <i>valódi érték</i> pedig a <b>Helyiérték × Alaki érték</b> szorzata!</li>
+        <li><b>Alaki érték és helyi érték szerinti érték:</b> 
+          <ul>
+            <li><b>Alaki érték:</b> maga a leírt számjegy.</li>
+            <li><b>Helyi érték:</b> a pozícióhoz tartozó alap-hatvány.</li>
+            <li><b>Helyi érték szerinti érték (Szorzat):</b> alaki érték $\times$ helyi érték.</li>
+          </ul>
+          <p><i>Például a $243_{(10)}$ számban a 2 alaki értéke 2, a helyi értéke 100, ezért az adott helyen 200-at ér; a 4 alaki értéke 4, a helyi értéke 10, így 40-et ér; a 3 alaki értéke pedig 3, a helyi értéke 1, így 3-at ér.</i></p>
+        </li>
       </ol>
+      <p class="extra" style="margin-top: 10px;">16-os számrendszerben, ha azt írom, $10$, az valójában ezt jelenti: $1 \times 16 + 0 \times 1 = 16$. Ezért nem jelölhetek egy értéket két karakterrel, ha az kisebb, mint a számrendszer alapja.</p>
     </details>
   </div>
 
@@ -57,45 +131,49 @@
        2. KÁRTYA: ÁTVÁLTÁS BÁRMILYENBŐL 10-ESBE + BIT-SZIMULÁTOR
        ========================================== -->
   <div class="task-card">
-    <h3>2. Átváltás bármilyen számrendszerből 10-esbe (A Táblázatos módszer)</h3>
-    <p>Ha egy nem tízes számrendszerbeli számot (pl. $2$-es, $8$-as, $16$-os) szeretnél átváltani a számunkra érthető $10$-es számrendszerbe, a dolgunk pofonegyszerű: <b>felírjuk a számjegyek fölé a helyiértékeket jobbról balra, összeszorozzuk a helyiértéket az alaki értékkel, majd összeadjuk a szorzatokat!</b></p>
+    <h3>2. Átváltás bármilyen számrendszerből 10-esbe (táblázatos módszer)</h3>
+    <p>Ha egy nem tízes számrendszerbeli számot (pl. $2$-es, $7$-es, $16$-os) szeretnél átváltani a tízes számrendszerbe, a dolgunk pofonegyszerű: <b>felírjuk a számjegyek fölé a helyi értékeket jobbról balra, összeszorozzuk a helyi értéket az alaki értékkel, majd összeadjuk a szorzatokat!</b></p>
 
     <details open>
       <summary>Órai mintapéldák: $\text{ABCD}_{(16)}$ és $1100101001_{(2)}$ átváltása 10-esbe</summary>
       <p><b>1. példa: Mennyi $\text{ABCD}_{(16)}$ tízes számrendszerben?</b><br>
-      A 16-os számrendszer helyiértékei jobbról balra: $1$, $16$, $16 \times 16 = 256$, és $256 \times 16 = 4096$.</p>
+      A 16-os számrendszer helyi értékei jobbról balra: $1$, $16$, $16 \times 16 = 256$, és $256 \times 16 = 4096$.</p>
       
-      <table class="tema-tabla" style="text-align: center;">
-        <thead>
-          <tr><th>Sor neve</th><th>4. hely</th><th>3. hely</th><th>2. hely</th><th>1. hely (egyesek)</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><b>Helyiértékek ($16^k$)</b></td><td><b>4096</b></td><td><b>256</b></td><td><b>16</b></td><td><b>1</b></td></tr>
-          <tr><td><b>Alaki értékek</b></td><td>A</td><td>B</td><td>C</td><td>D</td></tr>
-          <tr><td><b>Érték 10-esben</b></td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
-          <tr><td><b>Valódi érték (Szorzat)</b></td><td>$10 \times 4096 = \mathbf{40\,960}$</td><td>$11 \times 256 = \mathbf{2816}$</td><td>$12 \times 16 = \mathbf{192}$</td><td>$13 \times 1 = \mathbf{13}$</td></tr>
-        </tbody>
-      </table>
-      <p>Összeadjuk a valódi értékeket: $40\,960 + 2816 + 192 + 13 = \mathbf{43\,981_{(10)}}$! (Egy rövidebb példa: $15_{(16)} = 1 \times 16 + 5 \times 1 = 21_{(10)}$).</p>
+      <div class="table-wrap">
+        <table class="tema-tabla wide-table" style="text-align: center;">
+          <thead>
+            <tr><th>Sor neve</th><th>4. hely</th><th>3. hely</th><th>2. hely</th><th>1. hely (egyesek)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>Helyi érték ($16^k$)</b></td><td><b>4096</b></td><td><b>256</b></td><td><b>16</b></td><td><b>1</b></td></tr>
+            <tr><td><b>Számjegy</b></td><td>A</td><td>B</td><td>C</td><td>D</td></tr>
+            <tr><td><b>A számjegy tízes értéke</b></td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+            <tr><td><b>Helyi érték szerinti érték (Szorzat)</b></td><td>$10 \times 4096 = \mathbf{40\,960}$</td><td>$11 \times 256 = \mathbf{2816}$</td><td>$12 \times 16 = \mathbf{192}$</td><td>$13 \times 1 = \mathbf{13}$</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Összeadjuk az értékeket a helyi értéken: $40\,960 + 2816 + 192 + 13 = \mathbf{43\,981_{(10)}}$! (Megjegyzés: a $10_{(16)}$ nem egyetlen számjegy, hanem két karakterből álló szám a 16-os rendszerben, amelynek értéke $1 \times 16 + 0 \times 1 = 16_{(10)}$).</p>
 
       <hr class="elvalaszto">
       <p><b>2. példa: Mennyi $1100101001_{(2)}$ tízes számrendszerben?</b><br>
-      Kettes számrendszerben még könnyebb dolgunk van: <b>csak azokat a helyiértékeket kell összeadni, ahol 1-es áll</b> (hiszen a 0-val való szorzás 0-t ad)!</p>
-      <table class="tema-tabla">
-        <thead>
-          <tr><th>Helyiérték</th><th>512</th><th>256</th><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><b>Számjegy (Bit)</b></td><td><b>1</b></td><td><b>1</b></td><td>0</td><td>0</td><td><b>1</b></td><td>0</td><td><b>1</b></td><td>0</td><td>0</td><td><b>1</b></td></tr>
-          <tr><td><b>Valódi érték</b></td><td>512</td><td>256</td><td>0</td><td>0</td><td>32</td><td>0</td><td>8</td><td>0</td><td>0</td><td>1</td></tr>
-        </tbody>
-      </table>
+      Kettes számrendszerben még könnyebb dolgunk van: <b>csak azokat a helyi értékeket kell összeadni, ahol 1-es áll</b> (hiszen a 0-val való szorzás 0-t ad)!</p>
+      <div class="table-wrap">
+        <table class="tema-tabla wide-table">
+          <thead>
+            <tr><th>Helyi érték</th><th>512</th><th>256</th><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>Számjegy (Bit)</b></td><td><b>1</b></td><td><b>1</b></td><td>0</td><td>0</td><td><b>1</b></td><td>0</td><td><b>1</b></td><td>0</td><td>0</td><td><b>1</b></td></tr>
+            <tr><td><b>Helyi érték szerinti érték</b></td><td>512</td><td>256</td><td>0</td><td>0</td><td>32</td><td>0</td><td>8</td><td>0</td><td>0</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
       <p>Összeadva: $512 + 256 + 32 + 8 + 1 = \mathbf{809_{(10)}}$.</p>
     </details>
 
     <div class="osszefoglalas" style="margin-top: 15px;">
-      💡 <b>Próbáld ki élőben! Interaktív 8-bites (1 bájtos) Kettes és Tizenhatos Szimulátor</b><br>
-      Kattints a nullákra és egyesekre, hogy fel- vagy lekapcsold az adott helyiértéket! Figyeld meg, hogy 8 biten a legnagyobb szám, amit kirakhatsz, a <b>255</b> ($\text{FF}_{(16)}$), és hogy az utolsó számjegy (az <b>1</b>-es helyiérték) dönti el, hogy a szám <b>páros vagy páratlan</b>!
+      💡 <b>Próbáld ki élőben! Interaktív 8-bites (1 bájtos) kettes és tizenhatos számrendszer-szimulátor</b><br>
+      Kattints a nullákra és egyesekre, hogy fel- vagy lekapcsold az adott helyi értéket! Minden 4 bites csoport egy hexadecimális számjegynek felel meg. Ezért egy bájt két hexadecimális számjeggyel írható fel (pl. $0010\,1010_{(2)} = \text{2A}_{(16)}$). Előjel nélküli 8 bites ábrázolással 0 és 255 közötti egész értékek írhatók le, és bináris alakban a jobb szélső bit (az 1-es helyi értékű bit) mutatja meg, hogy a szám páros-e (ha ez 0, akkor páros, ha 1, akkor páratlan).
     </div>
 
     <div class="bit-sor" id="bit-kapcsolo-sor"></div>
@@ -107,99 +185,121 @@
        ========================================== -->
   <div class="task-card">
     <h3>3. Átváltás 10-es számrendszerből másik alapúba (Maradékos osztás)</h3>
-    <p>Ha egy tízes számrendszerbeli számot (pl. $2026$-ot) szeretnénk átváltani egy másik ($n$ alapú) számrendszerbe, két módszer közül választhatunk:</p>
+    <p>A maradékos osztás módszere nemcsak a kettes vagy tizenhatos számrendszerben működik, hanem <b>bármilyen tetszőleges alapú</b> (pl. 7-es, 12-es) rendszerben is! Nézzünk egy példát egy nem bináris alapra is.</p>
+
+    <div class="bemutatas" style="margin-bottom: 15px;">
+      <p>⭐ Példa: Váltsuk át a $100_{(10)}$ számot <b>7-es számrendszerbe</b>!</p>
+      $100 : 7 = 14$, maradék: <b>2</b> ($2 \times 1$)<br>
+      $14 : 7 = 2$, maradék: <b>0</b> ($0 \times 7$)<br>
+      $2 : 7 = 0$, maradék: <b>2</b> ($2 \times 49$)<br><br>
+      Alulról felfelé összeolvasva: <b>$202_{(7)}$</b>.<br>
+      <i>Ellenőrzés helyi értékekkel:</i> $2 \times 7^2 + 0 \times 7^1 + 2 \times 7^0 = 2 \times 49 + 0 + 2 = 98 + 2 = \mathbf{100_{(10)}}$.
+    </div>
 
     <details open>
-      <summary>1. módszer: Az ismételt maradékos osztás (A „Szűrő” módszer)</summary>
-      <p>A számot elosztjuk a cél-számrendszer alapjával (pl. 2-vel, 5-tel vagy 16-tal). <b>Felírjuk az egész hányadost és mellé a maradékot!</b> Az egész hányadost újra és újra elosztjuk az alappal egészen addig, amíg a hányados <b>0 nem lesz</b>. A végeredményt a <b>maradékok adják, ALULRÓL FELFELÉ (fordított sorrendben) összeolvasva</b>!</p>
+      <summary>1. módszer: Az ismételt maradékos osztás</summary>
+      <p>A számot elosztjuk a cél-számrendszer alapjával. <b>Felírjuk az egész hányadost és mellé a maradékot!</b> A maradék mindig szigorúan kisebb, mint a célalap. A kapott hányadost újra elosztjuk az alappal egészen addig, amíg a hányados <b>0 nem lesz</b>. A végeredményt a <b>maradékok adják, ALULRÓL FELFELÉ (fordított sorrendben) összeolvasva</b>!</p>
       
-      <div class="extra" style="padding: 10px; margin: 10px 0;">
-        <b>Miért visszafelé (alulról felfelé) olvassuk össze a maradékokat?</b><br>
-        Mert az első osztási maradék csak azt mutatja meg, mennyi maradt az egyesek helyén (pl. 2-vel osztva azt, hogy páratlan-e a szám). Az utolsó maradék viszont már „sok szűrőn átment”, sokszor le lett osztva az alappal, tehát az a legnagyobb helyiértékhez tartozik!
-      </div>
+      <p class="extra"><b>Általános szabály a maradékokról:</b> Ha a maradék $10$ vagy annál nagyobb (pl. 16-os számrendszerben), akkor a helyes számjegy eléréséhez betűket használunk: $10 \rightarrow \text{A}$, $11 \rightarrow \text{B}$, $12 \rightarrow \text{C}$, $13 \rightarrow \text{D}$, $14 \rightarrow \text{E}$, $15 \rightarrow \text{F}$.</p>
 
       <div class="resp">
-        <div class="resp-left">
-          <div class="bemutatas">
-            <p>1. Órai példa: $1367_{(10)} = ?_{(5)}$ (Ötös számrendszerbe)</p>
-            $1367 : 5 = 273$, maradék: <b>2</b> (egyesek: $2 \times 1$)<br>
-            $273 : 5 = 54$, maradék: <b>3</b> (ötösök: $3 \times 5$)<br>
-            $54 : 5 = 10$, maradék: <b>4</b> (huszonötösök: $4 \times 25$)<br>
-            $10 : 5 = 2$, maradék: <b>0</b> (százhuszonötösök: $0 \times 125$)<br>
-            $2 : 5 = 0$, maradék: <b>2</b> (hatszázhuszonötösök: $2 \times 625$)<br><br>
-            Alulról felfelé összeolvasva: <b>$20432_{(5)}$</b>!<br>
-            <i>Ellenőrzés: $(2\times 625) + (0\times 125) + (4\times 25) + (3\times 5) + 2 = 1250 + 100 + 15 + 2 = 1367$.</i>
-          </div>
+        <div class="bemutatas">
+          <p>1. Órai példa: $1367_{(10)} = ?_{(5)}$ (Ötös számrendszerbe)</p>
+          $1367 : 5 = 273$, maradék: <b>2</b> (egyesek: $2 \times 1$)<br>
+          $273 : 5 = 54$, maradék: <b>3</b> (ötösök: $3 \times 5$)<br>
+          $54 : 5 = 10$, maradék: <b>4</b> (huszonötösök: $4 \times 25$)<br>
+          $10 : 5 = 2$, maradék: <b>0</b> (százhuszonötösök: $0 \times 125$)<br>
+          $2 : 5 = 0$, maradék: <b>2</b> (hatszázhuszonötösök: $2 \times 625$)<br><br>
+          Alulról felfelé összeolvasva: <b>$20432_{(5)}$</b>!<br>
+          <i>Ellenőrzés: $(2\times 625) + (0\times 125) + (4\times 25) + (3\times 5) + 2 = 1250 + 100 + 15 + 2 = 1367$.</i>
         </div>
-        <div class="resp-right">
-          <div class="bemutatas">
-            <p>2. Órai példa: $2026_{(10)} = ?_{(16)}$ (Tizenhatosba)</p>
-            $2026 : 16 = 126$, maradék: <b>10 → A</b><br>
-            <i>(mert $126 \times 16 = 2016$, és $2026 - 2016 = 10$)</i><br>
-            $126 : 16 = 7$, maradék: <b>14 → E</b><br>
-            <i>(mert $7 \times 16 = 112$, és $126 - 112 = 14$)</i><br>
-            $7 : 16 = 0$, maradék: <b>7 → 7</b><br><br>
-            Alulról felfelé összeolvasva: <b>$\text{7EA}_{(16)}$</b>!<br>
-            <i>Ellenőrzés: $(7\times 256) + (14\times 16) + 10 = 1792 + 224 + 10 = 2026$.</i>
-          </div>
+        <div class="bemutatas">
+          <p>2. Órai példa: $2026_{(10)} = ?_{(16)}$ (Tizenhatosba)</p>
+          $2026 : 16 = 126$, maradék: <b>10 → A</b><br>
+          <i>(mert $126 \times 16 = 2016$, és $2026 - 2016 = 10$)</i><br>
+          $126 : 16 = 7$, maradék: <b>14 → E</b><br>
+          <i>(mert $7 \times 16 = 112$, és $126 - 112 = 14$)</i><br>
+          $7 : 16 = 0$, maradék: <b>7 → 7</b><br><br>
+          Alulról felfelé összeolvasva: <b>$\text{7EA}_{(16)}$</b>!<br>
+          <i>Ellenőrzés: $(7\times 256) + (14\times 16) + 10 = 1792 + 224 + 10 = 2026$.</i>
         </div>
       </div>
     </details>
 
     <details>
-      <summary>2. módszer: A legnagyobb helyiértékekkel való osztás / kivonás (Józan paraszti ész)</summary>
-      <p>Pontosan úgy, ahogy a $36\,725$ másodpercet váltottuk át órára, percre és másodpercre! Megnézzük, melyik a legnagyobb helyiérték, ami még belefér a számba, elosztjuk vele, majd a maradékkal folytatjuk a kisebb helyiértékek felé.</p>
-      <p><b>Villámpélda kettes számrendszerre: $85_{(10)} = ?_{(2)}$</b><br>
-      A kettes helyiértékek: $64, 32, 16, 8, 4, 2, 1$.<br>
-      • Belefér a $64$? Igen ($85 - 64 = 21$ maradt) → <b>1</b> (64)<br>
-      • A $21$-be belefér a $32$? Nem → <b>0</b> (32)<br>
-      • A $21$-be belefér a $16$? Igen ($21 - 16 = 5$ maradt) → <b>1</b> (16)<br>
-      • Az $5$-be belefér a $8$? Nem → <b>0</b> (8)<br>
-      • Az $5$-be belefér a $4$? Igen ($5 - 4 = 1$ maradt) → <b>1</b> (4)<br>
-      • Az $1$-be belefér a $2$? Nem → <b>0</b> (2)<br>
-      • Az $1$-be belefér az $1$? Igen ($1 - 1 = 0$) → <b>1</b> (1)<br>
-      Tehát $85_{(10)} = \mathbf{1010101_{(2)}}$!</p>
-    </details>
-
-    <details>
-      <summary>⚡ Profi trükk: Villám-átváltás 2-es, 4-es, 8-as és 16-os számrendszerek között (10-es érintése nélkül!)</summary>
-      <p>Mivel a $4 = 2^2$, a $8 = 2^3$, a $16 = 2^4$, ezért ezek között <b>nem kell visszaszámolni 10-es számrendszerbe</b>, hanem egyszerűen hátulról (jobbról) csoportosítjuk a kettes számrendszerbeli biteket!</p>
+      <summary>⚡ Profi trükk: Villám-átváltás binárisból 4-es, 8-as és 16-os számrendszerek között</summary>
+      <p>Mivel a $4 = 2^2$, a $8 = 2^3$, a $16 = 2^4$, ezért a kettes számrendszerből ezekbe nem kell visszaszámolni a tízes számrendszerbe, hanem egyszerűen a kettes számrendszerbeli biteket csoportosítjuk (a csoportok mérete rendre 2, 3, illetve 4 bit. Ha a bal szélső csoport nem teljes, balról nullákkal egészítjük ki, például: $1011_{(2)} = 001\,011_{(2)} = 13_{(8)}$):</p>
       <ul>
-        <li><b>2-esből 4-esbe (2 bit = 1 jegy):</b> Az órai példában $4567_{(10)} = 1\,00\,01\,11\,01\,01\,11_{(2)}$. Ha jobbról kettesével levágjuk a biteket ($11_2=3, 01_2=1, 01_2=1, 11_2=3, 01_2=1, 00_2=0, 1_2=1$), azonnal megkapjuk: <b>$1013113_{(4)}$</b>!</li>
-        <li><b>2-esből 8-asba (3 bit = 1 jegy):</b> Jobbról hármasával csoportosítunk! Pl. $101\,110_{(2)} \rightarrow 101_2 = 5$ és $110_2 = 6 \rightarrow \mathbf{56_{(8)}}$.</li>
-        <li><b>2-esből 16-osba (4 bit = 1 hexadecimális jegy!):</b> Jobbról <b>négyesével</b> csoportosítunk (helyiértékek a négyes csoporton belül mindig: $8, 4, 2, 1$)!<br>
-        Példa: $\underbrace{1101}_{8+4+0+1=13=\text{D}}\,\underbrace{0110}_{0+4+2+0=6}_{(2)} = \mathbf{\text{D6}_{(16)}}$! Visszafelé is működik: minden 16-os számjegyet 4 bittel írunk le!</li>
+        <li><b>2-esből 4-esbe (2 bit = 1 jegy):</b> Jobbról kettesével csoportosítunk: $110101_{(2)} = 11\,01\,01_{(2)} = 311_{(4)}$.<br>
+            <i>Ellenőrzés: $110101_{(2)} = 53_{(10)}$, és $311_{(4)} = 3\cdot 4^2 + 1\cdot 4^1 + 1\cdot 4^0 = 48 + 4 + 1 = 53_{(10)}$.</i></li>
+        <li><b>2-esből 8-asba (3 bit = 1 jegy):</b> Jobbról hármasával csoportosítunk: $101\,110_{(2)} \rightarrow 101_{(2)}=5,\ 110_{(2)}=6 \rightarrow 56_{(8)}$.</li>
+        <li><b>2-esből 16-osba (4 bit = 1 hexadecimális jegy):</b> Jobbról négyesével csoportosítunk:
+          <div class="math-container">
+            <p>$1101\,0110_{(2)} = \text{D6}_{(16)}$. A bal oldali csoport értéke 13, azaz D; a jobb oldalié 6.</p>
+          </div>
+        </li>
       </ul>
     </details>
 
-    <!-- INTERAKTÍV LÉPÉSRŐL-LÉPÉSRE ÁTVÁLTÓ ELLENŐRZŐ -->
+    <!-- INTERAKTÍV LÉPÉSRŐL-LÉPÉSRE ÁTVÁLTÓ ÉS GYAKORLÓ SZIMULÁTOR -->
     <div class="bemutatas" style="margin-top: 20px;">
       <p>🧮 Interaktív Számrendszer-Átváltó és Levezetés-generátor (Ellenőrizd a füzeted!)</p>
       <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; margin: 10px 0;">
         <label>10-es szám: <input type="number" id="atvalto-szam" value="2026" min="1" max="999999" class="rovid-input" style="width: 100px;"></label>
         <label>Cél alap (2–16): <input type="number" id="atvalto-alap" value="16" min="2" max="16" class="rovid-input" style="width: 70px;"></label>
-        <button class="gomb" onclick="szamolAtvaltast()" style="background: var(--secondary); color: white; font-weight: bold; margin: 0; cursor: pointer;">Levezetés mutatása</button>
+        <button type="button" class="gomb" onclick="szamolAtvaltast()" style="background: var(--secondary); color: white; font-weight: bold; margin: 0; cursor: pointer;">Levezetés mutatása</button>
       </div>
       <div id="atvalto-levezetes" style="font-family: 'Consolas', monospace; font-size: 0.95rem; margin-top: 10px;"></div>
+    </div>
+
+    <!-- KÉT KÜLÖNÁLLÓ SORSOLÓ GOMBOKKAL ÉS SAJÁT BEÍRÓMEZŐVEL (2-16 alapok támogatásával) -->
+    <div class="resp" style="margin-top: 20px;">
+      <!-- Sorsoló 1: Tízesből másba -->
+      <div class="bemutatas" style="background-color: var(--intro-bg); margin: 0;">
+        <p>🎲 Tízesből más alapúba sorsoló (2–16-os alapok)</p>
+        <div style="text-align: center; margin-bottom: 10px;">
+          <button type="button" class="gomb" onclick="general10bolMasba()" style="background: var(--primary); color: white; font-weight: bold; cursor: pointer;">Új feladat sorsolása</button>
+        </div>
+        <div id="sorsolt-10bol-doboz" style="display: none; font-size: 0.95rem;">
+          <p id="sorsolt-10bol-kerdes" style="font-weight: bold;"></p>
+          <label>Írd be a végeredményt: <input type="text" id="user-valasz-10bol" class="rovid-input" style="width: 100px;"></label>
+          <button type="button" class="gomb" onclick="ellenoriz10bolMasba()" style="background: #27ae60; color:white; font-weight:bold; padding:4px 10px; cursor:pointer;">Ellenőrzés</button>
+          <div id="sorsolt-10bol-visszajelzes" style="margin-top: 8px;"></div>
+        </div>
+      </div>
+
+      <!-- Sorsoló 2: Másból tízesbe -->
+      <div class="bemutatas" style="background-color: var(--intro-bg); margin: 0;">
+        <p>🎲 Más alapúból tízesbe sorsoló (2–16-os alapok)</p>
+        <div style="text-align: center; margin-bottom: 10px;">
+          <button type="button" class="gomb" onclick="generalMasbol10re()" style="background: var(--primary); color: white; font-weight: bold; cursor: pointer;">Új feladat sorsolása</button>
+        </div>
+        <div id="sorsolt-masbol-doboz" style="display: none; font-size: 0.95rem;">
+          <p id="sorsolt-masbol-kerdes" style="font-weight: bold;"></p>
+          <label>Írd be a tízes értéket: <input type="number" id="user-valasz-masbol" class="rovid-input" style="width: 100px;"></label>
+          <button type="button" class="gomb" onclick="ellenorizMasbol10re()" style="background: #27ae60; color:white; font-weight:bold; padding:4px 10px; cursor:pointer;">Ellenőrzés</button>
+          <div id="sorsolt-masbol-visszajelzes" style="margin-top: 8px;"></div>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- ==========================================
-       4. MODUL: SZÁMRENDSZEREK KVÍZMOTOR (40+ FELADATBÓL SORSOL!)
+       4. MODUL: KVÍZMOTOR (Bővített 25 kérdéses bank)
        ========================================== -->
   <div class="task-card">
     <h3>🎯 Gyakorló Aréna: Számrendszerek és Átváltások</h3>
-    <p>A gép minden alkalommal <b>10 véletlenszerű számrendszeres feladatot</b> sorsol ki neked (lesz benne 2-es, 16-os, és a matekosok kedvéért 3-as, 4-es, 5-ös, 8-as számrendszer is!). Vegyél elő papírt és tollat a számoláshoz!</p>
+    <p>A kérdések sorrendje véletlenszerűen változik. A feladatok főleg az alapfogalmak gyakorlására szolgálnak. Ha számolós kérdés jön, használj papírt és tollat. A gép minden alkalommal a <b>25 kérdésből álló adatbankból 10 kérdést</b> sorsol ki véletlenszerűen!</p>
 
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-      <button class="gomb" onclick="ujSzamKviz()" style="background: var(--secondary); color: white; font-weight: bold; padding: 10px 18px; cursor: pointer;">🎲 Új 10 feladat sorsolása</button>
-      <div id="szam-kviz-eredmeny" style="font-weight: bold; font-size: 1.1rem;"></div>
+      <button type="button" class="gomb" onclick="ujSzamKviz()" style="background: var(--secondary); color: white; font-weight: bold; padding: 10px 18px; cursor: pointer;">🎲 Új 10 véletlen kérdés sorsolása</button>
+      <div id="szam-kviz-jelzo" style="font-weight: bold; font-size: 1.1rem;"></div>
     </div>
 
     <div id="szam-kviz-terulet" class="kviz-kontener"></div>
 
     <div style="text-align: center; margin-top: 20px;">
-      <button class="gomb" onclick="ellenorizSzamKvizt()" style="background: #27ae60; color: white; font-weight: bold; font-size: 1.1rem; padding: 12px 25px; cursor: pointer;">✅ Válaszok ellenőrzése</button>
+      <button type="button" class="gomb" onclick="ellenorizSzamKvizt()" style="background: #27ae60; color: white; font-weight: bold; font-size: 1.1rem; padding: 12px 25px; cursor: pointer;">✅ Válaszok ellenőrzése</button>
     </div>
   </div>
 
@@ -210,6 +310,7 @@
 
     function frissitBitKapcsolot() {
       const sor = document.getElementById("bit-kapcsolo-sor");
+      if (!sor) return;
       sor.innerHTML = "";
       let osszeg = 0;
       let osszeadasSzoveg = [];
@@ -224,7 +325,7 @@
         oszlop.className = "bit-oszlop" + (bit === 1 ? " aktiv-bit" : "");
         oszlop.innerHTML = `
           <div class="bit-helyiertek">${he}</div>
-          <button class="bit-gomb" onclick="kapcsolBit(${idx})">${bit}</button>
+          <button type="button" class="bit-gomb" onclick="kapcsolBit(${idx})">${bit}</button>
           <div style="font-size: 0.75rem;">${bit === 1 ? "+" + he : "0"}</div>
         `;
         sor.appendChild(oszlop);
@@ -233,8 +334,11 @@
       const binStr = bitAllapot.join("");
       const hexStr = osszeg.toString(16).toUpperCase().padStart(2, "0");
       const szoveg = osszeadasSzoveg.length > 0 ? osszeadasSzoveg.join(" + ") + " = " : "";
-      document.getElementById("bit-eredmeny-kijelzo").innerHTML = 
-        `${binStr}<sub>(2)</sub> = ${szoveg}<span style="color: var(--secondary);">${osszeg}<sub>(10)</sub></span> = <span style="color: #e67e22;">${hexStr}<sub>(16)</sub></span>`;
+      const eredmenyDiv = document.getElementById("bit-eredmeny-kijelzo");
+      if (eredmenyDiv) {
+        eredmenyDiv.innerHTML = 
+          `${binStr}<sub>(2)</sub> = ${szoveg}<span style="color: var(--secondary);">${osszeg}<sub>(10)</sub></span> = <span style="color: #e67e22;">${hexStr}<sub>(16)</sub></span>`;
+      }
     }
 
     function kapcsolBit(idx) {
@@ -244,9 +348,13 @@
 
     // --- 2. LÉPÉSRŐL-LÉPÉSRE ÁTVÁLTÓ ---
     function szamolAtvaltast() {
-      let szam = parseInt(document.getElementById("atvalto-szam").value);
-      let alap = parseInt(document.getElementById("atvalto-alap").value);
+      let szamInput = document.getElementById("atvalto-szam");
+      let alapInput = document.getElementById("atvalto-alap");
       const celDiv = document.getElementById("atvalto-levezetes");
+      if (!szamInput || !alapInput || !celDiv) return;
+
+      let szam = parseInt(szamInput.value);
+      let alap = parseInt(alapInput.value);
 
       if (isNaN(szam) || szam < 1 || isNaN(alap) || alap < 2 || alap > 16) {
         celDiv.innerHTML = "<span style='color:red;'>Kérlek, adj meg egy pozitív egész számot és egy 2–16 közötti alapszámot!</span>";
@@ -277,67 +385,306 @@
       `;
     }
 
-    // --- 3. SZÁMRENDSZEREK KVÍZBANK (38 FELADAT, 7 TÍPUS) ---
+    // --- 3. KÜLÖNÁLLÓ SORSOLÓK (2-16 alapok támogatásával, A-F jelekkel ha szükséges) ---
+    let akt10esFeladat = null;
+    function general10bolMasba() {
+      const doboz = document.getElementById("sorsolt-10bol-doboz");
+      const kerdes = document.getElementById("sorsolt-10bol-kerdes");
+      const visszajelzes = document.getElementById("sorsolt-10bol-visszajelzes");
+      document.getElementById("user-valasz-10bol").value = "";
+      visszajelzes.innerHTML = "";
+      doboz.style.display = "block";
+
+      let alapok = [2, 4, 7, 8, 16]; 
+      let alap = alapok[Math.floor(Math.random() * alapok.length)];
+      let szam;
+      if (alap === 16) {
+        szam = Math.floor(Math.random() * 200) + 20; // 20 és 219 között, hogy biztosan legyen benne A-F
+      } else {
+        szam = Math.floor(Math.random() * 50) + 5;
+      }
+      let helyesValasz = szam.toString(alap).toUpperCase();
+
+      akt10esFeladat = { szam, alap, helyesValasz };
+      kerdes.innerHTML = `Váltsd át a tízes számrendszerbeli <b>${szam}<sub>(10)</sub></b> számot <b>${alap}</b>-es számrendszerbe!`;
+    }
+
+    function ellenoriz10bolMasba() {
+      if (!akt10esFeladat) return;
+      const beirt = document.getElementById("user-valasz-10bol").value.trim().toUpperCase();
+      const visszajelzes = document.getElementById("sorsolt-10bol-visszajelzes");
+
+      let html = "";
+      if (beirt === akt10esFeladat.helyesValasz) {
+        html += `<span style="color:#27ae60; font-weight:bold;">✔️ Helyes!</span><br>`;
+      } else {
+        html += `<span style="color:#c0392b; font-weight:bold;">❌ Nem jó. A helyes válasz: ${akt10esFeladat.helyesValasz}<sub>(${akt10esFeladat.alap})</sub></span><br>`;
+      }
+
+      // Részletes levezetés megjelenítése + helyi értékes ellenőrzés
+      html += `<div style="margin-top:6px; font-family:Consolas, monospace; font-size:0.9rem;"><b>Levezetés (maradékos osztás):</b><br>`;
+      let akt = akt10esFeladat.szam;
+      let alap = akt10esFeladat.alap;
+      let lepesek = [];
+      let maradekok = [];
+      const jegyek = "0123456789ABCDEF";
+      while(akt > 0) {
+        let h = Math.floor(akt / alap);
+        let m = akt % alap;
+        let mJegy = jegyek[m];
+        lepesek.push(`${akt} : ${alap} = ${h}, maradék: <b>${m}</b> ${m >= 10 ? '('+mJegy+')' : ''}`);
+        maradekok.unshift(mJegy);
+        akt = h;
+      }
+      html += lepesek.join("<br>") + `<br><b>Összeolvasva alulról felfelé: ${maradekok.join("")}<sub>(${alap})</sub></b></div>`;
+      visszajelzes.innerHTML = html;
+    }
+
+    let aktMasbolFeladat = null;
+    function generalMasbol10re() {
+      const doboz = document.getElementById("sorsolt-masbol-doboz");
+      const kerdes = document.getElementById("sorsolt-masbol-kerdes");
+      const visszajelzes = document.getElementById("sorsolt-masbol-visszajelzes");
+      document.getElementById("user-valasz-masbol").value = "";
+      visszajelzes.innerHTML = "";
+      doboz.style.display = "block";
+
+      let alapok = [2, 4, 7, 8, 16];
+      let alap = alapok[Math.floor(Math.random() * alapok.length)];
+      let szam10;
+      if (alap === 16) {
+        szam10 = Math.floor(Math.random() * 150) + 16;
+      } else {
+        szam10 = Math.floor(Math.random() * 35) + 3;
+      }
+      let szamStr = szam10.toString(alap).toUpperCase();
+
+      aktMasbolFeladat = { szamStr, alap, szam10 };
+      kerdes.innerHTML = `Váltsd át a <b>${szamStr}<sub>(${alap})</sub></b> számot tízes számrendszerbe!`;
+    }
+
+    function ellenorizMasbol10re() {
+      if (!aktMasbolFeladat) return;
+      const beirt = parseInt(document.getElementById("user-valasz-masbol").value);
+      const visszajelzes = document.getElementById("sorsolt-masbol-visszajelzes");
+
+      let html = "";
+      if (beirt === aktMasbolFeladat.szam10) {
+        html += `<span style="color:#27ae60; font-weight:bold;">✔️ Helyes!</span><br>`;
+      } else {
+        html += `<span style="color:#c0392b; font-weight:bold;">❌ Nem jó. A helyes válasz: ${aktMasbolFeladat.szam10}<sub>(10)</sub></span><br>`;
+      }
+
+      // Részletes helyi értékes levezetés (alaki érték x helyi érték, összeadással kiírva)
+      html += `<div style="margin-top:6px; font-family:Consolas, monospace; font-size:0.9rem;"><b>Helyi értékes felbontás és összeadás:</b><br>`;
+      let szamjegyek = aktMasbolFeladat.szamStr.split("");
+      let alap = aktMasbolFeladat.alap;
+      let len = szamjegyek.length;
+      let szorzatok = [];
+      let reszErtekek = [];
+      let osszeg = 0;
+
+      szamjegyek.forEach((jegy, idx) => {
+        let kitevo = len - 1 - idx;
+        const alakiErtek = "0123456789ABCDEF".indexOf(jegy);
+        const helyiErtek = Math.pow(alap, kitevo);
+        const ertek = alakiErtek * helyiErtek;
+        osszeg += ertek;
+        reszErtekek.push(ertek);
+        szorzatok.push(`${alakiErtek} &times; ${alap}<sup>${kitevo}</sup> (${helyiErtek}) = ${ertek}`);
+      });
+
+      html += szorzatok.join("<br>") + `<br><b>Összeadva: ${reszErtekek.join(" + ")} = ${osszeg}<sub>(10)</sub></b></div>`;
+      visszajelzes.innerHTML = html;
+    }
+
+    // --- 4. BŐVÍTETT KVÍZBANK (25 KÉRDÉS) ---
     const szamKerdesBank = [
-      // EGYSZERŰ VÁLASZTÁS (single)
-      { tipus: "single", kategoria: "Alapfogalmak", kerdes: "Melyik a legnagyobb alaki érték (számjegy), ami előfordulhat a 8-as (oktális) számrendszerben?", opciok: ["8", "7", "9", "F"], helyes: 1, magyarazat: "Egy n alapú számrendszerben a legnagyobb számjegy mindig n - 1, tehát 8-asban a 7-es (0-tól 7-ig)." },
-      { tipus: "single", kategoria: "Alapfogalmak", kerdes: "Melyik szám NEM létezhet a 4-es számrendszerben?", opciok: ["1023(4)", "333(4)", "2041(4)", "1000(4)"], helyes: 2, magyarazat: "A 4-es számrendszerben csak 0, 1, 2 és 3 számjegyek léteznek, 4-es számjegy nem szerepelhet benne!" },
-      { tipus: "single", kategoria: "16-os számrendszer", kerdes: "Mennyi az 'E' betű értéke a 16-os (hexadecimális) számrendszerben?", opciok: ["12", "13", "14", "15"], helyes: 2, magyarazat: "A=10, B=11, C=12, D=13, E=14, F=15." },
-      { tipus: "single", kategoria: "2-es számrendszer", kerdes: "Honnan látod egyetlen pillantással egy kettes számrendszerbeli egész számról (pl. 10110101), hogy PÁRATLAN-e?", opciok: ["1-essel kezdődik a bal elején", "1-esre végződik a jobb végén (az egyesek helyiértékén)", "Páratlan darab 1-es van benne", "Csak ha átváltjuk 10-esbe, akkor derül ki"], helyes: 1, magyarazat: "Mivel az 1-es helyiértékén kívül minden más helyiérték (2, 4, 8, 16...) páros, kizárólag az utolsó számjegy dönti el a párosságot!" },
-      { tipus: "single", kategoria: "Helyiértékek", kerdes: "Mennyi a 3-as számrendszerben a helyiértékek sorozata jobbról balra haladva?", opciok: ["1, 3, 6, 9, 12", "3, 9, 27, 81", "1, 3, 9, 27, 81", "1, 2, 4, 8, 16"], helyes: 2, magyarazat: "A legelső helyiérték mindig 1, majd minden lépésben 3-mal szorzunk: 1, 3, 9, 27, 81." },
-      { tipus: "single", kategoria: "Átváltás", kerdes: "Mennyi a 15(16) szám értéke 10-es számrendszerben?", opciok: ["15", "21", "25", "31"], helyes: 1, magyarazat: "1 × 16 + 5 × 1 = 16 + 5 = 21." },
-      { tipus: "single", kategoria: "Átváltás", kerdes: "Mi történik egy kettes számrendszerbeli számmal, ha a jobb végére odaírunk egy 0-t (pl. 101-ből 1010 lesz)?", opciok: ["Megszorzódik 10-zel", "Megszorzódik 2-vel (megduplázódik az értéke)", "Hozzáadódik 2", "Nem változik az értéke"], helyes: 1, magyarazat: "Ahogy 10-es számrendszerben a végére írt 0 tízszeresére növeli a számot, úgy 2-es számrendszerben kétszeresére!" },
-      { tipus: "single", kategoria: "Gyors átváltás", kerdes: "Hány kettes számrendszerbeli bit felel meg pontosan EGY darab 16-os (hexadecimális) számjegynek?", opciok: ["2 bit", "3 bit", "4 bit", "8 bit"], helyes: 2, magyarazat: "Mivel 2^4 = 16, pontosan 4 bit (egy ún. nibble) ad ki egy hexadecimális jegyet (0000 = 0, 1111 = F)." },
-
-      // TÖBBVÁLASZOS (multi)
-      { tipus: "multi", kategoria: "Alapfogalmak", kerdes: "Mely számrendszerekben szerepelhet a '2104' alakú szám? (Több válasz!)", opciok: ["2-es számrendszer", "4-es számrendszer", "5-ös számrendszer", "8-as számrendszer", "16-os számrendszer"], helyes: [2, 3, 4], magyarazat: "Mivel a legnagyobb számjegy benne a 4-es, ezért csak 5-ös vagy annál nagyobb alapú számrendszerben létezhet!" },
-      { tipus: "multi", kategoria: "Értékek", kerdes: "Mely kifejezések értéke egyenlő a 10-es számrendszerbeli 15-tel? (Több válasz!)", opciok: ["1111(2)", "F(16)", "30(5)", "17(8)", "15(16)"], helyes: [0, 1, 2, 3], magyarazat: "1111(2) = 8+4+2+1 = 15; F(16) = 15; 30(5) = 3×5+0 = 15; 17(8) = 1×8+7 = 15. (A 15(16) viszont 21!)." },
-      { tipus: "multi", kategoria: "2-es számrendszer", kerdes: "Melyek IGAZAK a 10000(2) bináris számra? (Több válasz!)", opciok: ["Értéke 10-es számrendszerben 16", "Értéke 10-es számrendszerben 32", "16-os számrendszerben felírva: 10(16)", "Páros szám"], helyes: [0, 2, 3], magyarazat: "A helyiértékek: 16, 8, 4, 2, 1 -> tehát 10000(2) = 16(10), ami 16-osban 1×16 + 0 = 10(16), és páros." },
-
-      // IGAZ / HAMIS (tf)
-      { tipus: "tf", kategoria: "Alapfogalmak", kerdes: "Bármelyik számrendszerben a jobb szélső egész számjegy helyiértéke mindig 1.", helyes: true, magyarazat: "Igaz! Bármely szám nulladik hatványa 1 (n^0 = 1), így minden számrendszer az 1-es helyiértékkel indul." },
-      { tipus: "tf", kategoria: "Átváltás", kerdes: "Ha egy 10-es számrendszerbeli számot maradékos osztással váltunk át, a kapott maradékokat felülről lefelé (az első osztástól az utolsóig) kell leírni.", helyes: false, magyarazat: "Hamis! A maradékokat mindig FORDÍTOTT sorrendben, alulról felfelé (az utolsó osztástól az elsőig) kell összeolvasni!" },
-      { tipus: "tf", kategoria: "2-es számrendszer", kerdes: "8 biten (1 bájton) a legnagyobb ábrázolható pozitív egész szám (11111111) a 256.", helyes: false, magyarazat: "Hamis! Mivel a 0 is egy állapot, a 256-féle kombináció 0-tól 255-ig tart (128+64+32+16+8+4+2+1 = 255)." },
-      { tipus: "tf", kategoria: "16-os számrendszer", kerdes: "A 16-os számrendszerbeli FF(16) pontosan 11111111(2)-nek, vagyis 255(10)-nek felel meg.", helyes: true, magyarazat: "Igaz! F = 15 = 1111(2), így FF(16) = 1111 1111(2) = 15×16 + 15 = 255." },
-
-      // RÖVID SZÖVEGES / SZÁMOLÓS VÁLASZOK (short)
-      { tipus: "short", kategoria: "2 -> 10 átváltás", kerdes: "Váltsd át 10-es számrendszerbe: mennyi 10110(2)? (Csak a számot írd be!)", elfogadott: ["22"], magyarazat: "Helyiértékek: 16 + 0 + 4 + 2 + 0 = 22." },
-      { tipus: "short", kategoria: "2 -> 10 átváltás", kerdes: "Váltsd át 10-es számrendszerbe: mennyi 110101(2)?", elfogadott: ["53"], magyarazat: "Helyiértékek: 32 + 16 + 0 + 4 + 0 + 1 = 53." },
-      { tipus: "short", kategoria: "10 -> 2 átváltás", kerdes: "Írd fel kettes (bináris) számrendszerben a 19(10) számot! (Ne írj szóközöket!)", elfogadott: ["10011", "00010011"], magyarazat: "19 = 16 + 2 + 1 -> 1×16 + 0×8 + 0×4 + 1×2 + 1×1 = 10011(2)." },
-      { tipus: "short", kategoria: "10 -> 2 átváltás", kerdes: "Írd fel kettes (bináris) számrendszerben a 42(10) számot!", elfogadott: ["101010", "00101010"], magyarazat: "42 = 32 + 8 + 2 -> 101010(2)." },
-      { tipus: "short", kategoria: "16 -> 10 átváltás", kerdes: "Váltsd át 10-es számrendszerbe: mennyi 2A(16)?", elfogadott: ["42"], magyarazat: "2 × 16 + 10 × 1 = 32 + 10 = 42." },
-      { tipus: "short", kategoria: "16 -> 10 átváltás", kerdes: "Váltsd át 10-es számrendszerbe: mennyi 100(16)?", elfogadott: ["256"], magyarazat: "A 16-os számrendszerben a helyiértékek: 1, 16, 256. Tehát 1 × 256 + 0 + 0 = 256." },
-      { tipus: "short", kategoria: "10 -> 16 átváltás", kerdes: "Írd fel 16-os (hexadecimális) számrendszerben a 200(10) számot!", elfogadott: ["c8"], magyarazat: "200 : 16 = 12 (ami C), maradék: 8 (mert 12×16=192). Tehát: C8(16)." },
-      { tipus: "short", kategoria: "Matek: 5-ös alap", kerdes: "Váltsd át 10-es számrendszerbe az ötös számrendszerbeli 124(5) számot!", elfogadott: ["39"], magyarazat: "5-ös helyiértékek: 25, 5, 1. Szorzás: (1 × 25) + (2 × 5) + (4 × 1) = 25 + 10 + 4 = 39." },
-      { tipus: "short", kategoria: "Matek: 10 -> 5 alap", kerdes: "Váltsd át 5-ös számrendszerbe a 43(10) számot!", elfogadott: ["133"], magyarazat: "43 : 5 = 8 (maradék 3); 8 : 5 = 1 (maradék 3); 1 : 5 = 0 (maradék 1) -> 133(5)." },
-      { tipus: "short", kategoria: "Matek: 8-as alap", kerdes: "Váltsd át 10-es számrendszerbe a nyolcas számrendszerbeli 71(8) számot!", elfogadott: ["57"], magyarazat: "8-as helyiértékek: 8, 1. Szorzás: 7 × 8 + 1 × 1 = 56 + 1 = 57." },
-      { tipus: "short", kategoria: "2 -> 16 gyors", kerdes: "Váltsd át 16-os számrendszerbe a 11100101(2) bináris számot a 4-bites csoportosítási trükkel!", elfogadott: ["e5"], magyarazat: "Négyesével bontva: 1110(2) = 8+4+2 = 14 = E, és 0101(2) = 4+1 = 5 -> E5(16)." },
-
-      // SORBA RENDEZÉS (order)
-      { tipus: "order", kategoria: "Összehasonlítás", kerdes: "Váltsd át fejben 10-esbe, és rendezd sorba a számokat a LEGKISEBBTŐL (1.) a LEGNAGYOBBIG (4.)!", elemek: ["1111(2)", "23(8)", "1B(16)", "110(5)"], magyarazat: "Értékek 10-esben: 1111(2) = 15 -> 23(8) = 2×8+3 = 19 -> 1B(16) = 16+11 = 27 -> 110(5) = 25+5+0 = 30." },
-      { tipus: "order", kategoria: "Helyiértékek", kerdes: "Az A3F9(16) számban rendezd sorba a számjegyeket a VALÓDI ÉRTÉKÜK szerint a LEGKISEBBTŐL (1.) a LEGNAGYOBBIG (4.)!", elemek: ["9-es számjegy (9 × 1)", "F számjegy (15 × 16)", "3-as számjegy (3 × 256)", "A számjegy (10 × 4096)"], magyarazat: "A helyiértékek jobbról balra (1, 16, 256, 4096) olyan gyorsan nőnek, hogy mindig a balrább lévő nem-nulla jegy valódi értéke a nagyobb!" },
-
-      // CSOPORTBA SOROLÁS (group)
-      { tipus: "group", kategoria: "Páros vagy Páratlan?", kerdes: "Döntsd el a számokról, hogy 10-es számrendszerben PÁROS vagy PÁRATLAN az értékük!", csoportok: ["Páros szám", "Páratlan szám"], tetelek: [
-        { szoveg: "1011010(2)", helyesCsoport: 0 },
-        { szoveg: "1000001(2)", helyesCsoport: 1 },
-        { szoveg: "2F(16)", helyesCsoport: 1 },
-        { szoveg: "3A(16)", helyesCsoport: 0 }
-      ], magyarazat: "1011010(2) 0-ra végződik (páros), 1000001(2) 1-re (páratlan). 2F(16)-ban F=15 (páratlan), 3A(16)-ban A=10 (páros)." },
-
-      // PÁROSÍTÁS (match)
-      { tipus: "match", kategoria: "Gyors átváltás", kerdes: "Párosítsd a 4-bites bináris számnégyeseket a 16-os számrendszerbeli megfelelőjükkel!", parok: [
-        { bal: "1010(2)", jobb: "A (10)" },
-        { bal: "1100(2)", jobb: "C (12)" },
-        { bal: "1111(2)", jobb: "F (15)" },
-        { bal: "0111(2)", jobb: "7" }
-      ], magyarazat: "8+2=10 (A), 8+4=12 (C), 8+4+2+1=15 (F), 0+4+2+1=7." },
-      { tipus: "match", kategoria: "Vegyes számrendszerek", kerdes: "Párosítsd a különböző számrendszerbeli alakokat a 10-es számrendszerbeli értékükkel!", parok: [
-        { bal: "100(2)", jobb: "4" },
-        { bal: "100(3)", jobb: "9" },
-        { bal: "100(5)", jobb: "25" },
-        { bal: "100(8)", jobb: "64" }
-      ], magyarazat: "Bármely n alapú számrendszerben a '100' alakú szám pontosan n^2-nel egyenlő (2^2=4, 3^2=9, 5^2=25, 8^2=64)!" }
+      {
+        tipus: "single",
+        kategoria: "Helyi érték",
+        kerdes: "Melyik felsorolt számrendszerben helyi érték a 25?",
+        opciok: ["2-es", "4-es", "5-ös", "10-es"],
+        helyes: 2,
+        magyarazat: "Az 5-ös számrendszer helyi értékei között szerepel az $5^2 = 25$."
+      },
+      {
+        tipus: "single",
+        kategoria: "Alaki érték",
+        kerdes: "Melyik számrendszerben használható legkisebb alappal a 3-as számjegy?",
+        opciok: ["2-es", "3-as", "4-es", "10-es"],
+        helyes: 2,
+        magyarazat: "Az $n$ alapú rendszerben a megengedett számjegyek 0-tól $n-1$-ig tartanak, így a 3-as számjegy a 4-es számrendszerben használható először."
+      },
+      {
+        tipus: "tf",
+        kategoria: "Helyi érték",
+        kerdes: "A $100_{(5)}$ értéke 25 a tízes számrendszerben.",
+        helyes: true,
+        magyarazat: "Igaz: $1\\cdot5^2 + 0\\cdot5 + 0 = 25$."
+      },
+      {
+        tipus: "single",
+        kategoria: "Alapfogalmak",
+        kerdes: "Melyik a legnagyobb alaki érték (számjegy), ami előfordulhat a 4-es számrendszerben?",
+        opciok: ["4", "3", "5", "10"],
+        helyes: 1,
+        magyarazat: "Az $n$ alapú számrendszerben a legnagyobb számjegy mindig $n-1$, azaz a 4-esben a 3-as."
+      },
+      {
+        tipus: "single",
+        kategoria: "Alapfogalmak",
+        kerdes: "Melyik szám NEM létezhet a 3-as számrendszerben?",
+        opciok: ["$102_{(3)}$", "$212_{(3)}$", "$130_{(3)}$", "$22_{(3)}$"],
+        helyes: 2,
+        magyarazat: "A 3-as számrendszerben csak 0, 1 és 2 számjegyek szerepelhetnek, a 3-as számjegy nem!"
+      },
+      {
+        tipus: "single",
+        kategoria: "16-os számrendszer",
+        kerdes: "Mennyi az 'A' betű értéke a 16-os (hexadecimális) számrendszerben?",
+        opciok: ["9", "10", "11", "15"],
+        helyes: 1,
+        magyarazat: "A hexadecimális rendszerben A=10, B=11, C=12, D=13, E=14, F=15."
+      },
+      {
+        tipus: "tf",
+        kategoria: "Párosság",
+        kerdes: "A kettes számrendszerben egy egész szám páros, ha 0-ra végződik.",
+        helyes: true,
+        magyarazat: "Igaz: a bináris alak jobb szélső bitje az 1-es helyi értékű bit. Ha ez 0, akkor a szám páros, ha 1, akkor páratlan."
+      },
+      {
+        tipus: "short",
+        kategoria: "Egyszerű átváltás",
+        kerdes: "Mennyi a $10_{(2)}$ tízes számrendszerbeli értéke?",
+        elfogadott: ["2"],
+        magyarazat: "$1\\cdot2^1 + 0\\cdot2^0 = 2$."
+      },
+      {
+        tipus: "short",
+        kategoria: "Egyszerű átváltás",
+        kerdes: "Mennyi a $100_{(2)}$ tízes számrendszerbeli értéke?",
+        elfogadott: ["4"],
+        magyarazat: "$1\\cdot2^2 + 0\\cdot2^1 + 0\\cdot2^0 = 4$."
+      },
+      {
+        tipus: "tf",
+        kategoria: "Helyi érték",
+        kerdes: "Bármelyik számrendszerben a jobb szélső egész számjegy helyi értéke mindig 1.",
+        helyes: true,
+        magyarazat: "Igaz! Bármely szám nulladik hatványa 1 ($n^0 = 1$)."
+      },
+      {
+        tipus: "single",
+        kategoria: "Alapfogalmak",
+        kerdes: "Hány darab számjegyet használunk a 7-es számrendszerben?",
+        opciok: ["6", "7", "8", "10"],
+        helyes: 1,
+        magyarazat: "A 7-es számrendszerben pontosan 7 darab számjegyet használunk: 0-tól 6-ig."
+      },
+      {
+        tipus: "tf",
+        kategoria: "Alapfogalmak",
+        kerdes: "A 16-os számrendszerben a 'F' számjegy a 15-öt jelenti.",
+        helyes: true,
+        magyarazat: "Igaz: A=10, B=11, C=12, D=13, E=14, F=15."
+      },
+      {
+        tipus: "short",
+        kategoria: "Átváltás",
+        kerdes: "Mennyi a $10_{(16)}$ tízes számrendszerben?",
+        elfogadott: ["16"],
+        magyarazat: "$1\\cdot16^1 + 0\\cdot16^0 = 16$."
+      },
+      {
+        tipus: "tf",
+        kategoria: "Maradékos osztás",
+        kerdes: "Maradékos osztásnál a maradék lehet nagyobb, mint az osztó (számrendszer alapja)?",
+        helyes: false,
+        magyarazat: "Hamis! A maradék mindig szigorúan kisebb, mint az osztó."
+      },
+      {
+        tipus: "single",
+        kategoria: "Helyi érték",
+        kerdes: "Melyik helyi érték következik a 4-es számrendszerben a 16-os helyi érték után balra haladva?",
+        opciok: ["32", "64", "256", "20"],
+        helyes: 1,
+        magyarazat: "A 4-es hatványai jobbról balra: 1, 4, 16, 64, 256..."
+      },
+      {
+        tipus: "tf",
+        kategoria: "Bináris",
+        kerdes: "A kettes számrendszerben előfordulhat a 2-es számjegy.",
+        helyes: false,
+        magyarazat: "Hamis! Kettes számrendszerben csak 0 és 1 számjegyek léteznek."
+      },
+      {
+        tipus: "short",
+        kategoria: "Átváltás",
+        kerdes: "Váltsd át 10-esbe: $11_{(2)}$",
+        elfogadott: ["3"],
+        magyarazat: "$1\\cdot2 + 1\\cdot1 = 3$."
+      },
+      {
+        tipus: "single",
+        kategoria: "Alapfogalmak",
+        kerdes: "Mit mutat meg egy számrendszer alapszáma ($n$)?",
+        opciok: ["A számjegyek darabszámát és a helyi értékek szorzóját", "Csak a számjegyek összegét", "A szám nagyságát", "Semmit"],
+        helyes: 0,
+        magyarazat: "Az alapszám határozza meg a számjegyek körét (0-tól $n-1$-ig) és a helyi értékek növekedését."
+      },
+      {
+        tipus: "tf",
+        kategoria: "Alaki érték",
+        kerdes: "A $243_{(10)}$ számban a 4 alaki értéke 4.",
+        helyes: true,
+        magyarazat: "Igaz, az alaki érték maga a leírt számjegy."
+      },
+      {
+        tipus: "short",
+        kategoria: "Átváltás",
+        kerdes: "Mennyi $111_{(2)}$ tízes számrendszerben?",
+        elfogadott: ["7"],
+        magyarazat: "$4 + 2 + 1 = 7$."
+      },
+      {
+        tipus: "single",
+        kategoria: "Oktális",
+        kerdes: "Melyik számjegy nem fordulhat elő a 8-as számrendszerben?",
+        opciok: ["5", "7", "8", "0"],
+        helyes: 2,
+        magyarazat: "8-as rendszerben 0-tól 7-ig terjednek a számjegyek, a 8-as nem szerepelhet."
+      },
+      {
+        tipus: "tf",
+        kategoria: "Bináris csoportosítás",
+        kerdes: "Kettes számrendszerből 16-osba való átváltáskor a biteket jobbról négyesével csoportosítjuk.",
+        helyes: true,
+        magyarazat: "Igaz, mert $16 = 2^4$, így 4 bit felel meg 1 hexadecimális jegynek."
+      },
+      {
+        tipus: "short",
+        kategoria: "Átváltás",
+        kerdes: "Mennyi $20_{(3)}$ tízes számrendszerben?",
+        elfogadott: ["6"],
+        magyarazat: "$2\\cdot3^1 + 0\\cdot3^0 = 6$."
+      },
+      {
+        tipus: "tf",
+        kategoria: "Átváltás",
+        kerdes: "A maradékos osztáskor kapott maradékokat alulról felfelé kell olvasni.",
+        helyes: true,
+        magyarazat: "Igaz, mert az első maradék az egyeseké, az utolsó a legnagyobb helyi értéké."
+      },
+      {
+        tipus: "single",
+        kategoria: "Alapfogalmak",
+        kerdes: "Mi a 10-es számrendszer alapszáma?",
+        opciok: ["2", "8", "10", "16"],
+        helyes: 2,
+        magyarazat: "A tízes számrendszer alapja a 10."
+      }
     ];
 
     let aktSzamKerdesek = [];
@@ -352,64 +699,48 @@
     }
 
     function ujSzamKviz() {
-      document.getElementById("szam-kviz-eredmeny").innerHTML = "";
+      const jelzo = document.getElementById("szam-kviz-jelzo");
+      if (jelzo) jelzo.innerHTML = "";
       aktSzamKerdesek = kever(szamKerdesBank).slice(0, 10);
       const kontener = document.getElementById("szam-kviz-terulet");
+      if (!kontener) return;
       kontener.innerHTML = "";
+
+      if (window.MathJax && window.MathJax.typesetClear) {
+        window.MathJax.typesetClear([kontener]);
+      }
 
       const tipusNevek = {
         single: "Egyszerű választás",
-        multi: "Többválaszos",
         tf: "Igaz vagy Hamis?",
-        short: "Számolós / Rövid válasz",
-        order: "Sorba rendezés",
-        group: "Csoportosítás",
-        match: "Párosítás"
+        short: "Rövid válasz"
       };
 
       aktSzamKerdesek.forEach((k, index) => {
         const kartya = document.createElement("div");
         kartya.className = "kviz-kerdes-kartya";
-        let html = `<span class="kviz-tipus-badge">${k.kategoria} • ${tipusNevek[k.tipus]}</span>
+        let html = `<span class="kviz-tipus-badge">${k.kategoria}</span>
                     <p style="font-weight: bold; margin-top: 5px;">${index + 1}. ${k.kerdes}</p>`;
 
         if (k.tipus === "single") {
           html += `<div class="kviz-opciok">` + k.opciok.map((op, i) => `<label><input type="radio" name="sq_${index}" value="${i}"> ${op}</label>`).join("") + `</div>`;
-        } else if (k.tipus === "multi") {
-          html += `<div class="kviz-opciok">` + k.opciok.map((op, i) => `<label><input type="checkbox" name="sq_${index}" value="${i}"> ${op}</label>`).join("") + `</div>`;
         } else if (k.tipus === "tf") {
           html += `<div class="kviz-opciok">
             <label><input type="radio" name="sq_${index}" value="true"> 🟢 Igaz</label>
             <label><input type="radio" name="sq_${index}" value="false"> 🔴 Hamis</label>
           </div>`;
         } else if (k.tipus === "short") {
-          html += `<input type="text" id="sq_${index}_input" class="rovid-input" placeholder="Írd be az eredményt...">`;
-        } else if (k.tipus === "order") {
-          const kev = kever(k.elemek.map((el, i) => ({ szoveg: el, eredetiIndex: i })));
-          for (let pos = 0; pos < k.elemek.length; pos++) {
-            html += `<div class="parosito-sor"><b>${pos + 1}. hely:</b>
-              <select id="sq_${index}_pos_${pos}"><option value="">-- Válassz --</option>
-              ${kev.map(ke => `<option value="${ke.eredetiIndex}">${ke.szoveg}</option>`).join("")}</select></div>`;
-          }
-        } else if (k.tipus === "group") {
-          k.tetelek.forEach((t, tIdx) => {
-            html += `<div class="parosito-sor"><span><b>${t.szoveg}</b></span>
-              <select id="sq_${index}_group_${tIdx}"><option value="">-- Válassz --</option>
-              ${k.csoportok.map((cs, csIdx) => `<option value="${csIdx}">${cs}</option>`).join("")}</select></div>`;
-          });
-        } else if (k.tipus === "match") {
-          const jobbOp = kever(k.parok.map((p, i) => ({ szoveg: p.jobb, eredetiIndex: i })));
-          k.parok.forEach((p, pIdx) => {
-            html += `<div class="parosito-sor"><b>${p.bal}</b>
-              <select id="sq_${index}_match_${pIdx}"><option value="">-- Válassz párt --</option>
-              ${jobbOp.map(jo => `<option value="${jo.eredetiIndex}">${jo.szoveg}</option>`).join("")}</select></div>`;
-          });
+          html += `<input type="text" id="sq_${index}_input" class="rovid-input" placeholder="Írd be a választ...">`;
         }
 
         html += `<div id="szam-visszajelzes-${index}" class="visszajelzes-doboz"></div>`;
         kartya.innerHTML = html;
         kontener.appendChild(kartya);
       });
+
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([kontener]).catch((err) => console.log('MathJax hiba:', err));
+      }
     }
 
     function ellenorizSzamKvizt() {
@@ -417,38 +748,20 @@
       aktSzamKerdesek.forEach((k, index) => {
         let jo = false;
         const vDiv = document.getElementById(`szam-visszajelzes-${index}`);
+        if (!vDiv) return;
 
         if (k.tipus === "single") {
           const v = document.querySelector(`input[name="sq_${index}"]:checked`);
           if (v && parseInt(v.value) === k.helyes) jo = true;
-        } else if (k.tipus === "multi") {
-          const b = Array.from(document.querySelectorAll(`input[name="sq_${index}"]:checked`)).map(c => parseInt(c.value)).sort();
-          const e = [...k.helyes].sort();
-          if (b.length === e.length && b.every((val, i) => val === e[i])) jo = true;
         } else if (k.tipus === "tf") {
           const v = document.querySelector(`input[name="sq_${index}"]:checked`);
           if (v && (v.value === "true") === k.helyes) jo = true;
         } else if (k.tipus === "short") {
-          const b = document.getElementById(`sq_${index}_input`).value.trim().toLowerCase();
-          if (k.elfogadott.includes(b)) jo = true;
-        } else if (k.tipus === "order") {
-          jo = true;
-          for (let pos = 0; pos < k.elemek.length; pos++) {
-            const v = document.getElementById(`sq_${index}_pos_${pos}`).value;
-            if (v === "" || parseInt(v) !== pos) jo = false;
+          const inputElem = document.getElementById(`sq_${index}_input`);
+          if (inputElem) {
+            const b = inputElem.value.trim().toLowerCase();
+            if (k.elfogadott.includes(b)) jo = true;
           }
-        } else if (k.tipus === "group") {
-          jo = true;
-          k.tetelek.forEach((t, tIdx) => {
-            const v = document.getElementById(`sq_${index}_group_${tIdx}`).value;
-            if (v === "" || parseInt(v) !== t.helyesCsoport) jo = false;
-          });
-        } else if (k.tipus === "match") {
-          jo = true;
-          k.parok.forEach((p, pIdx) => {
-            const v = document.getElementById(`sq_${index}_match_${pIdx}`).value;
-            if (v === "" || parseInt(v) !== pIdx) jo = false;
-          });
         }
 
         if (jo) pont++;
@@ -457,9 +770,15 @@
         vDiv.innerHTML = (jo ? "✔️ <b>Helyes!</b> " : "❌ <b>Hibás!</b> ") + k.magyarazat;
       });
 
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([document.getElementById("szam-kviz-terulet")]).catch((err) => console.log('MathJax hiba:', err));
+      }
+
       const szazalek = Math.round((pont / aktSzamKerdesek.length) * 100);
-      document.getElementById("szam-kviz-eredmeny").innerHTML = 
-        `Eredményed: <span style="color: var(--secondary);">${pont} / ${aktSzamKerdesek.length} pont (${szazalek}%)</span>`;
+      const jelzo = document.getElementById("szam-kviz-jelzo");
+      if (jelzo) {
+        jelzo.innerHTML = `Eredményed: <span style="color: var(--secondary);">${pont} / ${aktSzamKerdesek.length} pont (${szazalek}%)</span>`;
+      }
     }
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -470,11 +789,11 @@
   </script>
 
   <div id="kep-modal" class="modal-hatter">
-        <span class="modal-bezaras">&times;</span>
-        <div class="modal-tartalom">
-            <img id="modal-benne-levo-kep" src="" alt="">
-        </div>
+    <span class="modal-bezaras">&times;</span>
+    <div class="modal-tartalom">
+      <img id="modal-benne-levo-kep" src="" alt="">
     </div>
+  </div>
 
 </body>
 </html>
