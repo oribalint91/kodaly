@@ -157,6 +157,12 @@ html.dark-mode.theme-magyar {
   --heading-color: #ffcdd2;
 }
 
+/* magyarban mondatelemzésnél használt aláhúzások */
+.allitmany {text-decoration: underline double;}
+.targy {text-decoration: underline dashed;}
+.hatarozo {text-decoration: underline wavy;}
+.jelzo {text-decoration: underline dotted;}
+
 /* --- ALAP STÍLUSOK --- */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
