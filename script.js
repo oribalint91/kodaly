@@ -305,7 +305,9 @@ function generateNavbar() {
             {
               name: "Szófajok, mondatbeli szerepek",
               items: [
-                {title: "1. Szófajok", file: "nyelvtan_03_szofajok.html"}
+                {title: "1. Szófajok", file: "nyelvtan_03_szofajok.html"},
+                {title: "2. Mondattani bevezető", file: "nyelvtan_04_mondattani_bevezeto.html"},
+                {title: "3. Mondattan: határozók", file: "nyelvtan_05_mondattan_hatarozok.html"}
               ]
             }
           ]
@@ -374,6 +376,16 @@ document.addEventListener("DOMContentLoaded", function() {
     if (ellenorzok.length === 0) {
         const stickyBar = document.querySelector(".progress-sticky");
         if (stickyBar) stickyBar.style.display = "none";
+        return;
+    }
+    const maxPontElem = document.getElementById("max-pont");
+    const haladasElem = document.getElementById("haladas-szoveg");
+    const progressFill = document.getElementById("progress-fill");
+    const szerzettPontElem = document.getElementById("szerzett-pont");
+    const varhatoJegyElem = document.getElementById("varhato-jegy");
+
+    if (!maxPontElem || !haladasElem || !progressFill ||
+        !szerzettPontElem || !varhatoJegyElem) {
         return;
     }
 

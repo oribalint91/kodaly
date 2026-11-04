@@ -380,10 +380,77 @@ rt {font-size: 0.65em; font-weight: bold; color: var(--secondary); line-height: 
 
 /* reszponzív egymás melletti/alatti tartalmak */
 
-.resp {display: grid; gap: 10px;}
-@media (min-width: 600px) {
+.resp {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;}
+.resp > * {min-width: 0;}
+@media (max-width: 700px) {
+  .resp {grid-template-columns: 1fr;}
+}
+/* @media (min-width: 600px) {
   .resp-left {grid-area: 1 / span 3;}
   .resp-right {grid-area: 1 / span 1;}
+} */
+
+.table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 15px 0;
+}
+
+.table-wrap .tema-tabla {
+  width: 100%;
+  margin: 0;
+  white-space: normal;
+}
+
+.table-wrap td,
+.table-wrap th {
+  overflow-wrap: anywhere;
+}
+.table-wrap .tema-tabla.wide-table {
+  min-width: 650px;
+}
+.bit-sor {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 8px 0;
+  box-sizing: border-box;
+}
+
+.bit-oszlop {
+  flex: 0 0 54px;
+  text-align: center;
+}
+
+.bit-gomb {
+  width: 42px;
+  height: 42px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.bit-helyiertek {
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+* {
+  box-sizing: border-box;
+}
+
+.task-card,
+details,
+.bemutatas,
+.osszefoglalas {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.kviz-kerdes-kartya {
+  min-width: 0;
 }
 
 /* --- KÉP + SVG OVERLAY (SZENDVICS DOBOZ) --- */
@@ -762,3 +829,85 @@ rt {font-size: 0.65em; font-weight: bold; color: var(--secondary); line-height: 
       background: #d35400 !important;
       box-shadow: 0 0 6px rgba(211, 84, 0, 0.4);
     }
+
+/* számrendszeres részhez jött */
+/* --- EXTRA RESZPONZIVITÁS ÉS KÉPLET-TÖRDELÉS --- */
+* {
+  box-sizing: border-box;
+}
+
+.task-card, details, .bemutatas, .osszefoglalas {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Képletek görgetése/tördelése kis képernyőn */
+.MathJax, .math {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+.math-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  display: block;
+  padding: 4px 0;
+}
+
+/* Reszponzív kétoszlopos rács (pl. átváltási példákhoz) */
+.resp {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.resp > * {
+  min-width: 0;
+}
+@media (max-width: 700px) {
+  .resp {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Táblázatok görgetése kis képernyőn */
+.table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 15px 0;
+}
+.table-wrap .tema-tabla {
+  width: 100%;
+  margin: 0;
+  white-space: normal;
+}
+.table-wrap td, .table-wrap th {
+  overflow-wrap: anywhere;
+}
+
+/* Bit-kapcsoló sor (8 bites szimulátorhoz) */
+.bit-sor {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 8px 0;
+  box-sizing: border-box;
+}
+.bit-oszlop {
+  flex: 0 0 54px;
+  text-align: center;
+}
+.bit-gomb {
+  width: 42px;
+  height: 42px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.bit-helyiertek {
+  font-size: 0.85rem;
+  font-weight: bold;
+}
