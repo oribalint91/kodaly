@@ -80,9 +80,72 @@
 
  <div class="task-card">
     <h3>A táblázat gondolkodni kezd</h3>
-    <p class="intro">Az adatok kiterjesztésénél már láttunk </p>
-    <p></p>
+    <p class="intro">Az adatok kiterjesztésénél már láttunk bizonyos mértékű gondolkodást, hiszen egy szabály alapján is kitölthettünk cellákat. Most még konkrétabban, még egyértelműbben utasítva fogjuk a programnak azt mondani, hogy gondolkodjon.</p>
+    <details>
+        <summary>Egyszerű matematikai számolások</summary>
+        <p>Írd most be a D1 cellába, hogy <i><u>3+4</u></i>! Ha entert nyomsz, egyszerűen megjelenik, hogy "3+4". Most lépj vissza, és írj elé egy egyenlőségjelet! <b>Figyeld meg!</b> ha simán beírsz valamit egy olyan cellába, ahol már van valamilyen tartalom, azt felülírja a program! Ha nem szeretnéd, hogy eltűnjön, ami eddig volt benne, <span class="gomb">Esc</span>-pel kiléphetsz a cella szerkesztéséből. <span class="gomb">F2</span> gombbal, dupla kattintással vagy a szerkesztőlécben kattintással tudod megnyitni a cella tartalmát szerkesztésre. Ekkor ellépegethetsz a cellatartalom elejére és beírhatod az egyenlőségjelet az elejére.</p>
+        <p>Most jelöld ki a D2-től a D5-ig a cellákat! Írd be, hogy <i><u>=5-6</u></i>, majd nyomj <span class="gomb">Enter</span>t! <br>
+        A legelső cellában megjelenik az eredmény, de a többi üres marad! A fehér kijelölés lejjebb megy a teljes kijelölésen belül. Most (továbbra is anélkül, hogy kattintanál) írd be, hogy <i><u>=3*5</u></i>, és nyomj <span class="gomb">ctrl + Enter</span>t! (Vagyis ugye nyomva tartod a <span class="gomb">ctrl</span>-t és megnyomod az <span class="gomb">Enter</span>t.) <b>Mi történt?</b> A teljes kijelölésben (ott is, ahol az előbb már bekerült a -1) ez az új eredmény jelent meg. Ez is nagyon hasznos tud lenni!</p>
+        <p>Végül a D6-os cellába írd be, hogy <i><u>=5/2</u></i>! Ezzel végignéztük az összes matematikai alapműveletet.</p>
+    </details>
  </div>
+
+ <div class="task-card">
+    <h3>Hivatkozások másik cellákra</h3>
+    <p class="intro">Az excel gondolkodása nem csak a számolásban nyilvánul meg, hanem pl. abban is, ahogy felhasználhat máshol megadott adatokat. Most ennek nézzük meg a részleteit.</p>
+    <details>
+        <summary>Egyszerű hivatkozás</summary>
+        <p>Írd be a D6-os cellába, hogy <i><u>=A1</u></i>! Enter után a cellában ugyanaz jelenik meg, mint ami az A1-es cellában van. <br>
+        Írd most át az A1-es cella tartalmát, és figyeld meg, hogy az Enter megnyomása után a D6 tartalma is megváltozik!</p>
+        <p>Most jelöld ki a D6-os és a D7-es cellát! A kijelölést terjeszd ki lefelé kb. 10-15 sort! <br>
+        A kiterjesztésben minden második cellában megjeleik az, ami az A oszlop páros celláiban van, köztük végig egy-egy üres cella található. Kattints az egyik értéket tartalmazó (tehát nem üres) cellára! <i>Mit veszel észre?</i> <br>
+        A szerkesztőlécben, vagyis a képernyő tetején, a menük alatt látod, hogy <b>milyen képlet</b> szerepel a cellában – tehát nem csak a számolás utáni eredményt, hanem a mögötte lévő képletet nézheted meg! Vedd észre, hogy itt másik cellahivatkozás van, mint amit eredetileg beírtál! Erre később még visszatérünk. Azt is észreveheted, hogy ha elég sokáig terjesztetted ki a képletet, akkor idővel 0-k is megjelennek. <b>Ha üres cellára hivatkozom, azt 0-nak veszi a program.</b></p>
+    </details>
+
+    <details>
+        <summary>Számolás hivatkozásokkal</summary>
+        <p class="intro">Az eddigieket önmagukban ritkán használjuk. Komplex formában viszont gyakran előfordulnak.</p>
+        <p>Most az E oszlopban fogunk dolgozni, a C oszlopban szereplő páratlan számokkal. Számold ki az E1-es cellába a C1-es cella 3,5-szörösét! <br>
+        Ehhez írd be, hogy <i><u>=a1*3,5</u></i>! <b>Vedd észre!</b> Az Excelben nem számít, hogy kis- vagy nagybetűt írunk-e. Az Excel (a majd később látott programozással ellentétben) magyar beállítás szerint tizedesvesszőt használ.</p>
+        <p>Ha megvan az eredmény, akkor ezt a képletet szeretnénk a C oszlop valamennyi adatára alkalmazni. (Ez a mondat másképp: a C oszlop minden adatára szeretnénk alkalmazni. Ezt a megfogalmazást gyakran használják pl. felvételiben vagy érettségi feladatoknál.) A fekete kereszt alakú egérmutatóval olyat is csinálhatok, hogy a kijelölés kézi kiterjesztése helyett <b>duplán kattintok a kijelölés jobb alsó sarkában</b>. Ekkor a program automatikusan kiterjeszti addig, amíg vannak adatok a hivatkozott oszlopban.</p>
+        <p>Egy példát írtam, de bármilyen műveletet végezhetek számokkal és cellahivatkozásokkal is – már amennyiben a hivatkozott cella számokat tartalmaz (vagy visszavezethető arra, pl. van benne egy számolás, ami a végén ad egy számot).</p>
+    </details>
+
+    <details>
+        <summary>Nagyobb részek felhasználása: hivatkozás intervallumra</summary>
+        <p>Most írj be az F1-es cellába csak egy egyenlőségjelet, aztán kattints az A1-es cellára, és jelöld ki folyamtosan nyomva tartott egérgombbal az A1-estől a C5-ösig az egészet! Nyomj Entert, és láthatod: 15 cellába kerülnek adatok! A Szerkesztőlécben most a beírt képletet látod, de szürkén, a 15 celládat pedig kék vonal szegélyezi. És persze azt látod magukban a cellákban, ami az A és C oszlopok közt van. <b>Hogyan jelöli a program az intervallumot?</b> Az első és az utolsó cella közé tett kettősponttal. <b>Ezért fontos, hogy az osztást perjellel jelöljük.</b></p>
+        <p>Most írj be valamit a G1-es cellába! <b>Mi történik?</b> A program hibát dob, mert nem tudja kibontani az intervallumot! Az intervallumra való hivatkozás gyengébb, mint a direkt beírt adatok, erre mindig figyelni kell, ha ilyen intervallumot használsz!</p>
+    </details>
+
+    <details>
+        <summary>Relatív és abszolút hivatkozások</summary>
+        <p class="intro">Gyakran előfordul, hogy sok értéket ugyanazzal a néhánnyal kell megszorozni. Tegyük fel, hogy osztály elmegy egy cukrászdába, és mindenki vesz valamennyi sütit. Ha felírjuk, hogy ki mennyit vett, akkor ezeket tehetjük egy oszlopba, egymás alá. Ha ki szeretném számolni, hogy ki mennyit fizetett, akkor azzal kell megszorozni. Ha az iskola ez után vissza tudja igényelni az ár egy részét, akkor érdemes cellahivatkozásokat használni.</p>
+        <p>Írd be a H1-es cellába, hogy 365! Az I1-esbe írd be, hogy <i><u>=c1*i1</u></i>! Nyomj Entert! A program kiszámolja az eredményt – ez nem új. Most terjeszd ki lefelé kicsit a képletet! <b>Mit tapasztalsz?</b> Alatta már csak 0-k szerepelnek! <b>Miért?</b> Nézd meg a Szerkesztőlécben! A másodikban már a H2-vel számol – de ez már üres!</p>
+        <p class="kiemeles">Ezt nevezzük relatív hivatkozásnak. Amikor beírom az I1-be, hogy H1, akkor valójában nem azt mondtam a programnak, hogy a H1-essel számoljon, hanem, hogy a bal szomszédjával. Amikor kiterjesztem a képletet, akkor <u>ezt</u> jegyzi meg, és mindig a saját szomszédjával (illetve a megfelelő távolságban levő cellával) számol.</p>
+        <p>Ha <b>fixálni szeretném</b> a hivatkozást, tehát tényleg a H1-es értékre van szükségem <u>mindig</u>, akkor ezt jeleznek kell. Kattints duplán az I1-esre, és jelöld ki a képletben az H1-et (elég csak belekattintani is)! Nyomd meg az <span class="gomb">F4</span>-et! A program erre két dollárjelet tesz, egyet a betű, egyet a szám elé. <u><b>Ez mondja a programnak, hogy fixen, mindig az adott sorral és az adott oszloppal számoljon abban a hivatkozással.</b></u></p>
+    </details>
+
+    <details hidden>
+        <summary>Függvények használata</summary>
+        <p class="intro">Sok összetettebb számolásra (és másokra is, de ezt majd később) használunk <b>függvényeket</b>. Ezek előre elkészített dolgok, amik csinálnak valamit. Most egy egyszerű függvényt próbálunk ki.</p>
+        <p>Írd be a J1-es cellába, hogy <i><u>=max(c:c)</u></i>! Ez az intervallum legnagyobb értékét fogja visszaadni. Természetesen csak számokon működik, ezért a C oszlopon alkalmazzuk.</p>
+        <p class="kiemeles">A függvényeket Excelben mindig a nevükkel jelöljük, majd utána egy zárójel következik. A zárójelbe írjuk a függvény argumentumait – azokat, amiket a függvény felhasznál a számolásaihoz.</p>
+    </details>
+
+    <details class="extra" hidden>
+        <summary>Számolás és szöveg együttes használata</summary>
+    </details>
+ </div>
+ 
+ <div class="osszefoglalas"><u>Az Excel legfontosabb funkciói és alapismeretei</u>
+    <ul>
+        <li>Ha egyenlőségjelet írok egy cella elejére, akkor az Excel számolni fog: számot, cellahivatkozást vagy függvényt.</li>
+        <li>A cellákra BetűSzám (pl. A1) formában hivatkozhatunk.</li>
+        <li>A hivatkozás alapvetően relatív, ahhoz a cellához képest nézi a helyzetet, amelyikbe írom a képletet.</li>
+        <li>Ha fixen ugyanabban az egy cellában levő értékre van szükségem, akkor dollárjelekkel fixálhatom. Ezt az <span class="gomb">F4</span> gomb megnyomásával tehetem be a képletbe.</li>
+        <li>Ha több cellára szeretnék hivatkozni, a kezdő- és végcella közé kettőspontot kell tenni.</li>
+    </ul>
+</div>
  
  <!-- kép svg kiemelésekkel -->
  <div class='rejtett-kep kep-svg-wrapper' id='inditas' hidden><img src='' alt=''>
