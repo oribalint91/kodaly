@@ -29,24 +29,58 @@
      <summary>Alapfogalmak</summary>
      <p>Nyisd meg a programot és válaszd az üres munkafüzet lehetőséget! Ebből már tudod is az egyik alapfogalmat: a fájlt, amibe dolgozunk, <b>Munkafüzetnek</b> hívjuk.
     <br>A munkafüzeteken belül készíthetünk több lapot. Excelben ezeket az ablak alján lehet állítani, a bal oldalon. Egy-egy ilyen lapot <b>Munkalapnak</b> hívunk.</p>
-    <b>
-        <p>A munkalapokat sok-sok <b>cella</b> alkotja. Ezekbe lehet beírni az adatokat és a képleteket. A cellák <b>oszlopokba és sorokba</b> rendeződnek. Az oszlopokat (alapbeállítás szerint) <b>betűvel (vagy betűkkel)</b>, a sorokat pedig <b>számokkal</b> jelöljük. Egy cellára mindig <b>BetűSzám</b> formában hivatkozhatunk. Tehát, ha a bal felső sarokban levő celláról szeretnék beszélni, akkor azt mondhatom, hogy  az <b>A1</b> cella, az alatta levőnél pedig, hogy az A2</p>
-    </b> cella stb.
+    <p>A munkalapokat sok-sok <b>cella</b> alkotja. Ezekbe lehet beírni az adatokat és a képleteket. A cellák <b>oszlopokba és sorokba</b> rendeződnek. Az oszlopokat (alapbeállítás szerint) <b>betűvel (vagy betűkkel)</b>, a sorokat pedig <b>számokkal</b> jelöljük. Egy cellára mindig <b>BetűSzám</b> formában hivatkozhatunk. Tehát, ha a bal felső sarokban levő celláról szeretnék beszélni, akkor azt mondhatom, hogy  az <b>A1</b> cella, az alatta levőnél pedig, hogy az <b>A2</b> cella stb.</p>
    </details>
 
    <details>
-    <summary>
-        Adatok beírása
-    </summary>
+    <summary>Navigáció a programban</summary>
+    <p>A munkalapokon tudsz egérrel és billentyűzettel is navigálni. Egérrel kattintva és a görgővel is dolgozhatsz; az egérmutatók jelentését a következő pontban látod. A nyílbillentyűkkel értelem szerint lehet navigálni a munkalapon. Ha a <span class="gomb">Shift</span> gombo nyomva tartod, akkor több egymással összeérő cellát jelölhetsz ki téglalapalakban. Ha nyomba tartod a <span class="gomb">ctrl</span> gombot és úgy nyomod meg az egyik nyilat, akkor a kijelölés a legutolsó/legelső olyan cellába ugrik, amelyikben van adat. Ha nincs ilyen, akkor a táblázat legelejére vagy legvégére ugrik. Nem kell tehát percekig nyomni a lefelé nyilat, <span class="gomb">ctrl + ↓</span>-lal rögtön megnézheted, hogy meddig tart a munkalap.
+    </p>
    </details>
-
+   
    <details>
-    <summary>Az egérmutatók jelentése</summary>
-   </details>
- </div>
+       <summary>Az egérmutatók jelentése</summary>
+       <p>Excelben nagyon fontos tudni, hogy melyik egérmutató mit csinál, mert minden kattintás mást és mást csinálhat eszerint.</p>
+       <ul>
+        <li>A <span class="ia" data-target="kijeloles" data-tipus="modal">fehér kereszt alakú</span> egérmutató az általános. Ha ezt látod és kattintasz, akkor ki fogsz jelölni valamit. Mindegy, hogy már van-e valami kijelölve, ez mindig kijelöl cellákat. Amíg nyomva tartod az egér gombját, addig kijelölsz, tehát több cellát is ki tudsz jelölni egy blokkban. <br>
+        <div class="extra">Ha több részt jelölnél ki, de ezek nem egymás mellett vannak, akkor tartsd nyomva a <span class="gomb">ctrl</span> gombot, miközben kattintgatsz!</div></li>
+        <li>A <span class="ia" data-target="athelyez" data-tipus="modal">nyilas végű kereszt</span> mindig áthelyezi az aktuális kijelölést. Figyelj, hogy ha olyan helyre húzod, ahol már vannak adatok, akkor felülírod azokat!</li>
+        <li>A fekete nyíl alakú egérmutatókkal <span class="ia" data-target="sor" data-tipus="modal">teljes sorokat</span> vagy <span class="ia" data-target="oszlop" data-tipus="modal">teljes oszlopokat</span> jelölhetsz ki. Ha nyomva tartod az egér gombját, akkor egyszerre többet is kijelölhetsz.</li>
+        <li>Ezekkel az egérmutatókkal az <span class="ia" data-target="oszlop_meret" data-tipus="modal">oszlopokat</span> és a <span class="ia" data-target="sor_meret" data-tipus="modal">sorokat</span> tudod átméretezni.</li>
+        <li>Talán a legfontosabb a <span class="ia" data-target="fekete" data-tipus="modal">fekete kereszt alakú</span> egérmutató, amellyel <b>kiterjesztheted a tartalmat</b>. Erről lent írok bővebben, most csak annyit, hogy mindig <b>az aktuális kijelölés jobb alsó sarkába</b> kell vinni az egérmutatót, hogy elérd.</li>
+       </ul>
+    </details>
+
+    <div class="rejtett-kep" id="kijeloles"><img src="kepek/excel-general-select-mouse-pointer.jpg" alt="A kép forrása: omnisecu.com (2026. 11. 06.)"></div>
+    <div class="rejtett-kep" id="athelyez"><img src="kepek/excel-move-cell-mouse-pointer.jpg" alt="A kép forrása: omnisecu.com (2026. 11. 06.)"></div>
+    <div class="rejtett-kep" id="sor"><img src="kepek/excel-select-entire-row.jpg" alt="A kép forrása: omnisecu.com (2026. 11. 06.)"></div>
+    <div class="rejtett-kep" id="oszlop"><img src="kepek/excel-select-entire-column.jpg" alt="A kép forrása: omnisecu.com (2026. 11. 06.)"></div>
+    <div class="rejtett-kep" id="oszlop_meret"><img src="kepek/excel-change-column-width-mouse-pointer.jpg" alt="A kép forrása: omnisecu.com (2026. 11. 06.)"></div>
+    <div class="rejtett-kep" id="sor_meret"><img src="kepek/excel-change-row-height-mouse-pointer.jpg" alt="A kép forrása: omnisecu.com (2026. 11. 06.)"></div>
+    <div class="rejtett-kep" id="fekete"><img src="kepek/excel-extend-fill-data-mouse-pointer.jpg" alt="A kép forrása: omnisecu.com (2026. 11. 06.)"></div>
+
+    <details>
+     <summary>
+         Adatok beírása
+     </summary>
+     <p>A legegyszerűbb, hogy írhatsz be szöveget és számot. A program a formázással alapbeállítás szerint jelzi, hogy szöveges vagy számos adat van-e az adott cellában: a számokat mindig jobbra igazítva jeleníti meg, a szöveget balra.</p>
+     <p>Nem kell minden adatot kézzel beírni, pont ez a lényeg. Írd be az A1 cellába, hogy <i>alma</i>! Nyomj entert, majd menj vissza erre a cellára! A fekete kereszt alakú egérmutatóval terjeszd ki a tartalmát lefelé, kb. 5-10 cellába!</p>
+     <p>Ugyanezt számokkal is meg lehet csinálni. Írd be a B1-es cellába, hogy <i>15</i>, majd nyomj entert és terjeszd ki ezt is lefelé néhány sornyit!</p>
+     <p>Ennél azért tud izgalmasabb és hasznosabb dolgokat is a program, most már egy ilyen következik. Írd be a C1 cellába, hogy <i>1</i>, a C2-be (alá) pedig, hogy <i>3</i>! Jelöld ki a 3-ast és terjeszd ki lefelé! Most, hogy már láttad, hogy hogyan nem működik, nézzük meg, hogyan működik! Jelöld ki a <b>C1 és C2</b> cellákat együtt! Így menj a kijelölés jobb alsó sarkába, és a <b>fekete kereszt alakú egérmutatóval terjeszd ki a beírtakat</b>! Ha jól csináltad, a páratlan számokat kell látnod egymás alatt 1-től kezdődően.</p>
+     <p class="enyhe-kiemeles">Ami most történt, az az, hogy megmutattunk az Excelnek, hogy milyen szabályt szeretnénk alkalmazni, majd eszerint kiterjesztettük a kijelölés tartalmát, a többi cellára is alkalmaztuk azt a szabályt. Az elején, amikor csak a 3-as volt kijelölve, akkor a megmutatott "szabály" csak annyi volt, hogy "3", ezért egyszerűen telepakolta 3-asokkal a kiterjesztést. De amikor két cellát jelöltünk ki, akkor már ennek a kettőnek a tartalmát mutattuk meg a programnak, és egy számtani sorozatot kaptunk!</p>
+    </details>
+    <details class="extra">
+        <summary>A kiterjesztés speciális esetei</summary>
+        <p>Excelben, amikor valami idővel kapcsolatos dolgot írunk be egy cellába, azt automatikusan folytatólagosan terjeszti ki, akkor is, ha nem adunk meg külön szabályt hozzá. Írd be az A5 cellába, hogy <i>hétfő</i>, majd jelöld ki, és terjeszd ki <b>felfelé</b>! Most terjeszd ki lefelé! Most így, hogy még mindig ki van jelölve a teljes kiterjesztés, húzd felfelé a kiterjesztő egérmutatót! <br>
+        <b>Mi történt?</b> A kiterjesztés felfelé is működik, ezt érdemes megjegyezni, mert segíthet később. A másik, hogy itt valóban elég volt egy adatot megadni. A harmadik pedig, hogy a kiterjesztést vissza is lehet vonni.</p>
+        <p>Most írd be a B15-ös cellába, hogy 10:00! Nyomj entert (vagy <span class="gomb">Tab</span>-ot), jelöld ki és terjeszd ki <b>jobbra</b>! Látod? Nem csak lefelé és felfelé, hanem jobbra és balra is működik a kiterjesztés! Most, hogy még ki van jelölve több cella ugyanabban a sorban, terjeszd ki lefelé! Így egy egész nagy tömböt hozhatsz létre egy szabály szerint – lesz, amikor ezt is hasznosítani fogjuk.</p>
+        <p>Végül írd be a B1-es cellába, hogy <i><u>1. feladat</u></i>! Jelöld ki és terjeszd ki lefelé! Amikor egy szöveges adat elején vagy végén szám van, kiterjesztéskor a program automatikusan továbblépteti a számozást.</p>
+    </details>
+</div>
 
  <div class="task-card">
-    <h3></h3>
+    <h3>A táblázat gondolkodni kezd</h3>
+    <p></p>
  </div>
  
  <!-- kép svg kiemelésekkel -->
