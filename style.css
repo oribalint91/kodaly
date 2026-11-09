@@ -168,7 +168,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: large;
   line-height: 1.6;
-  max-width: 800px;
+  max-width: 850px;
   padding: 20px;
   background-color: var(--bg-color);
   color: var(--text);
@@ -248,6 +248,7 @@ html.dark-mode .ia:hover { color: #ff9ff3; }
 .right-container { position: relative; flex: 1; min-height: 120px; margin-left: 20px; }
 .rejtett-kep {opacity: 0; visibility: hidden; pointer-events: none; position: absolute !important; transform: translateY(5px); transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s; }
 .rejtett-kep.lathato {opacity: 1; visibility: visible; pointer-events: auto; position: relative !important; display: block !important; transform: translateY(0);}
+.rejtett-kep.resp.lathato {display: grid !important;}
 
 .lenyilo-tartalom { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s ease-in-out; }
 .lenyilo-tartalom.lathato { max-height: 1000px; opacity: 1; margin-top: 15px; }
@@ -297,13 +298,14 @@ code .normal {color: #abb2bf;}
   box-shadow: 0 2px 10px rgba(0,0,0,0.2); 
   z-index: 1000; 
   display: flex; 
+  flex-wrap: nowrap;
   padding: 0 20px; 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
   margin-bottom: 20px;
 }
 html.dark-mode .top-nav { border-bottom: 1px solid #2c3e50; }
 
-.nav-list { list-style-type: none; margin: 0; padding: 0; display: flex; }
+.nav-list { list-style-type: none; margin: 0; padding: 0; display: flex; flex-wrap: nowrap;}
 .nav-item { position: relative; }
 
 /* A menü fő linkjeinek színe (Világos szöveg a sötét sávon) */

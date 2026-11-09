@@ -27,18 +27,32 @@
    
    <details>
      <summary>Letöltés és megnyitás</summary>
-     <p class="extra">Ezt máskor nem írom már le, de amikor az internetről töltesz le fájlokat, akkor a mai szoftverek már vigyáznak, és nem engedik, hogy ugyanúgy nyisd meg ezeket, mint amiket te magad készítettél a számítóépeden. Ez természetesen jó, mert <b>a nem megbízható fájlok veszélyesek lehetnek</b>. Most viszont (vagy pl. ha e-mailben hazaküldöd magadnak a munkádat, hogy ott is lásd), amikor nem veszélyes a tartalom, ez egy plusz nehézséget okoz. <br>
-     Letöltés után nyisd meg a fájlt! Nem biztos, de nagy valószínűséggel <span class="ia" data-target="vedett_mod" data-tipus="modal">Védett nézetben nyílt meg</span>. Zárd ezt be, mert amíg így van, csak megtekinteni tudod, szerkeszteni nem.</p>
+     <p class="extra">Ezt máskor nem írom már le, de amikor az internetről töltesz le fájlokat, akkor a mai szoftverek már vigyáznak, és nem engedik, hogy ugyanúgy nyisd meg ezeket, mint amiket te magad készítettél a számítóépeden. Ez természetesen jó, mert <b>a nem megbízható fájlok veszélyesek lehetnek</b>. Most viszont (vagy pl. ha e-mailben hazaküldöd magadnak a munkádat, hogy ott is lásd), amikor nem veszélyes a tartalom, ez egy plusz nehézséget okoz. </p>
+     <p>Letöltés után nyisd meg a fájlt! Nem biztos, de nagy valószínűséggel <span class="ia" data-target="vedett_mod" data-tipus="modal">Védett nézetben nyílt meg</span>. Zárd ezt be, mert amíg így van, csak megtekinteni tudod, szerkeszteni nem.</p>
    </details>
 
    <!-- szoba száma A oszlopba, fő/éj ár a B1:B2-be -->
    <details>
     <summary>Az adatok kiegészítése (1.)</summary>
+    <p class="intro">Először a már meglévő adatainkhoz adunk továbbiakat, mivel van, ami nem szerepel a táblázatban. Eközben azt is gyakoroljuk, hogy hogyan helyezhetünk át teljes oszlopokat.</p>
+    <p>Kattints jobb egérgombbal az A oszlop fejlécére, és válaszd ki a <i>Beszúrás</i> lehetőséget! A teljes táblázatod egy oszloppal elcsúszik, és az A oszlopban egy új, üres rész jelent meg!</p>
+    <p class="enyhe-kiemeles">Jegyezd meg! A beszúrás mindig a kijelölt oszlop elé (balra) és sor fölé hoz létre új sort vagy oszlopot!</p>
+    <p>Az A1 cellába írd be, hogy "<i>szobaszám</i>"! Alája számozzuk be a szobákat úgy, hogy mindegyik szoba száma előtt legyen egy SZ betű is (mint szoba)! Ha nem emlékszel, hogy ezt hogyan lehet a legegyszerűbben megcsinálni, <span class="ia" data-target="kiterjesztes" data-tipus="toggle">akkor kattints ide!</span></p>
+    <div class="resp lenyilo-tartalom extra" id="kiterjesztes">
+      <div class="resp-left">Amikor egy szöveges tartalom elé vagy mögé írsz egy számot, akkor a program kiterjesztéskor automatikusan léptetni fogja a számot. Ha tehát beírod, hogy "SZ1", és kiterjeszted, akkor pont azt fogod kapni, amit szeretnél! A képernyőfotón sajnos nem látszik az egérmutató, de remélem, tudod, hogy a fekete kereszt alakút keressük most!</div>
+      <div class="resp-right"><img src="kepek/excel_kiterjesztes_betu_szam.png" alt=""></div>
+    </div>
    </details>
 
    <!-- szobánkénti ár kiszámolása -->
     <details>
-        <summary></summary>
+        <summary>A szobánként fizetendő összeg kiszámolása</summary>
+        <p class="intro">Most soronként számoljuk ki a fizetendő összeget. Ez a számolás két részből áll: egyszer kiszámoljuk a létszám szerint fizetendő díjat (tehát azt, hogy az éjszakák száma és a lakók szerint mennyit kell fizetni), aztán ehhez hozzáadjuk a reggeli árát.</p>
+        <p>Legelőször megint szerkesztgetni kell az adatokat, mert a szoba egységára nem jó helyen van most. Jelöld ki a D1:D2 cellákat, ahol a szoba ára /fő/éj és a 15000 (Ft) van, és helyezd át ezeket egy oszloppal jobbra, az E oszlop tetejére!</p>
+        <p>A megüresedett D oszlopba fogjuk kiszámolni, hogy mennyi a fizetendő összeg. Írd be a D1-es cellába, hogy fizetendő, aztán lépj a D2-be, ide fogsz számolni. Először gondold végig, hogy mire kell figyelni! <b>Tegyük fel, hogy mindenki két éjszakát töltött a szállodában.</b> A fizetendő tehát minimum az E2-es cellában levő egységár kétszerese lesz a két éjszaka miatt. Ezt viszont <b>annyival kell szorozni, ahányan az adott szobában voltak</b>. Végül ehhez kell <b>hozzáadni a reggeli árát</b>. Hányszor? Ezt is kétszer annyiszor, ahányan voltak, mert két éjszaka után kétszer reggeliztek mindannyian. <span class="ia" data-target="szobaar_keplet" data-tipus="toggle">Ide kattintva ellenőrizheted, hogy jó képletet írtál-e be (eddig, mert még egy picit módosítani fogjuk!).</span></p>
+        <div class="lenyilo-tartalom" id="szobaar_keplet">=2*E2*B2+2*B2*C2</div>
+        Ezzel az SZ1-es szoba ára meg is van. De ha kiterjeszted, akkor meglepően alacsony árakat találsz. Ha tudod, javítsd ki, de <span class="ia" data-target="szobaar_fixalt" data-tipus="toggle">ide kattintva a megoldást is láthatod.</span>
+        <div class="lenyilo-tartalom" id="szobaar_fixalt">Mivel most még az összes hivatkozás relatív, vagyis az eredeti cellához viszonyít, kiterjesztésnél a szoba egységára is odébb ment. Lépj vissza a D2-ben levő képlet szerkesztéséhez (pl. úgy, hogy duplán rákattintasz a cellára)! Keresd meg az E2 hivatkozást, kattints rá, hogy mondjuk a közepén villogjon a kurzor (az a kis vonal, ami jelzi, hogy hova írsz), és nyomd meg az <span class="gomb">F4</span> gombot, aztán az Entert! Ha most kiterjeszted lefelé az új képletet, már jól fog számolni! A végső képlet tehát =2*$E$2*B2+2*B2*C2</div>
     </details>
 
     <!-- minibár fogyasztás és hozzáadása, összeg javítása -->
