@@ -15,6 +15,7 @@
  <h2>📊 Excel: alapok gyakorlása</h2>
  <p class='intro'>Ebben a leckében három példa segítségével ismételheted át és gyakorolhatod, amiket eddig tanultunk az Excelben. A végén egy kis tesztet is találsz, ami segít, hogy az elméleti tudásod is biztos legyen.
  <br>Egy kis segítség: ha <span class='ia' data-target='pelda' data-tipus='toggle'>így formázott részt látsz</span>, arra rákattintva extra magyarázat vagy kép jelenik meg.</p>
+ <p class="extra">Amit így formáztam, az valami kiegészítés. Lehet, hogy részletesebben magyaráz valamit, de sokszor olyan dolgokat írok így, amiket (még) nem kell tudnod.</p>
  <div class='lenyilo-tartalom' id='pelda'>Ez most csak egy példa tartalom, de máskor értelmes dolgokat találhatsz itt, pl. segítséget, ha nem értesz valamit teljesen.</div>
    
  <!-- 1. példa kártyája -->
@@ -50,31 +51,63 @@
         <p class="intro">Most soronként számoljuk ki a fizetendő összeget. Ez a számolás két részből áll: egyszer kiszámoljuk a létszám szerint fizetendő díjat (tehát azt, hogy az éjszakák száma és a lakók szerint mennyit kell fizetni), aztán ehhez hozzáadjuk a reggeli árát.</p>
         <p>Legelőször megint szerkesztgetni kell az adatokat, mert a szoba egységára nem jó helyen van most. Jelöld ki a D1:D2 cellákat, ahol a szoba ára /fő/éj és a 15000 (Ft) van, és helyezd át ezeket egy oszloppal jobbra, az E oszlop tetejére!</p>
         <p>A megüresedett D oszlopba fogjuk kiszámolni, hogy mennyi a fizetendő összeg. Írd be a D1-es cellába, hogy fizetendő, aztán lépj a D2-be, ide fogsz számolni. Először gondold végig, hogy mire kell figyelni! <b>Tegyük fel, hogy mindenki két éjszakát töltött a szállodában.</b> A fizetendő tehát minimum az E2-es cellában levő egységár kétszerese lesz a két éjszaka miatt. Ezt viszont <b>annyival kell szorozni, ahányan az adott szobában voltak</b>. Végül ehhez kell <b>hozzáadni a reggeli árát</b>. Hányszor? Ezt is kétszer annyiszor, ahányan voltak, mert két éjszaka után kétszer reggeliztek mindannyian. <span class="ia" data-target="szobaar_keplet" data-tipus="toggle">Ide kattintva ellenőrizheted, hogy jó képletet írtál-e be (eddig, mert még egy picit módosítani fogjuk!).</span></p>
-        <div class="lenyilo-tartalom" id="szobaar_keplet">=2*E2*B2+2*B2*C2</div>
+        <div class="lenyilo-tartalom" id="szobaar_keplet"><span class="gomb">=2*E2*B2+2*B2*C2</span></div>
         Ezzel az SZ1-es szoba ára meg is van. De ha kiterjeszted, akkor meglepően alacsony árakat találsz. Ha tudod, javítsd ki, de <span class="ia" data-target="szobaar_fixalt" data-tipus="toggle">ide kattintva a megoldást is láthatod.</span>
-        <div class="lenyilo-tartalom" id="szobaar_fixalt">Mivel most még az összes hivatkozás relatív, vagyis az eredeti cellához viszonyít, kiterjesztésnél a szoba egységára is odébb ment. Lépj vissza a D2-ben levő képlet szerkesztéséhez (pl. úgy, hogy duplán rákattintasz a cellára)! Keresd meg az E2 hivatkozást, kattints rá, hogy mondjuk a közepén villogjon a kurzor (az a kis vonal, ami jelzi, hogy hova írsz), és nyomd meg az <span class="gomb">F4</span> gombot, aztán az Entert! Ha most kiterjeszted lefelé az új képletet, már jól fog számolni! A végső képlet tehát =2*$E$2*B2+2*B2*C2</div>
+        <div class="lenyilo-tartalom" id="szobaar_fixalt">Mivel most még az összes hivatkozás relatív, vagyis az eredeti cellához viszonyít, kiterjesztésnél a szoba egységára is odébb ment. Lépj vissza a D2-ben levő képlet szerkesztéséhez (pl. úgy, hogy duplán rákattintasz a cellára)! Keresd meg az E2 hivatkozást, kattints rá, hogy mondjuk a közepén villogjon a kurzor (az a kis vonal, ami jelzi, hogy hova írsz), és nyomd meg az <span class="gomb">F4</span> gombot, aztán az Entert! Ha most kiterjeszted lefelé az új képletet, már jól fog számolni! A végső képlet tehát <span class="gomb">=2*$E$2*B2+2*B2*C2</span></div>
     </details>
 
     <!-- minibár fogyasztás és hozzáadása, összeg javítása -->
     <details>
-    <summary></summary>
+    <summary>Minibár fogyasztás hozzáadása</summary>
+    <p class="intro">Ha voltál már szállodában, akkor emlékezhetsz a pici hűtőre, amiben egy csomó féle kis üveges ital van. Ha ezekből fogyasztasz, azt a távozás napján kell kifizetni, a szoba árával együtt. Most ezt számoljuk ki, hogy mennyivel növeli a képzeletbeli fogyasztás a szobákért fizetendő összeget.</p>
+    <p>Tegyük fel, hogy minden páros számú szobában fogyasztottak a minibárból, 1200 Ft értékben. <i>Hogyan tudod a legkevesebb kattintgatással és írogatással beírni ezeket a megfelelő cellákba?</i></p>
+    <p>Az első lépés, hogy megint <b>kellene csinálni egy új oszlopot</b>. A D oszlop bal oldalára szúrj be egy üres oszlopot, hogy ide, még az összeg elé kerüljön a minibár fogyasztás! Írd be a D1 cellába, hogy <i><b>minibár fogyasztás</b></i>!</p>
+    <p>A D oszlop többi cellájába a fenti szabály szerint kell beírni a számokat. Próbáld meg megtalálni azt a módot, ahogyan kiterjesztheted, de ha nem megy, <span class="ia" data-target="minibar_kiterjesztes" data-tipus="toggle">ide kattintva megnézheted, hogy én hogyan csináltam.</span></p>
+    <div class="lenyilo-tartalom extra resp" id="minibar_kiterjesztes">
+      <div class="resp-left">Bizony, ez egy olyan eset, amikor az Excel megnehezíti a dolgunkat. Ha beírom, hogy 1200, és egy üres cellával együtt jelölöm ki, aztán ezt a kettőt terjesztem ki, akkor sajnos az összeg lefelé nőni fog, mert az ilyen mintázatokban a program lépteti a számokat. Ha mégsem szeretnéd kézzel beírni, akkor egy pici trükkre lesz szükség.</div>
+      <div class="resp-right"><img src="kepek/excel_kiterjesztes_szam_ures.gif" alt=""></div>
+      <div class="resp-left">A trükk annyi, hogy csak a sima számok viselkednek így, <b>a számolások eredményei nem</b>. Az 1200 Ft-unkat tehát egyszerűen egy számolás eredményévé kell alakítani. A legkönnyebb módja ennek, ha elé írunk egy egyenlőségjelet. Így kiterjesztve már az történik, amit szeretnénk.</div>
+      <div class="resp-right"><img src="kepek/excel_kiterjesztes_ertek_ures.gif" alt=""></div>
+    </div>
+    <p>Ha megvan a minibár fogyasztás is, akkor <b>ezt is add hozzá a fizetendő összeghez</b>! Elég az E2-ben módosítani a képletet: a legvégére írd be, hogy <span class="gomb">+D2</span> és terjeszd ki! <i>Figyeld meg, hogy a fixált cella is odébb ment, amikor beszúrtuk az üres oszlopot! A fixálás tehát annyira azért nem örök, hogy ha átgyúrom a táblázatot, akkor is maradjon: az oszlopok/sorok beszúrása és törlése tudja módosítani.</i></p>
     </details>
 
     <!-- táblázat formázása -->
     <details>
-        <summary></summary>
+        <summary>A táblázat formázása</summary>
+        <p class="intro">A táblázat még nem szép, egy kicsit formázzuk meg!</p>
+        <p>A legelső, hogy <b>látszódjon minden szöveg</b>. Ehhez <b>kattints az A betű bal oldalán levő háromszögre</b>, így kijelölöd az egész táblázatot. Most <b>kattints <u>duplán</u> az A és a B oszlop közti elválasztóra</b>! (Másik két oszlop közé is kattinthatsz.)</p>
+        <p>Most, hogy minden oszlop jó méretű, állítsuk be, hogy az árak Ft-ban jelenjenek meg! Jelöld ki azokat a cellákat, ahol pénzösszegek szerepelnek, és keresd meg a <i>Szám</i> részben a <span class="ia" data-target="penz" data-tipus="modal">kis pénz ikont</span>! Kattints rá, és máris forintban látod az összegeket.</p>
+        <p>A sok adat közt nehéz meglátni, ami igazán sófontos. Emeld még ki egy kicsit, hogy mennyi a tényleg fizetendő összeg! Ehhez jelöld ki az E oszlopot, és <span class="ia" data-target="kiemeles" data-tipus="modal">adj neki egy neked tetsző kiemelést</span>, a szöveget pedig állítsd félkövérre!</p>
+        <p>Utolsó lépésként különítsük még el a fejlécet az adatoktól! Jelöld ki az első sort, és a <span class="ia" data-target="szegelyek" data-tipus="modal">Szegélyek</span> részben adj hozzá egy <b>vastag alsó szegélyt</b>!</p>
     </details>
-
+    
     <!-- mentés, beadás -->
     <details>
-        <summary></summary>
+      <summary>Mentés, beküldés</summary>
+      <p>Ha kértem, hogy add be, akkor fontosak ezek a lépések, ne felejtsd el őket. Ha csak gyakoroltál, akkor nem kell még elmenteni sem, csak tudd ezeket megcsinálni.</p>
     </details>
-
- </div>
-
- <!-- 1. feladat képei -->
+    
+  </div>
+  
+  <!-- 1. feladat képei -->
   <div class="rejtett-kep" id="vedett_mod"><img src="kepek/Office_vedett_mod_excel.png" alt="Az ablak felső részében, a (most összecsukott) menüsáv alati sárga sáv figyelmeztet, hogy a fájl talán nem biztonságos. Ha úgy gondolod, hogy az (most az), akkor kattints a <i>Szerkesztés engedélyezése</i> gombra! Hasonlóval más programoknál is találkozhatsz. Az Office csomag programjainál lényegében ugyanezt látod."></div>
-
+  <div class="rejtett-kep kep-svg-wrapper" id="penz"><img src="kepek/excel_kezdolap.png" alt="">
+    <svg viewBox='0 0 1790 132' class='svg-reteg'>
+      <rect x='735' y='70' width='26' height='26' class='svg-kiemeles'></rect>
+    </svg>
+  </div>
+  <div class="rejtett-kep kep-svg-wrapper" id="kiemeles"><img src="kepek/excel_kezdolap.png" alt="">
+    <svg viewBox='0 0 1790 132' class='svg-reteg'>
+      <rect x='350' y='70' width='26' height='26' class='svg-kiemeles'></rect>
+    </svg>
+  </div>
+  <div class="rejtett-kep kep-svg-wrapper" id="penz"><img src="kepek/excel_kezdolap.png" alt="">
+    <svg viewBox='0 0 1790 132' class='svg-reteg'>
+      <rect x='305' y='70' width='34' height='26' class='svg-kiemeles'></rect>
+    </svg>
+  </div>
+  
 <!-- 2. példa kártyája -->
  <div class="task-card">
     <h3>Második példa: osztályzatok átlaga</h3>
