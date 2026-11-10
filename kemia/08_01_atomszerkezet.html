@@ -1,0 +1,787 @@
+<!-- ez már jó, jöhet a 2. lecke! de szerintem a fémeket ne itt, hanem majd az anyagi halmazoknál hozzuk be! azért, hogy rögtön tudják kötni a rengeteg sok részecskét, ami ott bejön fogalmi szinten. az ionokat én nem az atomok után hoznám be, vagy nem így szoktam, de a kolléga tavaly így csinálta, és eddig jutottak, szóval ami innentől van, azt vettem én velük, a többit csak ismételtem, és ezért van ilyen sorrendben.
+és most még egy dolog jutott az eszembe. készíts, kérlek egy olyan svg-t, ami egyben mutatja a Bohr- és a Schrödinger-féle atommodell nyolcadikban releváns részeit! legyen egy ábra, alatta magyarázó szöveg. a szövegben is legyenek színkódolva a dolgok, és amikor a szövegben pl. az atommag fölé viszem az egérmutatót, akkor az legyen éles és látható, a többi kapjon mondjuk 0.25 opacity-t. szeretném, ha alapból az atommag és az elektronfelhő látszódna, de a magyarázatra víve az egeret, az egyes héjak vagy egy-egy elektron lenne látható. ezt az egészet be szeretném ágyazni az elejére, mert ilyet már halloittak, de hátha ez segít megérteni -->
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧪 1. lecke: Atomszerkezet és a periódusos rendszer</title>
+  <link rel="stylesheet" href="../style.css?v=3">
+  <script type="text/javascript" src="../script.js?v=3" defer></script>
+  <script>window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] } };</script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  <style>
+    /* Oldalspecifikus stílusok az interaktív atommodellhez */
+    .atom-szimulator {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+      align-items: center;
+      background: var(--intro-bg);
+      padding: 20px;
+      border-radius: 8px;
+      border: 2px solid var(--secondary);
+      margin: 15px 0;
+    }
+    @media (max-width: 700px) {
+      .atom-szimulator {
+        grid-template-columns: 1fr;
+      }
+    }
+    .atom-svg-doboz {
+      background: var(--card-bg);
+      border-radius: 50%;
+      width: 260px;
+      height: 260px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      border: 1px solid var(--border-light);
+    }
+    .adat-racs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    @media (max-width: 550px) {
+      .adat-racs {
+        grid-template-columns: 1fr;
+      }
+    }
+    .adat-cella {
+      background: var(--card-bg);
+      padding: 8px 12px;
+      border-radius: 6px;
+      border-left: 4px solid var(--secondary);
+      font-size: 0.95rem;
+    }
+    .elem-valaszto-sor {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .elem-gomb {
+      padding: 5px 10px;
+      border: 1px solid var(--secondary);
+      background: var(--card-bg);
+      color: var(--text);
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+    .elem-gomb:hover, .elem-gomb.aktiv {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .bs-kontener {
+    background: var(--card-bg);
+    border: 2px solid var(--secondary);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  }
+  .bs-abra-doboz {
+    max-width: 340px;
+    margin: 0 auto 15px auto;
+    text-align: center;
+    position: relative;
+  }
+  .bs-svg {
+    width: 100%;
+    height: auto;
+    max-width: 320px;
+    background: radial-gradient(circle, rgba(142, 68, 173, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    border: 1px solid var(--border-light);
+  }
+  /* Alapállapot: az atommag és az elektronfelhő látszik (opacity: 1),
+     a Bohr-héjak és az elektronok rejtve vannak (opacity: 0) */
+  .bs-reteg {
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    transform-origin: 160px 160px;
+  }
+  #bs-mag, #bs-felho {
+    opacity: 1;
+  }
+  #bs-hej-1, #bs-hej-2, #bs-hej-3, #bs-kulso-e-kiemeles {
+    opacity: 0;
+  }
+
+  /* Ha a konténer "fókusz" módban van (egy kifejezés fölé vitték az egeret),
+     minden réteg elhalványul 0.25-re, kivéve az aktív rétegeket (1.0) */
+  .bs-kontener.bs-fokusz-aktiv .bs-reteg {
+    opacity: 0.25 !important;
+  }
+  .bs-kontener.bs-fokusz-aktiv .bs-reteg.bs-aktiv {
+    opacity: 1 !important;
+  }
+  .bs-kontener.bs-fokusz-aktiv #bs-mag.bs-aktiv {
+    transform: scale(1.18);
+  }
+
+  /* Színkódolt interaktív szavak a magyarázó szövegben */
+  .bs-szo {
+    display: inline-block;
+    padding: 1px 7px;
+    margin: 1px 2px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+  }
+  .bs-szo:hover, .bs-szo.aktiv-szo {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+  }
+  .bs-szin-mag { background: rgba(231, 76, 60, 0.16); color: #c0392b; border-color: #e74c3c; }
+  .bs-szin-felho { background: rgba(142, 68, 173, 0.16); color: #8e44ad; border-color: #8e44ad; }
+  .bs-szin-hejak { background: rgba(22, 160, 133, 0.16); color: #117864; border-color: #16a085; }
+  .bs-szin-hej1 { background: rgba(41, 128, 185, 0.16); color: #1f618d; border-color: #2980b9; }
+  .bs-szin-hej2 { background: rgba(39, 174, 96, 0.16); color: #1e8449; border-color: #27ae60; }
+  .bs-szin-kulso { background: rgba(211, 84, 0, 0.18); color: #d35400; border-color: #e67e22; }
+
+  html.dark-mode .bs-szin-mag { color: #ff8a80; }
+  html.dark-mode .bs-szin-felho { color: #ce93d8; }
+  html.dark-mode .bs-szin-hejak { color: #80cbc4; }
+  html.dark-mode .bs-szin-hej1 { color: #81d4fa; }
+  html.dark-mode .bs-szin-hej2 { color: #a5d6a7; }
+  html.dark-mode .bs-szin-kulso { color: #ffcc80; }
+
+  .bs-allapot-cimke {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--summary-color);
+    margin-top: 6px;
+    min-height: 1.4em;
+  }
+  </style>
+</head>
+<body class="theme-kem">
+
+  <h2>🧪 1. lecke: Atomszerkezet és a periódusos rendszer</h2>
+  <p class="intro">
+    <b>🎯 Tanulási célok:</b> A lecke végére megismered a semleges atom felépítését (atommag és elektronburok), a rendszám és a tömegszám alapján ki tudod számolni egy atomban a protonok, a neutronok és az elektronok számát, valamint a periódusos rendszerbeli helyéből meg tudod állapítani egy főcsoportbeli elem elektronhéjainak és külső elektronjainak a számát.
+  </p>
+
+  <!-- ==========================================
+       1. KÁRTYA: AZ ATOM FELÉPÍTÉSE
+       ========================================== -->
+  <div class="task-card">
+    <h3>1. Mi van az atom belsejében? (Atommag és elektronburok)</h3>
+    <p>Az <b>atom</b> elektromosan semleges kémiai részecske, amely két fő részből épül fel: egy parányi, de nagy tömegű, pozitív töltésű <b>atommagból</b> és a körülötte jóval nagyobb térben elhelyezkedő, negatív töltésű <b>elektronburokból</b>. Az ez alatti részben találsz egy interaktív rajzot, ami megmutatja az atom fontosabb részeit.</p>
+
+    <div class="task-card">
+  <h3>🔍 Kétféle atommodell egyetlen ábrán: Elektronfelhő vagy elektronhéjak?</h3>
+  <p>Amikor atomokról tanulunk, kétféle ábrázolással is találkozhatsz. <b>Vidd az egeret a lenti magyarázatban szereplő színes kifejezések fölé</b> (vagy érintőképernyőn koppints rájuk), és nézd meg a nátriumatom ($Z=11$) példáján, hogyan kapcsolódik össze a két modell!</p>
+
+  <div class="bs-kontener" id="bs-interaktiv-doboz">
+    <div class="bs-abra-doboz">
+      <svg class="bs-svg" viewBox="0 0 320 320" aria-label="Bohr és Schrödinger atommodell">
+        <defs>
+          <!-- Schrödinger-féle elektronfelhő színátmenetei (sűrűbb és ritkább zónák) -->
+          <radialGradient id="felhoGradBelso" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#8e44ad" stop-opacity="0.65" />
+            <stop offset="35%" stop-color="#9b59b6" stop-opacity="0.45" />
+            <stop offset="65%" stop-color="#8e44ad" stop-opacity="0.22" />
+            <stop offset="92%" stop-color="#9b59b6" stop-opacity="0.06" />
+            <stop offset="100%" stop-color="#9b59b6" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+
+        <!-- 1. RÉTEG: SCHRÖDINGER-FÉLE ELEKTRONFELHŐ (Alapból látható) -->
+        <g id="bs-felho" class="bs-reteg">
+          <!-- Folytonos valószínűségi felhő -->
+          <circle cx="160" cy="160" r="142" fill="url(#felhoGradBelso)" />
+          <!-- Sűrűsödési gyűrűzónák a felhőn belül -->
+          <circle cx="160" cy="160" r="52" fill="none" stroke="#8e44ad" stroke-width="14" stroke-opacity="0.22" />
+          <circle cx="160" cy="160" r="92" fill="none" stroke="#8e44ad" stroke-width="18" stroke-opacity="0.18" />
+          <circle cx="160" cy="160" r="130" fill="none" stroke="#8e44ad" stroke-width="12" stroke-opacity="0.10" />
+          <!-- Szórt pontfelhő (tartózkodási valószínűség szemléltetése) -->
+          <g fill="#6c3483" opacity="0.55">
+            <circle cx="145" cy="120" r="1.8"/><circle cx="182" cy="132" r="2"/><circle cx="128" cy="168" r="1.8"/>
+            <circle cx="175" cy="195" r="1.8"/><circle cx="115" cy="140" r="1.6"/><circle cx="205" cy="155" r="1.6"/>
+            <circle cx="155" cy="108" r="2"/><circle cx="135" cy="192" r="1.7"/><circle cx="195" cy="182" r="1.7"/>
+            <circle cx="95" cy="125" r="1.5"/><circle cx="222" cy="128" r="1.5"/><circle cx="102" cy="198" r="1.5"/>
+            <circle cx="215" cy="202" r="1.5"/><circle cx="162" cy="72" r="1.5"/><circle cx="158" cy="245" r="1.5"/>
+            <circle cx="78" cy="162" r="1.4"/><circle cx="242" cy="158" r="1.4"/><circle cx="122" cy="95" r="1.5"/>
+            <circle cx="198" cy="92" r="1.5"/><circle cx="118" cy="225" r="1.5"/><circle cx="204" cy="228" r="1.5"/>
+            <circle cx="62" cy="115" r="1.2"/><circle cx="255" cy="195" r="1.2"/><circle cx="165" cy="38" r="1.2"/>
+            <circle cx="152" cy="282" r="1.2"/><circle cx="48" cy="178" r="1.2"/><circle cx="272" cy="140" r="1.2"/>
+          </g>
+        </g>
+
+        <!-- 2. RÉTEG: BOHR-FÉLE 1. HÉJ (K-héj: 2 db belső elektron) -->
+        <g id="bs-hej-1" class="bs-reteg">
+          <circle cx="160" cy="160" r="52" fill="none" stroke="#2980b9" stroke-width="2.5" stroke-dasharray="5,3" />
+          <circle cx="160" cy="108" r="6" fill="#2980b9" stroke="#ffffff" stroke-width="1.5" />
+          <circle cx="160" cy="212" r="6" fill="#2980b9" stroke="#ffffff" stroke-width="1.5" />
+          <text x="195" y="122" fill="#2980b9" font-size="11" font-weight="bold">1. héj (2 e⁻)</text>
+        </g>
+
+        <!-- 3. RÉTEG: BOHR-FÉLE 2. HÉJ (L-héj: 8 db elektron) -->
+        <g id="bs-hej-2" class="bs-reteg">
+          <circle cx="160" cy="160" r="92" fill="none" stroke="#27ae60" stroke-width="2.5" stroke-dasharray="6,3" />
+          <!-- 8 elektron a 2. héjon -->
+          <circle cx="160" cy="68" r="6" fill="#27ae60" stroke="#ffffff" stroke-width="1.5" />
+          <circle cx="225" cy="95" r="6" fill="#27ae60" stroke="#ffffff" stroke-width="1.5" />
+          <circle cx="252" cy="160" r="6" fill="#27ae60" stroke="#ffffff" stroke-width="1.5" />
+          <circle cx="225" cy="225" r="6" fill="#27ae60" stroke="#ffffff" stroke-width="1.5" />
+          <circle cx="160" cy="252" r="6" fill="#27ae60" stroke="#ffffff" stroke-width="1.5" />
+          <circle cx="95" cy="225" r="6" fill="#27ae60" stroke="#ffffff" stroke-width="1.5" />
+          <circle cx="68" cy="160" r="6" fill="#27ae60" stroke="#ffffff" stroke-width="1.5" />
+          <circle cx="95" cy="95" r="6" fill="#27ae60" stroke="#ffffff" stroke-width="1.5" />
+          <text x="218" y="80" fill="#27ae60" font-size="11" font-weight="bold">2. héj (8 e⁻)</text>
+        </g>
+
+        <!-- 4. RÉTEG: BOHR-FÉLE 3. (KÜLSŐ) HÉJ ÉS A VEGYÉRTÉKELEKTRON -->
+        <g id="bs-hej-3" class="bs-reteg">
+          <circle cx="160" cy="160" r="130" fill="none" stroke="#d35400" stroke-width="2.8" />
+          <g id="bs-kulso-e-kiemeles" class="bs-reteg">
+            <circle cx="160" cy="30" r="12" fill="rgba(230, 126, 34, 0.28)" />
+            <circle cx="160" cy="30" r="7.5" fill="#e67e22" stroke="#ffffff" stroke-width="1.8" />
+            <text x="160" y="15" text-anchor="middle" fill="#d35400" font-size="11.5" font-weight="bold">külső e⁻ (3. héj)</text>
+          </g>
+        </g>
+
+        <!-- 5. RÉTEG: ATOMMAG (Alapból látható, középen) -->
+        <g id="bs-mag" class="bs-reteg">
+          <circle cx="160" cy="160" r="24" fill="rgba(231, 76, 60, 0.22)" />
+          <circle cx="160" cy="160" r="18" fill="#c0392b" stroke="#ffffff" stroke-width="1.5" />
+          <text x="160" y="158" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold">11 p⁺</text>
+          <text x="160" y="169" text-anchor="middle" fill="#ffffff" font-size="9">12 n⁰</text>
+        </g>
+      </svg>
+      <div class="bs-allapot-cimke" id="bs-allapot-szoveg">
+        Alapnézet: Atommag + Schrödinger-féle elektronfelhő (Vidd az egeret a színes szavakra!)
+      </div>
+    </div>
+
+    <!-- SZÍNKÓDOLT MAGYARÁZÓ SZÖVEG -->
+    <div style="font-size: 0.98rem; line-height: 1.75;">
+      <p style="margin-top: 0;">
+        • <b>A valósághoz közelebb álló kép (Schrödinger-modell):</b> Az atom közepén a parányi, pozitív töltésű 
+        <span class="bs-szo bs-szin-mag" data-targets="bs-mag" data-leiras="Atommag: 11 proton (p⁺) és 12 neutron (n⁰) – itt van az atom tömegének >99,9%-a!">atommag</span> 
+        található. Körülötte az elektronok nem rögzített, síkbeli körpályákon keringenek (mint a bolygók a Nap körül), hanem óriási sebességgel mozognak egy térbeli 
+        <span class="bs-szo bs-szin-felho" data-targets="bs-felho" data-leiras="Schrödinger-féle elektronfelhő: ahol sötétebb/sűrűbb a felhő, ott nagyobb valószínűséggel tartózkodnak az elektronok.">elektronfelhőben (elektronburokban)</span>. 
+        A felhő sűrűbb részei mutatják, hol a legnagyobb a valószínűsége annak, hogy egy elektront megtalálunk.
+      </p>
+      <p style="margin-bottom: 0;">
+        • <b>A számoláshoz használt egyszerűsítés (Bohr-féle héjmodell):</b> Hogy könnyen nyomon tudjuk követni az elektronok számát, az elektronfelhőt energiájuk szerint koncentrikus rétegekre, úgynevezett 
+        <span class="bs-szo bs-szin-hejak" data-targets="bs-hej-1,bs-hej-2,bs-hej-3,bs-kulso-e-kiemeles" data-leiras="Bohr-féle héjmodell: mind a 3 elektronhéj együtt (nátrium: 2, 8, 1 elektron).">elektronhéjakra</span> 
+        osztjuk. A nátriumatomban az 
+        <span class="bs-szo bs-szin-hej1" data-targets="bs-hej-1" data-leiras="1. (legbelső) elektronhéj: legfeljebb 2 elektron fér el rajta (telített).">1. (legbelső) héjon 2 elektron</span>, 
+        a 
+        <span class="bs-szo bs-szin-hej2" data-targets="bs-hej-2" data-leiras="2. elektronhéj: legfeljebb 8 elektron fér el rajta (a nátriumban ez is telített).">2. héjon 8 belső elektron</span> 
+        található, a legkülső (3.) héjon pedig 
+        <span class="bs-szo bs-szin-kulso" data-targets="bs-hej-3,bs-kulso-e-kiemeles" data-leiras="3. (legkülső) héj és az 1 db külső (vegyérték-) elektron: ez vesz részt a kémiai reakciókban!">1 darab külső (vegyérték-) elektron</span> 
+        van, amely az atom kémiai reakcióiért felel!
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const kontener = document.getElementById("bs-interaktiv-doboz");
+    const cimke = document.getElementById("bs-allapot-szoveg");
+    if (!kontener || !cimke) return;
+
+    const szavak = kontener.querySelectorAll(".bs-szo");
+    const retegek = kontener.querySelectorAll(".bs-reteg");
+    const alapSzoveg = "Alapnézet: Atommag + Schrödinger-féle elektronfelhő (Vidd az egeret a színes szavakra!)";
+
+    function aktivalFokuszt(szoElem) {
+      szavak.forEach(sz => sz.classList.remove("aktiv-szo"));
+      retegek.forEach(r => r.classList.remove("bs-aktiv"));
+
+      szoElem.classList.add("aktiv-szo");
+      kontener.classList.add("bs-fokusz-aktiv");
+
+      const celok = szoElem.getAttribute("data-targets").split(",");
+      celok.forEach(id => {
+        const el = document.getElementById(id.trim());
+        if (el) el.classList.add("bs-aktiv");
+      });
+
+      cimke.textContent = szoElem.getAttribute("data-leiras") || "";
+    }
+
+    function visszaallitAlapra() {
+      szavak.forEach(sz => sz.classList.remove("aktiv-szo"));
+      retegek.forEach(r => r.classList.remove("bs-aktiv"));
+      kontener.classList.remove("bs-fokusz-aktiv");
+      cimke.textContent = alapSzoveg;
+    }
+
+    szavak.forEach(szo => {
+      szo.addEventListener("mouseenter", () => aktivalFokuszt(szo));
+      szo.addEventListener("mouseleave", visszaallitAlapra);
+      // Érintőképernyős támogatás (koppintásra vált, üres helyre koppintva visszaáll)
+      szo.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (szo.classList.contains("aktiv-szo")) {
+          visszaallitAlapra();
+        } else {
+          aktivalFokuszt(szo);
+        }
+      });
+    });
+
+    kontener.addEventListener("click", visszaallitAlapra);
+  });
+</script>
+
+    <div class="osszefoglalas" style="margin: 15px 0;">
+      🎵 <b>Koncertterem-hasonlat:</b> Képzeld el az atomot úgy, mint egy óriási koncerttermet! Az <b>atommag</b> a színpad közepén álló karmesteri pult: egészen apró helyet foglal el a teremhez képest, mégis itt összpontosul az atom szinte teljes tömege (több mint 99,9%-a). Az <b>elektronok</b> pedig a hatalmas nézőtér erkélyein és soraiban helyezkednek el: az elektronburok határozza meg az atom méretét, de a tömege szinte elhanyagolható.
+    </div>
+
+    <p>Az atomot háromféle, itt fontos részecske építi fel: proton, neutron és elektron.</p>
+
+    <div class="table-wrap">
+      <table class="tema-tabla">
+        <thead>
+          <tr>
+            <th>Részecske neve</th>
+            <th>Jele</th>
+            <th>Hol található?</th>
+            <th>Relatív töltése</th>
+            <th>Relatív tömege</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Proton</b></td>
+            <td><code class="inline">p<sup>+</sup></code></td>
+            <td>Atommagban</td>
+            <td><b>+1</b> (pozitív)</td>
+            <td><b>1 egység</b> (~1 u)</td>
+          </tr>
+          <tr>
+            <td><b>Neutron</b></td>
+            <td><code class="inline">n<sup>0</sup></code></td>
+            <td>Atommagban</td>
+            <td><b>0</b> (semleges)</td>
+            <td><b>1 egység</b> (~1 u)</td>
+          </tr>
+          <tr>
+            <td><b>Elektron</b></td>
+            <td><code class="inline">e<sup>–</sup></code></td>
+            <td>Elektronburokban</td>
+            <td><b>–1</b> (negatív)</td>
+            <td><b>~0</b> ($\approx \frac{1}{1840}$ egység, elhanyagolható)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <details open>
+      <summary>Rendszám és tömegszám: hogyan számoljuk ki a részecskék számát?</summary>
+      <p>Egy atom pontos összetételét a vegyjel bal oldalára írt két számmal adhatjuk meg, például a nátriumatom esetében: 
+        <span class="izotop"><span class="szamok"><span>23</span><span>11</span></span>Na</span>
+      </p>
+      <ul>
+        <li><b>Rendszám ($Z$, a bal alsó szám, itt: $11$):</b> Megmutatja az atommagban lévő <b>protonok számát</b> ($\text{p}^+$). A rendszám egyértelműen azonosítja a kémiai elemet: minden 11 protont tartalmazó atom nátrium.
+          <br>👉 <b>Alapszabály:</b> Semleges atomban a protonok és az elektronok száma megegyezik ($\text{p}^+ = \text{e}^- = Z$). A nátriumatomban tehát $11\text{ db p}^+$ és $11\text{ db e}^-$ van, így a töltések kiegyenlítik egymást: $(+11) + (-11) = 0$.
+        </li>
+        <li><b>Tömegszám ($A$, a bal felső szám, itt: $23$):</b> Mivel az elektron tömege nagyon kicsi, a tömegszám a <b>protonok és a neutronok számának összege</b>:
+          $$A = \text{p}^+ + \text{n}^0 \quad \Longrightarrow \quad \mathbf{\text{n}^0 = A - Z}$$
+          A <span class="izotop"><span class="szamok"><span>23</span><span>11</span></span>Na</span>-atomban tehát a neutronok száma: $23 - 11 = \mathbf{12\text{ db n}^0}$.
+        </li>
+      </ul>
+    </details>
+
+    <details class="extra">
+        <summary>A rendszám és az elemek</summary>
+        <p><b>Miért fontos a rendszám?</b>
+            <br>Alapállapotú atomokban a protonok és az elektronok száma megegyezik, így lesz semleges az atom töltése. Mivel a protonok az atommagban az elektronfelhő árnyékában vannak, <b>a környezet (pl. egy másik atom is) csak az elektronfelhővel tud kapcsolatba lépni</b>. Emiatt nyilván az határozza meg az atomok viselkedését, hogy ez a külső rész, az elektronfelhő milyen szerkezetű. <b>Az elektronszerkezet pedig az elektronok számáótl függ.</b> Ez is logikus: sok elektron nagyobb helyen, más rendszerben (erről később lesz még szó!) fér el, mint kevés.
+            <br>Mivel az elektronok és a protonok száma megegyezik, azt is mondhatom, hogy az atomok viselkedését a protonok száma határozza meg. És hogy ez miért helyes gondolat? Mivel az atommag a kémiai reakciókban nem alakul át, ez, és vele együtt <b>a protonszám határozza meg az elektronszerkezetet nagyon stabilan</b>.</p>
+        <p><b>Miért $Z$ a rendszám jele, és $A$ a tömegszámé?</b>
+            <br>Ha ilyen fontos a rendszám, akkor logikus lehetne, hogy ezt jelöljük $A$-val, és a tömegszámot $Z$-vel. Azért mégsem így van, mert az atom szerkezetét még sokáig nem ismerték pontosan. Mivel a tömeget már precizen tudták mérni, a tömegszámra is tudtak következtetni, és először ez alapján rendezték pl. sorba az elemeket. A protonokat és velük együtt a rendszámot csak később írták le, így az az utolsó betűt kapta.</p>
+        <p><b>Mik azok az elemek?</b>
+            <br>Többször leírtam már az <u>elem</u> kifejezést. Elemnek azokat a részecskéket nevezzük, amelyek mindegyike ugyanannyi protont tartalmaz. Vegyjele is az elemeknek van, mivel kémiailag az azonos elemek atomjait nem tudjuk egymástól megkülönböztetni.</p>
+    </details>
+
+    <details class="extra">
+      <summary>Kiegészítés: mik azok az izotópok?</summary>
+      <p>Ugyanannak a kémiai elemnek olyan atomjait, amelyekben a <b>protonok száma (rendszáma) azonos</b>, de a <b>neutronok száma (és így a tömegszáma) eltérő</b>, <b>izotópoknak</b> nevezzük. Például a hidrogénnek létezik $0$, $1$ és $2$ neutront tartalmazó atomja is: 
+        <span class="izotop"><span class="szamok"><span>1</span><span>1</span></span>H</span> (0 neutron), 
+        <span class="izotop"><span class="szamok"><span>2</span><span>1</span></span>H</span> (1 neutron), 
+        <span class="izotop"><span class="szamok"><span>3</span><span>1</span></span>H</span> (2 neutron).
+      </p>
+    </details>
+  </div>
+
+  <!-- ==========================================
+       2. KÁRTYA: ELEKTRONHÉJAK ÉS PERIÓDUSOS RENDSZER
+       ========================================== -->
+  <div class="task-card">
+    <h3>2. Elektronhéjak és a periódusos rendszer felépítése</h3>
+    <p>Az elektronburokban lévő elektronok energiájuk szerint különböző <b>elektronhéjakon</b> (rétegekben) helyezkednek el – hasonlóan ahhoz, ahogyan a kórus tagjai állnak a pódium egymás mögötti soraiban.</p>
+    <p class="extra" style="padding: 10px;">
+      <b>Fontos megjegyzés a modellről:</b> Az elektronhéjas ábra egy szemléltető modell. Az elektronok a valóságban nem bolygók módjára, jól meghatározott körpályákon keringenek az atommag körül, hanem különböző energiájú térrészekben tartózkodnak.
+    </p>
+    <ul>
+      <li>Az <b>1. (legbelső) héjon</b> legfeljebb <b>2 elektron</b> fér el.</li>
+      <li>A <b>2. héjon</b> legfeljebb <b>8 elektron</b> fér el.</li>
+      <li>Az első 20 elem egyszerű héjmodelljében az elektronok eloszlása a héjakon például a kalciumig így írható fel: <b>2, 8, 8, 2</b>. <i>(A 3. héj a későbbi elemeknél 8-nál több elektront is tartalmazhat; ezt most nem vizsgáljuk.)</i></li>
+    </ul>
+
+    <details open>
+      <summary>Mit árul el a periódus és a csoport száma?</summary>
+      <p>A periódusos rendszerben az elemeket növekvő rendszám ($Z$) szerint soroljuk vízszintes sorokba (<b>periódusokba</b>) és függőleges oszlopokba (<b>csoportokba</b>):</p>
+      <ol>
+        <li><b>Periódus (vízszintes sor, 1–7.):</b> A periódus száma megmutatja, hogy az atomnak <b>hány elektronhéja van</b>.
+          <br><i>Példa:</i> A nátrium ($Z=11$, eloszlása: $2, 8, 1$) a <b>3. periódusban</b> található, mert <b>3 elektronhéja</b> van.
+        </li>
+        <li><b>Csoport (függőleges oszlop):</b> A periódusos rendszerben hagyományosan megkülönböztetünk <b>főcsoportokat (I. A – VIII. A)</b> és <b>mellékcsoportokat (átmenetifémeket)</b>, a korszerű számozás pedig balról jobbra <b>1-től 18-ig</b> számozza az oszlopokat.
+          <br>👉 <b>Szabály a főcsoportokra:</b> A főcsoportokban a csoport jelöléséből általában megállapítható a legkülső héjon lévő <b>külső elektronok</b> (más néven <i>vegyértékelektronok</i>) száma:
+          <ul>
+            <li>Az <b>1. és 2. csoportban</b> (I. A és II. A főcsoport) <b>1, illetve 2 külső elektron</b> van.</li>
+            <li>A <b>13–18. csoportban</b> (III. A – VIII. A főcsoport) a <b>csoportszám utolsó számjegye</b> (vagy a római szám) adja meg a külső elektronok számát (3-tól 8-ig; kivétel a hélium, amelynek összesen 2 elektronja van).</li>
+            <li><i>Ez az egyszerű szabály az átmenetifémekre (a 3–12. csoportra, azaz a mellékcsoportokra) nem alkalmazható ugyanígy.</i></li>
+          </ul>
+        </li>
+      </ol>
+
+      <div class="table-wrap">
+        <table class="tema-tabla">
+          <thead>
+            <tr>
+              <th>Hagyományos főcsoport</th>
+              <th>Korszerű csoportszám</th>
+              <th>Külső elektronok száma</th>
+              <th>A csoport elnevezése és jellemző példái</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>I. A</b></td>
+              <td><b>1. csoport</b></td>
+              <td><b>1 db</b></td>
+              <td><b>Alkálifémek:</b> <span class="keplet">Li, Na, K</span> <i>(a hidrogén nem fém, csak az 1 külső elektronja miatt áll itt!)</i></td>
+            </tr>
+            <tr>
+              <td><b>II. A</b></td>
+              <td><b>2. csoport</b></td>
+              <td><b>2 db</b></td>
+              <td><b>Alkáliföldfémek:</b> <span class="keplet">Be, Mg, Ca</span></td>
+            </tr>
+            <tr>
+              <td><b>III. A – VI. A</b></td>
+              <td><b>13–16. csoport</b></td>
+              <td><b>3 – 6 db</b></td>
+              <td>Pl. 13. csoport: <span class="keplet">B, Al</span> (3 külső e⁻); 14.: <span class="keplet">C, Si</span> (4); 15.: <span class="keplet">N, P</span> (5); 16.: <span class="keplet">O, S</span> (6)</td>
+            </tr>
+            <tr>
+              <td><b>VII. A</b></td>
+              <td><b>17. csoport</b></td>
+              <td><b>7 db</b></td>
+              <td><b>Halogének:</b> <span class="keplet">F, Cl, Br, I</span> (reakcióképes nemfémek)</td>
+            </tr>
+            <tr>
+              <td><b>VIII. A</b></td>
+              <td><b>18. csoport</b></td>
+              <td><b>8 db</b> (He: <b>2 db</b>)</td>
+              <td><b>Nemesgázok:</b> <span class="keplet">He, Ne, Ar, Kr, Xe, Rn</span> (telített külső héj)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="osszefoglalas" style="margin-top: 15px;">
+      🎼 <b>A nemesgázszerkezet és az oktettszabály:</b><br>
+      Ahogyan a zenében a skála a 8. hanggal, az <i>oktávval</i> jut nyugvópontra, úgy az atomok világában is a telített külső héj – a <b>8 külső elektron</b> (az 1. héjon pedig a 2 elektron) – különösen stabil állapotot jelent. Ezt nevezzük <b>nemesgázszerkezetnek</b>. A nemesgázok külső elektronhéja telített, ezért általában kevéssé reakcióképesek (ez nem jelenti azt, hogy soha nem vehetnek részt kémiai reakcióban). Sok egyszerű kémiai folyamatban a többi elem atomjai is elektronleadással, -felvétellel vagy közös használattal alakítanak ki stabilabb elektronszerkezetet (<i>oktettszabály</i> – hasznos egyszerűsítés, de vannak kivételei). Erről a következő két leckében tanulunk!
+    </div>
+  </div>
+
+  <!-- ==========================================
+       3. KÁRTYA: INTERAKTÍV ATOMSZIMULÁTOR ÉS SZÁMOLÓS GYAKORLÓ
+       ========================================== -->
+  <div class="task-card">
+    <h3>3. Interaktív Labor: Atomépítő (1–20. elem) és Részecskeszámoló</h3>
+    <p>Kattints bármelyik elemre az első 20 közül, és vizsgáld meg az egyszerű héjmodelljét! A lila pontok a belső héjak elektronjait, a <b>piros pontok pedig a legkülső héjon lévő elektronokat</b> jelölik.</p>
+
+    <div class="elem-valaszto-sor" id="elem-gombok-helye"></div>
+
+    <div class="atom-szimulator">
+      <div class="atom-svg-doboz" id="atom-svg-kontener"></div>
+      <div id="atom-adatok-kontener"></div>
+    </div>
+
+    <hr class="elvalaszto">
+
+    <!-- INTERAKTÍV SZÁMOLÓS SORSOLÓ: CSAK SEMLEGES ATOMOKRA -->
+    <div class="bemutatas" style="background-color: var(--intro-bg);">
+      <p>🧮 Interaktív Részecske-számoló edző (Semleges atomok)</p>
+      <p style="font-family: 'Segoe UI', sans-serif; font-size: 0.95rem; text-align: center;">
+        <b>Emlékeztető:</b> Semleges atomban a protonok és az elektronok száma megegyezik a rendszámmal ($\text{p}^+ = \text{e}^- = Z$), a neutronok számát pedig a tömegszám és a rendszám különbsége adja ($\text{n}^0 = A - Z$).
+      </p>
+      <div style="text-align: center; margin-bottom: 12px;">
+        <button type="button" class="gomb" onclick="generalAtomSzamolast()" style="background: var(--primary); color: white; font-weight: bold; cursor: pointer; margin: 0;">🎲 Új atom sorsolása</button>
+      </div>
+      <div id="szamolos-feladat-doboz" style="display: none; font-family: 'Segoe UI', sans-serif;">
+        <div id="szamolos-kerdes-szoveg" style="text-align: center; font-size: 1.2rem; margin-bottom: 12px;"></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center;">
+          <label>Protonok ($\text{p}^+$): <input type="number" id="in-proton" class="rovid-input" style="width: 75px;"></label>
+          <label>Neutronok ($\text{n}^0$): <input type="number" id="in-neutron" class="rovid-input" style="width: 75px;"></label>
+          <label>Elektronok ($\text{e}^-$): <input type="number" id="in-elektron" class="rovid-input" style="width: 75px;"></label>
+          <button type="button" class="gomb" onclick="ellenorizAtomSzamolast()" style="background: #27ae60; color: white; font-weight: bold; cursor: pointer; margin: 0; padding: 6px 14px;">Ellenőrzés</button>
+        </div>
+        <div id="szamolos-visszajelzes" style="margin-top: 12px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       4. MODUL: KÖZPONTI KVÍZMOTOR (25 FELADATBÓL SORSOL)
+       ========================================== -->
+  <div class="task-card">
+    <h3>🎯 Gyakorlófeladatsor: Atomszerkezet és periódusos rendszer</h3>
+    <p>A rendszer a 25 kérdésből minden alkalommal <b>10 véletlenszerű feladatot</b> sorsol ki. A ⭐ jelűek az alapkövetelményeket, a 🌟 jelűek pedig a kiegészítő (pl. izotópokkal vagy a kétféle csoportszámozással kapcsolatos) kérdéseket jelölik.</p>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+      <button type="button" class="gomb" onclick="ujKvizSorsolas(10)" style="background: var(--secondary); color: white; font-weight: bold; padding: 10px 18px; cursor: pointer;">🎲 Új 10 feladat sorsolása</button>
+      <div id="kviz-eredmeny-jelzo" style="font-weight: bold; font-size: 1.1rem;"></div>
+    </div>
+
+    <div id="kviz-terulet" class="kviz-kontener"></div>
+
+    <div style="text-align: center; margin-top: 20px;">
+      <button type="button" class="gomb" id="kviz-ellenorzo-gomb" onclick="ellenorizKozpontiKviz()" style="background: #27ae60; color: white; font-weight: bold; font-size: 1.1rem; padding: 12px 25px; cursor: pointer;">✅ Válaszok ellenőrzése</button>
+    </div>
+  </div>
+
+  <script>
+    // ====================================================
+    // 1. INTERAKTÍV ATOMSZIMULÁTOR (1-20. ELEM)
+    // ====================================================
+    const elemekAdat = [
+      { z: 1, vegyjel: "H", nev: "Hidrogén", a: 1, hejak: [1], focsop: "I. A", csop18: 1, tipus: "Nemfém (gáz)", cel: "1 elektronja van az 1. héjon; még 1 elektron hiányzik a telített (2-es) héjhoz." },
+      { z: 2, vegyjel: "He", nev: "Hélium", a: 4, hejak: [2], focsop: "VIII. A", csop18: 18, tipus: "Nemesgáz", cel: "Az 1. héja telített (2 e⁻), ezért különösen stabil, kevéssé reakcióképes nemesgáz." },
+      { z: 3, vegyjel: "Li", nev: "Lítium", a: 7, hejak: [2, 1], focsop: "I. A", csop18: 1, tipus: "Alkálifém", cel: "A telített 1. héjon (2 e⁻) kívül a 2. héjon 1 külső elektronja van." },
+      { z: 4, vegyjel: "Be", nev: "Berillium", a: 9, hejak: [2, 2], focsop: "II. A", csop18: 2, tipus: "Alkáliföldfém", cel: "2 elektronhéja van, a külső (2.) héjon 2 elektron található." },
+      { z: 5, vegyjel: "B", nev: "Bór", a: 11, hejak: [2, 3], focsop: "III. A", csop18: 13, tipus: "Félfém", cel: "2 elektronhéja van, a külső héjon 3 elektron található." },
+      { z: 6, vegyjel: "C", nev: "Szén", a: 12, hejak: [2, 4], focsop: "IV. A", csop18: 14, tipus: "Nemfém", cel: "4 külső elektronja van a 2. héjon; még 4 elektron hiányzik a 8-as telítettséghez." },
+      { z: 7, vegyjel: "N", nev: "Nitrogén", a: 14, hejak: [2, 5], focsop: "V. A", csop18: 15, tipus: "Nemfém (gáz)", cel: "5 külső elektronja van → még 3 elektronra van szüksége a 8-as külső héjhoz." },
+      { z: 8, vegyjel: "O", nev: "Oxigén", a: 16, hejak: [2, 6], focsop: "VI. A", csop18: 16, tipus: "Nemfém (gáz)", cel: "6 külső elektronja van → még 2 elektron hiányzik a telített (8-as) külső héjhoz." },
+      { z: 9, vegyjel: "F", nev: "Fluor", a: 19, hejak: [2, 7], focsop: "VII. A", csop18: 17, tipus: "Halogén (nemfém)", cel: "7 külső elektronja van → már csak 1 elektron hiányzik a 8-as külső héjhoz." },
+      { z: 10, vegyjel: "Ne", nev: "Neon", a: 20, hejak: [2, 8], focsop: "VIII. A", csop18: 18, tipus: "Nemesgáz", cel: "Mindkét elektronhéja telített (2, 8), ezért stabil, kevéssé reakcióképes nemesgáz." },
+      { z: 11, vegyjel: "Na", nev: "Nátrium", a: 23, hejak: [2, 8, 1], focsop: "I. A", csop18: 1, tipus: "Alkálifém", cel: "3 elektronhéja van; a két belső telített héj (2, 8) után a 3. héjon 1 külső elektronja van." },
+      { z: 12, vegyjel: "Mg", nev: "Magnézium", a: 24, hejak: [2, 8, 2], focsop: "II. A", csop18: 2, tipus: "Alkáliföldfém", cel: "3 elektronhéja van, a legkülső (3.) héjon 2 elektron található." },
+      { z: 13, vegyjel: "Al", nev: "Alumínium", a: 27, hejak: [2, 8, 3], focsop: "III. A", csop18: 13, tipus: "Fém", cel: "3 elektronhéja van, a legkülső (3.) héjon 3 elektron található." },
+      { z: 14, vegyjel: "Si", nev: "Szilícium", a: 28, hejak: [2, 8, 4], focsop: "IV. A", csop18: 14, tipus: "Félfém", cel: "3 elektronhéja van, a legkülső héjon 4 elektron található." },
+      { z: 15, vegyjel: "P", nev: "Foszfor", a: 31, hejak: [2, 8, 5], focsop: "V. A", csop18: 15, tipus: "Nemfém", cel: "5 külső elektronja van a 3. héjon; még 3 elektron hiányzik a 8-hoz." },
+      { z: 16, vegyjel: "S", nev: "Kén", a: 32, hejak: [2, 8, 6], focsop: "VI. A", csop18: 16, tipus: "Nemfém", cel: "6 külső elektronja van a 3. héjon; még 2 elektron hiányzik a 8-hoz." },
+      { z: 17, vegyjel: "Cl", nev: "Klór", a: 35, hejak: [2, 8, 7], focsop: "VII. A", csop18: 17, tipus: "Halogén (nemfém)", cel: "7 külső elektronja van a 3. héjon; már csak 1 elektron hiányzik a 8-as héjhoz." },
+      { z: 18, vegyjel: "Ar", nev: "Argon", a: 40, hejak: [2, 8, 8], focsop: "VIII. A", csop18: 18, tipus: "Nemesgáz", cel: "Külső héján 8 elektron van (oktett) → stabil, kevéssé reakcióképes nemesgáz." },
+      { z: 19, vegyjel: "K", nev: "Kálium", a: 39, hejak: [2, 8, 8, 1], focsop: "I. A", csop18: 1, tipus: "Alkálifém", cel: "4 elektronhéja van (2, 8, 8, 1), a legkülső héjon 1 elektron található." },
+      { z: 20, vegyjel: "Ca", nev: "Kalcium", a: 40, hejak: [2, 8, 8, 2], focsop: "II. A", csop18: 2, tipus: "Alkáliföldfém", cel: "4 elektronhéja van (2, 8, 8, 2), a legkülső héjon 2 elektron található." }
+    ];
+
+    function initAtomSzimulator() {
+      const gombHely = document.getElementById("elem-gombok-helye");
+      if (!gombHely) return;
+      gombHely.innerHTML = "";
+      elemekAdat.forEach((el, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "elem-gomb" + (idx === 10 ? " aktiv" : ""); // Alapból: Nátrium (11)
+        btn.textContent = `${el.z}. ${el.vegyjel}`;
+        btn.onclick = () => kivalasztElemet(idx);
+        gombHely.appendChild(btn);
+      });
+      kivalasztElemet(10);
+    }
+
+    function kivalasztElemet(idx) {
+      const gombok = document.querySelectorAll(".elem-gomb");
+      gombok.forEach((g, i) => g.classList.toggle("aktiv", i === idx));
+
+      const el = elemekAdat[idx];
+      const svgDoboz = document.getElementById("atom-svg-kontener");
+      const adatokDoboz = document.getElementById("atom-adatok-kontener");
+      if (!svgDoboz || !adatokDoboz) return;
+
+      // SVG felépítése koncentrikus héjakkal
+      const sugarak = [42, 68, 94, 118];
+      let svgHTML = `<svg viewBox="0 0 260 260" width="250" height="250">`;
+      svgHTML += `<circle cx="130" cy="130" r="22" fill="var(--primary)" />`;
+      svgHTML += `<text x="130" y="135" text-anchor="middle" fill="#ffffff" font-weight="bold" font-size="15">${el.z}p⁺</text>`;
+
+      el.hejak.forEach((eSzam, hejIdx) => {
+        const r = sugarak[hejIdx];
+        const utolsoHej = (hejIdx === el.hejak.length - 1);
+        svgHTML += `<circle cx="130" cy="130" r="${r}" fill="none" stroke="${utolsoHej ? '#e67e22' : '#9b59b6'}" stroke-width="${utolsoHej ? '2' : '1.2'}" stroke-dasharray="${utolsoHej ? 'none' : '4,3'}" />`;
+        for (let i = 0; i < eSzam; i++) {
+          const szog = (2 * Math.PI * i) / eSzam - Math.PI / 2;
+          const ex = 130 + r * Math.cos(szog);
+          const ey = 130 + r * Math.sin(szog);
+          svgHTML += `<circle cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="${utolsoHej ? 6 : 4.5}" fill="${utolsoHej ? '#e74c3c' : '#8e44ad'}" stroke="#ffffff" stroke-width="1.2" />`;
+        }
+      });
+      svgHTML += `</svg>`;
+      svgDoboz.innerHTML = svgHTML;
+
+      const neutronok = el.a - el.z;
+      const kulsoE = el.hejak[el.hejak.length - 1];
+      adatokDoboz.innerHTML = `
+        <div style="font-size: 1.25rem; font-weight: bold; margin-bottom: 6px;">
+          <span class="izotop"><span class="szamok"><span>${el.a}</span><span>${el.z}</span></span>${el.vegyjel}</span>
+          – ${el.nev} (${el.tipus})
+        </div>
+        <div class="adat-racs">
+          <div class="adat-cella"><b>Rendszám ($Z$):</b> ${el.z} ($\rightarrow ${el.z}\text{ db p}^+$ és ${el.z}\text{ db e}^-$)</div>
+          <div class="adat-cella"><b>Tömegszám ($A$):</b> ${el.a} ($\rightarrow ${neutronok}\text{ db n}^0$)</div>
+          <div class="adat-cella"><b>Periódus:</b> ${el.hejak.length}. periódus (${el.hejak.length} elektronhéj)</div>
+          <div class="adat-cella"><b>Csoport:</b> ${el.focsop} (${el.csop18}. csoport)</div>
+          <div class="adat-cella"><b>Héjak kiosztása:</b> ${el.hejak.join(" – ")}</div>
+          <div class="adat-cella" style="border-left-color: #e74c3c;"><b>Külső elektronok:</b> <span style="color:#c0392b; font-weight:bold;">${kulsoE} db</span></div>
+        </div>
+        <p style="margin: 10px 0 0 0; font-size: 0.95rem;">💡 <b>Héjszerkezet:</b> ${el.cel}</p>
+      `;
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([adatokDoboz]).catch(() => {});
+      }
+    }
+
+    // ====================================================
+    // 2. INTERAKTÍV RÉSZECSKESZÁMOLÓ EDZŐ (CSAK SEMLEGES ATOMOK)
+    // ====================================================
+    const szamolosMintak = [
+      { vegyjel: "H", nev: "hidrogénatom", z: 1, a: 1 },
+      { vegyjel: "He", nev: "héliumatom", z: 2, a: 4 },
+      { vegyjel: "Li", nev: "lítiumatom", z: 3, a: 7 },
+      { vegyjel: "C", nev: "szénatom (12-es izotóp)", z: 6, a: 12 },
+      { vegyjel: "C", nev: "szénatom (14-es izotóp)", z: 6, a: 14 },
+      { vegyjel: "N", nev: "nitrogénatom", z: 7, a: 14 },
+      { vegyjel: "O", nev: "oxigénatom", z: 8, a: 16 },
+      { vegyjel: "F", nev: "fluoratom", z: 9, a: 19 },
+      { vegyjel: "Na", nev: "nátriumatom", z: 11, a: 23 },
+      { vegyjel: "Mg", nev: "magnéziumatom", z: 12, a: 24 },
+      { vegyjel: "Al", nev: "alumíniumatom", z: 13, a: 27 },
+      { vegyjel: "Cl", nev: "klóratom (35-ös izotóp)", z: 17, a: 35 },
+      { vegyjel: "Cl", nev: "klóratom (37-es izotóp)", z: 17, a: 37 },
+      { vegyjel: "K", nev: "káliumatom", z: 19, a: 39 },
+      { vegyjel: "Ca", nev: "kalciumatom", z: 20, a: 40 },
+      { vegyjel: "Fe", nev: "vasatom", z: 26, a: 56 }
+    ];
+    let aktSzamolos = null;
+
+    function generalAtomSzamolast() {
+      aktSzamolos = szamolosMintak[Math.floor(Math.random() * szamolosMintak.length)];
+      document.getElementById("szamolos-feladat-doboz").style.display = "block";
+      document.getElementById("in-proton").value = "";
+      document.getElementById("in-neutron").value = "";
+      document.getElementById("in-elektron").value = "";
+      document.getElementById("szamolos-visszajelzes").innerHTML = "";
+
+      document.getElementById("szamolos-kerdes-szoveg").innerHTML = `
+        Határozd meg a protonok, neutronok és elektronok számát a következő semleges atomban: 
+        <span class="izotop"><span class="szamok"><span>${aktSzamolos.a}</span><span>${aktSzamolos.z}</span></span>${aktSzamolos.vegyjel}</span>
+        (${aktSzamolos.nev})!
+      `;
+    }
+
+    function ellenorizAtomSzamolast() {
+      if (!aktSzamolos) return;
+      const pBe = parseInt(document.getElementById("in-proton").value);
+      const nBe = parseInt(document.getElementById("in-neutron").value);
+      const eBe = parseInt(document.getElementById("in-elektron").value);
+
+      const pJo = aktSzamolos.z;
+      const nJo = aktSzamolos.a - aktSzamolos.z;
+      const eJo = aktSzamolos.z;
+
+      const hibatlan = (pBe === pJo && nBe === nJo && eBe === eJo);
+
+      const vDiv = document.getElementById("szamolos-visszajelzes");
+      vDiv.className = "visszajelzes-doboz " + (hibatlan ? "helyes-valasz" : "hibas-valasz");
+      vDiv.style.display = "block";
+      vDiv.innerHTML = `
+        ${hibatlan ? "✔️ <b>Hibátlan megoldás!</b>" : "❌ <b>Nézd át a levezetést!</b>"}<br>
+        • <b>Protonok száma ($Z$):</b> a bal alsó szám = <b>${pJo} db p⁺</b><br>
+        • <b>Neutronok száma ($A - Z$):</b> ${aktSzamolos.a} – ${aktSzamolos.z} = <b>${nJo} db n⁰</b><br>
+        • <b>Elektronok száma:</b> semleges atomban megegyezik a protonok számával = <b>${eJo} db e⁻</b>
+      `;
+    }
+
+    // ====================================================
+    // 3. KÖZPONTI KVÍZBANK (25 KÉRDÉS - KIZÁRÓLAG ATOMSZERKEZET ÉS PERIÓDUSOS RENDSZER)
+    // ====================================================
+    const kerdesBank = [
+      // EGYSZERŰ VÁLASZTÁS (single)
+      { szint: "alap", tipus: "single", kategoria: "Atomszerkezet", kerdes: "Melyik állítás igaz a semleges atomra?", opciok: ["Mindig pozitív elektromos töltésű", "Elektromosan semleges részecske, amelyben a protonok és az elektronok száma megegyezik", "Csak neutronokból és elektronokból áll", "Több elektron van benne, mint proton"], helyes: 1, magyarazat: "Semleges atomban a pozitív protonok és a negatív elektronok száma egyenlő, így az atom kifelé elektromosan semleges." },
+      { szint: "alap", tipus: "single", kategoria: "Atomszerkezet", kerdes: "Mely elemi részecskék találhatók az ATOMMAGBAN?", opciok: ["Csak a protonok", "A protonok és az elektronok", "A protonok és a neutronok", "A neutronok és az elektronok"], helyes: 2, magyarazat: "Az atommagot a pozitív töltésű protonok (p⁺) és a semleges neutronok (n⁰) építik fel." },
+      { szint: "alap", tipus: "single", kategoria: "Atomszerkezet", kerdes: "Melyik részecske található az ELEKTRONBUROKBAN?", opciok: ["A proton (p⁺)", "A neutron (n⁰)", "Az elektron (e⁻)", "Mindhárom elemi részecske"], helyes: 2, magyarazat: "Az atommag körüli elektronburokban a negatív töltésű elektronok (e⁻) találhatók." },
+      { szint: "alap", tipus: "single", kategoria: "Rendszám és tömegszám", kerdes: "Mit mutat meg egy elem RENDSZÁMA (Z)?", opciok: ["A neutronok számát", "Az atommagban lévő protonok számát (és semleges atomban az elektronok számát)", "A protonok és a neutronok összegét", "Az elektronhéjak számát"], helyes: 1, magyarazat: "A rendszám (Z) az atommagban lévő protonok számát adja meg, ami semleges atomban az elektronok számával is egyenlő." },
+      { szint: "alap", tipus: "single", kategoria: "Rendszám és tömegszám", kerdes: "Mit mutat meg az atom TÖMEGSZÁMA (A)?", opciok: ["Csak a neutronok számát", "A protonok és az elektronok összegét", "Az atommagban lévő protonok és neutronok számának összegét", "A külső elektronok számát"], helyes: 2, magyarazat: "Mivel számottevő tömege csak a protonoknak és a neutronoknak van, a tömegszám (A) e két részecske számának összege." },
+      { szint: "alap", tipus: "single", kategoria: "Periódusos rendszer", kerdes: "Mit mutat meg a PERIÓDUS (a vízszintes sor) száma a periódusos rendszerben?", opciok: ["A külső elektronok számát", "Az atom elektronhéjainak a számát", "A neutronok számát", "Az atommag tömegét"], helyes: 1, magyarazat: "A periódus száma megmutatja, hogy hány elektronhéja van az adott atomnak." },
+      { szint: "alap", tipus: "single", kategoria: "Periódusos rendszer", kerdes: "Hány külső elektronja van a VII. A főcsoportba (17. csoportba) tartozó klóratomnak?", opciok: ["1", "3", "7", "17"], helyes: 2, magyarazat: "A főcsoportokban a főcsoport száma (VII. A, illetve a 17. csoport utolsó számjegye) megmutatja, hogy 7 külső elektronja van." },
+      { szint: "halado", tipus: "single", kategoria: "Csoportszámozás", kerdes: "A korszerű (1–18-as) számozás szerint a 16. csoportba tartozik a kén (S). Melyik főcsoportnak felel ez meg, és hány külső elektronja van?", opciok: ["VI. A főcsoport, 6 külső elektron", "XVI. A főcsoport, 16 külső elektron", "II. A főcsoport, 2 külső elektron", "IV. A főcsoport, 4 külső elektron"], helyes: 0, magyarazat: "A 13–18. csoportok a III. A – VIII. A főcsoportoknak felelnek meg: a 16. csoport a VI. A főcsoport, 6 külső elektronnal." },
+      { szint: "halado", tipus: "single", kategoria: "Nemesgázok", kerdes: "Miért kevéssé reakcióképesek általában a VIII. A főcsoport (18. csoport) elemei, a nemesgázok?", opciok: ["Mert nincs bennük elektron", "Mert külső elektronhéjuk telített (8, illetve a héliumnál 2 elektron), ami különösen stabil állapot", "Mert nincs bennük neutron", "Mert mindegyik fém"], helyes: 1, magyarazat: "A nemesgázok telített külső héja különösen stabil elektronszerkezetet jelent, ezért általában kevéssé reakcióképesek." },
+      { szint: "halado", tipus: "single", kategoria: "Periódusos rendszer", kerdes: "Miért a VIII. A főcsoportban (18. csoportban, a nemesgázok között) található a hélium (He), ha csak 2 külső elektronja van?", opciok: ["Mert tévedésből került oda", "Mert egyetlen (1.) elektronhéja van, amely már 2 elektronnal teljesen telített", "Mert 8 protonja van", "Mert a 8. periódusban van"], helyes: 1, magyarazat: "Az 1. elektronhéjra legfeljebb 2 elektron fér el, így a hélium külső héja 2 elektronnal már telített." },
+
+      // TÖBBVÁLASZOS (multi)
+      { szint: "alap", tipus: "multi", kategoria: "Atomszerkezet", kerdes: "Mely állítások IGAZAK a 11-es rendszámú, 23-as tömegszámú nátriumatomra (²³₁₁Na)? (Több válasz!)", opciok: ["11 darab proton van az atommagjában", "23 darab elektron van az elektronburkában", "12 darab neutron van az atommagjában", "11 darab elektron van az elektronburkában"], helyes: [0, 2, 3], magyarazat: "Z=11 → 11 p⁺ és 11 e⁻. A neutronok száma: A – Z = 23 – 11 = 12 n⁰." },
+      { szint: "alap", tipus: "multi", kategoria: "Periódusos rendszer", kerdes: "Mely elemek tartoznak a VIII. A főcsoportba (18. csoportba), vagyis a NEMESGÁZOK közé? (Több válasz!)", opciok: ["Hélium (He)", "Hidrogén (H)", "Neon (Ne)", "Argon (Ar)", "Nitrogén (N)"], helyes: [0, 2, 3], magyarazat: "A hélium (He), a neon (Ne) és az argon (Ar) nemesgázok; a hidrogén és a nitrogén kétatomos gázok, nem nemesgázok." },
+      { szint: "halado", tipus: "multi", kategoria: "Elektronszerkezet", kerdes: "Mely állítások igazak a 12-es rendszámú magnéziumatomra (₁₂Mg)? (Több válasz!)", opciok: ["A 3. periódusban található (3 elektronhéja van)", "Elektronjainak eloszlása a héjakon: 2, 8, 2", "A II. A főcsoportba (2. csoportba) tartozik", "8 külső elektronja van"], helyes: [0, 1, 2], magyarazat: "A 12 elektron eloszlása: 2, 8, 2 → 3 elektronhéja van (3. periódus) és 2 külső elektronja (II. A / 2. csoport)." },
+
+      // IGAZ / HAMIS (tf)
+      { szint: "alap", tipus: "tf", kategoria: "Atomszerkezet", kerdes: "Semleges atomban a protonok száma mindig megegyezik az elektronok számával.", helyes: true, magyarazat: "Igaz! A pozitív protonok (+1) és a negatív elektronok (–1) egyenlő száma miatt semleges az atom." },
+      { szint: "alap", tipus: "tf", kategoria: "Atomszerkezet", kerdes: "Az atom tömegének döntő részét az elektronburokban lévő elektronok adják.", helyes: false, magyarazat: "Hamis! Az elektronok tömege elhanyagolható; az atom tömegének több mint 99,9%-a az atommagban (protonok + neutronok) összpontosul." },
+      { szint: "alap", tipus: "tf", kategoria: "Elektronhéjak", kerdes: "Az első (legbelső) elektronhéjon legfeljebb 2 elektron fér el.", helyes: true, magyarazat: "Igaz! Az 1. héj már 2 elektronnal telítődik." },
+      { szint: "halado", tipus: "tf", kategoria: "Izotópok", kerdes: "Egy elem különböző izotópjaiban a protonok száma azonos, de a neutronok száma eltérő.", helyes: true, magyarazat: "Igaz! Az izotópok azonos rendszámú (protonszámú), de eltérő tömegszámú (neutronszámú) atomok." },
+      { szint: "halado", tipus: "tf", kategoria: "Periódusos rendszer", kerdes: "A hidrogén (H) az I. A főcsoportban (1. csoportban) található, ezért az alkálifémek közé tartozik.", helyes: false, magyarazat: "Hamis! A hidrogénnek valóban 1 külső elektronja van, ezért áll az 1. csoport élén, de nem fém, hanem nemfémes gáz!" },
+
+      // RÖVID VÁLASZ (short)
+      { szint: "alap", tipus: "short", kategoria: "Számolás", kerdes: "Hány darab NEUTRON található a 19-es rendszámú, 39-es tömegszámú káliumatomban (³⁹₁₉K)? (Csak a számot írd be!)", elfogadott: ["20"], magyarazat: "Neutronok száma = tömegszám – rendszám = 39 – 19 = 20." },
+      { szint: "alap", tipus: "short", kategoria: "Számolás", kerdes: "Hány darab ELEKTRON található a 13-as rendszámú, 27-es tömegszámú semleges alumíniumatomban (²⁷₁₃Al)? (Csak a számot írd be!)", elfogadott: ["13"], magyarazat: "Semleges atomban az elektronok száma megegyezik a rendszámmal (protonszámmal), tehát 13." },
+      { szint: "alap", tipus: "short", kategoria: "Periódusos rendszer", kerdes: "Hány külső elektronja van a II. A főcsoportba (2. csoportba) tartozó kalciumatomnak? (Csak a számot írd be!)", elfogadott: ["2", "kettő", "ketto"], magyarazat: "A II. A főcsoport (2. csoport) elemeinek 2 külső elektronjuk van." },
+      { szint: "halado", tipus: "short", kategoria: "Számolás", kerdes: "Hány darab NEUTRON van a leggyakoribb, 1-es rendszámú és 1-es tömegszámú hidrogénatomban (¹₁H)? (Csak a számot írd be!)", elfogadott: ["0", "nulla"], magyarazat: "A – Z = 1 – 1 = 0, tehát a ¹₁H atommagja csak 1 protont tartalmaz, neutront nem!" },
+
+      // PÁROSÍTÁS (match) ÉS SORBA RENDEZÉS (order)
+      { szint: "alap", tipus: "match", kategoria: "Elemi részecskék", kerdes: "Párosítsd az atomot felépítő elemi részecskéket a jellemzőjükkel!", parok: [
+        { bal: "Proton (p⁺)", jobb: "Atommagban van, +1 töltésű, 1 egység tömegű" },
+        { bal: "Neutron (n⁰)", jobb: "Atommagban van, 0 (semleges) töltésű, 1 egység tömegű" },
+        { bal: "Elektron (e⁻)", jobb: "Elektronburokban van, –1 töltésű, elhanyagolható tömegű" }
+      ], magyarazat: "A magban a protonok (+) és neutronok (0), a burokban a kis tömegű elektronok (–) találhatók." },
+
+      { szint: "alap", tipus: "match", kategoria: "Periódusos csoportok", kerdes: "Párosítsd a főcsoportokat (és korszerű csoportszámaikat) az elnevezésükkel és külső elektronszámukkal!", parok: [
+        { bal: "I. A főcsoport (1. csoport, a H kivételével)", jobb: "Alkálifémek (1 külső e⁻)" },
+        { bal: "II. A főcsoport (2. csoport)", jobb: "Alkáliföldfémek (2 külső e⁻)" },
+        { bal: "VII. A főcsoport (17. csoport)", jobb: "Halogének (7 külső e⁻)" },
+        { bal: "VIII. A főcsoport (18. csoport)", jobb: "Nemesgázok (telített külső héj)" }
+      ], magyarazat: "A négy kiemelt főcsoport neve és külső elektronszáma." },
+
+      { szint: "halado", tipus: "order", kategoria: "Sorba rendezés", kerdes: "Rendezd sorba az alábbi atomokat a KÜLSŐ elektronjaik száma szerint a legkisebbtől (1.) a legnagyobbig (4.)!", elemek: [
+        "Nátrium (I. A / 1. csoport → 1 külső e⁻)",
+        "Szén (IV. A / 14. csoport → 4 külső e⁻)",
+        "Oxigén (VI. A / 16. csoport → 6 külső e⁻)",
+        "Neon (VIII. A / 18. csoport → 8 külső e⁻)"
+      ], magyarazat: "A külső elektronok száma: Na (1) < C (4) < O (6) < Ne (8)." }
+    ];
+
+    document.addEventListener("DOMContentLoaded", function() {
+      initAtomSzimulator();
+      generalAtomSzamolast();
+    });
+  </script>
+
+  <div id="kep-modal" class="modal-hatter">
+    <span class="modal-bezaras">&times;</span>
+    <div class="modal-tartalom">
+      <img id="modal-benne-levo-kep" src="" alt="">
+    </div>
+  </div>
+
+</body>
+</html>
