@@ -7,6 +7,7 @@ try {
 document.addEventListener("DOMContentLoaded", function(){
 
     generateNavbar();
+    generateIndex();
     setupDarkMode();
     
     const modal = document.getElementById("kep-modal");
@@ -31,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 celElem.classList.toggle("lathato"); 
             }
             else if (tipus == "modal") {
-                const modalTartalom = document.querySelector(".modal-tartalom");
+                if (!modal || !modalTartalom) return; // nincs modal az oldalon, nem tudjuk megnyitni
                 modalTartalom.innerHTML = "";
 
                 const ujKep = celElem.cloneNode(true);
@@ -71,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
     //modal bezárása
-    if (modal && bezaroGomb) {
+    if (modal && bezaroGomb && modalTartalom) {
         bezaroGomb.addEventListener("click", function(event){
             modal.classList.remove("lathato");
             const aktKep = document.getElementById("modal-benne-levo-kep");
@@ -123,46 +124,94 @@ document.addEventListener("DOMContentLoaded", function(){
         })
     }
 
-    // ctrl + c beállítása, hogy formázva másoljon
+    // Ctrl + C a .bekezdessel dobozokban: formázás nélkül, de a szöveget pontosan másolja.
+    // Megmaradnak a sortörések, tabulátorok és a különleges szóközök (pl. &nbsp;) is,
+    // amiket a böngésző alapból sima szóközre cserélne.
     document.addEventListener("copy", function(e) {
-        const kivalasztottSzoveg = window.getSelection();
+        const kijeloles = window.getSelection();
 
-        if (!kivalasztottSzoveg || kivalasztottSzoveg.toString().length === 0) return;
+        if (!kijeloles || kijeloles.rangeCount === 0 || kijeloles.toString().length === 0) return;
 
-        let aDobozbanVan = false;
-        let elem = kivalasztottSzoveg.anchorNode;
-        while (elem && elem !== document.body) {
-            if (elem.classList && elem.classList.contains("bekezdessel")) {
-                aDobozbanVan = true;
-                break;
-            }
-            elem = elem.parentNode;
+        let elem = kijeloles.anchorNode;
+        if (elem && elem.nodeType !== Node.ELEMENT_NODE) elem = elem.parentElement;
+        if (!elem || !elem.closest(".bekezdessel")) return;
+
+        let szoveg = "";
+        for (let i = 0; i < kijeloles.rangeCount; i++) {
+            szoveg += nyersSzoveg(kijeloles.getRangeAt(i).cloneContents());
         }
 
-        if (aDobozbanVan) {
-            e.preventDefault(); //megakadályozza az alap másolást
-            e.clipboardData.setData("text/plain", kivalasztottSzoveg.toString());
+        e.preventDefault(); //megakadályozza az alap másolást
+        e.clipboardData.setData("text/plain", szoveg);
+    });
+
+    // Lenyíló menük mobilon / érintőképernyőn: kattintásra (koppintásra) is nyíljanak
+    document.querySelectorAll(".nav-item.dropdown > .nav-link").forEach(link => {
+        link.addEventListener("click", function(e) {
+            e.preventDefault(); // a href="#" ne ugorjon az oldal tetejére
+            const sajat = this.parentElement;
+            const nyitvaVolt = sajat.classList.contains("nyitva");
+            document.querySelectorAll(".nav-item.dropdown.nyitva").forEach(m => m.classList.remove("nyitva"));
+            if (!nyitvaVolt) sajat.classList.add("nyitva");
+        });
+    });
+    document.addEventListener("click", function(e) {
+        if (!e.target.closest(".nav-item.dropdown")) {
+            document.querySelectorAll(".nav-item.dropdown.nyitva").forEach(m => m.classList.remove("nyitva"));
         }
-    })
+    });
 });
 
-// Másolás funkció a kóddobozokhoz
+// Szöveg kinyerése egy elemből vagy kijelölésből úgy, hogy minden karakter megmaradjon:
+// sortörés, tabulátor, nem törhető szóköz és egyéb szóközfélék is.
+const BLOKK_ELEMEK = new Set(["P", "DIV", "LI", "UL", "OL", "H1", "H2", "H3", "H4", "H5", "H6", "TR", "TABLE", "PRE", "BLOCKQUOTE"]);
+function nyersSzoveg(csomopont) {
+    let eredmeny = "";
+    csomopont.childNodes.forEach(gyerek => {
+        if (gyerek.nodeType === Node.TEXT_NODE) {
+            eredmeny += gyerek.nodeValue;
+        } else if (gyerek.nodeType === Node.ELEMENT_NODE) {
+            if (gyerek.tagName === "BR") { eredmeny += "\n"; return; }
+            if (gyerek.tagName === "BUTTON") return; // pl. a másológomb felirata ne kerüljön bele
+            const blokk = BLOKK_ELEMEK.has(gyerek.tagName);
+            if (blokk && eredmeny && !eredmeny.endsWith("\n")) eredmeny += "\n";
+            eredmeny += nyersSzoveg(gyerek);
+            if (blokk && !eredmeny.endsWith("\n")) eredmeny += "\n";
+        }
+    });
+    return eredmeny;
+}
+
+// Másolás funkció a kóddobozokhoz és a nyers szöveges dobozokhoz
 function copyCode(button) {
     const codeBlock = button.nextElementSibling;
-    const textToCopy = codeBlock.innerText;
+    if (!codeBlock) return;
+
+    // Ha a doboz megőrzi a szóközöket (pl. .bekezdessel vagy <pre>), akkor karakterhűen másolunk,
+    // különben (normál HTML-szövegnél) a böngésző által megjelenített szöveget vesszük.
+    const whiteSpace = getComputedStyle(codeBlock).whiteSpace;
+    const megorzi = whiteSpace.startsWith("pre") || whiteSpace === "break-spaces";
+    const textToCopy = megorzi ? nyersSzoveg(codeBlock) : codeBlock.innerText;
+
+    // Az eredeti feliratot csak egyszer mentjük el, így gyors dupla kattintásnál sem ragad be a "Másolva!"
+    if (!button.dataset.eredetiFelirat) button.dataset.eredetiFelirat = button.innerText;
+    clearTimeout(button._visszaallito);
+
+    const visszaallit = () => {
+        button._visszaallito = setTimeout(() => {
+            button.innerText = button.dataset.eredetiFelirat;
+            button.classList.remove("copied");
+        }, 2000);
+    };
 
     navigator.clipboard.writeText(textToCopy).then(() => {
-    const originalText = button.innerText;
-    button.innerText = "Másolva! ✓";
-    button.classList.add("copied");
-
-    setTimeout(() => {
-        button.innerText = originalText;
-        button.classList.remove("copied");
-    }, 2000);
+        button.innerText = "Másolva! ✓";
+        button.classList.add("copied");
+        visszaallit();
     }).catch(err => {
-    console.error('Sikertelen másolás: ', err);
-    button.innerText = "Hiba :(";
+        console.error('Sikertelen másolás: ', err);
+        button.innerText = "Hiba :(";
+        visszaallit();
     });
 }
 
@@ -206,137 +255,222 @@ function setupDarkMode() {
     });
 }
 
-// navbar generálás kódja
-function generateNavbar() {
-    const pathname = window.location.pathname;
-
-    // A perjelek (/) hozzáadása pontosítja a felismerést
-    const inSubFolder = pathname.includes('/info/') || pathname.includes('/kemia/') || pathname.includes('/biosz/') || pathname.includes('/magyar/');
-    const rootPrefix = inSubFolder ? "../" : "./";
-
-    const subjects = [
-        {
-            title: "💻 Digitális kultúra",
-            folder: "info",
-            categories: [
-                {
-                    name: "🐍 Python programozás",
-                    items: [
-                    //     { title: "1. Alapismeretek", file: "Python_9ny_01_alapok.html" },
-                    //     { title: "2. Elágazások (if-else)", file: "Python_9ny_02_alapok_II.html" },
-                    //     { title: "3. Összetett adattípusok", file: "Python_9ny_03_osszetett_adattipusok.html" },
-                    //     { title: "4. A for ciklus", file: "Python_9ny_04_for_ciklus.html" },
-                    //     { title: "5. A while ciklus", file: "Python_9ny_05_while_ciklus.html" },
-                    //     { title: "Az eddig tanultak átismétlése", file: "Python_9_ismetles.html" },
-                    //     { title: "6. Kivételkezelés (try-except)", file: "Python_9_06_try_except.html" },
-                    //     { title: "7. Függvények (def)", file: "Python_9_07_eljarasok_fuggvenyek.html" },
-                    //     { title: "8. Modulok (random, math)", file: "Python_9_08_modulok.html" },
-                    //     { title: "9. Teknőcgrafika (Turtle)", file: "Python_9_09_teknocgrafika.html" },
-                    //     { title: "Az eddig tanultak átismétlése", file: "Python_10_ismetles.html" }
-                        ]
-                },
-                {
-                    name: "Szövegszerkesztés",
-                    items: [
-                        {title: "Word alapok", file: "word_07_01_A_szamitogep_tortenete.html"},
-                        {title: "Tabulátorok", file: "word_07_02_filmklub.html"},
-                        {title: "Hosszabb szöveg szerkesztése", file: "word_08_03_hulladekgazdalkodas.html"}
-                    ]
-                },
-                {
-                    name: "Táblázatkezelés",
-                    items: [
-                        // {title: "Excel alapok", file: "excel_08_01_alapok.html"},
-                        // {title: "Grafikonok", file: "excel_08_02_grafikonok.html"}
-                    ]
-                },
-                {
-                    name: "🖥️ A számítógép felépítése",
-                    items: [
-                        {title: "A számítógép felépítése, az operációs rendszer", file: "oprsz_felepites_9ny_01_hardver_alapok.html"},
-                        {title: "A számrendszerek és a bináris logika", file: "oprsz_felepites_9ny_02_szamrendszer_alapok.html"}
-                    ]
-                }
-            ]
-        },
-        {
-            title: "🧪 Kémia",
-            folder: "kemia",
-            categories: [
-                {
-                    name: "Általános kémia",
-                    items: [
-                        {title: "1. Atommag, radioaktivitás", file: "alapok_03_atommag_radioaktivitas.html"},
-                        {title: "1+. Atommodellek, bevezetés", file: "alapok_02_atommodell_atommag.html"}
-                    ]
-                },
-                {
-                    name: "Reakciókinetika",
-                    items: [
-                        {title: "1. Bevezetés, alapfogalmak", file: "reakciok_01_bevezetes.html"},
-                        {title: "2. Reakciók sebessége és iránya", file: "reakciok_02_sebesseg_irany.html"}
-                    ]
-                }
-            ]
-        },
-        {
-            title: "🌹 Biológia",
-            folder: "biosz",
-            categories: [
-                {
-                    name: "Bevezetés a biológiába",
-                    items: [
-                        //{title: "1. A biológia tudománya", file: "biosz_01_01.html"}
-                    ]
-                }
-            ]
-        },
-        {
-          title: "✍️ Magyar nyelv",
-          folder: "magyar",
-          categories: [
+// =====================================================================
+//  TARTALOMJEGYZÉK – EZ AZ EGYETLEN HELY, AHOL AZ OLDALAKAT FEL KELL VENNI
+//  Ebből készül a felső menü (navbar) ÉS a kezdőlap (index.html) listája is.
+//
+//  Egy oldal mezői:
+//    title    – rövid cím (ez jelenik meg a menüben)
+//    file     – a fájl neve a tantárgy mappáján belül
+//    active   – true: látszik a menüben és a kezdőlapon; false: rejtett (pl. még nem tananyag)
+//    evfolyam – (nem kötelező) melyik évfolyamnál jelenjen meg a kezdőlapon, pl. "8" vagy "9ny"
+//    leiras   – (nem kötelező) hosszabb szöveg a kezdőlapra; ha nincs, a title látszik
+//
+//  Egy tantárgy mezői:
+//    title / indexCim – név a menüben / a kezdőlapon
+//    folder           – a tantárgy mappája
+//    indexCsoport     – "evfolyam": a kezdőlapon évfolyamok szerint, különben témakörök szerint
+//    indexSorrend     – hányadikként jelenjen meg a kezdőlapon
+// =====================================================================
+const TARTALOM = [
+    {
+        title: "💻 Digitális kultúra",
+        indexCim: "💻 Infós tartalmak",
+        folder: "info",
+        indexCsoport: "evfolyam",
+        indexSorrend: 2,
+        categories: [
             {
-              name: "Szóelemzés, szóalkotás",
-              items: [
-                {title: "1. A szóelemzés", file: "nyelvtan_01_szoelemek.html"},
-                {title: "2. A szóalkotás", file: "nyelvtan_02_szoalkotas.html"}
-              ]
+                name: "🐍 Python programozás",
+                items: [
+                    { title: "1. Alapismeretek", file: "Python_9ny_01_alapok.html", evfolyam: "9ny", active: false,
+                      leiras: "Python alapok (programozási környezet beállítása, adattípusok, változók)" },
+                    { title: "2. Elágazások (if-else)", file: "Python_9ny_02_alapok_II.html", evfolyam: "9ny", active: false,
+                      leiras: "Python alapok II. (feltételek, elágazások)" },
+                    { title: "3. Összetett adattípusok", file: "Python_9ny_03_osszetett_adattipusok.html", evfolyam: "9ny", active: false,
+                      leiras: "Python alapok III. (összetett adattípusok)" },
+                    { title: "4. A for ciklus", file: "Python_9ny_04_for_ciklus.html", evfolyam: "9ny", active: false,
+                      leiras: "Python ciklusok I. (for ciklus)" },
+                    { title: "5. A while ciklus", file: "Python_9ny_05_while_ciklus.html", evfolyam: "9ny", active: false,
+                      leiras: "Python ciklusok II. (while ciklus)" },
+                    { title: "Az eddig tanultak átismétlése", file: "Python_9_ismetles.html", evfolyam: "9", active: false,
+                      leiras: "Python: az alapok átismétlése" },
+                    { title: "6. Kivételkezelés (try-except)", file: "Python_9_06_try_except.html", evfolyam: "9", active: false,
+                      leiras: "Python hibakezelés: a try-except blokk" },
+                    { title: "7. Függvények (def)", file: "Python_9_07_eljarasok_fuggvenyek.html", evfolyam: "9", active: false,
+                      leiras: "Python: eljárások és függvények készítése és használata" },
+                    { title: "8. Modulok (random, math)", file: "Python_9_08_modulok.html", evfolyam: "9", active: false,
+                      leiras: "Python modulok használata" },
+                    { title: "9. Teknőcgrafika (Turtle)", file: "Python_9_09_teknocgrafika.html", evfolyam: "9", active: false,
+                      leiras: "Python: teknőcgrafika használata" },
+                    { title: "Az eddig tanultak átismétlése", file: "Python_10_ismetles.html", evfolyam: "10", active: false,
+                      leiras: "Python: az eddig tanultak átismétlése" }
+                ]
             },
             {
-              name: "Szófajok, mondatbeli szerepek",
-              items: [
-                {title: "1. Szófajok", file: "nyelvtan_03_szofajok.html"},
-                {title: "2. Mondattani bevezető", file: "nyelvtan_04_mondattani_bevezeto.html"},
-                {title: "3. Mondattan: határozók", file: "nyelvtan_05_mondattan_hatarozok.html"}
-              ]
+                name: "Szövegszerkesztés",
+                items: [
+                    { title: "Ismerkedés a szövegszerkesztéssel", file: "word_04_ismerkedes.html", evfolyam: "4", active: true,
+                      leiras: "Ismerkedés a szövegszerkesztéssel, internetes keresés" },
+                    { title: "Formázási ismeretek", file: "word_05_formazas.html", evfolyam: "5", active: false },
+                    { title: "Word alapok", file: "word_07_01_A_szamitogep_tortenete.html", evfolyam: "7", active: true,
+                      leiras: "Szövegszerkesztés ismétlés: bekezdés- és karakterformázás, felsorolás, képek beillesztése" },
+                    { title: "Tabulátorok", file: "word_07_02_filmklub.html", evfolyam: "7", active: true,
+                      leiras: "Táblázat és ismerkedés a tabulátorokkal (filmklub)" },
+                    { title: "Rövid szöveg: Mars", file: "word_08_02_Mars_kolonizalasa.html", evfolyam: "8", active: true,
+                      leiras: "Rövid szöveg szerkesztése (Mars)" },
+                    { title: "Közepes szöveg: K-pop", file: "word_08_03_Kpop.html", evfolyam: "8", active: true,
+                      leiras: "Közepesen hosszú szöveg szerkesztése (K-pop)" },
+                    { title: "Hosszú szöveg: AI", file: "word_08_03_A_mesterseges_intelligencia_vilaga.html", evfolyam: "8", active: true,
+                      leiras: "Hosszú szöveg szerkesztése (AI)" },
+                    { title: "Hosszú szöveg: hulladékgazdálkodás", file: "word_08_03_hulladekgazdalkodas.html", evfolyam: "8", active: true,
+                      leiras: "Hosszú szöveg szerkesztése (hulladékgazdálkodás)" }
+                ]
+            },
+            {
+                name: "Táblázatkezelés",
+                items: [
+                    // TODO: évfolyam beírása, ha élesíted őket
+                    { title: "Excel alapok", file: "Excel_01_alapok.html", active: false },
+                    { title: "Excel alapok gyakorlása", file: "Excel_02_gyakorlas_01.html", active: false },
+                    { title: "Logikai értékek és formázás", file: "Excel_03_logika.html", active: false }
+                ]
+            },
+            {
+                name: "Prezentációkészítés",
+                items: [
+                    { title: "Animálás az egérmutatóval", file: "ppt_11_egerre.html", evfolyam: "11", active: false }
+                ]
+            },
+            {
+                name: "🖥️ A számítógép felépítése",
+                items: [
+                    { title: "A számítógép felépítése, az operációs rendszer", file: "oprsz_felepites_9ny_01_hardver_alapok.html", evfolyam: "9ny", active: true },
+                    { title: "A számrendszerek és a bináris logika", file: "oprsz_felepites_9ny_02_szamrendszer_alapok.html", evfolyam: "9ny", active: true }
+                ]
+            },
+            {
+                name: "🗄️ Adatbázis-kezelés",
+                items: [
+                    { title: "Adatbázis-kezelés: kapcsolatok", file: "Adatbazis_11_01_.html", evfolyam: "11", active: true,
+                      leiras: "Adatbázis-kezelés" }
+                ]
             }
-          ]
-        }
-    ];
+        ]
+    },
+    {
+        title: "🧪 Kémia",
+        indexCim: "🧪 Kémiás tartalmak",
+        folder: "kemia",
+        indexSorrend: 3,
+        categories: [
+            {
+                name: "8. évfolyam",
+                items: [
+                    { title: "1. Atomszerkezet és a periódusos rendszer", file: "08_01_atomszerkezet.html", evfolyam: "8", active: false }
+                ]
+            },
+            {
+                name: "Általános kémia",
+                items: [
+                    { title: "1. Atommodellek, bevezetés", file: "alapok_02_atommodell_atommag.html", evfolyam: "9", active: true },
+                    { title: "2. Atommag, radioaktivitás", file: "alapok_03_atommag_radioaktivitas.html", evfolyam: "9", active: true }
+                ]
+            },
+            {
+                name: "Reakciókinetika",
+                items: [
+                    { title: "1. Bevezetés, alapfogalmak", file: "reakciok_01_bevezetes.html", evfolyam: "9", active: true },
+                    { title: "2. Reakciók sebessége és iránya", file: "reakciok_02_sebesseg_irany.html", evfolyam: "9", active: true }
+                ]
+            }
+        ]
+    },
+    {
+        title: "🌹 Biológia",
+        indexCim: "🌹 Bioszos tartalmak",
+        folder: "biosz",
+        indexSorrend: 4,
+        categories: [
+            {
+                name: "Bevezetés a biológiába",
+                items: [
+                    // { title: "1. A biológia tudománya", file: "biosz_01_01.html", active: false }
+                ]
+            }
+        ]
+    },
+    {
+        title: "✍️ Magyar nyelv",
+        indexCim: "📖 Nyelvtan gyakorló",
+        folder: "magyar",
+        indexSorrend: 1,
+        categories: [
+            {
+                name: "Szóelemzés és szóalkotás",
+                items: [
+                    { title: "1. A szóelemzés", file: "nyelvtan_01_szoelemek.html", evfolyam: "8", active: true, leiras: "Szóelemek" },
+                    { title: "2. A szóalkotás", file: "nyelvtan_02_szoalkotas.html", evfolyam: "8", active: true, leiras: "Szóalkotás" }
+                ]
+            },
+            {
+                name: "Szófajok és mondatelemzés",
+                items: [
+                    { title: "3. Szófajok", file: "nyelvtan_03_szofajok.html", evfolyam: "8", active: true, leiras: "Szófajok" },
+                    { title: "4. Mondattani bevezető", file: "nyelvtan_04_mondattani_bevezeto.html", evfolyam: "8", active: true,
+                      leiras: "Mondattani bevezető: alany, állítmány, tárgy" },
+                    { title: "5. Mondattan: határozók", file: "nyelvtan_05_mondattan_hatarozok.html", evfolyam: "8", active: true, leiras: "Határozók" }
+                ]
+            },
+            {
+                name: "Hangtan és helyesírás",
+                items: [
+                    { title: "Hangtan és helyesírás", file: "nyelvtan_helyesiras_hangtan.html", evfolyam: "8", active: false }
+                ]
+            }
+        ]
+    }
+];
+
+// Csak az aktív oldalak (a kategóriák is csak akkor maradnak, ha van bennük aktív oldal)
+function aktivKategoriak(sub) {
+    return sub.categories
+        .map(cat => ({ ...cat, items: cat.items.filter(item => item.active) }))
+        .filter(cat => cat.items.length > 0);
+}
+
+// Gyökérmappa-előtag: almappából "../", a kezdőlapról "./"
+function gyokerElotag() {
+    const pathname = window.location.pathname;
+    const inSubFolder = TARTALOM.some(sub => pathname.includes(`/${sub.folder}/`));
+    return inSubFolder ? "../" : "./";
+}
+
+// navbar generálás kódja
+function generateNavbar() {
+    const pathname = decodeURIComponent(window.location.pathname);
+    const rootPrefix = gyokerElotag();
 
     let navItemsHTML = "";
-    subjects.forEach(sub => {
-        let dropdownContent = "";
-        let hasContent = false;
+    TARTALOM.forEach(sub => {
+        const kategoriak = aktivKategoriak(sub);
+        if (kategoriak.length === 0) return;
 
-        sub.categories.forEach(cat => {
-            if (cat.items.length > 0) {
-                hasContent = true;
-                dropdownContent += `<div class="menu-category">${cat.name}</div>`;
-                cat.items.forEach(item => {
-                    const active = pathname.includes(item.file) ? "active" : "";
-                    dropdownContent += `<a href="${rootPrefix}${sub.folder}/${item.file}" class="${active}">${item.title}</a>`;
-                });
-            }
+        let dropdownContent = "";
+        kategoriak.forEach(cat => {
+            dropdownContent += `<div class="menu-category">${cat.name}</div>`;
+            cat.items.forEach(item => {
+                // pontos egyezés a mappa+fájlnév végére, hogy két hasonló nevű fájl ne legyen egyszerre aktív
+                const active = pathname.endsWith(`/${sub.folder}/${item.file}`) ? "active" : "";
+                dropdownContent += `<a href="${rootPrefix}${sub.folder}/${item.file}" class="${active}">${item.title}</a>`;
+            });
         });
 
-        if (hasContent) {
-            navItemsHTML += `
+        navItemsHTML += `
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link">${sub.title} ▼</a>
                 <div class="dropdown-content">${dropdownContent}</div>
             </li>`;
-        }
     });
 
     const navHTML = `<nav class="top-nav"><ul class="nav-list">
@@ -347,9 +481,56 @@ function generateNavbar() {
     document.body.insertAdjacentHTML('afterbegin', navHTML);
 }
 
+// Kezdőlap (index.html) listájának generálása – csak ott fut, ahol van #tartalomjegyzek elem
+function generateIndex() {
+    const kontener = document.getElementById("tartalomjegyzek");
+    if (!kontener) return;
+    const rootPrefix = gyokerElotag();
+
+    const evfolyamSorrend = e => {
+        const szam = parseInt(e);
+        // "9ny" a 9. elé kerüljön, az évfolyam nélküliek a végére
+        return isNaN(szam) ? 999 : szam - (String(e).includes("ny") ? 0.5 : 0);
+    };
+
+    let html = "";
+    [...TARTALOM]
+        .sort((a, b) => (a.indexSorrend ?? 99) - (b.indexSorrend ?? 99))
+        .forEach(sub => {
+            const kategoriak = aktivKategoriak(sub);
+            if (kategoriak.length === 0) return;
+
+            // Csoportok: évfolyamok vagy témakörök szerint
+            const csoportok = new Map();
+            kategoriak.forEach(cat => cat.items.forEach(item => {
+                const kulcs = sub.indexCsoport === "evfolyam"
+                    ? (item.evfolyam ? `${item.evfolyam}. évfolyam`.replace("ny.", "ny") : "Egyéb")
+                    : cat.name;
+                if (!csoportok.has(kulcs)) csoportok.set(kulcs, { sorrend: evfolyamSorrend(item.evfolyam), items: [] });
+                csoportok.get(kulcs).items.push(item);
+            }));
+
+            let csoportLista = [...csoportok.entries()];
+            if (sub.indexCsoport === "evfolyam") csoportLista.sort((a, b) => a[1].sorrend - b[1].sorrend);
+
+            html += `<div class="task-card"><h3>${sub.indexCim || sub.title}</h3>`;
+            csoportLista.forEach(([nev, csoport]) => {
+                html += `<details><summary>${nev}</summary><ul>`;
+                csoport.items.forEach(item => {
+                    html += `<li><a href="${rootPrefix}${sub.folder}/${item.file}">${item.leiras || item.title}</a></li>`;
+                });
+                html += `</ul></details>`;
+            });
+            html += `</div>`;
+        });
+
+    kontener.innerHTML = html;
+}
+
 // --- KÉMIA: ELLENŐRZŐ KÉRDÉSEK ---
 function checkQuiz(button, isCorrect, feedback) {
     const card = button.closest('.task-card');
+    if (!card) return;
     let feedbackDiv = card.querySelector('.quiz-feedback');
     
     if (!feedbackDiv) {
@@ -390,7 +571,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     let maxPont = 0;
-    let osszesFeladat = ellenorzok.length;
 
     // Kiszámoljuk a maximális pontszámot a HTML data-pont attribútumokból
     ellenorzok.forEach(ell => {
@@ -444,7 +624,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         // Progress bar (Százalék a KÉSZ feladatok alapján)
-        const szazalek = Math.round((keszDarab / aktualisEllenorzok.length) * 100);
+        const szazalek = aktualisEllenorzok.length ? Math.round((keszDarab / aktualisEllenorzok.length) * 100) : 0;
         document.getElementById("haladas-szoveg").innerText = `Haladás: ${szazalek}%`;
         document.getElementById("progress-fill").style.width = `${szazalek}%`;
 
@@ -453,7 +633,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("max-pont").innerText = aktualisMaxPont;
 
         // Várható jegy becslése (százalékos ponthatárok: 40-55-70-85%)
-        const pontSzazalek = (szerzettPont / aktualisMaxPont) * 100;
+        const pontSzazalek = aktualisMaxPont ? (szerzettPont / aktualisMaxPont) * 100 : 0;
         let jegy = 1;
         if (pontSzazalek >= 85) jegy = 5;
         else if (pontSzazalek >= 70) jegy = 4;
@@ -492,9 +672,14 @@ function ujKvizSorsolas(darab = 10) {
   if (alapok.length > 0 && haladok.length > 0) {
     const alapDb = Math.min(alapok.length, Math.round(darab * 0.7));
     const haladoDb = Math.min(haladok.length, darab - alapDb);
-    const sorsoltAlap = keverKvizTomb(alapok).slice(0, alapDb);
-    const sorsoltHalado = keverKvizTomb(haladok).slice(0, haladoDb);
-    aktualisKvizKerdesek = keverKvizTomb([...sorsoltAlap, ...sorsoltHalado]);
+    const sorsolt = [...keverKvizTomb(alapok).slice(0, alapDb), ...keverKvizTomb(haladok).slice(0, haladoDb)];
+    // Ha valamelyik szintből nem volt elég kérdés, a hiányzó helyeket a kimaradt kérdésekből
+    // (a szint nélkülieket is beleértve) töltjük fel, hogy mindig 'darab' kérdés legyen.
+    if (sorsolt.length < darab) {
+      const maradek = keverKvizTomb(kerdesBank.filter(k => !sorsolt.includes(k)));
+      sorsolt.push(...maradek.slice(0, darab - sorsolt.length));
+    }
+    aktualisKvizKerdesek = keverKvizTomb(sorsolt);
   } else {
     aktualisKvizKerdesek = keverKvizTomb(kerdesBank).slice(0, darab);
   }
@@ -639,8 +824,10 @@ function ellenorizKozpontiKviz() {
       if (valasztott && (valasztott.value === "true") === k.helyes) jo = true;
     } 
     else if (k.tipus === "short") {
-      const beirt = document.getElementById(`q_${index}_input`).value.trim().toLowerCase();
-      if (k.elfogadott.includes(beirt)) jo = true;
+      // Kis- és nagybetű, valamint a felesleges szóközök nem számítanak – mindkét oldalon
+      const normal = s => String(s).trim().toLowerCase().replace(/\s+/g, " ");
+      const beirt = normal(document.getElementById(`q_${index}_input`).value);
+      if (k.elfogadott.some(e => normal(e) === beirt)) jo = true;
     } 
     else if (k.tipus === "order") {
       jo = true;
@@ -668,9 +855,10 @@ function ellenorizKozpontiKviz() {
 
     visszajelzes.style.display = "block";
     visszajelzes.className = "visszajelzes-doboz " + (jo ? "helyes-valasz" : "hibas-valasz");
-    visszajelzes.innerHTML = (jo ? "✔️ <b>helyes!</b> " : "❌ <b>hibás vagy hiányos!</b> ") + k.magyarazat;
+    visszajelzes.innerHTML = (jo ? "✔️ <b>helyes!</b> " : "❌ <b>hibás vagy hiányos!</b> ") + (k.magyarazat || "");
   });
 
+  if (aktualisKvizKerdesek.length === 0) return;
   const szazalek = Math.round((helyesPont / aktualisKvizKerdesek.length) * 100);
   const eredmenyJelzo = document.getElementById("kviz-eredmeny-jelzo");
   if (eredmenyJelzo) {

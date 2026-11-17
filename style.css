@@ -21,8 +21,7 @@
   --back-bg: #4b4e54;
   --inline-code-bg: #e9ecef;
   
-  /* Menü (Navbar) színei - A témához (primary) kötjük */
-  --nav-background: var(--primary);
+  /* Menü (Navbar) színei - a --nav-background a body-ban van megadva, hogy a tantárgyi témát kövesse */
   --nav-text: #ffffff;
   
   /* Szöveg- és keretszínek */
@@ -33,7 +32,7 @@
   --border-dark: #7f8c8d;
   --osszefoglalas-border: #611111;
   --bemutatas-border: #196997;
-  --megoldasok-color: #fdaa26;
+  --megoldasok-color: #9a5b00; /* sötétebb narancs, hogy a halvány narancs háttéren is olvasható legyen */
   --inline-code-color: #e83e8c;
   --back-hover: #611111;
   --a: #0223b8;
@@ -50,7 +49,6 @@
   --modal-table-border: #999999;
 
   --theme-table-header-text: #ffffff;
-  --theme-table-border: var(--secondary);
   --theme-table-stripe-bg: rgba(52, 152, 219, 0.05); /* Nagyon halvány másodlagos szín a zebracsíkozáshoz */
 }
 
@@ -77,7 +75,6 @@ html.dark-mode {
   --back-bg: #2c3e50;
   --inline-code-bg: #2c3e50;
   
-  --nav-background: var(--primary);
   --nav-text: #e0e0e0;
 
   /* Szöveg- és keretszínek (világosítva a kontraszt miatt) */
@@ -101,7 +98,6 @@ html.dark-mode {
   --modal-table-border: #555555;
 
   --theme-table-header-text: #e0e0e0;
-  --theme-table-border: var(--secondary);
   --theme-table-stripe-bg: rgba(255, 255, 255, 0.03); /* Leheletnyi világosítás a sötét sorokon */
 }
 
@@ -115,7 +111,7 @@ body.theme-bio {
   --summary-hover: #145a32;
   --heading-color: #196f3d;
 }
-html.dark-mode.theme-bio {
+html.dark-mode body.theme-bio {
   --primary: #0f301d;
   --intro-bg: #145a32;
   --summary-color: #58d68d;
@@ -132,7 +128,7 @@ body.theme-kem {
   --summary-hover: #512e5f;
   --heading-color: #5b2c6f;
 }
-html.dark-mode.theme-kem {
+html.dark-mode body.theme-kem {
   --primary: #2c1a36;
   --intro-bg: #4a235a;
   --summary-color: #bb8fce;
@@ -149,7 +145,7 @@ body.theme-magyar {
   --summary-hover: #450811;
   --heading-color: #520914;
 }
-html.dark-mode.theme-magyar {
+html.dark-mode body.theme-magyar {
   --primary: #380a10;
   --intro-bg: #4d1018;
   --summary-color: #e57373;
@@ -165,6 +161,11 @@ html.dark-mode.theme-magyar {
 
 /* --- ALAP STÍLUSOK --- */
 body {
+  /* Ezek a változók más változókra hivatkoznak, ezért itt (a body-n) kell megadni őket:
+     így a tantárgyi téma (body.theme-...) által átírt --primary/--secondary értéket kapják meg. */
+  --nav-background: var(--primary);
+  --theme-table-border: var(--secondary);
+
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: large;
   line-height: 1.6;
@@ -188,7 +189,7 @@ button.copy-btn:first-child + .raw-text-box {padding-top: 2.4rem;}
 .extra { background-color: var(--extra-bg); border-radius: 5px; border: 2.5px dashed var(--extra-summary-color); font-style: italic; font-size: medium; transition: background-color 0.4s; }
 .extra summary { color: var(--extra-summary-color); list-style-type: '💡 '; }
 details[open].extra > summary { list-style-type: '💡 ▼ '; }
-h2:first-of-type {padding-top: 50px;}
+body > h2:first-of-type {padding-top: 50px;} /* csak az oldal fő címe, nem minden kártya első h2-je */
 a {color: var(--a); transition: color 0.3s ease;}
 a:hover {color: var(--a-hover); text-decoration: underline;}
 
@@ -208,6 +209,7 @@ code.inline { background: var(--inline-code-bg); color: var(--inline-code-color)
 .copy-btn.copied { background: #2ecc71; }
 
 .output-box { background: #eef2f5; border-left: 3px solid #7f8c8d; padding: 10px; font-family: 'Consolas', monospace; margin-top: 5px; color: #2c3e50; }
+html.dark-mode .output-box { background: #10182b; border-left-color: var(--border-dark); color: var(--text); }
 .gomb { background: var(--gomb-bg); border: 2px solid var(--border-dark); padding: 5px; border-radius: 5px; font-family: 'Courier New', Courier, monospace; margin-bottom: 30px; hyphens: none; transition: background-color 0.4s; }
 .enyhe-kiemeles {background-color: var(--gomb-bg);}
 .kiemeles {background-color: var(--intro-bg); font-weight: bold; border-left: 5px solid var(--secondary); padding-left: 5px;}
@@ -366,7 +368,16 @@ html.dark-mode .dropdown-content { border-color: #2c3e50; }
   letter-spacing: 1px;
 }
 
-.nav-item.dropdown:hover .dropdown-content { display: block; animation: fadeInDown 0.3s ease; }
+.nav-item.dropdown:hover .dropdown-content,
+.nav-item.dropdown.nyitva .dropdown-content { display: block; animation: fadeInDown 0.3s ease; } /* .nyitva: koppintásra nyitva (mobil) */
+
+/* Keskeny képernyőn a menüpontok több sorba törhetnek, a lenyíló rész pedig kitölti a szélességet */
+@media (max-width: 700px) {
+  .top-nav { padding: 0 5px; }
+  .nav-list { flex-wrap: wrap; }
+  .nav-link { padding: 10px 12px; }
+  .dropdown-content { position: fixed; left: 10px; right: 10px; min-width: 0; max-height: 70vh; }
+}
 @keyframes fadeInDown { from {opacity: 0; transform: translateY(-10px);} to {opacity: 1; transform: translateY(0);} }
 
 /* --- KÉMIA STÍLUSOK --- */
@@ -388,7 +399,7 @@ rt {font-size: 0.65em; font-weight: bold; color: var(--secondary); line-height: 
 
 /* reszponzív egymás melletti/alatti tartalmak */
 
-.resp {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;}
+.resp {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;}
 .resp > * {min-width: 0;}
 @media (max-width: 700px) {
   .resp {grid-template-columns: 1fr;}
@@ -830,25 +841,7 @@ details,
   white-space: nowrap;
 }
 
-    .badge-alap {
-      background: #27ae60 !important;
-    }
-    .badge-halado {
-      background: #d35400 !important;
-      box-shadow: 0 0 6px rgba(211, 84, 0, 0.4);
-    }
-
 /* számrendszeres részhez jött */
-/* --- EXTRA RESZPONZIVITÁS ÉS KÉPLET-TÖRDELÉS --- */
-* {
-  box-sizing: border-box;
-}
-
-.task-card, details, .bemutatas, .osszefoglalas {
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
 /* Képletek görgetése/tördelése kis képernyőn */
 .MathJax, .math {
   overflow-wrap: break-word;
@@ -861,61 +854,4 @@ details,
   max-width: 100%;
   display: block;
   padding: 4px 0;
-}
-
-/* Reszponzív kétoszlopos rács (pl. átváltási példákhoz) */
-.resp {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-.resp > * {
-  min-width: 0;
-}
-@media (max-width: 700px) {
-  .resp {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Táblázatok görgetése kis képernyőn */
-.table-wrap {
-  max-width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 15px 0;
-}
-.table-wrap .tema-tabla {
-  width: 100%;
-  margin: 0;
-  white-space: normal;
-}
-.table-wrap td, .table-wrap th {
-  overflow-wrap: anywhere;
-}
-
-/* Bit-kapcsoló sor (8 bites szimulátorhoz) */
-.bit-sor {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 6px;
-  width: 100%;
-  overflow-x: auto;
-  padding: 8px 0;
-  box-sizing: border-box;
-}
-.bit-oszlop {
-  flex: 0 0 54px;
-  text-align: center;
-}
-.bit-gomb {
-  width: 42px;
-  height: 42px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-}
-.bit-helyiertek {
-  font-size: 0.85rem;
-  font-weight: bold;
 }
