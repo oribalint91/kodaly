@@ -333,12 +333,15 @@ const TARTALOM = [
                     // TODO: évfolyam beírása, ha élesíted őket
                     { title: "Excel alapok", file: "Excel_01_alapok.html", active: false },
                     { title: "Excel alapok gyakorlása", file: "Excel_02_gyakorlas_01.html", active: false },
-                    { title: "Logikai értékek és formázás", file: "Excel_03_logika.html", active: false }
+                    { title: "Logikai értékek és formázás", file: "Excel_03_logika.html", active: false },
+                    {title: "9ny – Excel alapok: osztálykirándulás", file: "excel_9ny_01_alapok_kirandulas.html"},
+                    {title: "10. – Excel gyakorlás: hangszerbolt", file: "excel_10_01_hangszerbolt.html"}
                 ]
             },
             {
                 name: "Prezentációkészítés",
                 items: [
+                    {title: "4. – PowerPoint: Bemutatom a kedvencemet!", file: "ppt_04_01_kedvencem.html"},
                     { title: "Animálás az egérmutatóval", file: "ppt_11_egerre.html", evfolyam: "11", active: false }
                 ]
             },

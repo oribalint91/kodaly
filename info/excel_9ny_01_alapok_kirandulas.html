@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel alapok – Osztálykirándulás költségvetése</title>
+    <link rel="stylesheet" href="../style.css?v=4">
+    <script type="text/javascript" src="../script.js?v=4"></script>
+</head>
+<body>
+
+<h2>📊 Excel alapok: tervezzük meg egy osztálykirándulás költségeit!</h2>
+
+<div class="intro">
+    <p>Az osztály kétnapos kirándulásra megy Egerbe. A te feladatod, hogy Excelben kiszámold, <b>mennyibe kerül az egész út</b>, és <b>mennyit kell fizetnie egy diáknak</b>.</p>
+    <p>Az óra végére egy olyan táblázatod lesz, amely magától újraszámol mindent, ha megváltozik egy adat. Ez a táblázatkezelő legnagyobb előnye a számológéppel szemben.</p>
+    <p>🟢 Az <b>1–6. feladat</b> mindenkinek kötelező. 🌟 A <b>7–8. feladat</b> azoknak szól, akik már jól ismerik az Excelt, vagy hamar végeztek.</p>
+</div>
+
+<div class="task-card">
+    <h3>📖 Mielőtt elkezded: a legfontosabb fogalmak</h3>
+    <table class="tema-tabla">
+        <tr><th>Fogalom</th><th>Mit jelent?</th></tr>
+        <tr><td><b>Oszlop</b></td><td>Függőleges sor, betűvel jelöljük: A, B, C …</td></tr>
+        <tr><td><b>Sor</b></td><td>Vízszintes sor, számmal jelöljük: 1, 2, 3 …</td></tr>
+        <tr><td><b>Cella</b></td><td>Egy oszlop és egy sor találkozása. Ide írunk adatot.</td></tr>
+        <tr><td><b>Cellahivatkozás</b> (cellacím)</td><td>A cella „címe”: először az oszlop betűje, aztán a sor száma, pl. <code class="inline">B3</code>.</td></tr>
+        <tr><td><b>Tartomány</b></td><td>Több egymás melletti cella, pl. <code class="inline">D5:D12</code> = D5-től D12-ig az összes cella.</td></tr>
+        <tr><td><b>Képlet</b></td><td>Mindig <b>egyenlőségjellel (=)</b> kezdődik, pl. <code class="inline">=B5*C5</code>. A cellában az eredmény látszik, a képletet a <b>szerkesztőlécen</b> (a táblázat fölötti sávban) látod.</td></tr>
+    </table>
+    <details class="extra">
+        <summary>Angol nyelvű Excelt használsz?</summary>
+        <p>A függvények nevei angolul mások, és a pontosvessző (;) helyett vesszőt (,) kell írni: SZUM = SUM, ÁTLAG = AVERAGE, MIN = MIN, MAX = MAX, HA = IF.</p>
+    </details>
+</div>
+
+<div class="task-card">
+    <h3>1. feladat – Az alapadatok beírása</h3>
+    <p>Nyiss egy új, üres Excel-munkafüzetet, és írd be az alábbiakat:</p>
+    <ul>
+        <li><code class="inline">A1</code> cellába: <b>Osztálykirándulás – Eger (2 nap)</b></li>
+        <li><code class="inline">A2</code> cellába: <b>Létszám:</b>, a <code class="inline">B2</code> cellába: <b>24</b></li>
+    </ul>
+    <p>Ezután jelöld ki és másold ki az alábbi táblázatot (a <b>Másolás</b> gombbal vagy egérrel kijelölve és <span class="billentyu-kombo"><b>Ctrl + C</b></span>-vel), kattints az <code class="inline">A4</code> cellára, és illeszd be (<span class="billentyu-kombo"><b>Ctrl + V</b></span>).</p>
+
+    <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+        <div class="table-wrap">
+            <table class="tema-tabla">
+                <tr><th>Tétel</th><th>Egységár (Ft)</th><th>Mennyiség</th><th>Összesen (Ft)</th></tr>
+                <tr><td>Busz (2 napra)</td><td>180000</td><td>1</td><td></td></tr>
+                <tr><td>Szállás (fő/éj)</td><td>6500</td><td>24</td><td></td></tr>
+                <tr><td>Reggeli</td><td>1500</td><td>24</td><td></td></tr>
+                <tr><td>Ebéd (2 nap)</td><td>2200</td><td>48</td><td></td></tr>
+                <tr><td>Vacsora</td><td>2800</td><td>24</td><td></td></tr>
+                <tr><td>Egri vár belépő</td><td>1400</td><td>24</td><td></td></tr>
+                <tr><td>Strandfürdő belépő</td><td>3200</td><td>24</td><td></td></tr>
+                <tr><td>Idegenvezető</td><td>25000</td><td>1</td><td></td></tr>
+            </table>
+        </div>
+    </div>
+    <p>Ha jól csináltad, a fejléc a 4. sorban van, a „Busz” az <code class="inline">A5</code>, az „Idegenvezető” az <code class="inline">A12</code> cellában.</p>
+    <details>
+        <summary>Segítség: nem fér ki a szöveg az oszlopban</summary>
+        <p>Vidd az egeret a két oszlopbetű közötti vonalra (pl. az A és a B között), és <b>kattints duplán</b>. Az oszlop pontosan olyan széles lesz, amilyen a leghosszabb szöveg.</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>2. feladat – Az első képlet</h3>
+    <p>A <code class="inline">D5</code> cellában számold ki, mennyibe kerül összesen a busz: <b>egységár × mennyiség</b>.</p>
+    <p>Kattints a <code class="inline">D5</code> cellára, és írd be: <code class="inline">=B5*C5</code>, majd nyomj <b>Entert</b>.</p>
+    <p class="kiemeles">Fontos: ne a számokat írd be (=180000*1), hanem a cellák címét! Így ha később megváltozik az ár, az eredmény magától frissül.</p>
+    <details>
+        <summary>Tipp: kattintással is lehet</summary>
+        <p>Írd be az <b>=</b> jelet, kattints a <code class="inline">B5</code> cellára, írd be a <b>*</b> jelet, kattints a <code class="inline">C5</code> cellára, végül Enter.</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>3. feladat – Másolás a kitöltőnégyzettel</h3>
+    <p>Nem kell nyolcszor beírnod a képletet! Kattints a <code class="inline">D5</code> cellára. A cella jobb alsó sarkában van egy kis négyzet, ez a <b>kitöltőnégyzet</b>. Fogd meg, és húzd le a <code class="inline">D12</code> celláig (vagy kattints rá duplán).</p>
+    <p>Kattints most a <code class="inline">D8</code> cellára, és nézd meg a szerkesztőlécen a képletet. Mit látsz?</p>
+    <details>
+        <summary>Mi történt? (Nézd meg, miután kipróbáltad!)</summary>
+        <p>A <code class="inline">D8</code> cellában a képlet <code class="inline">=B8*C8</code> lett. Lefelé másoláskor az Excel a sorszámokat magától átírja. Ezt <b>relatív hivatkozásnak</b> hívjuk: a képlet azt jegyzi meg, hogy „a tőlem kettővel balra és eggyel balra lévő cellát szorozd össze”.</p>
+    </details>
+    <details>
+        <summary>🔍 Ellenőrizd magad!</summary>
+        <p>Szállás: <b>156 000</b>, Ebéd: <b>105 600</b>, Idegenvezető: <b>25 000</b></p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>4. feladat – Függvények: SZUM, ÁTLAG, MIN, MAX</h3>
+    <p>A függvény egy „kész képlet”, amelynek csak meg kell mondanod, melyik cellákkal dolgozzon. Írd be a következőket:</p>
+    <div class="table-wrap">
+        <table class="tema-tabla">
+            <tr><th>Cella</th><th>Ide írd</th><th>Képlet</th><th>Mit számol?</th></tr>
+            <tr><td>A13</td><td>Összesen:</td><td><code class="inline">D13: =SZUM(D5:D12)</code></td><td>összeadja a tartományt</td></tr>
+            <tr><td>A15</td><td>Legdrágább tétel:</td><td><code class="inline">D15: =MAX(D5:D12)</code></td><td>a legnagyobb érték</td></tr>
+            <tr><td>A16</td><td>Legolcsóbb tétel:</td><td><code class="inline">D16: =MIN(D5:D12)</code></td><td>a legkisebb érték</td></tr>
+            <tr><td>A17</td><td>Átlagos tétel:</td><td><code class="inline">D17: =ÁTLAG(D5:D12)</code></td><td>az átlag</td></tr>
+        </table>
+    </div>
+    <details>
+        <summary>Tipp: a tartományt egérrel is kijelölheted</summary>
+        <p>Írd be: <b>=SZUM(</b>, aztán egérrel húzd végig a <code class="inline">D5</code>-től a <code class="inline">D12</code>-ig, zárd be a zárójelet, és Enter. A SZUM-ot a <b>Kezdőlap</b> lap jobb oldalán lévő <b>Σ AutoSzum</b> gombbal is beszúrhatod.</p>
+    </details>
+    <details>
+        <summary>🔍 Ellenőrizd magad!</summary>
+        <p>Összesen: <b>680 200</b>, Legdrágább: <b>180 000</b>, Legolcsóbb: <b>25 000</b>, Átlag: <b>85 025</b></p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>5. feladat – Mennyit fizet egy diák?</h3>
+    <p>Az <code class="inline">A14</code> cellába írd: <b>Egy főre jut:</b>. A <code class="inline">D14</code> cellában oszd el a teljes költséget a létszámmal: <code class="inline">=D13/B2</code></p>
+    <p>Most írd át a <code class="inline">B2</code> cellában a létszámot <b>24</b>-ről <b>30</b>-ra. Mi történik a <code class="inline">D14</code> cellával? Aztán írd vissza 24-re.</p>
+    <details>
+        <summary>🔍 Ellenőrizd magad!</summary>
+        <p>24 fővel egy diák kb. <b>28 342 Ft</b>-ot fizet. (Ha sok tizedesjegyet látsz, a következő feladatban eltüntetjük őket.)</p>
+        <p>Figyeld meg: ha átírod a létszámot, az egy főre jutó összeg azonnal megváltozik. A szállás, az étkezés és a belépők összege viszont nem változik, mert a mennyiségeket (24, 48) kézzel írtuk be. Ezt a 🌟 7. feladatban javíthatod.</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>6. feladat – Tedd szépre és olvashatóvá!</h3>
+    <ol>
+        <li>Az <code class="inline">A1</code> cím legyen <b>félkövér, 16-os betűméretű</b>. Jelöld ki az <code class="inline">A1:D1</code> tartományt, és használd a <b>Cellaegyesítés és középre igazítás</b> gombot.</li>
+        <li>A fejléc (<code class="inline">A4:D4</code>) legyen <b>félkövér</b>, és kapjon <b>háttérszínt</b> (Kitöltőszín, a festékesvödör ikon).</li>
+        <li>A táblázat (<code class="inline">A4:D13</code>) kapjon <b>minden szegélyt</b> (Szegélyek gomb → Minden szegély).</li>
+        <li>A pénzösszegek (<code class="inline">B5:B12</code> és <code class="inline">D5:D17</code>) formátuma legyen <b>Pénznem, Ft, 0 tizedesjegy</b>. Jelöld ki őket, kattints jobb gombbal → <b>Cellaformázás</b> → <b>Szám</b> fül → <b>Pénznem</b>.</li>
+        <li>Az <b>Összesen</b> és az <b>Egy főre jut</b> sor legyen <b>félkövér</b>.</li>
+    </ol>
+    <details>
+        <summary>Tipp: nem összefüggő cellák kijelölése</summary>
+        <p>Jelöld ki az első tartományt, majd a <b>Ctrl</b> billentyűt nyomva tartva jelöld ki a másodikat is.</p>
+    </details>
+    <details>
+        <summary>Tipp: #### jelek jelentek meg a cellában</summary>
+        <p>Nem rontottál el semmit! Csak nem fér ki a szám, ezért szélesítsd ki az oszlopot (dupla kattintás az oszlopbetűk közötti vonalon).</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>🌟 7. feladat – Okos táblázat: rögzített cellahivatkozás</h3>
+    <p>Most a mennyiségeket kézzel írtuk be (24, 48). Javítsd ki úgy, hogy <b>minden mennyiség a létszámból számolódjon</b>!</p>
+    <ul>
+        <li>A <code class="inline">C6</code> (szállás) cellába írd: <code class="inline">=$B$2</code>, és másold le a <code class="inline">C11</code> celláig. (Busz és idegenvezető: 1 marad.)</li>
+        <li>Az ebéd 2 napra szól, ezért a <code class="inline">C8</code> cellába: <code class="inline">=2*$B$2</code></li>
+    </ul>
+    <p>A <b>$</b> jel „lerögzíti” a hivatkozást: másoláskor a <code class="inline">$B$2</code> nem csúszik el <code class="inline">B3</code>-ra, <code class="inline">B4</code>-re. Beírás közben az <b>F4</b> billentyűvel is ki lehet tenni a $ jeleket.</p>
+    <p>Próbáld ki: írd át a létszámot <b>27</b>-re!</p>
+    <details>
+        <summary>🔍 Ellenőrizd magad!</summary>
+        <p>27 fővel az összköltség <b>739 600 Ft</b>, egy főre kb. <b>27 393 Ft</b>. Több diáknál olcsóbb egy főre az út, mert a busz és az idegenvezető ára több ember között oszlik el. (Utána írd vissza 24-re!)</p>
+    </details>
+    <details>
+        <summary>Mi lett volna, ha nem teszel $ jelet?</summary>
+        <p>Ha a <code class="inline">C6</code>-ba csak <code class="inline">=B2</code> kerül, lefelé másoláskor <code class="inline">=B3</code>, <code class="inline">=B4</code> … lesz belőle, és rossz cellákra mutat. Próbáld ki, és nézd meg, mi történik! (Utána a Ctrl + Z visszavonja.)</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>🌟 8. feladat – Döntsön az Excel: a HA függvény</h3>
+    <p>A szülői értekezleten azt kérték, hogy egy diák ne fizessen többet <b>30 000 Ft</b>-nál.</p>
+    <p>Az <code class="inline">A19</code> cellába írd: <b>Megfelel a keretnek?</b>, a <code class="inline">D19</code> cellába pedig:</p>
+    <p><code class="inline">=HA(D14&lt;=30000;"Igen, belefér";"Nem, túl drága")</code></p>
+    <p>A HA függvény három része: <b>HA(feltétel; mi legyen, ha igaz; mi legyen, ha hamis)</b>.</p>
+    <p>Kísérletezz: hány főnél kevesebb létszámnál lesz túl drága a kirándulás? (Ha a 7. feladatot is megcsináltad, csak a <code class="inline">B2</code> cellát kell változtatnod.)</p>
+    <details>
+        <summary>🔍 Ellenőrizd magad!</summary>
+        <p>24 főnél az eredmény „Igen, belefér”. Ha a 7. feladat is kész, <b>20 fő</b>nél már „Nem, túl drága” lesz az eredmény (30 050 Ft/fő), 21 főnél még belefér (kb. 29 562 Ft/fő).</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>💾 Mentés és leadás</h3>
+    <p>Mentsd el a munkádat <b>Nevem_9ny_kirandulas.xlsx</b> néven (pl. <i>KovacsAnna_9ny_kirandulas.xlsx</i>), és add le oda, ahová a tanár kéri.</p>
+    <p>Mielőtt leadod, nézd végig: minden szám képlettel számolódik? Kattints a <code class="inline">D</code> oszlop celláira, és nézd meg a szerkesztőlécen, hogy képletet látsz-e, nem csak egy számot!</p>
+</div>
+
+<div class="progress-sticky">
+    <div class="progress-info">
+        <span id="haladas-szoveg">Haladás: 0%</span>
+        <div class="progress-bar-container"><div class="progress-bar-fill" id="progress-fill"></div></div>
+    </div>
+    <div class="pont-info">
+        Pont: <span id="szerzett-pont">0</span> / <span id="max-pont">0</span>
+        <span class="jegy-jelzo" id="varhato-jegy">Várható jegy: -</span>
+    </div>
+</div>
+
+<button id="theme-toggle" title="Sötét/Világos mód">🌙</button>
+</body>
+</html>

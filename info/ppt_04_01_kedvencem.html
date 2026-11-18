@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerPoint – Bemutatom a kedvencemet!</title>
+    <link rel="stylesheet" href="../style.css?v=4">
+    <script type="text/javascript" src="../script.js?v=4"></script>
+    <style>
+        /* 4. osztályos oldal: nagyobb betű, kevesebb sorkizárás, nincs jegy */
+        body { font-size: x-large; text-align: left; hyphens: none; }
+        .jegy-jelzo { display: none; }
+        .lepes { font-size: 1.6em; margin-right: 6px; }
+        .menu-nev { background: var(--intro-bg); border: 2px solid var(--secondary); border-radius: 6px; padding: 0 6px; font-weight: bold; white-space: nowrap; }
+        .dia-terv { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 15px 0; }
+        .dia-terv > div { border: 3px solid var(--secondary); border-radius: 8px; padding: 10px; background: var(--card-bg); font-size: 0.85em; }
+        .dia-terv b { display: block; color: var(--heading-color); }
+    </style>
+</head>
+<body>
+
+<h2>🎨 PowerPoint: Bemutatom a kedvencemet!</h2>
+
+<div class="intro">
+    <p>Ma egy <b>bemutatót</b> készítesz PowerPointban. Egy bemutató <b>diákból</b> áll, mint egy képeskönyv lapjai. 📖</p>
+    <p>Minden feladat után pipáld ki a <b>Kész</b> négyzetet! Ha szerinted jól sikerült, pipáld ki a <b>Szerintem hibátlan</b> négyzetet is, és gyűjtsd a ⭐ csillagokat!</p>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">🤔</span>1. Válassz témát!</h3>
+    <p>Miről szóljon a bemutatód? Válassz egyet:</p>
+    <ul>
+        <li>🐶 <b>A kedvenc állatom</b></li>
+        <li>🎻 <b>A kedvenc hangszerem</b></li>
+        <li>🍕 <b>A kedvenc ételem</b></li>
+    </ul>
+    <p>Ezek a diák lesznek a bemutatódban:</p>
+    <div class="dia-terv">
+        <div><b>1. dia</b>A címe, pl. „A kedvenc állatom: a delfin”, és a neved</div>
+        <div><b>2. dia</b>Egy kép és 2 mondat: <i>Hogy néz ki?</i></div>
+        <div><b>3. dia</b>Egy kép és 2 mondat: <i>Hol él? Mit eszik?</i> (vagy: <i>Hogyan szól?</i> / <i>Miből készül?</i>)</div>
+        <div><b>4. dia</b>1–2 mondat: <i>Miért szeretem?</i></div>
+        <div><b>5. dia</b>„Köszönöm, hogy megnéztétek!”</div>
+    </div>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">🖌️</span>2. Válassz kinézetet (témát)!</h3>
+    <ol>
+        <li>Nyisd meg a <b>PowerPointot</b>, és kattints az <b>Üres bemutató</b> gombra.</li>
+        <li>Fent kattints a <span class="menu-nev">Tervezés</span> fülre.</li>
+        <li>Kattints az egyik <b>témára</b> (a kis képekre). Nézd meg, hogyan változik a dia!</li>
+        <li>A témák mellett lévő <b>változatokkal</b> más színt is választhatsz.</li>
+    </ol>
+    <p class="kiemeles">Válassz olyat, amin jól olvasható a szöveg! Sötét háttéren világos betű, világos háttéren sötét betű legyen.</p>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">✏️</span>3. Írd meg a címdiát!</h3>
+    <ol>
+        <li>Kattints a <b>„Cím hozzáadásához kattintson ide”</b> feliratra, és írd be a bemutatód címét.</li>
+        <li>Az alatta lévő kisebb mezőbe írd be a <b>neved</b>.</li>
+    </ol>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">➕</span>4. Új diák és szöveg</h3>
+    <ol>
+        <li>A <span class="menu-nev">Kezdőlap</span> fülön kattints az <b>Új dia</b> gomb alsó felére (a kis nyílra).</li>
+        <li>Válaszd a <b>Két tartalom</b> elrendezést: így az egyik oldalra szöveg, a másikra kép kerülhet.</li>
+        <li>Írd be a dia címét, például: <i>Hogy néz ki?</i></li>
+        <li>Az egyik nagy mezőbe írj <b>2 rövid mondatot</b>.</li>
+        <li>Készítsd el így a többi diát is (összesen <b>5 dia</b> legyen)!</li>
+    </ol>
+    <details>
+        <summary>💡 Jó tanács</summary>
+        <p>Egy diára kevés szöveg kell! A nézők a képet nézik, a többit te mondod el nekik. Ha a szöveg nem fér ki, inkább rövidítsd le.</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">🖼️</span>5. Szúrj be képeket!</h3>
+    <ol>
+        <li>Kattints arra a diára, ahová a képet szeretnéd.</li>
+        <li>Fent kattints a <span class="menu-nev">Beszúrás</span> fülre, majd a <b>Képek</b> gombra.</li>
+        <li>Válaszd ki, honnan legyen a kép:
+            <ul>
+                <li><b>Ez az eszköz…</b>: a számítógépen lévő képek közül (ha a tanár adott képeket, ezt válaszd)</li>
+                <li><b>Online képek…</b>: az internetről keres</li>
+            </ul>
+        </li>
+        <li>Kattints a képre, majd a <b>Beszúrás</b> gombra.</li>
+        <li>A kép <b>sarkainál</b> lévő karikákkal nagyíthatod és kicsinyítheted. A kép <b>közepét</b> megfogva arrébb húzhatod.</li>
+    </ol>
+    <p class="kiemeles">A 2. és a 3. diára biztosan kerüljön kép!</p>
+    <details>
+        <summary>😮 Segítség! Torz lett a képem!</summary>
+        <p>Ha a kép oldalát húzod, a kép megnyúlik. Mindig a <b>sarkát</b> fogd meg! Ha elrontottad, nyomd meg a <b>Ctrl + Z</b> billentyűket: ez visszavonja az utolsó lépést.</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">🔀</span>6. Áttűnések: mozogjanak a diák!</h3>
+    <p>Az <b>áttűnés</b> azt jelenti, hogyan jelenik meg a következő dia, amikor lapozol.</p>
+    <ol>
+        <li>A bal oldali sávban kattints a <b>2. diára</b>.</li>
+        <li>Fent kattints az <span class="menu-nev">Áttűnések</span> fülre.</li>
+        <li>Kattints egy áttűnésre. A PowerPoint rögtön meg is mutatja, hogyan néz ki!</li>
+        <li>Válassz áttűnést a többi diának is.</li>
+    </ol>
+    <details>
+        <summary>💡 Tipp</summary>
+        <p>Az <b>Alkalmazás mindegyikre</b> gombbal egyszerre az összes dia ugyanazt az áttűnést kapja. Egy bemutatóban az a legszebb, ha az áttűnések hasonlók.</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">✨</span>7. Animációk: mozogjon a kép és a szöveg!</h3>
+    <p>Az <b>animáció</b> egy dián belül mozgatja a dolgokat: pl. a kép berepül, a szöveg előtűnik.</p>
+    <ol>
+        <li>Kattints egy <b>képre</b> a dián.</li>
+        <li>Fent kattints az <span class="menu-nev">Animációk</span> fülre.</li>
+        <li>Válassz egy animációt! A kép mellett megjelenik egy kis <b>szám</b>: ez mutatja, hányadikként mozdul meg.</li>
+        <li>Adj animációt a szövegnek is.</li>
+    </ol>
+    <p class="kiemeles">⚠️ Ne vidd túlzásba! Egy diára elég 1–2 animáció, különben a nézők szédülnek. 😵‍💫</p>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">▶️</span>8. Nézd meg és mentsd el!</h3>
+    <ol>
+        <li>Nyomd meg az <b>F5</b> billentyűt: elindul a <b>diavetítés</b> az elejéről. Lapozni kattintással vagy a <b>→</b> nyíllal lehet.</li>
+        <li>A vetítésből az <b>Esc</b> billentyűvel lépsz ki.</li>
+        <li>Mentsd el: <span class="menu-nev">Fájl</span> → <b>Mentés másként</b>. A fájl neve legyen a <b>neved</b>, pl. <i>KissPeti_kedvencem</i>.</li>
+    </ol>
+    <details>
+        <summary>✅ Ellenőrizd a bemutatódat!</summary>
+        <ul>
+            <li>Van 5 diám?</li>
+            <li>Az első dián ott a cím és a nevem?</li>
+            <li>Van legalább 2 kép?</li>
+            <li>Jól olvasható a szöveg?</li>
+            <li>Van áttűnés és animáció?</li>
+        </ul>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">🌟</span>Ha már mindennel kész vagy…</h3>
+    <ul>
+        <li>Készíts még egy diát: <i>Érdekesség</i>. Írj rá valami meglepőt a témádról!</li>
+        <li>Az <span class="menu-nev">Animációk</span> fülön próbáld ki, mit csinál a <b>Kezdés</b> beállítás: <i>Kattintásra</i> vagy <i>Az előzővel együtt</i>.</li>
+        <li>Mutasd meg a bemutatódat a padtársadnak! Ő mondjon egy dolgot, ami nagyon tetszett neki.</li>
+    </ul>
+</div>
+
+<div class="progress-sticky">
+    <div class="progress-info">
+        <span id="haladas-szoveg">Haladás: 0%</span>
+        <div class="progress-bar-container"><div class="progress-bar-fill" id="progress-fill"></div></div>
+    </div>
+    <div class="pont-info">
+        ⭐ Csillagok: <span id="szerzett-pont">0</span> / <span id="max-pont">0</span>
+        <span class="jegy-jelzo" id="varhato-jegy">Várható jegy: -</span>
+    </div>
+</div>
+
+<button id="theme-toggle" title="Sötét/Világos mód">🌙</button>
+</body>
+</html>

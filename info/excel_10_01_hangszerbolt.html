@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel gyakorlás – Black Friday a hangszerboltban</title>
+    <link rel="stylesheet" href="../style.css?v=4">
+    <script type="text/javascript" src="../script.js?v=4"></script>
+</head>
+<body>
+
+<h2>🎸 Excel gyakorlás: Black Friday a hangszerboltban</h2>
+
+<div class="intro">
+    <p>Egy hangszerbolt Black Friday akcióra készül. A tulajdonos odaadta a termékek listáját <b>nettó áron</b> (ÁFA nélkül), és a raktárkészletet. Neked kell kiszámolnod a bruttó és az akciós árakat, és összefoglalót készítened kategóriánként.</p>
+    <p>Amit használni fogsz: <b>relatív és rögzített ($) hivatkozás, KEREKÍTÉS, HA, SZUM, MAX, MIN, DARABTELI, SZUMHA, ÁTLAGHA, INDEX + HOL.VAN</b>.</p>
+    <p>Idő: kb. 45 perc. A 🌟 jelű feladatok szorgalmiak.</p>
+</div>
+
+<div class="task-card">
+    <h3>1. feladat – Az adatok előkészítése</h3>
+    <p>Nyiss egy új munkafüzetet, és írd be:</p>
+    <ul>
+        <li><code class="inline">A1</code>: <b>Black Friday – Hangszerbolt</b></li>
+        <li><code class="inline">A2</code>: <b>ÁFA:</b> &nbsp; <code class="inline">B2</code>: <b>27%</b></li>
+        <li><code class="inline">A3</code>: <b>Kedvezmény:</b> &nbsp; <code class="inline">B3</code>: <b>20%</b></li>
+    </ul>
+    <p>Másold ki az alábbi táblázatot, és illeszd be az <code class="inline">A5</code> cellától kezdve. Az <code class="inline">E5:I5</code> cellákba írd be a további fejléceket: <b>Bruttó ár</b>, <b>Akciós ár</b>, <b>Megtakarítás</b>, <b>Készlet értéke</b>, <b>Megjegyzés</b>.</p>
+
+    <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+        <div class="table-wrap">
+            <table class="tema-tabla">
+                <tr><th>Termék</th><th>Kategória</th><th>Nettó ár (Ft)</th><th>Raktáron (db)</th></tr>
+                <tr><td>Akusztikus gitár</td><td>Húros</td><td>55000</td><td>6</td></tr>
+                <tr><td>Elektromos gitár</td><td>Húros</td><td>118000</td><td>3</td></tr>
+                <tr><td>Hegedű 4/4 (tokkal, vonóval)</td><td>Húros</td><td>72000</td><td>4</td></tr>
+                <tr><td>Szoprán ukulele</td><td>Húros</td><td>14500</td><td>12</td></tr>
+                <tr><td>Basszusgitár (4 húros)</td><td>Húros</td><td>96000</td><td>2</td></tr>
+                <tr><td>Szoprán furulya</td><td>Fúvós</td><td>3900</td><td>40</td></tr>
+                <tr><td>Altszaxofon</td><td>Fúvós</td><td>310000</td><td>1</td></tr>
+                <tr><td>Fuvola (diákmodell)</td><td>Fúvós</td><td>145000</td><td>2</td></tr>
+                <tr><td>Trombita (diákmodell)</td><td>Fúvós</td><td>128000</td><td>3</td></tr>
+                <tr><td>Cajon</td><td>Ütős</td><td>38000</td><td>7</td></tr>
+                <tr><td>Elektromos dobszett</td><td>Ütős</td><td>245000</td><td>2</td></tr>
+                <tr><td>Dobverő (pár)</td><td>Ütős</td><td>3200</td><td>35</td></tr>
+                <tr><td>Digitális zongora (88 billentyű)</td><td>Billentyűs</td><td>189000</td><td>4</td></tr>
+                <tr><td>Szintetizátor (61 billentyű)</td><td>Billentyűs</td><td>64000</td><td>5</td></tr>
+                <tr><td>Gitárhúrkészlet</td><td>Kiegészítő</td><td>4200</td><td>50</td></tr>
+                <tr><td>Kottatartó</td><td>Kiegészítő</td><td>6800</td><td>15</td></tr>
+                <tr><td>Csiptetős hangoló</td><td>Kiegészítő</td><td>5100</td><td>25</td></tr>
+                <tr><td>Stúdió fejhallgató</td><td>Kiegészítő</td><td>29000</td><td>9</td></tr>
+            </table>
+        </div>
+    </div>
+    <p>Ellenőrzés: az első termék a 6., az utolsó a 23. sorban van.</p>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>2. feladat – Bruttó ár</h3>
+    <p>Az <b>E</b> oszlopban számold ki a bruttó árat: <b>nettó ár × (1 + ÁFA)</b>. Az ÁFA-t a <code class="inline">B2</code> cellából vedd, ne írd be a 27-et a képletbe! Az eredményt kerekítsd egész forintra.</p>
+    <details>
+        <summary>Segítség 1: melyik hivatkozást kell rögzíteni?</summary>
+        <p>A képletet le fogod másolni a 23. sorig. A nettó ár soronként változik (relatív hivatkozás), az ÁFA viszont mindig a <code class="inline">B2</code>-ben van, ezért azt <b>rögzíteni kell</b>: <code class="inline">$B$2</code> (F4 billentyű).</p>
+    </details>
+    <details>
+        <summary>Segítség 2: a teljes képlet</summary>
+        <p><code class="inline">E6: =KEREKÍTÉS(C6*(1+$B$2);0)</code></p>
+        <p>A KEREKÍTÉS második része (a 0) azt mondja meg, hány tizedesjegyre kerekítsen.</p>
+    </details>
+    <details>
+        <summary>🔍 Ellenőrizd magad!</summary>
+        <p>Akusztikus gitár: <b>69 850</b>, Szoprán furulya: <b>4 953</b>, Altszaxofon: <b>393 700</b></p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>3. feladat – Akciós ár, megtakarítás, készlet értéke</h3>
+    <ul>
+        <li><b>F – Akciós ár:</b> a bruttó árból vond le a <code class="inline">B3</code>-ban megadott kedvezményt, és kerekítsd egész forintra.</li>
+        <li><b>G – Megtakarítás:</b> mennyit spórol a vevő egy darabon (bruttó ár − akciós ár)?</li>
+        <li><b>H – Készlet értéke:</b> mennyit ér a raktáron lévő összes darab akciós áron?</li>
+    </ul>
+    <details>
+        <summary>Segítség: akciós ár</summary>
+        <p>20% kedvezmény azt jelenti, hogy az ár 80%-át kell fizetni, vagyis <b>bruttó × (1 − kedvezmény)</b>.</p>
+        <p><code class="inline">F6: =KEREKÍTÉS(E6*(1-$B$3);0)</code></p>
+    </details>
+    <details>
+        <summary>🔍 Ellenőrizd magad!</summary>
+        <p>Akusztikus gitár: akciós ár <b>55 880</b>, megtakarítás <b>13 970</b>, készlet értéke <b>335 280</b>.<br>
+        Digitális zongora: akciós ár <b>192 024</b>, megtakarítás <b>48 006</b>, készlet értéke <b>768 096</b>.</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="3">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>4. feladat – Figyelmeztetés: utolsó darabok</h3>
+    <p>Az <b>I</b> oszlopban jelenjen meg az <b>Utolsó darabok!</b> felirat, ha egy termékből legfeljebb 3 darab van raktáron. Ha több van, a cella maradjon üres.</p>
+    <details>
+        <summary>Segítség</summary>
+        <p>Az üres szöveget két idézőjellel írjuk: <code class="inline">""</code></p>
+        <p><code class="inline">I6: =HA(D6&lt;=3;"Utolsó darabok!";"")</code></p>
+    </details>
+    <details>
+        <summary>🔍 Ellenőrizd magad!</summary>
+        <p><b>6</b> terméknél jelenik meg a felirat (pl. elektromos gitár, altszaxofon, trombita).</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>5. feladat – Összesítések</h3>
+    <p>A táblázat alá (a 25. sortól) készíts összesítést. Az A oszlopba a felirat, a B oszlopba a képlet kerüljön:</p>
+    <div class="table-wrap">
+        <table class="tema-tabla">
+            <tr><th>Sor</th><th>Felirat (A oszlop)</th><th>Mit számolj a B oszlopban?</th></tr>
+            <tr><td>25</td><td>Termékek száma raktáron (db):</td><td>az összes raktáron lévő darab</td></tr>
+            <tr><td>26</td><td>Teljes készlet értéke:</td><td>a H oszlop összege</td></tr>
+            <tr><td>27</td><td>Legdrágább akciós ár:</td><td>az F oszlop legnagyobb értéke</td></tr>
+            <tr><td>28</td><td>Legdrágább termék:</td><td>a hozzá tartozó termék <b>neve</b></td></tr>
+            <tr><td>29</td><td>Legolcsóbb akciós ár:</td><td>az F oszlop legkisebb értéke</td></tr>
+            <tr><td>30</td><td>Legolcsóbb termék:</td><td>a hozzá tartozó termék <b>neve</b></td></tr>
+            <tr><td>31</td><td>Hány termék fogyóban?</td><td>hányszor szerepel az I oszlopban az „Utolsó darabok!”</td></tr>
+        </table>
+    </div>
+    <details>
+        <summary>Segítség: hogyan kapom meg a legdrágább termék nevét?</summary>
+        <p>Két függvényt kell egymásba ágyazni:</p>
+        <ul>
+            <li>A <b>HOL.VAN</b> megmondja, hányadik helyen van egy érték a tartományban: <code class="inline">HOL.VAN(B27;F6:F23;0)</code> (a 0 = pontos egyezés).</li>
+            <li>Az <b>INDEX</b> visszaadja a tartomány adott sorszámú elemét: <code class="inline">INDEX(A6:A23;sorszám)</code>.</li>
+        </ul>
+        <p>Együtt: <code class="inline">B28: =INDEX(A6:A23;HOL.VAN(B27;F6:F23;0))</code></p>
+        <p>Újabb Excelben ugyanez az <b>XKERES</b> függvénnyel is megy: <code class="inline">=XKERES(B27;F6:F23;A6:A23)</code></p>
+    </details>
+    <details>
+        <summary>Segítség: hány termék fogyóban?</summary>
+        <p><code class="inline">B31: =DARABTELI(I6:I23;"Utolsó darabok!")</code></p>
+    </details>
+    <details>
+        <summary>🔍 Ellenőrizd magad!</summary>
+        <p>Raktáron: <b>225 db</b> · Teljes készletérték: <b>5 204 440 Ft</b><br>
+        Legdrágább: <b>Altszaxofon, 314 960 Ft</b> · Legolcsóbb: <b>Dobverő (pár), 3 251 Ft</b><br>
+        Fogyóban: <b>6</b> termék</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="4">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>6. feladat – Kategóriánkénti összefoglaló</h3>
+    <p>A <code class="inline">K5</code> cellától kezdve készítsd el ezt a táblázatot, és töltsd ki képletekkel. A kategóriák nevét te írd be a K oszlopba.</p>
+    <div class="table-wrap">
+        <table class="tema-tabla">
+            <tr><th>Kategória</th><th>Termékfajták száma</th><th>Darab raktáron</th><th>Átlagos akciós ár</th></tr>
+            <tr><td>Húros</td><td>?</td><td>?</td><td>?</td></tr>
+            <tr><td>Fúvós</td><td>?</td><td>?</td><td>?</td></tr>
+            <tr><td>Ütős</td><td>?</td><td>?</td><td>?</td></tr>
+            <tr><td>Billentyűs</td><td>?</td><td>?</td><td>?</td></tr>
+            <tr><td>Kiegészítő</td><td>?</td><td>?</td><td>?</td></tr>
+        </table>
+    </div>
+    <p class="kiemeles">A cél: az <code class="inline">L6:N6</code> képleteit egyszer írd meg, és másold le a 10. sorig! Ehhez gondold végig, mit kell rögzíteni és mit nem.</p>
+    <details>
+        <summary>Segítség 1: melyik függvény kell?</summary>
+        <ul>
+            <li><b>Termékfajták száma:</b> DARABTELI (hány sorban szerepel a kategória)</li>
+            <li><b>Darab raktáron:</b> SZUMHA (azoknak a soroknak a D értékét adja össze, ahol a kategória egyezik)</li>
+            <li><b>Átlagos akciós ár:</b> ÁTLAGHA</li>
+        </ul>
+    </details>
+    <details>
+        <summary>Segítség 2: a képletek</summary>
+        <p>A tartományok mindig ugyanazok maradnak (rögzített), a feltétel (K6) soronként változik (relatív):</p>
+        <p><code class="inline">L6: =DARABTELI($B$6:$B$23;K6)</code><br>
+        <code class="inline">M6: =SZUMHA($B$6:$B$23;K6;$D$6:$D$23)</code><br>
+        <code class="inline">N6: =ÁTLAGHA($B$6:$B$23;K6;$F$6:$F$23)</code></p>
+    </details>
+    <details>
+        <summary>🔍 Ellenőrizd magad!</summary>
+        <div class="table-wrap">
+            <table class="tema-tabla">
+                <tr><th>Kategória</th><th>Fajta</th><th>Darab</th><th>Átlagos akciós ár</th></tr>
+                <tr><td>Húros</td><td>5</td><td>27</td><td>72 238 Ft</td></tr>
+                <tr><td>Fúvós</td><td>4</td><td>46</td><td>149 073 Ft</td></tr>
+                <tr><td>Ütős</td><td>3</td><td>44</td><td>96 926 Ft</td></tr>
+                <tr><td>Billentyűs</td><td>2</td><td>9</td><td>128 524 Ft</td></tr>
+                <tr><td>Kiegészítő</td><td>4</td><td>99</td><td>11 456 Ft</td></tr>
+            </table>
+        </div>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="4">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>7. feladat – Formázás</h3>
+    <ul>
+        <li><code class="inline">B2:B3</code>: százalék formátum.</li>
+        <li>Minden pénzösszeg: <b>Pénznem, Ft, 0 tizedesjegy</b>.</li>
+        <li>Fejlécek félkövérek, háttérszínnel; a táblázatoknak legyen szegélye; az oszlopszélességek legyenek megfelelők.</li>
+    </ul>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>🌟 8. feladat – „Mi lenne, ha…?” és grafikon</h3>
+    <ol>
+        <li>A tulajdonos 30%-os kedvezményen gondolkodik. Írd át a <code class="inline">B3</code> cellát 30%-ra. Ha mindent jól rögzítettél, az egész táblázat újraszámol. Mennyi lett a legdrágább akciós ár és a teljes készlet értéke? Utána írd vissza 20%-ra.</li>
+        <li><b>Feltételes formázással</b> színezd pirosra az I oszlop azon celláit, amelyekben az „Utolsó darabok!” szerepel (Kezdőlap → Feltételes formázás → Cellakijelölési szabályok → Szöveg, amely tartalmazza…).</li>
+        <li>Készíts <b>oszlopdiagramot</b> a kategóriánkénti átlagos akciós árakból (<code class="inline">K5:K10</code> és <code class="inline">N5:N10</code>; a nem összefüggő tartományokat Ctrl-lal jelöld ki). Legyen címe és tengelyfelirata.</li>
+    </ol>
+    <details>
+        <summary>🔍 Ellenőrizd magad! (30% kedvezménnyel)</summary>
+        <p>Legdrágább akciós ár: <b>275 590 Ft</b> · Teljes készletérték: <b>4 553 921 Ft</b></p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="3">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>💾 Mentés és leadás</h3>
+    <p>Mentsd el <b>Nevem_10_hangszerbolt.xlsx</b> néven, és add le oda, ahová a tanár kéri. Leadás előtt kattints néhány számolt cellára: mindenhol képletet kell látnod a szerkesztőlécen!</p>
+</div>
+
+<div class="progress-sticky">
+    <div class="progress-info">
+        <span id="haladas-szoveg">Haladás: 0%</span>
+        <div class="progress-bar-container"><div class="progress-bar-fill" id="progress-fill"></div></div>
+    </div>
+    <div class="pont-info">
+        Pont: <span id="szerzett-pont">0</span> / <span id="max-pont">0</span>
+        <span class="jegy-jelzo" id="varhato-jegy">Várható jegy: -</span>
+    </div>
+</div>
+
+<button id="theme-toggle" title="Sötét/Világos mód">🌙</button>
+</body>
+</html>
