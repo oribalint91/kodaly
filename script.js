@@ -370,7 +370,8 @@ const TARTALOM = [
             {
                 name: "8. évfolyam",
                 items: [
-                    { title: "1. Atomszerkezet és a periódusos rendszer", file: "08_01_atomszerkezet.html", evfolyam: "8", active: false }
+                    { title: "1. Atomszerkezet és a periódusos rendszer", file: "08_01_atomszerkezet.html", evfolyam: "8", active: false },
+                    {title: "5. savak és bázisok", file: "08_05_savak_bazisok.html", evfolyam: "8", active: true}
                 ]
             },
             {
