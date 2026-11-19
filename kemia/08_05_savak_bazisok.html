@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savak és bázisok – összefoglalás és gyakorlás</title>
+    <link rel="stylesheet" href="../style.css?v=4">
+    <script type="text/javascript" src="../script.js?v=4"></script>
+    <style>
+        .egyenlet { font-size: 1.25em; text-align: center; margin: 12px 0; letter-spacing: 0.5px; }
+        .egyenlet small { display: block; font-size: 0.65em; color: var(--border-dark); letter-spacing: 0; }
+        .kviz-gombok { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+        .kviz-gombok button { padding: 10px 18px; font-size: 1rem; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; background: var(--primary); color: #fff; }
+        .kviz-gombok button.masodlagos { background: var(--border-dark); }
+        #kviz-eredmeny-jelzo { font-size: 1.3em; font-weight: bold; margin-top: 10px; }
+        .pir { color: #c0392b; font-weight: bold; }
+        .ciklamen { color: #d6247b; font-weight: bold; }
+        .kek { color: #2471a3; font-weight: bold; }
+        .zold { color: #1e8449; font-weight: bold; }
+    </style>
+</head>
+<body class="theme-kem">
+
+<h2>🧪 Savak és bázisok – összefoglalás és gyakorlás a dolgozatra</h2>
+
+<div class="intro">
+    <p>Ezen az órán önállóan ismétled át a savakról és bázisokról tanultakat. Hamarosan dolgozatot írsz belőle!</p>
+    <p><b>Így haladj:</b></p>
+    <ol>
+        <li>Olvasd el figyelmesen az <b>összefoglalót</b> (A rész). Ami fontos, írd ki a füzetedbe!</li>
+        <li>Oldd meg a <b>gyakorló feladatokat</b> a füzetedben (B rész). Csak utána nézd meg a megoldást!</li>
+        <li>Töltsd ki a <b>kvízt</b> (C rész). Az <i>Új kérdések</i> gombbal újra és újra kitöltheted, mindig más kérdéseket kapsz.</li>
+    </ol>
+</div>
+
+<h2>A rész – Összefoglaló</h2>
+
+<div class="task-card">
+    <h3>1. Kémhatás és indikátorok</h3>
+    <p>Az oldatok <b>kémhatása</b> háromféle lehet: <b>savas</b>, <b>semleges</b> vagy <b>lúgos</b>. A kémhatást <b>indikátorral</b> mutatjuk ki. Az indikátor olyan anyag, amelynek a színe a kémhatástól függ.</p>
+    <div class="table-wrap">
+        <table class="tema-tabla">
+            <tr><th>Indikátor</th><th>Savas</th><th>Semleges</th><th>Lúgos</th></tr>
+            <tr><td><b>Fenolftalein</b></td><td>színtelen</td><td>színtelen</td><td><span class="ciklamen">rózsaszín</span></td></tr>
+            <tr><td><b>Univerzális indikátorpapír</b></td><td><span class="pir">piros, narancs</span></td><td><span class="zold">sárgászöld</span> (a mi papírunk tiszta vízben sárga volt)</td><td><span class="kek">kékeszöld, kék</span></td></tr>
+        </table>
+    </div>
+    <p class="kiemeles">A fenolftalein csak a lúgos oldatot jelzi! Savas és semleges oldatban egyaránt színtelen, ezért azt nem tudjuk vele megkülönböztetni.</p>
+    <details class="extra">
+        <summary>Mit láttunk a kísérletekben?</summary>
+        <ul>
+            <li><b>Szódabikarbóna + víz:</b> az univerzális indikátorpapír kékeszöld lett, tehát az oldat enyhén lúgos. A fenolftalein mégsem színeződött el, mert ehhez az oldat nem volt elég lúgos.</li>
+            <li><b>Égetett mész + víz:</b> az univerzális indikátorpapír itt is kékeszöld lett, a fenolftalein pedig rózsaszín.</li>
+            <li>A rózsaszín oldat <b>sósav</b> és <b>ecet</b> hozzáadására is <b>elszíntelenedett</b>. A sav és a lúg tehát „kioltotta” egymás hatását.</li>
+            <li>Az univerzális indikátorpapír sósavban és ecetben is <b>narancsos piros</b> lett. Mindkét oldatban van valami közös, ami a savas kémhatást okozza.</li>
+        </ul>
+    </details>
+</div>
+
+<div class="task-card">
+    <h3>2. Mi a sav és mi a bázis?</h3>
+    <div class="osszefoglalas">
+        <p>🔴 <b>Sav:</b> protont (H<sup>+</sup>-iont) ad le.<br>
+        🔵 <b>Bázis:</b> protont (H<sup>+</sup>-iont) vesz fel.</p>
+    </div>
+    <p>A hidrogénatomban 1 proton és 1 elektron van. Ha elveszíti az elektronját, csak egy proton marad belőle: ezért <b>1 H<sup>+</sup> = 1 proton</b>. Az ilyen reakciókat <b>protonátmenetes reakcióknak</b> nevezzük.</p>
+
+    <h4>Savak vízben – a hidrogén-klorid (sósav)</h4>
+    <p class="egyenlet">HCl + H<sub>2</sub>O ⇌ Cl<sup>−</sup> + H<sub>3</sub>O<sup>+</sup>
+        <small>hidrogén-klorid + víz ⇌ kloridion + oxóniumion</small></p>
+    <p>A hidrogén-klorid protont ad le a víznek, tehát <b>sav</b>. A víz felveszi a protont, ezért itt a víz <b>bázis</b>. A sósav a hidrogén-klorid gáz vizes oldata.</p>
+    <p class="kiemeles">A savas kémhatást az oxóniumionok (H<sub>3</sub>O<sup>+</sup>) okozzák.</p>
+
+    <h4>Bázisok vízben – az ammónia</h4>
+    <p class="egyenlet">NH<sub>3</sub> + H<sub>2</sub>O ⇌ NH<sub>4</sub><sup>+</sup> + OH<sup>−</sup>
+        <small>ammónia + víz ⇌ ammóniumion + hidroxidion</small></p>
+    <p>Az ammónia protont vesz fel a víztől, tehát <b>bázis</b>. A víz leadja a protont, ezért itt a víz <b>sav</b>.</p>
+    <p class="kiemeles">A lúgos kémhatást a hidroxidionok (OH<sup>−</sup>) okozzák.</p>
+
+    <h4>A víz kétarcú</h4>
+    <p>A víz savként és bázisként is viselkedhet, attól függően, hogy kivel reagál. Két vízmolekula egymással is reagálhat:</p>
+    <p class="egyenlet">H<sub>2</sub>O + H<sub>2</sub>O ⇌ H<sub>3</sub>O<sup>+</sup> + OH<sup>−</sup></p>
+    <p>A tiszta vízben ezért nagyon kevés oxóniumion és ugyanannyi hidroxidion van. Mivel a kettő <b>egyenlő mennyiségű</b>, a víz <b>semleges</b>.</p>
+    <details class="extra">
+        <summary>Mit jelent a ⇌ jel?</summary>
+        <p>A kettős nyíl <b>megfordítható, egyensúlyra vezető reakciót</b> jelöl: a reakció mindkét irányba lejátszódik egyszerre. Az egyik irányban keletkeznek az ionok, a másikban visszaalakulnak.</p>
+    </details>
+</div>
+
+<div class="task-card">
+    <h3>3. Lúgok: nátrium-hidroxid, kálium-hidroxid, kalcium-hidroxid</h3>
+    <p>A lúgok vizes oldata lúgos kémhatású, mert vízben hidroxidionokra (OH<sup>−</sup>) és fémionokra esnek szét:</p>
+    <p class="egyenlet">KOH → K<sup>+</sup> + OH<sup>−</sup>
+        <small>kálium-hidroxid → káliumion + hidroxidion (vízben)</small></p>
+    <div class="table-wrap">
+        <table class="tema-tabla">
+            <tr><th>Név</th><th>Képlet</th><th>Vízben ezekre esik szét</th></tr>
+            <tr><td>nátrium-hidroxid</td><td>NaOH</td><td>Na<sup>+</sup> + OH<sup>−</sup></td></tr>
+            <tr><td>kálium-hidroxid</td><td>KOH</td><td>K<sup>+</sup> + OH<sup>−</sup></td></tr>
+            <tr><td>kalcium-hidroxid (oltott mész)</td><td>Ca(OH)<sub>2</sub></td><td>Ca<sup>2+</sup> + 2 OH<sup>−</sup></td></tr>
+        </table>
+    </div>
+    <h4>Az égetett mész oltása</h4>
+    <p class="egyenlet">CaO + H<sub>2</sub>O → Ca(OH)<sub>2</sub>
+        <small>kalcium-oxid (égetett mész) + víz → kalcium-hidroxid (oltott mész)</small></p>
+    <details class="extra">
+        <summary>Miért 2 OH van a Ca(OH)<sub>2</sub>-ben?</summary>
+        <p>A kalciumion kétszeresen pozitív (Ca<sup>2+</sup>), a hidroxidion egyszeresen negatív (OH<sup>−</sup>). Ahhoz, hogy a vegyület kifelé semleges legyen, egy kalciumionhoz <b>két</b> hidroxidion kell.</p>
+    </details>
+</div>
+
+<div class="task-card">
+    <h3>4. Közömbösítés: sav + bázis → só + víz</h3>
+    <p>Ha savat és lúgot megfelelő arányban összeöntünk, kioltják egymás hatását: az oldat <b>semleges</b> lesz. Ez a <b>közömbösítés</b>.</p>
+    <p class="egyenlet">NaOH + HCl → NaCl + H<sub>2</sub>O
+        <small>nátrium-hidroxid + hidrogén-klorid → nátrium-klorid + víz</small></p>
+    <p class="egyenlet">KOH + HCl → KCl + H<sub>2</sub>O
+        <small>kálium-hidroxid + hidrogén-klorid → kálium-klorid + víz</small></p>
+    <p class="egyenlet">Ca(OH)<sub>2</sub> + <b>2</b> HCl → CaCl<sub>2</sub> + <b>2</b> H<sub>2</sub>O
+        <small>kalcium-hidroxid + hidrogén-klorid → kalcium-klorid + víz</small></p>
+    <p class="osszefoglalas">bázis + sav → só + víz</p>
+    <p>Mi történik valójában? A sav oxóniumionjai és a lúg hidroxidionjai vízzé egyesülnek. A fémionok és a kloridionok változatlanok maradnak, ezek alkotják a sót.</p>
+    <p class="egyenlet">H<sub>3</sub>O<sup>+</sup> + OH<sup>−</sup> → 2 H<sub>2</sub>O</p>
+    <details class="extra">
+        <summary>Miért kell a kalcium-hidroxidhoz 2 HCl?</summary>
+        <p>A Ca(OH)<sub>2</sub>-ben két hidroxidion van. Mindegyikhez kell egy proton, hogy víz legyen belőle, egy HCl viszont csak egy protont tud leadni. Ezért 2 HCl kell, és 2 víz keletkezik. A kalcium-kloridban is ezért van 2 Cl: Ca<sup>2+</sup> + 2 Cl<sup>−</sup>.</p>
+    </details>
+    <details class="extra">
+        <summary>A kísérlet magyarázata</summary>
+        <p>A kálium-hidroxid-oldat a fenolftaleintől rózsaszín, mert lúgos. Ha sósavat csepegtetünk hozzá, a sav közömbösíti a lúgot. Amikor már nincs feleslegben hidroxidion, az oldat elszíntelenedik.</p>
+    </details>
+</div>
+
+<div class="task-card">
+    <h3>5. Savak és fémek: a cink és a sósav</h3>
+    <p class="egyenlet">Zn + 2 HCl → ZnCl<sub>2</sub> + H<sub>2</sub>
+        <small>cink + hidrogén-klorid → cink-klorid + hidrogén</small></p>
+    <ul>
+        <li>A keletkező gáz a <b>hidrogén</b> (H<sub>2</sub>).</li>
+        <li>Kimutatása: <b>égő gyújtópálcával</b>. Ha hidrogén van a kémcsőben, <b>pukkanást</b> hallunk.</li>
+        <li>A pukkanás gyors égés: a hidrogén a levegő oxigénjével vízzé ég el: <b>2 H<sub>2</sub> + O<sub>2</sub> → 2 H<sub>2</sub>O</b></li>
+        <li>A hidrogén és az oxigén keveréke a <b>durranógáz</b>. Ez <b>keverék</b>, nem vegyület!</li>
+        <li>A hidrogénnek a legkisebb a sűrűsége az összes gáz közül, ezért felfelé száll. <b>Fejjel lefelé fordított kémcsőben</b> lehet felfogni.</li>
+    </ul>
+</div>
+
+<h2>B rész – Gyakorló feladatok</h2>
+<p>Oldd meg a feladatokat a <b>füzetedben</b>! Csak akkor nyisd le a megoldást, ha már leírtad a sajátodat. A pipákkal követheted, hol tartasz.</p>
+
+<div class="task-card">
+    <h3>1. feladat – Kémhatás</h3>
+    <p>Milyen színű lesz az indikátor? Írd le a füzetedbe táblázatban!</p>
+    <ol type="a">
+        <li>sósav + fenolftalein</li>
+        <li>nátrium-hidroxid-oldat + fenolftalein</li>
+        <li>desztillált víz + univerzális indikátorpapír</li>
+        <li>ecet + univerzális indikátorpapír</li>
+        <li>oltott mész oldata + univerzális indikátorpapír</li>
+        <li>kálium-hidroxid-oldat + fenolftalein, majd sok sósav hozzáadása után</li>
+    </ol>
+    <details class="megoldasok">
+        <summary>Megoldás</summary>
+        <ol type="a">
+            <li>színtelen (savas)</li>
+            <li>rózsaszín (lúgos)</li>
+            <li>sárgászöld (semleges)</li>
+            <li>piros / narancs (savas)</li>
+            <li>kék / kékeszöld (lúgos)</li>
+            <li>először rózsaszín, a sósav hozzáadása után színtelen (közömbösítés)</li>
+        </ol>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="3">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>2. feladat – Nevek és képletek</h3>
+    <p>Írd le a képletét vagy a nevét!</p>
+    <div class="resp">
+        <ol type="a">
+            <li>hidrogén-klorid</li>
+            <li>oxóniumion</li>
+            <li>hidroxidion</li>
+            <li>ammónia</li>
+            <li>ammóniumion</li>
+            <li>kalcium-hidroxid</li>
+        </ol>
+        <ol type="a" start="7">
+            <li>CaO</li>
+            <li>KOH</li>
+            <li>Cl<sup>−</sup></li>
+            <li>CaCl<sub>2</sub></li>
+            <li>ZnCl<sub>2</sub></li>
+            <li>NaCl</li>
+        </ol>
+    </div>
+    <details class="megoldasok">
+        <summary>Megoldás</summary>
+        <div class="resp">
+            <ol type="a">
+                <li>HCl</li>
+                <li>H<sub>3</sub>O<sup>+</sup></li>
+                <li>OH<sup>−</sup></li>
+                <li>NH<sub>3</sub></li>
+                <li>NH<sub>4</sub><sup>+</sup></li>
+                <li>Ca(OH)<sub>2</sub></li>
+            </ol>
+            <ol type="a" start="7">
+                <li>kalcium-oxid (égetett mész)</li>
+                <li>kálium-hidroxid</li>
+                <li>kloridion</li>
+                <li>kalcium-klorid</li>
+                <li>cink-klorid</li>
+                <li>nátrium-klorid</li>
+            </ol>
+        </div>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="3">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>3. feladat – Egyenletek</h3>
+    <p>Egészítsd ki és rendezd az egyenleteket! Írd alá az anyagok nevét is!</p>
+    <ol type="a">
+        <li>CaO + H<sub>2</sub>O → ?</li>
+        <li>KOH + HCl → ? + ?</li>
+        <li>Ca(OH)<sub>2</sub> + HCl → CaCl<sub>2</sub> + H<sub>2</sub>O &nbsp; <i>(rendezd!)</i></li>
+        <li>HCl + H<sub>2</sub>O ⇌ ? + ?</li>
+        <li>NH<sub>3</sub> + H<sub>2</sub>O ⇌ ? + ?</li>
+        <li>Zn + HCl → ZnCl<sub>2</sub> + ? &nbsp; <i>(rendezd!)</i></li>
+    </ol>
+    <details>
+        <summary>Segítség a rendezéshez</summary>
+        <p>Számold meg az atomokat a nyíl két oldalán! A képletekben nem szabad változtatni semmit, csak eléjük írhatsz számot (együtthatót). Kezdd azzal az atommal, amelyikből a jobb oldalon több van (pl. CaCl<sub>2</sub>-ben 2 Cl).</p>
+    </details>
+    <details class="megoldasok">
+        <summary>Megoldás</summary>
+        <ol type="a">
+            <li>CaO + H<sub>2</sub>O → Ca(OH)<sub>2</sub> &nbsp; (kalcium-oxid + víz → kalcium-hidroxid)</li>
+            <li>KOH + HCl → KCl + H<sub>2</sub>O &nbsp; (kálium-hidroxid + hidrogén-klorid → kálium-klorid + víz)</li>
+            <li>Ca(OH)<sub>2</sub> + 2 HCl → CaCl<sub>2</sub> + 2 H<sub>2</sub>O</li>
+            <li>HCl + H<sub>2</sub>O ⇌ Cl<sup>−</sup> + H<sub>3</sub>O<sup>+</sup> &nbsp; (kloridion + oxóniumion)</li>
+            <li>NH<sub>3</sub> + H<sub>2</sub>O ⇌ NH<sub>4</sub><sup>+</sup> + OH<sup>−</sup> &nbsp; (ammóniumion + hidroxidion)</li>
+            <li>Zn + 2 HCl → ZnCl<sub>2</sub> + H<sub>2</sub> &nbsp; (cink-klorid + hidrogén)</li>
+        </ol>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="4">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>4. feladat – Ki a sav, ki a bázis?</h3>
+    <p>Mindkét reakciónál írd le: melyik anyag a <b>sav</b>, melyik a <b>bázis</b>, és miért!</p>
+    <ol type="a">
+        <li>HCl + H<sub>2</sub>O ⇌ Cl<sup>−</sup> + H<sub>3</sub>O<sup>+</sup></li>
+        <li>NH<sub>3</sub> + H<sub>2</sub>O ⇌ NH<sub>4</sub><sup>+</sup> + OH<sup>−</sup></li>
+    </ol>
+    <p>Mi a különös a víz szerepében a két reakcióban?</p>
+    <details class="megoldasok">
+        <summary>Megoldás</summary>
+        <ol type="a">
+            <li>A HCl <b>sav</b>, mert protont ad le. A víz <b>bázis</b>, mert felveszi a protont, és oxóniumion lesz belőle.</li>
+            <li>A víz <b>sav</b>, mert protont ad le, és hidroxidion lesz belőle. Az NH<sub>3</sub> <b>bázis</b>, mert felveszi a protont, és ammóniumion lesz belőle.</li>
+        </ol>
+        <p>A víz az egyik reakcióban bázis, a másikban sav: attól függ, hogy kivel reagál.</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="3">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>5. feladat – Kísérletek értelmezése</h3>
+    <ol type="a">
+        <li>Két színtelen oldatot összeöntünk, és rózsaszín lesz. Mi lehetett a két oldat?</li>
+        <li>A rózsaszín oldathoz ecetet csepegtetünk, és elszíntelenedik. Miért? Mi ennek a folyamatnak a neve?</li>
+        <li>Sósavba cinkdarabot dobunk. Mit tapasztalunk? Hogyan mutatod ki a keletkező gázt?</li>
+        <li>Miért kell a hidrogént fejjel lefelé fordított kémcsőben felfogni?</li>
+    </ol>
+    <details class="megoldasok">
+        <summary>Megoldás</summary>
+        <ol type="a">
+            <li>Az egyik egy lúg oldata volt (pl. NaOH, KOH vagy Ca(OH)<sub>2</sub>), a másik fenolftalein indikátor.</li>
+            <li>Az ecet savas. A sav közömbösíti a lúgot (az oxóniumionok és a hidroxidionok vízzé alakulnak), ezért a fenolftalein elszíntelenedik. A folyamat neve: <b>közömbösítés</b>.</li>
+            <li>Gázfejlődés (pezsgés) indul. A gáz hidrogén. Égő gyújtópálcát tartunk a kémcső szájához: <b>pukkanást</b> hallunk.</li>
+            <li>A hidrogén sűrűsége a legkisebb, könnyebb a levegőnél, ezért felfelé száll. A fordított kémcsőben megmarad, a felfelé álló kémcsőből elszállna.</li>
+        </ol>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="4">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>🌟 6. feladat – Gondolkodtató</h3>
+    <ol type="a">
+        <li>A magnézium a cinkhez hasonlóan reagál a sósavval. A magnézium-klorid képlete MgCl<sub>2</sub>. Írd fel a reakció egyenletét!</li>
+        <li>Hány darab ionból áll egy „egység” kalcium-klorid (CaCl<sub>2</sub>)? Melyek ezek?</li>
+        <li>Egy oldat az univerzális indikátorpapírt kékre színezi. Fenolftaleint cseppentve az oldatba mit tapasztalunk? Milyen ionból van több az oldatban: H<sub>3</sub>O<sup>+</sup>-ból vagy OH<sup>−</sup>-ból?</li>
+        <li>Miért semleges a tiszta víz, ha vannak benne oxóniumionok?</li>
+    </ol>
+    <details class="megoldasok">
+        <summary>Megoldás</summary>
+        <ol type="a">
+            <li>Mg + 2 HCl → MgCl<sub>2</sub> + H<sub>2</sub></li>
+            <li>3 ionból: 1 kalciumion (Ca<sup>2+</sup>) és 2 kloridion (Cl<sup>−</sup>).</li>
+            <li>Az oldat lúgos, ezért a fenolftalein rózsaszín lesz. Hidroxidionból (OH<sup>−</sup>) van több.</li>
+            <li>Mert ugyanannyi hidroxidion is van benne, mint oxóniumion: a kettő kiegyenlíti egymást.</li>
+        </ol>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="3">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<h2>C rész – Kvíz</h2>
+<div class="kviz-kontener">
+    <p>10 kérdést kapsz. Ha végeztél, nyomd meg az <b>Ellenőrzés</b> gombot. Az <b>Új kérdések</b> gombbal új sorsolást kérhetsz. Addig gyakorolj, amíg többször egymás után legalább 8 pontot el nem érsz!</p>
+    <div id="kviz-terulet"></div>
+    <div class="kviz-gombok">
+        <button onclick="ellenorizKozpontiKviz()">✔️ Ellenőrzés</button>
+        <button class="masodlagos" onclick="ujKvizSorsolas(10); window.scrollTo({top: document.querySelector('.kviz-kontener').offsetTop - 60, behavior: 'smooth'});">🔄 Új kérdések</button>
+    </div>
+    <div id="kviz-eredmeny-jelzo"></div>
+</div>
+
+<script>
+const kerdesBank = [
+  // --- KÉMHATÁS, INDIKÁTOROK ---
+  { kategoria: "kémhatás", tipus: "single", szint: "alap",
+    kerdes: "Milyen színű a fenolftalein lúgos oldatban?",
+    opciok: ["színtelen", "rózsaszín", "kék", "sárga"], helyes: 1,
+    magyarazat: "A fenolftalein lúgos oldatban rózsaszín, savas és semleges oldatban színtelen." },
+  { kategoria: "kémhatás", tipus: "tf", szint: "alap",
+    kerdes: "A fenolftaleinnel meg lehet különböztetni a savas oldatot a semlegestől.",
+    helyes: false,
+    magyarazat: "Hamis: a fenolftalein savas és semleges oldatban is színtelen, csak a lúgos oldatot jelzi." },
+  { kategoria: "kémhatás", tipus: "group", szint: "alap",
+    kerdes: "Milyen kémhatású oldatban ilyen színű az univerzális indikátorpapír?",
+    csoportok: ["savas", "semleges", "lúgos"],
+    tetelek: [ { szoveg: "piros", helyesCsoport: 0 }, { szoveg: "narancs", helyesCsoport: 0 },
+               { szoveg: "sárgászöld", helyesCsoport: 1 }, { szoveg: "kék", helyesCsoport: 2 } ],
+    magyarazat: "Savas: piros, narancs. Semleges: sárgászöld. Lúgos: kékeszöld, kék." },
+  { kategoria: "kémhatás", tipus: "group", szint: "alap",
+    kerdes: "Milyen kémhatású az oldat?",
+    csoportok: ["savas", "semleges", "lúgos"],
+    tetelek: [ { szoveg: "sósav", helyesCsoport: 0 }, { szoveg: "ecet", helyesCsoport: 0 },
+               { szoveg: "desztillált víz", helyesCsoport: 1 }, { szoveg: "nátrium-hidroxid-oldat", helyesCsoport: 2 },
+               { szoveg: "oltott mész oldata", helyesCsoport: 2 } ],
+    magyarazat: "A sósav és az ecet savas, a tiszta víz semleges, a lúgok oldatai lúgosak." },
+  { kategoria: "kémhatás", tipus: "single", szint: "alap",
+    kerdes: "Melyik ion okozza a savas kémhatást?",
+    opciok: ["hidroxidion (OH⁻)", "oxóniumion (H₃O⁺)", "kloridion (Cl⁻)", "káliumion (K⁺)"], helyes: 1,
+    magyarazat: "A savas kémhatást az oxóniumionok okozzák." },
+  { kategoria: "kémhatás", tipus: "single", szint: "alap",
+    kerdes: "Melyik ion okozza a lúgos kémhatást?",
+    opciok: ["oxóniumion (H₃O⁺)", "ammóniumion (NH₄⁺)", "hidroxidion (OH⁻)", "kalciumion (Ca²⁺)"], helyes: 2,
+    magyarazat: "A lúgos kémhatást a hidroxidionok okozzák." },
+  { kategoria: "kémhatás", tipus: "short", szint: "alap",
+    kerdes: "Hogy hívjuk azt az anyagot, amelynek a színe a kémhatástól függ, és ezért a kémhatás kimutatására használjuk?",
+    elfogadott: ["indikátor", "indikator", "indikátorok", "kémhatásjelző", "kemhatasjelzo"],
+    magyarazat: "Indikátor, pl. a fenolftalein vagy az univerzális indikátorpapír." },
+  { kategoria: "kémhatás", tipus: "single", szint: "halado",
+    kerdes: "A szódabikarbóna oldatában az univerzális indikátorpapír kékeszöld, a fenolftalein mégis színtelen marad. Mi a magyarázat?",
+    opciok: ["Az oldat savas.", "Az oldat semleges.", "Az oldat csak enyhén lúgos, a fenolftalein ehhez nem elég érzékeny.", "A szódabikarbóna elbontja a fenolftaleint."], helyes: 2,
+    magyarazat: "Az oldat enyhén lúgos. A fenolftalein csak erősebben lúgos oldatban színeződik rózsaszínre." },
+  { kategoria: "kémhatás", tipus: "single", szint: "halado",
+    kerdes: "Miért semleges a tiszta víz, ha vannak benne oxóniumionok?",
+    opciok: ["Mert nagyon kevés van belőlük.", "Mert ugyanannyi hidroxidion is van benne.", "Mert a víz nem reagál önmagával.", "Mert az oxóniumionok nem okoznak savas kémhatást."], helyes: 1,
+    magyarazat: "H₂O + H₂O ⇌ H₃O⁺ + OH⁻: a két ion ugyanannyi, ezért kiegyenlítik egymást." },
+
+  // --- SAV, BÁZIS FOGALMA ---
+  { kategoria: "sav-bázis", tipus: "match", szint: "alap",
+    kerdes: "Párosítsd a fogalmakat a meghatározásukkal!",
+    parok: [ { bal: "sav", jobb: "protont ad le" }, { bal: "bázis", jobb: "protont vesz fel" },
+             { bal: "közömbösítés", jobb: "sav + bázis → só + víz" }, { bal: "proton", jobb: "H⁺-ion" } ],
+    magyarazat: "Sav: protonleadó. Bázis: protonfelvevő. Közömbösítés: sav + bázis → só + víz. 1 H⁺ = 1 proton." },
+  { kategoria: "sav-bázis", tipus: "single", szint: "alap",
+    kerdes: "HCl + H₂O ⇌ Cl⁻ + H₃O⁺ &nbsp; Ebben a reakcióban a víz…",
+    opciok: ["sav, mert protont ad le", "bázis, mert protont vesz fel", "sav, mert protont vesz fel", "nem vesz részt a reakcióban"], helyes: 1,
+    magyarazat: "A víz felveszi a HCl protonját, és oxóniumion lesz belőle, tehát itt bázis." },
+  { kategoria: "sav-bázis", tipus: "single", szint: "alap",
+    kerdes: "NH₃ + H₂O ⇌ NH₄⁺ + OH⁻ &nbsp; Ebben a reakcióban a víz…",
+    opciok: ["sav, mert protont ad le", "bázis, mert protont vesz fel", "bázis, mert protont ad le", "sav, mert elektront ad le"], helyes: 0,
+    magyarazat: "A víz protont ad le az ammóniának, és hidroxidion lesz belőle, tehát itt sav." },
+  { kategoria: "sav-bázis", tipus: "tf", szint: "alap",
+    kerdes: "A víz egyes reakciókban savként, másokban bázisként viselkedik.",
+    helyes: true,
+    magyarazat: "Igaz: attól függ, kivel reagál. A HCl-dal szemben bázis, az ammóniával szemben sav." },
+  { kategoria: "sav-bázis", tipus: "tf", szint: "alap",
+    kerdes: "A savak protont vesznek fel.",
+    helyes: false,
+    magyarazat: "Hamis: a savak protont adnak le, a bázisok vesznek fel." },
+  { kategoria: "sav-bázis", tipus: "short", szint: "alap",
+    kerdes: "Mi a neve a H₃O⁺ ionnak?",
+    elfogadott: ["oxóniumion", "oxónium-ion", "oxónium ion", "oxoniumion", "oxonium-ion", "oxonium ion"],
+    magyarazat: "Oxóniumion. Akkor keletkezik, amikor a vízmolekula felvesz egy protont." },
+  { kategoria: "sav-bázis", tipus: "single", szint: "halado",
+    kerdes: "Hány protont, elektront és neutront tartalmaz a H⁺ ion (a legegyszerűbb hidrogénatomból)?",
+    opciok: ["1 proton, 1 elektron, 0 neutron", "1 proton, 0 elektron, 0 neutron", "0 proton, 1 elektron, 0 neutron", "1 proton, 0 elektron, 1 neutron"], helyes: 1,
+    magyarazat: "A hidrogénatom 1 protonból és 1 elektronból áll. Ha az elektront elveszíti, csak egy proton marad: ezért 1 H⁺ = 1 proton." },
+  { kategoria: "sav-bázis", tipus: "short", szint: "halado",
+    kerdes: "Mi a neve az olyan reakciónak, amely mindkét irányba lejátszódik, és ezt ⇌ jellel jelöljük? (két szó elég: … reakció)",
+    elfogadott: ["megfordítható", "megfordítható reakció", "megfordithato", "megfordithato reakcio", "egyensúlyi", "egyensúlyi reakció", "egyensúlyra vezető reakció", "megfordítható, egyensúlyra vezető reakció"],
+    magyarazat: "Megfordítható, egyensúlyra vezető reakció." },
+
+  // --- LÚGOK, MÉSZ ---
+  { kategoria: "lúgok", tipus: "match", szint: "alap",
+    kerdes: "Párosítsd a neveket a képletekkel!",
+    parok: [ { bal: "nátrium-hidroxid", jobb: "NaOH" }, { bal: "kálium-hidroxid", jobb: "KOH" },
+             { bal: "kalcium-hidroxid", jobb: "Ca(OH)₂" }, { bal: "kalcium-oxid", jobb: "CaO" }, { bal: "ammónia", jobb: "NH₃" } ],
+    magyarazat: "NaOH, KOH, Ca(OH)₂, CaO, NH₃." },
+  { kategoria: "lúgok", tipus: "single", szint: "alap",
+    kerdes: "Mi keletkezik, ha égetett meszet (CaO) vízzel reagáltatunk?",
+    opciok: ["CaCl₂", "Ca(OH)₂", "CaO₂", "H₂"], helyes: 1,
+    magyarazat: "CaO + H₂O → Ca(OH)₂ (égetett mész + víz → oltott mész)." },
+  { kategoria: "lúgok", tipus: "match", szint: "alap",
+    kerdes: "Párosítsd a köznapi neveket a vegyületekkel!",
+    parok: [ { bal: "égetett mész", jobb: "kalcium-oxid" }, { bal: "oltott mész", jobb: "kalcium-hidroxid" }, { bal: "sósav", jobb: "hidrogén-klorid vizes oldata" } ],
+    magyarazat: "Égetett mész: CaO. Oltott mész: Ca(OH)₂. Sósav: a HCl vizes oldata." },
+  { kategoria: "lúgok", tipus: "single", szint: "halado",
+    kerdes: "Miért van két OH a kalcium-hidroxid képletében?",
+    opciok: ["Mert a kalcium két atomból áll.", "Mert a kalciumion kétszeresen pozitív, egy hidroxidion pedig egyszeresen negatív.", "Mert két vízmolekulából keletkezik.", "Mert minden hidroxid képletében két OH van."], helyes: 1,
+    magyarazat: "Ca²⁺ mellé két OH⁻ kell, hogy a vegyület semleges legyen." },
+  { kategoria: "lúgok", tipus: "multi", szint: "halado",
+    kerdes: "Mely ionok vannak a kálium-hidroxid vizes oldatában? (Jelöld mindet!)",
+    opciok: ["K⁺", "OH⁻", "H₃O⁺ (nagyon kevés)", "Cl⁻"], helyes: [0, 1, 2],
+    magyarazat: "K⁺ és OH⁻ a KOH-ból. A víz miatt nagyon kevés H₃O⁺ is van, de sokkal kevesebb, mint OH⁻, ezért lúgos. Cl⁻ nincs benne." },
+
+  // --- KÖZÖMBÖSÍTÉS ---
+  { kategoria: "közömbösítés", tipus: "single", szint: "alap",
+    kerdes: "KOH + HCl → ? + H₂O &nbsp; Mi a hiányzó termék?",
+    opciok: ["KH", "KCl", "KClO", "K₂O"], helyes: 1,
+    magyarazat: "KOH + HCl → KCl + H₂O. A termék kálium-klorid, egy só." },
+  { kategoria: "közömbösítés", tipus: "single", szint: "alap",
+    kerdes: "Hány HCl kell egy Ca(OH)₂ közömbösítéséhez? &nbsp; Ca(OH)₂ + ? HCl → CaCl₂ + 2 H₂O",
+    opciok: ["1", "2", "3", "4"], helyes: 1,
+    magyarazat: "A Ca(OH)₂-ben két OH⁻ van, mindegyikhez kell egy proton: 2 HCl." },
+  { kategoria: "közömbösítés", tipus: "single", szint: "alap",
+    kerdes: "Melyik egyenlet írja le a közömbösítés lényegét?",
+    opciok: ["CaO + H₂O → Ca(OH)₂", "H₃O⁺ + OH⁻ → 2 H₂O", "Zn + 2 HCl → ZnCl₂ + H₂", "2 H₂ + O₂ → 2 H₂O"], helyes: 1,
+    magyarazat: "A közömbösítéskor az oxóniumionok és a hidroxidionok vízzé egyesülnek." },
+  { kategoria: "közömbösítés", tipus: "order", szint: "alap",
+    kerdes: "Tedd sorba a közömbösítés általános egyenletének részeit!",
+    elemek: ["bázis", "+ sav", "→ só", "+ víz"],
+    magyarazat: "bázis + sav → só + víz" },
+  { kategoria: "közömbösítés", tipus: "single", szint: "alap",
+    kerdes: "Fenolftaleintől rózsaszín nátrium-hidroxid-oldathoz sósavat csepegtetünk. Mit tapasztalunk?",
+    opciok: ["Kék lesz.", "Elszíntelenedik.", "Pezsegni kezd.", "Még sötétebb rózsaszín lesz."], helyes: 1,
+    magyarazat: "A sósav közömbösíti a lúgot, a hidroxidionok elfogynak, ezért a fenolftalein elszíntelenedik." },
+  { kategoria: "közömbösítés", tipus: "tf", szint: "alap",
+    kerdes: "A közömbösítés során mindig só és víz keletkezik.",
+    helyes: true,
+    magyarazat: "Igaz: bázis + sav → só + víz." },
+  { kategoria: "közömbösítés", tipus: "short", szint: "halado",
+    kerdes: "Ca(OH)₂ + 2 HCl → CaCl₂ + 2 H₂O &nbsp; Mi a keletkező só neve?",
+    elfogadott: ["kalcium-klorid", "kalciumklorid", "kalcium klorid"],
+    magyarazat: "Kalcium-klorid (CaCl₂)." },
+  { kategoria: "közömbösítés", tipus: "multi", szint: "halado",
+    kerdes: "Melyik párosítás vezet közömbösítéshez? (Jelöld mindet!)",
+    opciok: ["KOH + HCl", "NaOH + ecetsav", "HCl + ecetsav", "NaOH + KOH"], helyes: [0, 1],
+    magyarazat: "Közömbösítéshez egy sav és egy bázis kell. A HCl + ecetsav két sav, a NaOH + KOH két lúg." },
+
+  // --- FÉM + SAV, HIDROGÉN ---
+  { kategoria: "hidrogén", tipus: "single", szint: "alap",
+    kerdes: "Milyen gáz keletkezik, ha cinket sósavba teszünk?",
+    opciok: ["oxigén", "hidrogén", "klór", "szén-dioxid"], helyes: 1,
+    magyarazat: "Zn + 2 HCl → ZnCl₂ + H₂: hidrogéngáz keletkezik." },
+  { kategoria: "hidrogén", tipus: "single", szint: "alap",
+    kerdes: "Hogyan mutatjuk ki a hidrogént?",
+    opciok: ["Parázsló gyújtópálca lángra lobban.", "Égő gyújtópálcával: pukkanást hallunk.", "Meszes vizet zavarossá tesz.", "Fenolftaleint rózsaszínre színez."], helyes: 1,
+    magyarazat: "Égő gyújtópálcát tartunk a kémcső szájához: pukkanás. (A parázsló pálca az oxigént mutatja ki.)" },
+  { kategoria: "hidrogén", tipus: "single", szint: "alap",
+    kerdes: "Miért fejjel lefelé fordított kémcsőben fogjuk fel a hidrogént?",
+    opciok: ["Mert nehezebb a levegőnél.", "Mert a hidrogénnek a legkisebb a sűrűsége, felfelé száll.", "Mert a fénytől elbomlik.", "Mert reagál a levegővel."], helyes: 1,
+    magyarazat: "A hidrogén a legkisebb sűrűségű gáz, felfelé száll, így a fordított kémcsőben megmarad." },
+  { kategoria: "hidrogén", tipus: "tf", szint: "alap",
+    kerdes: "A durranógáz a hidrogén és az oxigén keveréke.",
+    helyes: true,
+    magyarazat: "Igaz: keverék, nem vegyület. Meggyújtva pukkanva vízzé ég: 2 H₂ + O₂ → 2 H₂O." },
+  { kategoria: "hidrogén", tipus: "single", szint: "halado",
+    kerdes: "Zn + ? HCl → ZnCl₂ + H₂ &nbsp; Mi kerül a kérdőjel helyére?",
+    opciok: ["1", "2", "3", "4"], helyes: 1,
+    magyarazat: "A jobb oldalon 2 Cl és 2 H van, ezért 2 HCl kell." },
+  { kategoria: "hidrogén", tipus: "single", szint: "halado",
+    kerdes: "A magnézium a cinkhez hasonlóan reagál a sósavval. Melyik a helyes egyenlet?",
+    opciok: ["Mg + HCl → MgCl + H", "Mg + 2 HCl → MgCl₂ + H₂", "Mg + 2 HCl → MgCl₂ + 2 H₂", "2 Mg + HCl → Mg₂Cl + H"], helyes: 1,
+    magyarazat: "Mg + 2 HCl → MgCl₂ + H₂, ugyanúgy, mint a cinknél." }
+];
+</script>
+
+<div class="progress-sticky">
+    <div class="progress-info">
+        <span id="haladas-szoveg">Haladás: 0%</span>
+        <div class="progress-bar-container"><div class="progress-bar-fill" id="progress-fill"></div></div>
+    </div>
+    <div class="pont-info">
+        Pont: <span id="szerzett-pont">0</span> / <span id="max-pont">0</span>
+        <span class="jegy-jelzo" id="varhato-jegy">Várható jegy: -</span>
+    </div>
+</div>
+
+<button id="theme-toggle" title="Sötét/Világos mód">🌙</button>
+</body>
+</html>
