@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scratch – Elkapós játék, 2. rész</title>
+    <link rel="stylesheet" href="../style.css?v=4">
+    <script type="text/javascript" src="../script.js?v=4"></script>
+    <style>
+        body { text-align: left; hyphens: none; }
+        /* Scratch-blokkok utánzata: a színek a Scratch kategóriaszínei */
+        .szkript { display: inline-block; margin: 10px 0 15px; font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 0.9em; }
+        .b { display: block; width: fit-content; color: #fff; font-weight: bold; padding: 7px 12px; border-radius: 6px; margin: 2px 0; box-shadow: 0 2px 0 rgba(0,0,0,0.25); }
+        .b .m { background: #fff; color: #444; border-radius: 12px; padding: 0 8px; margin: 0 3px; font-weight: normal; }
+        .b .be { background: rgba(0,0,0,0.18); border-radius: 12px; padding: 1px 8px; margin: 0 3px; }
+        .esemeny { background: #FFBF00; color: #333; border-radius: 16px 16px 6px 6px; }
+        .mozgas { background: #4C97FF; }
+        .vezerles { background: #FFAB19; }
+        .erzekeles { background: #5CB1D6; }
+        .muvelet { background: #59C059; }
+        .valtozo { background: #FF8C1A; }
+        .kinezet { background: #9966FF; }
+        .hang { background: #CF63CF; }
+        .c-belso { margin-left: 18px; padding-left: 6px; border-left: 14px solid #FFAB19; border-radius: 0 0 0 6px; }
+        .c-belso .c-belso { border-left-color: #FFAB19; }
+        .c-zaro { display: block; width: 110px; height: 14px; background: #FFAB19; border-radius: 0 0 6px 6px; margin-bottom: 2px; }
+        .kategoria { display: inline-block; padding: 0 8px; border-radius: 10px; color: #fff; font-weight: bold; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+<h2>🎮 Scratch: Elkapós játék – 2. rész</h2>
+
+<div class="intro">
+    <p>Múlt órán elkészült a játékod <b>főszereplője</b>, amelyik a nyilakkal jobbra-balra mozog, és kiválasztottad a <b>második szereplő</b> jelmezét is. Ma ez a második szereplő fog <b>fentről leesni</b>, a főszereplőddel pedig <b>el kell kapnod</b>. Minden elkapásért kapsz <b>1 pontot</b>.</p>
+    <p>A blokkokat a színükről ismered fel: ugyanilyen színűek a Scratch-ben is. A blokkokon lévő szöveg a te gépeden kicsit eltérhet, de a szín és a kategória mindig ugyanaz.</p>
+    <p>
+        <span class="kategoria" style="background:#4C97FF">Mozgás</span>
+        <span class="kategoria" style="background:#FFBF00;color:#333">Események</span>
+        <span class="kategoria" style="background:#FFAB19">Vezérlés</span>
+        <span class="kategoria" style="background:#5CB1D6">Érzékelés</span>
+        <span class="kategoria" style="background:#59C059">Műveletek</span>
+        <span class="kategoria" style="background:#FF8C1A">Változók</span>
+    </p>
+</div>
+
+<div class="task-card">
+    <h3>1. feladat – Nyisd meg a játékodat, és próbáld ki!</h3>
+    <ol>
+        <li>Nyisd meg a Scratch-et, majd a <b>Fájl</b> menüben a <b>Betöltés a számítógépről</b> paranccsal a múlt órán mentett projektedet.</li>
+        <li>Kattints a <b>zöld zászlóra</b>, és nyomkodd a jobbra és balra nyilat. Mozog a főszereplőd?</li>
+    </ol>
+    <p>Ha igen, ezen a szereplőn <b>ne változtass</b>, és mehetsz a 2. feladatra!</p>
+    <details>
+        <summary>Nem mozog a szereplőm, vagy elveszett a projektem 😟</summary>
+        <p>Kattints a főszereplőre a szereplők listájában (jobbra lent), és rakd össze ezt a szkriptet:</p>
+        <div class="szkript">
+            <span class="b esemeny">zászlóra kattintáskor</span>
+            <span class="b mozgas">ugorj x: <span class="m">0</span> y: <span class="m">-140</span></span>
+            <span class="b vezerles">mindig</span>
+            <div class="c-belso">
+                <span class="b vezerles">ha <span class="be erzekeles" style="background:#5CB1D6">lenyomták: <span class="m">jobbra nyíl</span> ?</span> akkor</span>
+                <div class="c-belso"><span class="b mozgas">x változzon ennyivel: <span class="m">10</span></span></div>
+                <span class="c-zaro"></span>
+                <span class="b vezerles">ha <span class="be erzekeles" style="background:#5CB1D6">lenyomták: <span class="m">balra nyíl</span> ?</span> akkor</span>
+                <div class="c-belso"><span class="b mozgas">x változzon ennyivel: <span class="m">-10</span></span></div>
+                <span class="c-zaro"></span>
+            </div>
+            <span class="c-zaro"></span>
+        </div>
+        <p>Ha elveszett a projekted, kezdj újat, válassz egy főszereplőt és egy második szereplőt, és csináld meg ezt a szkriptet a főszereplőnek.</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>2. feladat – Essen le a második szereplő!</h3>
+    <p>Kattints a szereplők listájában a <b>második szereplőre</b>! (Figyeld meg: a szkriptterület üres lett. Minden szereplőnek saját szkriptjei vannak.)</p>
+    <p>Rakd össze ezt a szkriptet:</p>
+    <div class="szkript">
+        <span class="b esemeny">zászlóra kattintáskor</span>
+        <span class="b mozgas">ugorj x: <span class="be muvelet" style="background:#59C059">véletlen <span class="m">-220</span> és <span class="m">220</span> között</span> y: <span class="m">170</span></span>
+        <span class="b vezerles">mindig</span>
+        <div class="c-belso">
+            <span class="b mozgas">y változzon ennyivel: <span class="m">-5</span></span>
+        </div>
+        <span class="c-zaro"></span>
+    </div>
+    <details>
+        <summary>Mit jelentenek ezek a számok?</summary>
+        <ul>
+            <li>A színpad közepe az <b>x: 0, y: 0</b> pont. Az <b>x</b> a vízszintes hely (bal szélén -240, jobb szélén 240), az <b>y</b> a függőleges (alul -180, fent 180).</li>
+            <li><b>y: 170</b> = a színpad teteje. Innen indul a leeső szereplő.</li>
+            <li><b>véletlen -220 és 220 között</b>: minden alkalommal máshol jelenik meg vízszintesen. A <span class="kategoria" style="background:#59C059">Műveletek</span> között találod, és az „x” mezőbe kell beleejteni.</li>
+            <li><b>y változzon ennyivel: -5</b>: minden lépésben 5-tel lejjebb kerül, vagyis esik.</li>
+        </ul>
+    </details>
+    <p>Próbáld ki a zöld zászlóval! Mi a gond? A szereplő leesik, aztán ott marad lent… 🤔 Ezt javítjuk a következő feladatban.</p>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>3. feladat – Ha leért, kezdje újra fentről!</h3>
+    <p>Tegyél egy <b>ha … akkor</b> blokkot a <b>mindig</b> belsejébe, az <b>y változzon</b> blokk alá:</p>
+    <div class="szkript">
+        <span class="b esemeny">zászlóra kattintáskor</span>
+        <span class="b mozgas">ugorj x: <span class="be muvelet" style="background:#59C059">véletlen <span class="m">-220</span> és <span class="m">220</span> között</span> y: <span class="m">170</span></span>
+        <span class="b vezerles">mindig</span>
+        <div class="c-belso">
+            <span class="b mozgas">y változzon ennyivel: <span class="m">-5</span></span>
+            <span class="b vezerles">ha <span class="be muvelet" style="background:#59C059"><span class="be mozgas" style="background:#4C97FF">y hely</span> &lt; <span class="m">-170</span></span> akkor</span>
+            <div class="c-belso">
+                <span class="b mozgas">ugorj x: <span class="be muvelet" style="background:#59C059">véletlen <span class="m">-220</span> és <span class="m">220</span> között</span> y: <span class="m">170</span></span>
+            </div>
+            <span class="c-zaro"></span>
+        </div>
+        <span class="c-zaro"></span>
+    </div>
+    <details>
+        <summary>Hol találom ezeket?</summary>
+        <ul>
+            <li><b>ha … akkor</b>: <span class="kategoria" style="background:#FFAB19">Vezérlés</span></li>
+            <li>A <b>&lt;</b> (kisebb mint) jel: <span class="kategoria" style="background:#59C059">Műveletek</span>. Ezt ejtsd bele a „ha” hatszögletű lyukába!</li>
+            <li><b>y hely</b> (y koordináta): a <span class="kategoria" style="background:#4C97FF">Mozgás</span> kategória legalján. Ezt ejtsd a &lt; jel bal oldalára.</li>
+            <li>Az <b>ugorj</b> blokkot nem kell újra összerakni: kattints a fenti ugorj blokkra jobb gombbal → <b>Másolat</b>. Vigyázz, a másolat az alatta lévő blokkokat is viszi! Ha csak egyet akarsz, húzd le a többit róla.</li>
+        </ul>
+    </details>
+    <p>Most már folyamatosan esnek a tárgyak? 🎉</p>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>4. feladat – A pontszámláló</h3>
+    <p>Kell egy <b>változó</b>, ami a pontokat számolja. A változó olyan, mint egy doboz, amire ráírjuk a nevét, és egy számot tartunk benne.</p>
+    <ol>
+        <li>Kattints a <span class="kategoria" style="background:#FF8C1A">Változók</span> kategóriára, majd a <b>Változó létrehozása</b> gombra.</li>
+        <li>A neve legyen: <b>pont</b>. Hagyd bejelölve, hogy <b>minden szereplőé</b> legyen, és kattints az OK-ra.</li>
+        <li>A színpad bal felső sarkában megjelenik egy kis kijelző: <b>pont 0</b>. Ez maradjon is ott!</li>
+    </ol>
+    <p>Egészítsd ki a második szereplő szkriptjét! Két új dolog kerül bele: az elején nullázzuk a pontot, és ha a tárgy hozzáér a főszereplőhöz, kap egy pontot, és újra fentről indul.</p>
+    <div class="szkript">
+        <span class="b esemeny">zászlóra kattintáskor</span>
+        <span class="b valtozo">pont legyen <span class="m">0</span></span>
+        <span class="b mozgas">ugorj x: <span class="be muvelet" style="background:#59C059">véletlen <span class="m">-220</span> és <span class="m">220</span> között</span> y: <span class="m">170</span></span>
+        <span class="b vezerles">mindig</span>
+        <div class="c-belso">
+            <span class="b mozgas">y változzon ennyivel: <span class="m">-5</span></span>
+            <span class="b vezerles">ha <span class="be erzekeles" style="background:#5CB1D6">érinti: <span class="m">a főszereplőd neve ▾</span> ?</span> akkor</span>
+            <div class="c-belso">
+                <span class="b valtozo">pont változzon ennyivel: <span class="m">1</span></span>
+                <span class="b mozgas">ugorj x: <span class="be muvelet" style="background:#59C059">véletlen <span class="m">-220</span> és <span class="m">220</span> között</span> y: <span class="m">170</span></span>
+            </div>
+            <span class="c-zaro"></span>
+            <span class="b vezerles">ha <span class="be muvelet" style="background:#59C059"><span class="be mozgas" style="background:#4C97FF">y hely</span> &lt; <span class="m">-170</span></span> akkor</span>
+            <div class="c-belso">
+                <span class="b mozgas">ugorj x: <span class="be muvelet" style="background:#59C059">véletlen <span class="m">-220</span> és <span class="m">220</span> között</span> y: <span class="m">170</span></span>
+            </div>
+            <span class="c-zaro"></span>
+        </div>
+        <span class="c-zaro"></span>
+    </div>
+    <details>
+        <summary>Hol találom az „érinti” blokkot?</summary>
+        <p>Az <span class="kategoria" style="background:#5CB1D6">Érzékelés</span> kategória tetején van. A lenyíló listában válaszd ki a <b>főszereplőd nevét</b> (azt, ami a szereplők listájában a képe alatt áll).</p>
+    </details>
+    <details>
+        <summary>Miért fontos, hogy elkapás után a tárgy felugorjon?</summary>
+        <p>Ha nem ugrana fel, a következő lépésben is hozzáérne a főszereplőhöz, és újra kapnál egy pontot, aztán megint… Egyetlen elkapásért egy csomó pontot kapnál!</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="3">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>5. feladat – Teszteld a játékodat!</h3>
+    <p>Játssz egy kört, és ellenőrizd:</p>
+    <ul>
+        <li>Zászlóra kattintáskor a pont 0-ról indul?</li>
+        <li>Elkapáskor pontosan 1-gyel nő a pont?</li>
+        <li>Ha nem kapod el, újra fentről esik?</li>
+    </ul>
+    <details>
+        <summary>🔧 Hibakereső: valami nem működik</summary>
+        <ul>
+            <li><b>Nem esik le, hanem felfelé megy:</b> az „y változzon” blokkban <b>-5</b> legyen, mínusz jellel!</li>
+            <li><b>Túl gyorsan vagy túl lassan esik:</b> írd át az -5-öt, pl. -3-ra vagy -8-ra.</li>
+            <li><b>Sosem kapok pontot:</b> jó szereplőt választottál az „érinti” blokkban? A pont blokkok a <b>ha</b> blokk <b>belsejében</b> vannak?</li>
+            <li><b>Egyszerre sok pontot kapok:</b> kimaradt az <b>ugorj</b> blokk a pont változzon alól.</li>
+            <li><b>A pont nem nullázódik:</b> a „pont legyen 0” a <b>mindig</b> fölött van, nem benne?</li>
+            <li><b>Lent ragad a tárgy:</b> a &lt; jel jó irányba néz? <i>y hely &lt; -170</i> = „az y kisebb, mint -170”.</li>
+        </ul>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>🌟 6. feladat – Legyen egyre nehezebb!</h3>
+    <p>Hozz létre egy új változót <b>sebesség</b> néven. A leeső tárgy ezzel a sebességgel essen, és minden elkapás után gyorsuljon egy kicsit!</p>
+    <ul>
+        <li>Az elején: <span class="b valtozo" style="display:inline-block">sebesség legyen <span class="m">3</span></span></li>
+        <li>Az <b>y változzon</b> blokkba -5 helyett ezt tedd: <span class="b muvelet" style="display:inline-block"><span class="m">0</span> − <span class="be valtozo" style="background:#FF8C1A">sebesség</span></span></li>
+        <li>Elkapáskor: <span class="b valtozo" style="display:inline-block">sebesség változzon ennyivel: <span class="m">0.5</span></span></li>
+    </ul>
+    <details>
+        <summary>Miért „0 − sebesség”?</summary>
+        <p>A sebesség pozitív szám (pl. 3), a tárgynak viszont lefelé kell mozognia, vagyis az y-nak csökkennie kell. A 0 − 3 = -3, így lefelé esik.</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>🌟 7. feladat – Életek: 3 hibázás után vége!</h3>
+    <ol>
+        <li>Hozz létre egy <b>élet</b> nevű változót, az elején legyen <b>3</b>.</li>
+        <li>Ha a tárgy leér (<i>y hely &lt; -170</i>), az élet csökkenjen 1-gyel: <span class="b valtozo" style="display:inline-block">élet változzon ennyivel: <span class="m">-1</span></span></li>
+        <li>Ugyanebbe a ha blokkba tegyél még egy <b>ha … akkor</b> blokkot: ha <i>élet = 0</i>, akkor a szereplő mondja, hogy <b>Vége a játéknak!</b> (<span class="kategoria" style="background:#9966FF">Kinézet</span>), utána <b>állj le: mind</b> (<span class="kategoria" style="background:#FFAB19">Vezérlés</span>).</li>
+    </ol>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>🌟 8. feladat – Saját ötletek</h3>
+    <ul>
+        <li>Elkapáskor szólaljon meg egy hang (<span class="kategoria" style="background:#CF63CF">Hang</span> kategória, <i>játszd le a hangot</i>).</li>
+        <li>Válassz a játékhoz illő <b>hátteret</b> (jobbra lent, a Színpad résznél).</li>
+        <li>Készíts egy harmadik szereplőt, amit <b>nem szabad</b> elkapni: ha hozzáér a főszereplőhöz, a pont csökkenjen!</li>
+    </ul>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>💾 Mentés és leadás</h3>
+    <p>A Scratch-ben: <b>Fájl</b> menü → <b>Mentés a számítógépre</b>. Ha a program megkérdezi, hova mentsen, válaszd a saját meghajtódat.</p>
+    <ol>
+        <li>Mentsd el <b>Nevem_elkapos.sb3</b> néven a szerveren, a saját meghajtód <b>6.a</b> mappájába! Ha nincs ilyen mappa, hozd létre!</li>
+        <li>Zárd be a Scratch-et!</li>
+        <li>Nyisd meg a <b>Fájlkezelőt</b>, válaszd ki (egy kattintással) a mentett fájlodat, és másold le (<span class="billentyu-kombo"><b>Ctrl + C</b></span>)!</li>
+        <li>A bal oldalon keresd meg az <b>Ez a gép</b> elemet, kattints rá, majd a jobb oldalon kattints duplán a <b>Beadott</b> mappára!</li>
+        <li>Illeszd be (<span class="billentyu-kombo"><b>Ctrl + V</b></span>)!</li>
+    </ol>
+    <p class="kiemeles">Ha nem látod sem a Beadott mappát, sem a saját mappádat, kérj segítséget!</p>
+</div>
+
+<div class="progress-sticky">
+    <div class="progress-info">
+        <span id="haladas-szoveg">Haladás: 0%</span>
+        <div class="progress-bar-container"><div class="progress-bar-fill" id="progress-fill"></div></div>
+    </div>
+    <div class="pont-info">
+        Pont: <span id="szerzett-pont">0</span> / <span id="max-pont">0</span>
+        <span class="jegy-jelzo" id="varhato-jegy">Várható jegy: -</span>
+    </div>
+</div>
+
+<button id="theme-toggle" title="Sötét/Világos mód">🌙</button>
+</body>
+</html>

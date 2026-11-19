@@ -358,6 +358,12 @@ const TARTALOM = [
                     { title: "Adatbázis-kezelés: kapcsolatok", file: "Adatbazis_11_01_.html", evfolyam: "11", active: true,
                       leiras: "Adatbázis-kezelés" }
                 ]
+            },
+            {
+                name: "😺 Scratch programozás",
+                items: [
+                    {title: "Elkapós játék", file: "Scratch_06_01b_elkapos_jatek_2.html", evfolyam: "6", active: true}
+                ]
             }
         ]
     },
