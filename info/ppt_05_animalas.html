@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerPoint – Okosan animálok!</title>
+    <link rel="stylesheet" href="../style.css?v=4">
+    <script type="text/javascript" src="../script.js?v=4"></script>
+    <style>
+        body { font-size: x-large; text-align: left; hyphens: none; }
+        .jegy-jelzo { display: none; }
+        .lepes { font-size: 1.4em; margin-right: 6px; }
+        .menu-nev { background: var(--intro-bg); border: 2px solid var(--secondary); border-radius: 6px; padding: 0 6px; font-weight: bold; white-space: nowrap; }
+        /* bemutató dia */
+        .minta-dia { aspect-ratio: 16 / 9; max-width: 640px; margin: 15px auto; background: linear-gradient(135deg, #fdfbf3, #e8f4f8); color: #2c3e50; border: 3px solid var(--secondary); border-radius: 8px; padding: 4% 5%; display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: auto 1fr; gap: 4%; font-size: clamp(0.9rem, 2.6vw, 1.4rem); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .minta-dia h4 { grid-column: 1 / 3; margin: 0; font-size: 1.6em; color: #1c4f6e; }
+        .minta-dia ul { margin: 0; padding-left: 1.2em; }
+        .minta-dia li { opacity: 0; transform: translateX(-15px); transition: opacity 0.5s, transform 0.5s; margin-bottom: 0.4em; }
+        .minta-dia li.lathato { opacity: 1; transform: none; }
+        .minta-kep { font-size: 4.5em; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 8px; }
+        .demo-gombok { text-align: center; }
+        .demo-gombok button { font-size: 1rem; font-weight: bold; padding: 10px 18px; margin: 4px; border: none; border-radius: 6px; cursor: pointer; background: var(--primary); color: #fff; }
+        .demo-gombok button.masodlagos { background: var(--border-dark); }
+        #demo-allapot { text-align: center; font-weight: bold; color: var(--summary-color); min-height: 1.6em; }
+        .jo-rossz { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .jo-rossz > div { border-radius: 8px; padding: 10px 14px; font-size: 0.85em; }
+        .jo { background: rgba(46, 204, 113, 0.15); border: 2px solid #2ecc71; }
+        .rossz { background: rgba(231, 76, 60, 0.15); border: 2px solid #e74c3c; }
+        @media (max-width: 600px) { .jo-rossz { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<h2>✨ PowerPoint: Okosan animálok!</h2>
+
+<div class="intro">
+    <p>Múlt órán a gyűjtött szöveget <b>kulcsszavakra</b> rövidítetted. Ma megtanulod, hogyan érdemes ezeket <b>animálni</b>, hogy a bemutatód könnyen követhető legyen.</p>
+    <p>Emlékszel? Kulcsszavakra rövidítésnél a mondatok helyett csak azok legfontosabb szavait írjuk le, a teljes mondatot pedig szóban mondjuk el.</p>
+    <div class="jo-rossz">
+        <div class="rossz">
+        <b>👎 Így nem jó:</b><br>
+        <h3>Erszényes farkas</h3>
+        <p>Az erszényesfarkas vagy tasmán tigris (Thylacinus cynocephalus) egykor Új-Guineában, Ausztráliában és Tasmaniában (a valamikori Szahul-földön) élt erszényes ragadozó, az erszényesfarkas-félék családjának egyetlen recens faja volt.</p></div>
+        <div class="jo">
+            <b>👍 Így jó:</b><br>
+            <h3>Erszényes farkas</h3>
+        <ul>
+            <li>Erszényes ragadozó</li>
+            <li>Ausztrália, Új-Guinea, Tasmania</li>
+            <li>Kihalt</li>
+        </ul></div>
+    </div>
+    <p>Minden lépés után pipáld ki a <b>Kész</b> négyzetet, és gyűjtsd a ⭐ csillagokat!</p>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">🧠</span>Miért nem jó, ha minden egyszerre jelenik meg?</h3>
+    <p>Ha a dián rögtön ott van az összes kulcsszó, a nézők <b>előreolvasnak</b>, és nem arra figyelnek, amit éppen mondasz. Ha viszont a kulcsszavak <b>egyenként</b> jelennek meg, mindig pontosan azt látják, amiről beszélsz.</p>
+    <div class="osszefoglalas">
+        <p>Az okos animálás szabálya:</p>
+        <ol>
+            <li>Amikor a dia megjelenik, már ott van a <b>cím</b> és a <b>kép</b>.</li>
+            <li>A <b>kulcsszavak egyenként</b>, <b>kattintásra</b> jönnek, amikor beszélni kezdesz róluk.</li>
+        </ol>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">👀</span>Nézd meg, hogyan működik!</h3>
+    <p>Ez egy minta dia. Kattints a <b>Kattintás</b> gombra, mintha te vetítenéd a bemutatót!</p>
+    <div class="minta-dia">
+        <h4>A delfin</h4>
+        <ul id="demo-lista">
+            <li>emlős, nem hal</li>
+            <li>tüdővel lélegzik</li>
+            <li>hanggal tájékozódik</li>
+            <li>csapatban él</li>
+        </ul>
+        <div class="minta-kep">🐬</div>
+    </div>
+    <div id="demo-allapot">A dia megjelent: a cím és a kép már látszik.</div>
+    <div class="demo-gombok">
+        <button onclick="demoKattintas()">🖱️ Kattintás</button>
+        <button class="masodlagos" onclick="demoUjra()">↺ Újra</button>
+    </div>
+    <p>Figyeld meg: minden kattintás előtt elmondhatod, mit tudsz az adott kulcsszóról.</p>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">✅</span>Jó és rossz animálás</h3>
+    <div class="jo-rossz">
+        <div class="jo">
+            <b>👍 Így jó:</b>
+            <ul>
+                <li>A cím és a kép a diával együtt jelenik meg.</li>
+                <li>A kulcsszavak egyenként, kattintásra jönnek.</li>
+                <li>Mindenhol ugyanaz az egyszerű animáció.</li>
+            </ul>
+        </div>
+        <div class="rossz">
+            <b>👎 Így nem jó:</b>
+            <ul>
+                <li>Minden repül, pörög, ugrál.</li>
+                <li>Minden dián más animáció van.</li>
+                <li>Előbb jön a szöveg, és csak a végén a kép.</li>
+                <li>A nézőnek várnia kell, mire valami megjelenik.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">1️⃣</span>Nézd át a diáidat!</h3>
+    <p>Nyisd meg a bemutatódat. Minden diánál ellenőrizd:</p>
+    <ul>
+        <li>Van <b>címe</b>?</li>
+        <li>Van rajta <b>kép</b>? Ha nincs, szúrj be egyet: <span class="menu-nev">Beszúrás</span> → <b>Képek</b>.</li>
+        <li>A szöveg <b>kulcsszavakból</b> áll, és minden kulcsszó <b>külön sorban</b> van? Ha egy sorban több is van, az <b>Enter</b> billentyűvel válaszd szét őket.</li>
+    </ul>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">2️⃣</span>Animáld a kulcsszavakat!</h3>
+    <ol>
+        <li>Kattints a kulcsszavakat tartalmazó szövegdobozba, majd a doboz <b>szélére</b> (a keretére), hogy az egész doboz ki legyen jelölve.</li>
+        <li>Kattints fent az <span class="menu-nev">Animációk</span> fülre.</li>
+        <li>Válassz egy egyszerű <b>belépő</b> animációt. A belépő animációk ikonja <b style="color:#27ae60">zöld</b>.</li>
+        <li>Kattints a <b>Hatásbeállítások</b> gombra, és ellenőrizd, hogy a <b>Bekezdésenként</b> van kiválasztva. Így minden kulcsszó külön kattintásra jön!</li>
+    </ol>
+    <p>Ha jól csináltad, a kulcsszavak mellett kis számok jelennek meg: <b>1, 2, 3…</b> Ezek mutatják, hányadik kattintásra jön az adott kulcsszó.</p>
+    <details>
+        <summary>💡 Melyik animációt válasszam?</summary>
+        <p>A legegyszerűbbek a legjobbak: a <b>Megjelenés</b> vagy az <b>Elhalványulás</b>. A forgó, pattogó animációk elvonják a figyelmet arról, amit mondasz.</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">3️⃣</span>A cím és a kép legyen ott rögtön!</h3>
+    <p>A címnek és a képnek nem kell animáció: a diával együtt jelennek meg. Ha korábban adtál nekik animációt, töröld le:</p>
+    <ol>
+        <li>Kattints a képre (vagy a címre).</li>
+        <li>Az <span class="menu-nev">Animációk</span> fülön válaszd a <b>Nincs</b> lehetőséget (a lista legelején).</li>
+    </ol>
+    <details>
+        <summary>🌟 Mi van, ha a kép is szépen szeretném, hogy beússzon?</summary>
+        <p>Adhatsz a képnek animációt, de állítsd át a <b>Kezdés</b> beállítást <b>Az előzővel együtt</b> lehetőségre. Így a kép kattintás nélkül, a diával együtt jelenik meg. A kép animációja legyen az <b>első</b> a sorban!</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">4️⃣</span>Ellenőrizd a sorrendet az Animációs panelen!</h3>
+    <ol>
+        <li>Az <span class="menu-nev">Animációk</span> fülön kattints az <b>Animációs panel</b> gombra. A jobb oldalon megjelenik a dia összes animációja, sorban.</li>
+        <li>Nézd meg: csak a kulcsszavak vannak a listában, a helyes sorrendben?</li>
+        <li>Ha valami rossz helyen van, a listában fogd meg, és húzd a helyére!</li>
+        <li>Ha egy animáció felesleges, kattints rá a listában, és nyomd meg a <b>Delete</b> billentyűt.</li>
+    </ol>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">5️⃣</span>Csináld meg minden dián!</h3>
+    <p>Animáld ugyanígy a többi dia kulcsszavait is! Mindenhol <b>ugyanazt</b> az animációt használd, így lesz egységes a bemutatód.</p>
+    <p class="kiemeles">A címdiára és az utolsó (köszönöm) diára nem kell animáció.</p>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">▶️</span>Próbáld ki, és gyakorold!</h3>
+    <ol>
+        <li>Nyomd meg az <b>F5</b> billentyűt: a vetítés az elejéről indul. (A <b>Shift + F5</b> az éppen kijelölt diától indítja.)</li>
+        <li>Minden kattintás előtt mondd el halkan, mit tudsz az adott kulcsszóról!</li>
+        <li>Kilépés a vetítésből: <b>Esc</b>.</li>
+    </ol>
+    <details>
+        <summary>✅ Ellenőrző lista</summary>
+        <ul>
+            <li>Minden dián a cím és a kép a diával együtt jelenik meg?</li>
+            <li>A kulcsszavak egyenként, kattintásra jönnek?</li>
+            <li>Mindenhol ugyanaz az animáció?</li>
+            <li>Nincs felesleges animáció (az Animációs panelen megnéztem)?</li>
+        </ul>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3><span class="lepes">🌟</span>Ha már mindennel kész vagy…</h3>
+    <ul>
+        <li>Válassz egy nagyon fontos kulcsszót, és adj neki egy <b>kiemelő</b> animációt is (sárga ikon). Ez akkor jó, ha később még egyszer vissza akarsz utalni rá.</li>
+        <li>Nézd meg az <span class="menu-nev">Áttűnések</span> fület: minden dia ugyanazt az áttűnést kapja? (<b>Alkalmazás mindegyikre</b> gomb)</li>
+        <li>Mutasd meg a bemutatódat a padtársadnak, és mondd el hozzá a szöveget! Ő figyelje: mindig az látszik a dián, amiről beszélsz?</li>
+    </ul>
+</div>
+
+<div class="task-card">
+    <h3>💾 Mentés és leadás</h3>
+    <ol>
+        <li>Mentsd el <b>Nevem_bemutato.pptx</b> néven a szerveren, a saját meghajtód <b>5.a</b> mappájába! Ha nincs ilyen mappa, hozd létre!</li>
+        <li>Zárd be a PowerPointot!</li>
+        <li>Nyisd meg a <b>Fájlkezelőt</b>, válaszd ki (egy kattintással) a mentett fájlodat, és másold le (<span class="billentyu-kombo"><b>Ctrl + C</b></span>)!</li>
+        <li>A bal oldalon keresd meg az <b>Ez a gép</b> elemet, kattints rá, majd a jobb oldalon kattints duplán a <b>Beadott</b> mappára!</li>
+        <li>Illeszd be (<span class="billentyu-kombo"><b>Ctrl + V</b></span>)!</li>
+    </ol>
+    <p class="kiemeles">Ha nem látod sem a Beadott mappát, sem a saját mappádat, kérj segítséget!</p>
+</div>
+
+<div class="progress-sticky">
+    <div class="progress-info">
+        <span id="haladas-szoveg">Haladás: 0%</span>
+        <div class="progress-bar-container"><div class="progress-bar-fill" id="progress-fill"></div></div>
+    </div>
+    <div class="pont-info">
+        ⭐ Csillagok: <span id="szerzett-pont">0</span> / <span id="max-pont">0</span>
+        <span class="jegy-jelzo" id="varhato-jegy">Várható jegy: -</span>
+    </div>
+</div>
+
+<button id="theme-toggle" title="Sötét/Világos mód">🌙</button>
+
+<script>
+    // a minta dia „vetítése”: kattintásonként egy kulcsszó jelenik meg
+    let demoLepes = 0;
+    function demoKattintas() {
+        const elemek = document.querySelectorAll("#demo-lista li");
+        const allapot = document.getElementById("demo-allapot");
+        if (demoLepes < elemek.length) {
+            elemek[demoLepes].classList.add("lathato");
+            demoLepes++;
+            allapot.textContent = demoLepes + ". kattintás: megjelent egy újabb kulcsszó.";
+            if (demoLepes === elemek.length) allapot.textContent += " Ez volt az utolsó, a következő kattintás a következő diára lép.";
+        } else {
+            allapot.textContent = "➡️ Következő dia… (kattints az Újra gombra az újrakezdéshez)";
+        }
+    }
+    function demoUjra() {
+        document.querySelectorAll("#demo-lista li").forEach(li => li.classList.remove("lathato"));
+        demoLepes = 0;
+        document.getElementById("demo-allapot").textContent = "A dia megjelent: a cím és a kép már látszik.";
+    }
+</script>
+</body>
+</html>

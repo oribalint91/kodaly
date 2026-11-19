@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Érettségi gyakorlás – Excel: Koncertterem</title>
+    <link rel="stylesheet" href="../style.css?v=4">
+    <script type="text/javascript" src="../script.js?v=4"></script>
+    <style>
+        .feladat { border-left: 4px solid var(--secondary); padding-left: 12px; }
+    </style>
+</head>
+<body>
+
+<h2>🎼 Érettségi gyakorlás – Excel: Koncertterem</h2>
+
+<div class="intro">
+    <p>Egy koncerthelyszín három hónap alatt 24 hangversenyt rendezett két teremben. A feladat az érettségi táblázatkezelési feladataihoz hasonló, a megfogalmazása és a pontozása is ehhez igazodik.</p>
+    <p><b>Kétféleképpen dolgozhatsz:</b></p>
+    <ul>
+        <li>🎯 <b>Érettségi mód (haladóknak):</b> csak a keretes feladatszövegeket olvasd, és oldd meg önállóan, segítség nélkül! A végén nézd meg az <i>Ellenőrző értékeket</i>. Időkeret: kb. 35 perc.</li>
+        <li>📘 <b>Tanulós mód:</b> minden feladatnál nyisd le a <i>Részletes útmutatót</i>. Benne van a képlet és a magyarázat is, de gépeld be magad, és értsd meg, mit miért írsz!</li>
+    </ul>
+</div>
+
+<div class="task-card">
+    <h3>📋 Forrásadatok</h3>
+    <p><b>Koncertek</b> (ide: <code class="inline">A1</code>)</p>
+    <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+        <div class="table-wrap">
+            <table class="tema-tabla wide-table">
+                <tr><th>Hónap</th><th>Nap</th><th>Előadó</th><th>Műfaj</th><th>Terem</th><th>Eladott jegy</th><th>Jegyár</th></tr>
+                <tr><td>január</td><td>péntek</td><td>Ezüsthíd Kamarazenekar</td><td>Klasszikus</td><td>Nagyterem</td><td>612</td><td>4900</td></tr>
+                <tr><td>január</td><td>szombat</td><td>Kék Óra Jazz Trió</td><td>Jazz</td><td>Kisterem</td><td>241</td><td>3900</td></tr>
+                <tr><td>január</td><td>vasárnap</td><td>Szélrózsa Népzenei Együttes</td><td>Népzene</td><td>Kisterem</td><td>188</td><td>2900</td></tr>
+                <tr><td>január</td><td>szerda</td><td>Hajnal Kamarakórus</td><td>Klasszikus</td><td>Kisterem</td><td>164</td><td>2500</td></tr>
+                <tr><td>január</td><td>szombat</td><td>Neon Lámpások</td><td>Pop</td><td>Nagyterem</td><td>900</td><td>6500</td></tr>
+                <tr><td>január</td><td>csütörtök</td><td>Tóparti Fúvósegyüttes</td><td>Klasszikus</td><td>Nagyterem</td><td>455</td><td>3500</td></tr>
+                <tr><td>január</td><td>péntek</td><td>Esti Villamos Big Band</td><td>Jazz</td><td>Nagyterem</td><td>704</td><td>5200</td></tr>
+                <tr><td>január</td><td>kedd</td><td>Diákzenekari est</td><td>Klasszikus</td><td>Kisterem</td><td>250</td><td>1000</td></tr>
+                <tr><td>február</td><td>szombat</td><td>Szélrózsa Népzenei Együttes</td><td>Népzene</td><td>Nagyterem</td><td>596</td><td>3900</td></tr>
+                <tr><td>február</td><td>péntek</td><td>Papírhajók</td><td>Pop</td><td>Nagyterem</td><td>871</td><td>5900</td></tr>
+                <tr><td>február</td><td>vasárnap</td><td>Ezüsthíd Kamarazenekar</td><td>Klasszikus</td><td>Nagyterem</td><td>688</td><td>4900</td></tr>
+                <tr><td>február</td><td>csütörtök</td><td>Kék Óra Jazz Trió</td><td>Jazz</td><td>Kisterem</td><td>219</td><td>3900</td></tr>
+                <tr><td>február</td><td>hétfő</td><td>Gitárpárbaj</td><td>Pop</td><td>Kisterem</td><td>97</td><td>2900</td></tr>
+                <tr><td>február</td><td>szombat</td><td>Csillagköd Szimfonikusok</td><td>Klasszikus</td><td>Nagyterem</td><td>893</td><td>7500</td></tr>
+                <tr><td>február</td><td>szerda</td><td>Fonó Táncház</td><td>Népzene</td><td>Kisterem</td><td>243</td><td>2000</td></tr>
+                <tr><td>február</td><td>vasárnap</td><td>Esti Villamos Big Band</td><td>Jazz</td><td>Nagyterem</td><td>532</td><td>5200</td></tr>
+                <tr><td>március</td><td>péntek</td><td>Neon Lámpások</td><td>Pop</td><td>Nagyterem</td><td>900</td><td>6500</td></tr>
+                <tr><td>március</td><td>szombat</td><td>Hajnal Kamarakórus</td><td>Klasszikus</td><td>Kisterem</td><td>238</td><td>2500</td></tr>
+                <tr><td>március</td><td>kedd</td><td>Tóparti Fúvósegyüttes</td><td>Klasszikus</td><td>Nagyterem</td><td>318</td><td>3500</td></tr>
+                <tr><td>március</td><td>csütörtök</td><td>Fonó Táncház</td><td>Népzene</td><td>Kisterem</td><td>226</td><td>2000</td></tr>
+                <tr><td>március</td><td>szombat</td><td>Csillagköd Szimfonikusok</td><td>Klasszikus</td><td>Nagyterem</td><td>900</td><td>7500</td></tr>
+                <tr><td>március</td><td>vasárnap</td><td>Kék Óra Jazz Trió</td><td>Jazz</td><td>Kisterem</td><td>250</td><td>3900</td></tr>
+                <tr><td>március</td><td>szerda</td><td>Papírhajók</td><td>Pop</td><td>Nagyterem</td><td>640</td><td>5900</td></tr>
+                <tr><td>március</td><td>péntek</td><td>Szélrózsa Népzenei Együttes</td><td>Népzene</td><td>Nagyterem</td><td>515</td><td>3900</td></tr>
+            </table>
+        </div>
+    </div>
+    <p><b>Segédtáblázat</b> (ide: <code class="inline">N1</code>)</p>
+    <div class="code-container">
+        <button class="copy-btn" onclick="copyCode(this)">Másolás</button>
+        <div class="table-wrap">
+            <table class="tema-tabla" style="max-width: 300px;">
+                <tr><th>Terem</th><th>Férőhely</th></tr>
+                <tr><td>Nagyterem</td><td>900</td></tr>
+                <tr><td>Kisterem</td><td>250</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>⚠️ Az érettségi táblázatkezelési feladatainak általános szabályai</h3>
+    <ul>
+        <li>Ahol a feladat számítást kér, ott <b>képletet vagy függvényt</b> kell használni. A kézzel beírt eredmény akkor sem ér pontot, ha jó.</li>
+        <li>Ha a feladat egy cellára hivatkozást kér (pl. segédtáblázat), a számot <b>nem szabad</b> beírni a képletbe.</li>
+        <li>„Megoldását úgy készítse el, hogy a képlet másolható legyen”: gondold végig, mit kell <b>$</b>-ral rögzíteni.</li>
+        <li>Segédszámítást végezhetsz, de csak a megadott területen kívül, és ha a feladat nem tiltja.</li>
+        <li>Mentsd gyakran (<span class="billentyu-kombo"><b>Ctrl + S</b></span>)!</li>
+    </ul>
+</div>
+
+<div class="task-card">
+    <h3>1. Az adatok betöltése</h3>
+    <p class="feladat">Hozzon létre egy új munkafüzetet <b>Nevem_11_koncert.xlsx</b> néven (pl. <i>KissAnna_11_koncert.xlsx</i>)! Az első munkalap neve legyen <b>koncertek</b>. Másolja be a lent található forrásadatokat az <code class="inline">A1</code> cellától kezdődően, a segédtáblázatot pedig az <code class="inline">N1</code> cellától!</p>
+    <details>
+        <summary>📘 Részletes útmutató</summary>
+        <ul>
+    <li>A munkalap átnevezése: kattints duplán a lenti fülön a <i>Munka1</i> feliratra, írd be: <b>koncertek</b>, Enter.</li>
+    <li>Kattints az <code class="inline">A1</code> cellára, és illeszd be a koncertek táblázatát (fejléccel együtt). Utána kattints az <code class="inline">N1</code> cellára, és illeszd be a férőhelyes segédtáblázatot.</li>
+    <li>Ha beillesztéskor a táblázat színeit, kereteit is áthozza, nem baj. Ha zavar: jobb gomb → <b>Beillesztés beállításai</b> → <b>Csak a szöveg megtartása</b>.</li>
+    <li>Ellenőrzés: az utolsó koncert a <b>25. sorban</b> van. A számok jobbra igazodnak (ha balra, akkor az Excel szövegnek vette őket!).</li>
+    <li>Az érettségin a forrás általában egy tabulátorokkal tagolt <b>.txt</b> fájl, amit az Excel <b>Fájl → Megnyitás</b> paranccsal lehet betölteni. Ott a szövegbeolvasó varázslóban az <b>UTF-8</b> kódolást és a <b>tabulátor</b> elválasztót kell választani.</li>
+</ul>
+    </details>
+    <details class="megoldasok">
+        <summary>🔍 Ellenőrző értékek</summary>
+        <p>A1: Hónap, C25: Szélrózsa Népzenei Együttes, O2: 900, O3: 250</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="1">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>2. Férőhely</h3>
+    <p class="feladat">A <code class="inline">H1</code> cellába írja be a <i>Férőhely</i> fejlécet! A <code class="inline">H2:H25</code> tartományban jelenítse meg függvény segítségével az adott terem férőhelyét a segédtáblázat (<code class="inline">N1:O3</code>) alapján! A megoldásában hivatkozzon a segédtáblázat celláira!</p>
+    <details>
+        <summary>📘 Részletes útmutató</summary>
+        <p>Két terem van, ezért egy <b>HA</b> függvény elég:</p>
+<p><code class="inline">H2: =HA(E2="Nagyterem";$O$2;$O$3)</code></p>
+<ul>
+    <li><b>E2</b> relatív hivatkozás, mert lefelé másoláskor E3, E4… kell.</li>
+    <li><b>$O$2</b> és <b>$O$3</b> rögzített (abszolút) hivatkozás, mert a segédtáblázat helye nem változik. Ha nem rögzíted, lefelé másoláskor O3, O4… lenne belőle, és üres cellákra mutatna.</li>
+    <li>A szöveget mindig idézőjelek közé kell tenni: <code class="inline">"Nagyterem"</code>.</li>
+</ul>
+<p><b>Haladó megoldás:</b> keresőfüggvénnyel, ez akkor is működne, ha sok terem lenne: <code class="inline">=FKERES(E2;$N$2:$O$3;2;HAMIS)</code> vagy újabb Excelben <code class="inline">=XKERES(E2;$N$2:$N$3;$O$2:$O$3)</code>.</p>
+<p class="kiemeles">Érettségi tipp: ha a feladat azt kéri, hogy „hivatkozzon a cellára”, akkor a 900-at és a 250-et nem szabad beírni a képletbe! Ez pontlevonással jár.</p>
+    </details>
+    <details class="megoldasok">
+        <summary>🔍 Ellenőrző értékek</summary>
+        <p>H2: 900, H3: 250, H25: 900</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>3. Telítettség és bevétel</h3>
+    <p class="feladat">Az <code class="inline">I</code> oszlopban (fejléc: <i>Telítettség</i>) határozza meg, hogy az eladott jegyek a férőhely hány százalékát teszik ki! A <code class="inline">J</code> oszlopban (fejléc: <i>Bevétel</i>) számítsa ki az egyes koncertek jegybevételét!</p>
+    <details>
+        <summary>📘 Részletes útmutató</summary>
+        <ul>
+    <li><b>Telítettség</b> = eladott jegy / férőhely: <code class="inline">I2: =F2/H2</code>. Az eredmény 0 és 1 közötti tizedes tört (pl. 0,68). Ebből a <b>százalék formátum</b> csinál 68%-ot. Ne szorozd meg 100-zal, mert akkor 6800% lesz!</li>
+    <li><b>Bevétel</b> = eladott jegy × jegyár: <code class="inline">J2: =F2*G2</code></li>
+    <li>Mindkettőt másold le a 25. sorig (dupla kattintás a kitöltőnégyzeten).</li>
+</ul>
+    </details>
+    <details class="megoldasok">
+        <summary>🔍 Ellenőrző értékek</summary>
+        <p>I2: 0,68 (68,0%), I3: 0,964 (96,4%), J2: 2 998 800, J6: 5 850 000</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="3">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>4. Telt ház</h3>
+    <p class="feladat">A <code class="inline">K</code> oszlopban (fejléc: <i>Telt ház</i>) jelenjen meg a <i>telt ház</i> szöveg, ha a telítettség legalább 95%! Egyéb esetben a cella maradjon üres!</p>
+    <details>
+        <summary>📘 Részletes útmutató</summary>
+        <p><code class="inline">K2: =HA(I2&gt;=0,95;"telt ház";"")</code></p>
+<ul>
+    <li>A „legalább” azt jelenti: <b>&gt;=</b> (nagyobb vagy egyenlő).</li>
+    <li>A 95% tizedes törtként 0,95. A magyar Excelben tizedesvesszőt használunk! (A <code class="inline">I2&gt;=95%</code> alak is működik.)</li>
+    <li>Az üres szöveget két egymás utáni idézőjel jelöli: <code class="inline">""</code>. Ha a 0-t vagy a szóközt írod, a cella nem lesz üres!</li>
+</ul>
+    </details>
+    <details class="megoldasok">
+        <summary>🔍 Ellenőrző értékek</summary>
+        <p>10 koncertnél jelenik meg a <i>telt ház</i> felirat, pl. K3, K6, K9.</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>5. Hétvégi koncertek</h3>
+    <p class="feladat">Az <code class="inline">L</code> oszlopban (fejléc: <i>Hétvége</i>) jelenítse meg az <i>igen</i> szöveget, ha a koncert szombaton vagy vasárnap volt, egyébként a <i>nem</i> szöveget!</p>
+    <details>
+        <summary>📘 Részletes útmutató</summary>
+        <p>Itt <b>két</b> feltétel közül elég, ha az egyik teljesül, ezért a <b>VAGY</b> függvényt kell a HA-ba ágyazni:</p>
+<p><code class="inline">L2: =HA(VAGY(B2="szombat";B2="vasárnap");"igen";"nem")</code></p>
+<ul>
+    <li><b>VAGY</b>: igaz, ha legalább az egyik feltétel igaz.</li>
+    <li><b>ÉS</b>: csak akkor igaz, ha mindegyik feltétel igaz. (Itt az ÉS rossz lenne: egy nap nem lehet egyszerre szombat és vasárnap.)</li>
+</ul>
+    </details>
+    <details class="megoldasok">
+        <summary>🔍 Ellenőrző értékek</summary>
+        <p>10 hétvégi koncert van. L2: nem, L3: igen, L4: igen.</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="2">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>6. Összesítések</h3>
+    <p class="feladat">Az <code class="inline">N5:N10</code> cellákba írja be a lenti szövegeket, és mellettük az <code class="inline">O</code> oszlopban függvények segítségével határozza meg a kért értékeket!</p>
+<div class="table-wrap"><table class="tema-tabla">
+<tr><th>Cella</th><th>Szöveg</th><th>Kért érték</th></tr>
+<tr><td>N5</td><td>Összes bevétel:</td><td>a koncertek bevételeinek összege</td></tr>
+<tr><td>N6</td><td>Eladott jegyek:</td><td>az összes eladott jegy</td></tr>
+<tr><td>N7</td><td>Átlagos telítettség:</td><td>a telítettségek átlaga</td></tr>
+<tr><td>N8</td><td>Telt házas koncertek:</td><td>a telt házas koncertek száma</td></tr>
+<tr><td>N9</td><td>Legnagyobb bevétel:</td><td>a legnagyobb bevételű koncert <b>előadója</b></td></tr>
+<tr><td>N10</td><td>Hétvégi átlagos telítettség:</td><td>a hétvégi koncertek átlagos telítettsége</td></tr>
+</table></div>
+    <details>
+        <summary>📘 Részletes útmutató</summary>
+        <ul>
+    <li><code class="inline">O5: =SZUM(J2:J25)</code></li>
+    <li><code class="inline">O6: =SZUM(F2:F25)</code></li>
+    <li><code class="inline">O7: =ÁTLAG(I2:I25)</code></li>
+    <li><code class="inline">O8: =DARABTELI(K2:K25;"telt ház")</code>: megszámolja, hány cellában szerepel a „telt ház”.</li>
+    <li><code class="inline">O9: =INDEX(C2:C25;HOL.VAN(MAX(J2:J25);J2:J25;0))</code>
+        <ul>
+            <li><b>MAX(J2:J25)</b>: a legnagyobb bevétel.</li>
+            <li><b>HOL.VAN(…;J2:J25;0)</b>: hányadik a tartományban ez az érték (a 0 = pontos egyezés).</li>
+            <li><b>INDEX(C2:C25;…)</b>: az előadók közül az ugyanannyiadik.</li>
+            <li>Újabb Excelben: <code class="inline">=XKERES(MAX(J2:J25);J2:J25;C2:C25)</code></li>
+        </ul>
+    </li>
+    <li><code class="inline">O10: =ÁTLAGHA(L2:L25;"igen";I2:I25)</code>: azoknak a soroknak az I értékét átlagolja, ahol az L oszlopban „igen” áll.</li>
+</ul>
+<p class="kiemeles">Érettségi tipp: a „függvény segítségével” azt jelenti, hogy a választ nem írhatod be kézzel, még akkor sem, ha jó!</p>
+    </details>
+    <details class="megoldasok">
+        <summary>🔍 Ellenőrző értékek</summary>
+        <p>O5: 59 686 500 Ft · O6: 11 640 · O7: 79,4% · O8: 10 · O9: Csillagköd Szimfonikusok · O10: 86,8%</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="5">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>7. Műfajok szerinti összesítés</h3>
+    <p class="feladat">Az <code class="inline">N13:P17</code> tartományban készítsen táblázatot! Az <code class="inline">N13:P13</code> cellákba a <i>Műfaj</i>, <i>Koncertek száma</i>, <i>Bevétel</i> fejlécek kerüljenek, az <code class="inline">N14:N17</code> cellákba a műfajok: <i>Klasszikus, Jazz, Népzene, Pop</i>. Az <code class="inline">O</code> és <code class="inline">P</code> oszlopban határozza meg műfajonként a koncertek számát és az összes bevételt! Megoldását úgy készítse el, hogy a képlet a többi cellába másolható legyen!</p>
+    <details>
+        <summary>📘 Részletes útmutató</summary>
+        <p><code class="inline">O14: =DARABTELI($D$2:$D$25;N14)</code><br>
+<code class="inline">P14: =SZUMHA($D$2:$D$25;N14;$J$2:$J$25)</code></p>
+<ul>
+    <li>A feltételt (a műfaj nevét) nem írjuk be a képletbe, hanem a mellette lévő cellára hivatkozunk (<b>N14</b>). Így lefelé másolva N15, N16, N17 lesz belőle.</li>
+    <li>A tartományok rögzítettek ($), hogy másoláskor ne csússzanak el.</li>
+    <li><b>SZUMHA(</b>ahol keres<b>;</b> mit keres<b>;</b> mit ad össze<b>)</b></li>
+</ul>
+    </details>
+    <details class="megoldasok">
+        <summary>🔍 Ellenőrző értékek</summary>
+        <div class="table-wrap"><table class="tema-tabla">
+<tr><th>Műfaj</th><th>Koncertek száma</th><th>Bevétel</th></tr>
+<tr><td>Klasszikus</td><td>9</td><td>23 778 000 Ft</td></tr>
+<tr><td>Jazz</td><td>5</td><td>9 196 200 Ft</td></tr>
+<tr><td>Népzene</td><td>5</td><td>5 816 100 Ft</td></tr>
+<tr><td>Pop</td><td>5</td><td>20 896 200 Ft</td></tr>
+</table></div>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="4">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>8. Formázás</h3>
+    <ul class="feladat">
+    <li>Az <code class="inline">A1:L1</code> és az <code class="inline">N13:P13</code> cellák tartalma legyen félkövér, vízszintesen középre igazított, és a szöveg legyen több sorba tördelve!</li>
+    <li>A <code class="inline">G</code> és <code class="inline">J</code> oszlop, valamint az <code class="inline">O5</code> és a <code class="inline">P14:P17</code> cellák értékei pénznem formátumban, ezres tagolással, tizedesjegyek nélkül, „Ft” végződéssel jelenjenek meg!</li>
+    <li>Az <code class="inline">I</code> oszlop, valamint az <code class="inline">O7</code> és <code class="inline">O10</code> cellák értékei százalék formátumban, egy tizedesjeggyel jelenjenek meg!</li>
+    <li>Az <code class="inline">A1:L25</code> tartomány celláit vékony vonallal szegélyezze!</li>
+    <li>Az oszlopok szélessége legyen akkora, hogy minden adat olvasható legyen!</li>
+</ul>
+    <details>
+        <summary>📘 Részletes útmutató</summary>
+        <ul>
+    <li><b>Tördelés:</b> Kezdőlap → <b>Sortöréssel több sorba</b>. <b>Középre:</b> Kezdőlap → Igazítás → Középre zárt.</li>
+    <li><b>Pénznem:</b> jobb gomb → Cellaformázás → Szám → <b>Pénznem</b>, Tizedesjegyek: 0, Szimbólum: Ft.</li>
+    <li><b>Százalék:</b> Cellaformázás → Szám → <b>Százalék</b>, Tizedesjegyek: 1.</li>
+    <li><b>Szegély:</b> Kezdőlap → Szegélyek → <b>Minden szegély</b>.</li>
+    <li>Nem összefüggő tartományok kijelölése: <b>Ctrl</b> nyomva tartásával.</li>
+    <li>Ha <b>####</b> jelenik meg, a szám nem fér ki: szélesítsd az oszlopot.</li>
+</ul>
+    </details>
+    <details class="megoldasok">
+        <summary>🔍 Ellenőrző értékek</summary>
+        <p>I3: 96,4% · J2: 2 998 800 Ft · O7: 79,4%</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="3">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+<div class="task-card">
+    <h3>9. Diagram</h3>
+    <p class="feladat">Készítsen <b>csoportosított oszlopdiagramot</b> a műfajonkénti bevételekről (<code class="inline">N13:N17</code> és <code class="inline">P13:P17</code>)! A diagram a munkalapon az <code class="inline">N20</code> cella környékén helyezkedjen el. A diagram címe <i>Bevétel műfajonként</i> legyen, jelmagyarázat ne jelenjen meg, az oszlopok fölött pedig jelenjenek meg az értékek (adatfeliratok)!</p>
+    <details>
+        <summary>📘 Részletes útmutató</summary>
+        <ol>
+    <li>Jelöld ki az <code class="inline">N13:N17</code> tartományt, majd <b>Ctrl</b>-t nyomva tartva a <code class="inline">P13:P17</code> tartományt.</li>
+    <li>Beszúrás → Diagramok → <b>Oszlop</b> → Csoportosított oszlop.</li>
+    <li>Húzd a diagramot az <code class="inline">N20</code> cella környékére.</li>
+    <li>Kattints a címre, és írd át: <i>Bevétel műfajonként</i>.</li>
+    <li>A diagram melletti <b>+</b> gombbal (Diagram-összetevők): pipáld ki az <b>Adatfeliratok</b>at, vedd ki a pipát a <b>Jelmagyarázat</b> elől.</li>
+</ol>
+<p class="kiemeles">Érettségi tipp: ha a diagramon <i>„Adatsor1”</i> vagy hibás kategóriák (1, 2, 3, 4) látszanak, rossz volt a kijelölés. A kategóriák (műfajok) és az értékek kijelölésénél ugyanannyi sor legyen!</p>
+    </details>
+    <details class="megoldasok">
+        <summary>🔍 Ellenőrző értékek</summary>
+        <p>A legmagasabb oszlop a Klasszikus (23 778 000), a legalacsonyabb a Népzene (5 816 100).</p>
+    </details>
+    <div class="feladat-ellenorzo" data-pont="4">
+        <label><input type="checkbox" class="kesz-box"> Kész</label>
+        <label class="hibatlan-label disable-label"><input type="checkbox" class="hibatlan-box" disabled> Szerintem hibátlan</label>
+    </div>
+</div>
+
+
+<div class="task-card">
+    <h3>💾 Mentés és leadás</h3>
+    <p>Leadás előtt ellenőrizd: a munkalap neve <b>koncertek</b>, minden számolt érték képlettel készült, és a diagram is a munkalapon van.</p>
+    <ol>
+        <li>Mentsd el <b>Nevem_11_koncert.xlsx</b> néven a szerveren, a saját meghajtód <b>11</b> mappájába! Ha nincs ilyen mappa, hozd létre!</li>
+        <li>Zárd be az Excelt!</li>
+        <li>Nyisd meg a <b>Fájlkezelőt</b>, válaszd ki (egy kattintással) a mentett fájlodat, és másold le (<span class="billentyu-kombo"><b>Ctrl + C</b></span>)!</li>
+        <li>A bal oldalon keresd meg az <b>Ez a gép</b> elemet, kattints rá, majd a jobb oldalon kattints duplán a <b>Beadott</b> mappára!</li>
+        <li>Illeszd be (<span class="billentyu-kombo"><b>Ctrl + V</b></span>)!</li>
+    </ol>
+    <p class="kiemeles">Ha nem látod sem a Beadott mappát, sem a saját mappádat, kérj segítséget!</p>
+</div>
+
+<div class="progress-sticky">
+    <div class="progress-info">
+        <span id="haladas-szoveg">Haladás: 0%</span>
+        <div class="progress-bar-container"><div class="progress-bar-fill" id="progress-fill"></div></div>
+    </div>
+    <div class="pont-info">
+        Pont: <span id="szerzett-pont">0</span> / <span id="max-pont">0</span>
+        <span class="jegy-jelzo" id="varhato-jegy">Várható jegy: -</span>
+    </div>
+</div>
+
+<button id="theme-toggle" title="Sötét/Világos mód">🌙</button>
+</body>
+</html>

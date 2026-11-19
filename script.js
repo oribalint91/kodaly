@@ -335,13 +335,15 @@ const TARTALOM = [
                     { title: "Excel alapok gyakorlása", file: "Excel_02_gyakorlas_01.html", active: false },
                     { title: "Logikai értékek és formázás", file: "Excel_03_logika.html", active: false },
                     {title: "9ny – Excel alapok: osztálykirándulás", file: "excel_9ny_01_alapok_kirandulas.html", evfolyam: "9ny", active: true},
-                    {title: "10. – Excel gyakorlás: hangszerbolt", file: "excel_10_01_hangszerbolt.html", evfolyam: "10", active: true}
+                    {title: "10. – Excel gyakorlás: hangszerbolt", file: "excel_10_01_hangszerbolt.html", evfolyam: "10", active: true},
+                    {title: "11. – Excel gyakorlás: koncertterem", file: "Excel_11_koncertterem.html", evfolyam: "11", active: true}
                 ]
             },
             {
                 name: "Prezentációkészítés",
                 items: [
                     {title: "4. – PowerPoint: Bemutatom a kedvencemet!", file: "ppt_04_01_kedvencem.html", evfolyam: "4", active: true},
+                    {title: "5. – PowerPoint: Okosan animálok!", file: "ppt_05_animalas.html", evfolyam: "5", active: true},
                     { title: "Animálás az egérmutatóval", file: "ppt_11_egerre.html", evfolyam: "11", active: false }
                 ]
             },
